@@ -1,0 +1,561 @@
+/* This file uses PostCSS with Tailwind CSS */
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600;700&family=Outfit:wght@100;200;300;400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap');
+
+/* Tailwind CSS directives - These are processed by PostCSS during build */
+/* These @tailwind directives are NOT standard CSS - they are PostCSS/Tailwind specific */
+/* stylelint-disable at-rule-no-unknown */
+/* postcss-disable-next-line at-rule-no-unknown */
+@tailwind base;
+/* postcss-disable-next-line at-rule-no-unknown */
+@tailwind components;
+/* postcss-disable-next-line at-rule-no-unknown */
+@tailwind utilities;
+/* stylelint-enable at-rule-no-unknown */
+
+:root {
+  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  --vh: 1vh;
+  --font-primary: 'Outfit', sans-serif;
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --font-inter: 'Inter', sans-serif;
+}
+
+/* Mobile optimizations */
+html {
+  scroll-behavior: smooth;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overscroll-behavior: none;
+}
+
+/* Fix for mobile viewport height */
+.min-h-screen {
+  min-height: 100vh;
+  min-height: calc(var(--vh, 1vh) * 100);
+}
+
+.h-screen {
+  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
+}
+
+/* Improve touch interactions */
+button, a {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+/* Prevent text selection on mobile */
+.select-none {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Animation delay utilities */
+.animate-delay-1s {
+  animation-delay: 1s;
+}
+
+.animate-delay-2s {
+  animation-delay: 2s;
+}
+
+/* Dynamic color utilities using CSS custom properties */
+.bg-dynamic {
+  background-color: var(--dynamic-color);
+}
+
+.bg-dynamic-opacity-5 {
+  background-color: var(--dynamic-color);
+  opacity: 0.05;
+}
+
+.bg-dynamic-opacity-3 {
+  background-color: var(--dynamic-color);
+  opacity: 0.03;
+}
+
+.bg-dynamic-alpha-25 {
+  /* Fallback for browsers without color-mix support (Chrome < 111, Firefox < 113, Safari < 16.2) */
+  background-color: rgba(59, 130, 246, 0.15);
+  /* Modern browsers with color-mix support - provides dynamic alpha blending */
+  /* stylelint-disable-next-line property-no-unknown */
+  background-color: color-mix(in srgb, var(--dynamic-color) 15%, transparent);
+}
+
+.text-dynamic {
+  color: var(--dynamic-color);
+}
+
+.shadow-dynamic {
+  /* Fallback for browsers without color-mix support */
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.18);
+  /* Modern browsers with color-mix support - provides dynamic shadow colors */
+  /* stylelint-disable-next-line property-no-unknown */
+  box-shadow: 0 0 20px color-mix(in srgb, var(--dynamic-color) 18%, transparent);
+}
+
+.text-shadow-dynamic {
+  /* Fallback for browsers without color-mix support */
+  text-shadow: 0 0 20px rgba(59, 130, 246, 0.18);
+  /* Modern browsers with color-mix support - provides dynamic text shadows */
+  /* stylelint-disable-next-line property-no-unknown */
+  text-shadow: 0 0 20px color-mix(in srgb, var(--dynamic-color) 18%, transparent);
+}
+
+/* Project type specific colors */
+.project-type-web {
+  background-color: #3b82f6;
+}
+
+.project-type-mobile {
+  background-color: #8b5cf6;
+}
+
+.project-type-fullstack {
+  background-color: #059669;
+}
+
+/* Project specific colors */
+.project-color-blue {
+  background-color: #3b82f6;
+}
+
+.project-color-blue-opacity {
+  background-color: #3b82f6;
+  opacity: 0.05;
+}
+
+.project-color-green {
+  background-color: #059669;
+}
+
+.project-color-green-opacity {
+  background-color: #059669;
+  opacity: 0.05;
+}
+
+.project-color-purple {
+  background-color: #8b5cf6;
+}
+
+.project-color-purple-opacity {
+  background-color: #8b5cf6;
+  opacity: 0.05;
+}
+
+.project-color-amber {
+  background-color: #f59e0b;
+}
+
+.project-color-amber-opacity {
+  background-color: #f59e0b;
+  opacity: 0.05;
+}
+
+.project-color-red {
+  background-color: #ef4444;
+}
+
+.project-color-red-opacity {
+  background-color: #ef4444;
+  opacity: 0.05;
+}
+
+.project-color-cyan {
+  background-color: #06b6d4;
+}
+
+.project-color-cyan-opacity {
+  background-color: #06b6d4;
+  opacity: 0.05;
+}
+
+/* Achievement specific colors */
+.achievement-amber {
+  --dynamic-color: #f59e0b;
+}
+
+.achievement-purple {
+  --dynamic-color: #8b5cf6;
+}
+
+.achievement-green {
+  --dynamic-color: #059669;
+}
+
+.achievement-blue {
+  --dynamic-color: #3b82f6;
+}
+
+.achievement-red {
+  --dynamic-color: #ef4444;
+}
+
+.achievement-cyan {
+  --dynamic-color: #06b6d4;
+}
+
+/* Stats specific colors */
+.stat-blue {
+  --dynamic-color: #3b82f6;
+}
+
+.stat-purple {
+  --dynamic-color: #8b5cf6;
+}
+
+.stat-green {
+  --dynamic-color: #059669;
+}
+
+.stat-amber {
+  --dynamic-color: #f59e0b;
+}
+
+/* Service specific colors */
+.service-blue {
+  --dynamic-color: #3b82f6;
+}
+
+.service-purple {
+  --dynamic-color: #8b5cf6;
+}
+
+.service-green {
+  --dynamic-color: #059669;
+}
+
+.service-amber {
+  --dynamic-color: #f59e0b;
+}
+
+.service-red {
+  --dynamic-color: #ef4444;
+}
+
+.service-cyan {
+  --dynamic-color: #06b6d4;
+}
+
+/* Contact specific colors and backgrounds */
+.contact-blue {
+  --dynamic-color: #3b82f6;
+  --contact-bg-color: #3b82f620;
+}
+
+.contact-green {
+  --dynamic-color: #059669;
+  --contact-bg-color: #05966920;
+}
+
+.contact-purple {
+  --dynamic-color: #8b5cf6;
+  --contact-bg-color: #8b5cf620;
+}
+
+.contact-icon-bg {
+  background-color: var(--contact-bg-color);
+}
+
+.contact-icon-color {
+  color: var(--dynamic-color);
+}
+
+/* Interactive background grid */
+.interactive-grid {
+  background-image: 
+    linear-gradient(rgba(59, 130, 246, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(59, 130, 246, 0.1) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+/* Skill specific colors */
+.skill-orange {
+  background-color: #f97316;
+}
+
+.skill-blue {
+  background-color: #3b82f6;
+}
+
+.skill-yellow {
+  background-color: #eab308;
+}
+
+.skill-cyan {
+  background-color: #06b6d4;
+}
+
+.skill-purple {
+  background-color: #8b5cf6;
+}
+
+.skill-green {
+  background-color: #059669;
+}
+
+.skill-red {
+  background-color: #dc2626;
+}
+
+.skill-pink {
+  background-color: #ec4899;
+}
+
+/* Custom scrollbar for desktop */
+@media (min-width: 768px) {
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #000000;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #3b82f6;
+    border-radius: 4px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #2563eb;
+  }
+}
+
+/* Hide scrollbar on mobile */
+@media (max-width: 767px) {
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  
+  html {
+    /* Internet Explorer and Edge */
+    -ms-overflow-style: none;
+    /* Firefox - modern CSS property (Firefox 64+) */
+    /* stylelint-disable-next-line property-no-unknown */
+    scrollbar-width: none;
+  }
+}
+
+/* Enhanced Typography */
+@layer base {
+  html {
+    font-family: var(--font-primary);
+    letter-spacing: -0.015em;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.025em;
+  }
+  
+  .font-display {
+    font-family: var(--font-display);
+  }
+  
+  .font-mono {
+    font-family: var(--font-mono);
+  }
+}
+
+/* Custom Text Effects */
+@layer components {
+  .text-gradient {
+    background: linear-gradient(135deg, #60a5fa, #a855f7, #06b6d4);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradient-shift 4s ease-in-out infinite;
+  }
+  
+  .text-gradient-blue {
+    background: linear-gradient(135deg, #3b82f6, #06b6d4);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  .text-gradient-purple {
+    background: linear-gradient(135deg, #8b5cf6, #ec4899);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  .text-shadow-glow {
+    text-shadow: 0 0 20px rgba(96, 165, 250, 0.3),
+                 0 0 40px rgba(96, 165, 250, 0.2),
+                 0 0 60px rgba(96, 165, 250, 0.1);
+  }
+  
+  .text-shadow-soft {
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  }
+  
+  .heading-xl {
+    font-size: 3.75rem; /* text-6xl */
+    font-family: var(--font-display);
+    font-weight: 900; /* font-black */
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+  }
+  
+  @media (min-width: 768px) {
+    .heading-xl {
+      font-size: 4.5rem; /* md:text-7xl */
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .heading-xl {
+      font-size: 6rem; /* lg:text-8xl */
+    }
+  }
+  
+  .heading-lg {
+    font-size: 2.25rem; /* text-4xl */
+    font-family: var(--font-display);
+    font-weight: 700; /* font-bold */
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+  }
+  
+  @media (min-width: 768px) {
+    .heading-lg {
+      font-size: 3rem; /* md:text-5xl */
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .heading-lg {
+      font-size: 3.75rem; /* lg:text-6xl */
+    }
+  }
+  
+  .heading-md {
+    font-size: 1.875rem; /* text-3xl */
+    font-family: var(--font-display);
+    font-weight: 700; /* font-bold */
+    line-height: 1.2;
+    letter-spacing: -0.025em;
+  }
+  
+  @media (min-width: 768px) {
+    .heading-md {
+      font-size: 2.25rem; /* md:text-4xl */
+    }
+  }
+  
+  .heading-sm {
+    font-size: 1.25rem; /* text-xl */
+    font-family: var(--font-display);
+    font-weight: 600; /* font-semibold */
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+  }
+  
+  @media (min-width: 768px) {
+    .heading-sm {
+      font-size: 1.5rem; /* md:text-2xl */
+    }
+  }
+  
+  .body-lg {
+    font-size: 1.125rem; /* text-lg */
+    line-height: 1.625; /* leading-relaxed */
+    font-weight: 400;
+    letter-spacing: -0.01em;
+  }
+  
+  @media (min-width: 768px) {
+    .body-lg {
+      font-size: 1.25rem; /* md:text-xl */
+    }
+  }
+  
+  .body-md {
+    font-size: 1rem; /* text-base */
+    line-height: 1.625; /* leading-relaxed */
+    font-weight: 400;
+  }
+  
+  @media (min-width: 768px) {
+    .body-md {
+      font-size: 1.125rem; /* md:text-lg */
+    }
+  }
+  
+  .body-sm {
+    font-size: 0.875rem; /* text-sm */
+    line-height: 1.625; /* leading-relaxed */
+    font-weight: 400;
+  }
+  
+  @media (min-width: 768px) {
+    .body-sm {
+      font-size: 1rem; /* md:text-base */
+    }
+  }
+  
+  .caption {
+    font-size: 0.75rem; /* text-xs */
+    letter-spacing: 0.1em; /* tracking-wider */
+    text-transform: uppercase; /* uppercase */
+    font-weight: 600;
+    letter-spacing: 0.1em;
+  }
+  
+  @media (min-width: 768px) {
+    .caption {
+      font-size: 0.875rem; /* md:text-sm */
+    }
+  }
+  
+  .mono-text {
+    font-family: var(--font-mono);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+  }
+}
+
+/* Animation for gradient text */
+@keyframes gradient-shift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Enhanced text selection */
+::selection {
+  background: rgba(96, 165, 250, 0.3);
+  color: white;
+}
+
+::-moz-selection {
+  background: rgba(96, 165, 250, 0.3);
+  color: white;
+}
+
+/* Performance optimizations */
+* {
+  box-sizing: border-box;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
