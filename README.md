@@ -3,8 +3,8 @@
 A modern, interactive portfolio website showcasing my skills, projects, and experience as a Software Engineer and Full Stack Developer. Built with cutting-edge web technologies and featuring smooth animations, responsive design, and an engaging user experience.
 
 ![Portfolio Preview](https://img.shields.io/badge/Status-Live-success?style=for-the-badge)
-![React](https://img.shields.io/badge/React-18.3.1-61DAFB?style=for-the-badge&logo=react)
-![TypeScript](https://img.shields.io/badge/TypeScript-5.6.2-3178C6?style=for-the-badge&logo=typescript)
+![React](https://img.shields.io/badge/React-19.0.0-61DAFB?style=for-the-badge&logo=react)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.8.3-3178C6?style=for-the-badge&logo=typescript)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4.17-38B2AC?style=for-the-badge&logo=tailwind-css)
 
 ## ✨ Features
@@ -20,10 +20,10 @@ A modern, interactive portfolio website showcasing my skills, projects, and expe
 ## 🛠️ Tech Stack
 
 ### Frontend
-- **React 18.3.1** - Modern UI library
-- **TypeScript** - Type-safe development
-- **Vite** - Lightning-fast build tool
-- **Tailwind CSS** - Utility-first CSS framework
+- **React 19.0.0** - Modern UI library
+- **TypeScript 5.8.3** - Type-safe development
+- **Vite 7.1.3** - Lightning-fast build tool
+- **Tailwind CSS 3.4.17** - Utility-first CSS framework
 - **Framer Motion** - Animation library
 
 ### Tools & Libraries
@@ -41,8 +41,8 @@ A modern, interactive portfolio website showcasing my skills, projects, and expe
 
 1. Clone the repository
 ```bash
-git clone https://github.com/irfan-shekh/portfolio.git
-cd portfolio
+git clone https://github.com/irfanshaikh110805-glitch/Irfan-Shekh-3D-Interactive-Resume.git
+cd Irfan-Shekh-3D-Interactive-Resume
 ```
 
 2. Install dependencies
