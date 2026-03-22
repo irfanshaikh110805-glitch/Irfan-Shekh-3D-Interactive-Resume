@@ -2,8 +2,10 @@ import { motion } from 'framer-motion'
 import TypingAnimation from './TypingAnimation'
 import ClickSpark from './ClickSpark'
 import { ChevronDown, Download, Star } from 'lucide-react'
+import { useMobileDetection } from '@/react-app/hooks/useMobileDetection'
 
 export default function HeroPortfolio() {
+  const isMobile = useMobileDetection()
   const roleTexts = [
     'Creative Developer',
     'Digital Artist',
@@ -19,17 +21,10 @@ export default function HeroPortfolio() {
     { number: '24/7', label: 'Support Available' }
   ]
 
-  return (
-    <ClickSpark
-      sparkColor="#60a5fa"
-      sparkSize={12}
-      sparkRadius={25}
-      sparkCount={12}
-      duration={600}
-    >
+  const heroContent = (
       <section className="relative min-h-screen flex items-center justify-center pt-24 md:pt-32 pb-8 md:pb-16 overflow-x-hidden bg-gradient-to-br from-white via-amber-50/30 to-gray-50">
         {/* Premium Animated Background */}
-        <div className="absolute inset-0 w-full h-full">
+        <div className="absolute inset-0 w-full h-full pointer-events-none">
           {/* Radial gradient overlay - soft and professional */}
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-amber-100/30 via-transparent to-transparent" />
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-yellow-100/30 via-transparent to-transparent" />
@@ -44,22 +39,26 @@ export default function HeroPortfolio() {
           </div>
 
           {/* Floating orbs - subtle light theme */}
-          <motion.div
-            animate={{
-              scale: [1, 1.2, 1],
-              opacity: [0.05, 0.1, 0.05],
-            }}
-            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-amber-200/40 rounded-full blur-[140px]"
-          />
-          <motion.div
-            animate={{
-              scale: [1, 1.3, 1],
-              opacity: [0.04, 0.08, 0.04],
-            }}
-            transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-            className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-yellow-200/40 rounded-full blur-[140px]"
-          />
+          {!isMobile && (
+            <>
+              <motion.div
+                animate={{
+                  scale: [1, 1.2, 1],
+                  opacity: [0.05, 0.1, 0.05],
+                }}
+                transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-amber-200/40 rounded-full blur-[100px] hidden md:block"
+              />
+              <motion.div
+                animate={{
+                  scale: [1, 1.3, 1],
+                  opacity: [0.04, 0.08, 0.04],
+                }}
+                transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+                className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-yellow-200/40 rounded-full blur-[100px] hidden md:block"
+              />
+            </>
+          )}
         </div>
 
         {/* Content Grid */}
@@ -177,11 +176,14 @@ export default function HeroPortfolio() {
                 {/* Enhanced image with premium styling */}
                 <div className="relative w-full h-full flex items-center justify-center">
                   <img
-                    src="/profile.png"
+                    src="/profile.webp"
+                    srcSet="/profile-small.webp 600w, /profile.webp 1177w"
+                    sizes="(max-width: 768px) 300px, (max-width: 1024px) 380px, 420px"
                     alt="Irfan Shaikh - Full Stack Developer"
                     width="420"
                     height="550"
                     loading="eager"
+                    fetchPriority="high"
                     className="w-full h-full object-cover object-center hover:scale-105 transition-transform duration-700 ease-out z-10"
                     style={{
                       filter: 'drop-shadow(0 10px 40px rgba(0,0,0,0.08)) brightness(1.03) contrast(1.03)',
@@ -201,25 +203,24 @@ export default function HeroPortfolio() {
           </div>
         </div>
 
-        {/* Scroll Indicator */}
-        <motion.div
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10"
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
-        >
-          <div className="flex flex-col items-center gap-2">
-            <span className="text-sm text-gray-600 font-medium">Scroll to explore</span>
-            <div className="w-6 h-10 border-2 border-amber-500 rounded-full flex justify-center">
-              <div className="w-1 h-3 bg-amber-500 rounded-full mt-2"></div>
-            </div>
-          </div>
-        </motion.div>
+
 
         {/* Decorative Elements */}
         <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-amber-500 rounded-full opacity-40 animate-pulse" />
         <div className="absolute top-1/3 right-1/4 w-1 h-1 bg-yellow-500 rounded-full opacity-30 animate-pulse animate-delay-1s" />
         <div className="absolute bottom-1/3 left-1/3 w-1.5 h-1.5 bg-orange-500 rounded-full opacity-35 animate-pulse animate-delay-2s" />
       </section>
+  )
+
+  return isMobile ? heroContent : (
+    <ClickSpark
+      sparkColor="#60a5fa"
+      sparkSize={12}
+      sparkRadius={25}
+      sparkCount={12}
+      duration={600}
+    >
+      {heroContent}
     </ClickSpark>
   )
 }

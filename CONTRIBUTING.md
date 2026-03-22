@@ -129,7 +129,7 @@ Before submitting a PR:
 Feel free to:
 - Open an issue for questions
 - Email: irfanshaikh110805@gmail.com
-- Connect on [LinkedIn](https://www.linkedin.com/in/irfan-shekh-380461392)
+- Connect on [LinkedIn](https://www.linkedin.com/in/irfan-shaikh-380461392)
 
 ## License
 

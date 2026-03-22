@@ -87,7 +87,7 @@ const ClickSpark: React.FC<ClickSparkProps> = ({
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    let animationId: number;
+    let animationId: number | null = null;
 
     const draw = (timestamp: number) => {
       if (!startTimeRef.current) {
@@ -122,13 +122,34 @@ const ClickSpark: React.FC<ClickSparkProps> = ({
         return true;
       });
 
-      animationId = requestAnimationFrame(draw);
+      if (sparksRef.current.length > 0) {
+        animationId = requestAnimationFrame(draw);
+      } else {
+        animationId = null;
+        startTimeRef.current = null;
+      }
     };
 
-    animationId = requestAnimationFrame(draw);
+    // We no longer start animation on mount, it starts on click.
+    // To handle initial resize/paint, we don't need RAF if there are no sparks.
+    
+    // Only way to trigger draw inside useEffect is if there were sparks remaining from before
+    if (sparksRef.current.length > 0) {
+      animationId = requestAnimationFrame(draw);
+    }
+
+    const customCanvas = canvas as HTMLCanvasElement & { startAnimation?: () => void };
+    // Attach draw to a ref so we can call it from handleClick
+    customCanvas.startAnimation = () => {
+      if (!animationId) {
+        startTimeRef.current = performance.now();
+        animationId = requestAnimationFrame(draw);
+      }
+    };
 
     return () => {
-      cancelAnimationFrame(animationId);
+      if (animationId) cancelAnimationFrame(animationId);
+      delete customCanvas.startAnimation;
     };
   }, [sparkColor, sparkSize, sparkRadius, sparkCount, duration, easeFunc, extraScale]);
 
@@ -148,6 +169,10 @@ const ClickSpark: React.FC<ClickSparkProps> = ({
     }));
 
     sparksRef.current.push(...newSparks);
+    const customCanvas = canvas as HTMLCanvasElement & { startAnimation?: () => void };
+    if (customCanvas.startAnimation) {
+      customCanvas.startAnimation();
+    }
   };
 
   return (

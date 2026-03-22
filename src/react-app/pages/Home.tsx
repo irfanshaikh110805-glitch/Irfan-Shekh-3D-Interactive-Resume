@@ -10,14 +10,66 @@ const ServicesSection = lazy(() => import('@/react-app/components/ServicesSectio
 const ContactSection = lazy(() => import('@/react-app/components/ContactSection'))
 
 import Navigation from '@/react-app/components/Navigation'
-import MouseFollower from '@/react-app/components/MouseFollower'
-import ScrollProgress from '@/react-app/components/ScrollProgress'
-import InteractiveBackground from '@/react-app/components/InteractiveBackground'
-import ResumeChatbot from '@/react-app/components/ResumeChatbot'
 import { User, Code, Briefcase, Wrench, Mail } from 'lucide-react'
+import { useMobileDetection } from '@/react-app/hooks/useMobileDetection'
+
+// Lazy load non-critical decorative/interactive components
+const MouseFollower = lazy(() => import('@/react-app/components/MouseFollower'))
+const ScrollProgress = lazy(() => import('@/react-app/components/ScrollProgress'))
+const InteractiveBackground = lazy(() => import('@/react-app/components/InteractiveBackground'))
+const ResumeChatbot = lazy(() => import('@/react-app/components/ResumeChatbot'))
+
+// Helper for lazy loading sections to avoid main thread blocking on initial load
+function LazySection({ children, id, className, minHeight = "50vh" }: { children: React.ReactNode, id: string, className?: string, minHeight?: string }) {
+  const [hasRendered, setHasRendered] = useState(false)
+  
+  useEffect(() => {
+    const el = document.getElementById(id)
+    if (!el) return
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setHasRendered(true)
+          observer.disconnect()
+        }
+      },
+      { rootMargin: '200px' }
+    )
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [id])
+
+  return (
+    <section className={className} id={id} style={{ minHeight: hasRendered ? 'auto' : minHeight }}>
+      {hasRendered ? (
+        <Suspense fallback={<div className="flex items-center justify-center h-full w-full">Loading...</div>}>
+          {children}
+        </Suspense>
+      ) : null}
+    </section>
+  )
+}
+
+// Helper to delay mounting of non-critical decorative components until main thread is idle
+function DelayedMount({ children, delay = 1000 }: { children: React.ReactNode, delay?: number }) {
+  const [shouldMount, setShouldMount] = useState(false);
+  useEffect(() => {
+    // Wait for the browser to become idle, or fallback to a timeout
+    const timeout = setTimeout(() => {
+      if ('requestIdleCallback' in window) {
+        (window as any).requestIdleCallback(() => setShouldMount(true), { timeout: 2000 });
+      } else {
+        setShouldMount(true);
+      }
+    }, delay);
+    return () => clearTimeout(timeout);
+  }, [delay]);
+  return shouldMount ? children : null;
+}
 
 export default function Home() {
   const [activeSection, setActiveSection] = useState('about')
+  const isMobile = useMobileDetection()
 
   // Intersection Observer for section detection
   useEffect(() => {
@@ -44,11 +96,17 @@ export default function Home() {
   }, [])
 
   return (
-    <div className="min-h-screen bg-gray-50 text-gray-900 overflow-x-hidden relative">
+    <main className="min-h-screen bg-gray-50 text-gray-900 overflow-x-hidden relative">
       {/* Enhanced UI Components */}
-      <MouseFollower />
-      <ScrollProgress />
-      <InteractiveBackground />
+      {!isMobile && (
+        <DelayedMount delay={1500}>
+          <Suspense fallback={null}>
+            <MouseFollower />
+            <ScrollProgress />
+            <InteractiveBackground />
+          </Suspense>
+        </DelayedMount>
+      )}
 
       {/* Navigation */}
       <Navigation activeSection={activeSection} setActiveSection={setActiveSection} />
@@ -57,16 +115,16 @@ export default function Home() {
       <HeroPortfolio />
 
       {/* About Section */}
-      <section className="py-20 px-4" id="about">
+      <LazySection className="py-20 px-4" id="about">
         <div className="max-w-7xl mx-auto">
           <Suspense fallback={<div className="min-h-[50vh] flex items-center justify-center">Loading...</div>}>
             <AboutSection />
           </Suspense>
         </div>
-      </section>
+      </LazySection>
 
       {/* Featured Work Section */}
-      <section className="py-20 px-4 bg-white" id="work">
+      <LazySection className="py-20 px-4 bg-white" id="work">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -74,7 +132,7 @@ export default function Home() {
             transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-amber-400 to-yellow-300 bg-clip-text text-transparent">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-amber-600 to-yellow-600 bg-clip-text text-transparent">
               Featured Work
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -85,24 +143,24 @@ export default function Home() {
             <ProjectShowcase />
           </Suspense>
         </div>
-      </section>
+      </LazySection>
 
       {/* Skills Section */}
-      <section className="py-20 px-4" id="skills">
+      <LazySection className="py-20 px-4" id="skills">
         <Suspense fallback={<div className="min-h-[50vh] flex items-center justify-center">Loading...</div>}>
           <SkillsVisualization />
         </Suspense>
-      </section>
+      </LazySection>
 
       {/* Services Section */}
-      <section className="py-20 px-4 bg-white" id="services">
+      <LazySection className="py-20 px-4 bg-white" id="services">
         <Suspense fallback={<div className="min-h-[50vh] flex items-center justify-center">Loading...</div>}>
           <ServicesSection />
         </Suspense>
-      </section>
+      </LazySection>
 
       {/* Contact Section */}
-      <section className="py-20 px-4" id="contact">
+      <LazySection className="py-20 px-4" id="contact">
         <div className="max-w-4xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -121,7 +179,7 @@ export default function Home() {
             <ContactSection />
           </Suspense>
         </div>
-      </section>
+      </LazySection>
 
       {/* Quick Navigation Dots */}
       <div className="fixed right-8 top-1/2 transform -translate-y-1/2 z-50 hidden lg:flex flex-col gap-4">
@@ -172,7 +230,7 @@ export default function Home() {
                 <a href="mailto:irfanshaikh110805@gmail.com" className="text-gray-500 hover:text-amber-500 transition-colors">
                   Email
                 </a>
-                <a href="https://www.linkedin.com/in/irfan-shaikh-380461392?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" className="text-gray-500 hover:text-amber-500 transition-colors">
+                <a href="https://www.linkedin.com/in/irfan-shaikh-380461392" className="text-gray-500 hover:text-amber-500 transition-colors">
                   LinkedIn
                 </a>
                 <a href="https://github.com" className="text-gray-500 hover:text-amber-500 transition-colors">
@@ -209,10 +267,14 @@ export default function Home() {
       </footer>
 
       {/* FAQ Chatbot */}
-      <ResumeChatbot />
+      <DelayedMount delay={2500}>
+        <Suspense fallback={null}>
+          <ResumeChatbot />
+        </Suspense>
+      </DelayedMount>
 
       {/* Mobile optimizations */}
       <BackToTop />
-    </div>
+    </main>
   )
 }

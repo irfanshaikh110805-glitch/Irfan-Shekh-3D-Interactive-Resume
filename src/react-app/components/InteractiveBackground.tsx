@@ -32,7 +32,7 @@ export default function InteractiveBackground() {
   }, [mouseX, mouseY])
 
   return (
-    <div className="fixed inset-0 overflow-hidden pointer-events-none">
+    <div className="fixed inset-0 overflow-hidden pointer-events-none z-[-1]">
       {/* Animated gradient background */}
       <motion.div
         className="absolute inset-0 opacity-10 will-change-transform"

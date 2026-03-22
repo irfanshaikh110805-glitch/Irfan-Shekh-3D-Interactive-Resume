@@ -5,14 +5,16 @@ import { useState, useEffect } from 'react'
  * Returns true if viewport width is less than 768px (mobile/tablet)
  */
 export function useMobileDetection(breakpoint: number = 768): boolean {
-  const [isMobile, setIsMobile] = useState(false)
+  const [isMobile, setIsMobile] = useState(() => 
+    typeof window !== 'undefined' ? window.innerWidth < breakpoint : false
+  )
 
   useEffect(() => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth < breakpoint)
     }
 
-    // Initial check
+    // Initial check just in case
     checkMobile()
 
     // Add event listener with debounce for better performance

@@ -4,7 +4,7 @@ import react from "@vitejs/plugin-react";
 
 export default defineConfig({
   plugins: [react()],
-  base: process.env.NODE_ENV === 'production' ? '/Irfan-Shekh-3D-Interactive-Resume/' : '/',
+  base: '/',
   server: {
     allowedHosts: true,
   },

@@ -197,7 +197,7 @@ export default function ProjectShowcase() {
                 </div>
 
                 {/* Action Buttons */}
-                <div className="absolute top-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <div className="absolute top-4 right-4 flex gap-2 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity duration-300 z-20">
                   {project.demoUrl && (
                     <motion.button
                       onClick={() => {

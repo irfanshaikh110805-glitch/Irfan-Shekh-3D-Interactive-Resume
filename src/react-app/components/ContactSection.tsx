@@ -70,7 +70,7 @@ const socialLinks = [
   {
     icon: LinkedinIcon,
     label: 'LinkedIn',
-    href: 'https://www.linkedin.com/in/irfan-shekh-380461392?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
+    href: 'https://www.linkedin.com/in/irfan-shaikh-380461392',
     color: '#0077b5'
   },
   {
@@ -173,6 +173,7 @@ export default function ContactSection() {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label={social.label}
                   initial={{ opacity: 0, scale: 0.8 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.4, delay: index * 0.1 }}

@@ -13,7 +13,7 @@ export default function ProfileCard3D() {
   const { size, mouse } = useThree()
 
   // Load profile texture
-  const profileTexture = useTexture('/profile.png')
+  const profileTexture = useTexture('/profile.webp')
 
   // Spring animation for hover effects
   const { scale, color } = useSpring({

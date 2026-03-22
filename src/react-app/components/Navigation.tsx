@@ -72,7 +72,7 @@ export default function Navigation({ activeSection, setActiveSection }: Navigati
           whileHover={{ scale: 1.03 }}
         >
           <img 
-            src="/logo.webp" 
+            src="/logo-small.webp" 
             alt="Irfan Shaikh Logo" 
             width="80" 
             height="80" 
@@ -129,7 +129,7 @@ export default function Navigation({ activeSection, setActiveSection }: Navigati
           </motion.a>
           
           <motion.a
-            href="https://www.linkedin.com/in/irfan-shekh-380461392?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+            href="https://www.linkedin.com/in/irfan-shaikh-380461392"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Visit LinkedIn Profile"
@@ -239,7 +239,7 @@ export default function Navigation({ activeSection, setActiveSection }: Navigati
                 </motion.a>
                 
                 <motion.a
-                  href="https://www.linkedin.com/in/irfan-shekh-380461392?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+                  href="https://www.linkedin.com/in/irfan-shaikh-380461392"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Visit LinkedIn Profile"
