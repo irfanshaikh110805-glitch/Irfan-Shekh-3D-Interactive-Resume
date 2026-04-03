@@ -2,25 +2,48 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- DNS prefetch for faster font connection -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600;700&family=Outfit:wght@100;200;300;400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600;700&family=Outfit:wght@100;200;300;400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap"></noscript>
-    <link rel="preload" href="/profile-small.webp" as="image" type="image/webp" media="(max-width: 768px)" fetchpriority="high">
-    <link rel="preload" href="/profile.webp" as="image" type="image/webp" media="(min-width: 769px)" fetchpriority="high">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Non-render-blocking font load (swap + media trick) - reduced to 3 fonts, fewer weights -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Outfit:wght@400;600;700;900&family=Inter:wght@400;500;600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Outfit:wght@400;600;700;900&family=Inter:wght@400;500;600&display=swap"></noscript>
+
+    <!-- Preload LCP image — browser fetches immediately before React even boots -->
+    <link rel="preload" href="/profile-mobile.webp" as="image" type="image/webp" media="(max-width: 768px)" fetchpriority="high">
+    <link rel="preload" href="/profile-optimized.webp" as="image" type="image/webp" media="(min-width: 769px)" fetchpriority="high">
+
+    <!-- Critical inline CSS: paints background instantly, no blank screen during JS load -->
+    <style>
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+      html { scroll-behavior: smooth; -webkit-tap-highlight-color: transparent; }
+      body {
+        font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        background: #f9fafb;
+        color: #111827;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        min-height: 100vh;
+        overflow-x: hidden;
+      }
+      #root { min-height: 100vh; }
+      #root > main {
+        background: linear-gradient(135deg, #ffffff 0%, #fffbeb 50%, #f9fafb 100%);
+        min-height: 100vh;
+      }
+      img { max-width: 100%; height: auto; }
+    </style>
+
     <meta name="description" content="Immersive 3D portfolio showcasing cutting-edge web development projects and creative solutions" />
     <meta property="og:title" content="Irfan Shaikh - Creative Developer Portfolio" />
     <meta property="og:description" content="Immersive 3D portfolio showcasing cutting-edge web development projects and creative solutions" />
-    <meta
-      property="og:image"
-      content="/og.png"
-      type="image/png"
-    />
-    <meta
-      property="og:url"
-      content="/"
-    />
+    <meta property="og:image" content="/og.png" type="image/png" />
+    <meta property="og:url" content="/" />
     <meta property="og:type" content="website" />
     <meta property="og:author" content="Irfan Shaikh" />
     <meta property="og:site_name" content="irfan'sFolio" />
@@ -28,22 +51,9 @@
     <meta property="twitter:site" content="@irfan_shekh" />
     <meta property="twitter:title" content="Irfan Shaikh - Creative Developer Portfolio" />
     <meta property="twitter:description" content="Immersive 3D portfolio showcasing cutting-edge web development projects and creative solutions" />
-    <meta
-      property="twitter:image"
-      content="/og.png"
-      type="image/png"
-    />
-    <link
-      rel="shortcut icon"
-      href="/favicon.ico"
-      type="image/x-icon"
-    />
-    <link
-      rel="apple-touch-icon"
-      sizes="180x180"
-      href="/apple-touch-icon.png"
-      type="image/png"
-    />
+    <meta property="twitter:image" content="/og.png" type="image/png" />
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" type="image/png" />
     <title>DevFolio - Irfan Shaikh Portfolio</title>
   </head>
   <body>

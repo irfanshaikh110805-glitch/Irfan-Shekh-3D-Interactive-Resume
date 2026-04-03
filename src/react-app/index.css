@@ -16,7 +16,7 @@
   --vh: 1vh;
   --font-primary: 'Outfit', sans-serif;
   --font-display: 'Space Grotesk', sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
+  --font-mono: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono', monospace;
   --font-inter: 'Inter', sans-serif;
 }
 

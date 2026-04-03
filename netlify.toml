@@ -7,7 +7,7 @@
   to = "/index.html"
   status = 200
 
-# Security Headers
+# Security + Performance Headers
 [[headers]]
   for = "/*"
   [headers.values]
@@ -16,8 +16,9 @@
     X-XSS-Protection = "1; mode=block"
     Referrer-Policy = "strict-origin-when-cross-origin"
     Permissions-Policy = "geolocation=(), microphone=(), camera=()"
-    # Improved CSP - removed unsafe-eval, kept unsafe-inline only for necessary inline styles
     Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://www.google-analytics.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self' mailto:;"
+    # Early hints: push the LCP image before HTML is fully parsed
+    Link = "</profile-optimized.webp>; rel=preload; as=image; type=image/webp; media=(min-width:769px), </profile-mobile.webp>; rel=preload; as=image; type=image/webp; media=(max-width:768px)"
 
 # Cache JavaScript files
 [[headers]]
