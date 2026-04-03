@@ -24,13 +24,30 @@ interface Project {
 const projects: Project[] = [
   {
     id: '1',
+    title: 'AI Architecture Generator',
+    description: 'Production-ready full-stack application that transforms plain English project ideas into comprehensive system architectures using Google Gemini AI, featuring JWT authentication, Redis caching, and real-time diagram generation.',
+    type: 'fullstack',
+    technologies: ['Python', 'FastAPI', 'React 19', 'Google Gemini AI', 'PostgreSQL', 'Redis', 'Docker'],
+    image: '/AI Architecture Generator project immage.png',
+    demoUrl: '#',
+    githubUrl: 'https://github.com/irfanshaikh110805-glitch/AI-Architecture-Generator',
+    highlights: [
+      'AI-Powered Architecture Generation',
+      'Real-time ER Diagrams',
+      '30% API Cost Reduction',
+      '75%+ Test Coverage'
+    ],
+    color: '#f59e0b'
+  },
+  {
+    id: '2',
     title: 'Hotel Everest Family Restaurant',
     description: 'A full-featured restaurant booking and food ordering platform with authentic Indian cuisine menu, table reservations, shopping cart, and user authentication.',
     type: 'fullstack',
     technologies: ['React', 'Supabase', 'Authentication', 'Responsive Design'],
     image: '/restaurant-hero.webp',
     demoUrl: 'https://hoteleverestfamilyrestaurant.netlify.app/',
-    githubUrl: '#',
+    githubUrl: 'https://github.com/irfanshaikh110805-glitch/restaurant-management-system-with-online-ordering-table-booking',
     highlights: [
       'Table Booking System',
       'Menu Management',
@@ -40,14 +57,14 @@ const projects: Project[] = [
     color: '#f97316'
   },
   {
-    id: '2',
+    id: '3',
     title: 'AI Healthcare Assistant Web App',
     description: 'Built a Flask-based AI healthcare assistant using NLP logic and REST APIs to provide automated medical guidance for common health queries.',
     type: 'web',
     technologies: ['Python', 'Flask', 'NLP', 'REST APIs'],
     image: '/mediguardianaipicture.webp',
-    demoUrl: '#',
-    githubUrl: '#',
+    demoUrl: 'https://mediguardian-frontend.onrender.com',
+    githubUrl: 'https://github.com/irfanshaikh110805-glitch/mediguardian-ai',
     highlights: [
       'NLP Integration',
       'Medical Guidance',
@@ -57,14 +74,14 @@ const projects: Project[] = [
     color: '#f59e0b'
   },
   {
-    id: '3',
+    id: '4',
     title: 'Fruit & Vegetable Disease Detection System',
     description: 'Created an AI-based image classification system using TensorFlow MobileNetV2 and a Flask API for real-time fruit and vegetable disease detection.',
     type: 'web',
     technologies: ['Python', 'TensorFlow', 'MobileNetV2', 'Flask'],
     image: '/detect-fruit-vegetable.webp',
-    demoUrl: '#',
-    githubUrl: '#',
+    demoUrl: 'https://fruit-veg-disease-detection-1.onrender.com',
+    githubUrl: 'https://github.com/irfanshaikh110805-glitch/fruit-veg-disease-detection',
     highlights: [
       'AI Classification',
       'Image Recognition',
@@ -74,14 +91,14 @@ const projects: Project[] = [
     color: '#eab308'
   },
   {
-    id: '4',
+    id: '5',
     title: 'Interactive Portfolio Website',
     description: 'A modern portfolio website featuring interactive animations, smooth transitions, and responsive design built with React and Framer Motion.',
     type: 'web',
     technologies: ['React', 'TypeScript', 'Framer Motion', 'Tailwind CSS'],
-    image: '/devfolio.webp',
+    image: '/portfolio-website.png',
     demoUrl: '#',
-    githubUrl: '#',
+    githubUrl: 'https://github.com/irfanshaikh110805-glitch/Irfan-Shekh-3D-Interactive-Resume',
     highlights: [
       'Interactive Animations',
       'Responsive Design',
@@ -91,23 +108,6 @@ const projects: Project[] = [
     color: '#f59e0b'
   },
   {
-    id: '5',
-    title: 'Database Management System',
-    description: 'Developed database solutions using MongoDB and MySQL with efficient data management and query optimization for web applications.',
-    type: 'fullstack',
-    technologies: ['MongoDB', 'MySQL', 'Node.js', 'Express'],
-    image: 'https://images.unsplash.com/photo-1544383835-bda2bc66a55d?w=800&h=600&fit=crop&q=80',
-    demoUrl: '#',
-    githubUrl: '#',
-    highlights: [
-      'Database Design',
-      'Query Optimization',
-      'Data Management',
-      'API Integration'
-    ],
-    color: '#f97316'
-  },
-  {
     id: '6',
     title: 'HeavyDuty Parts — Industrial E-Commerce',
     description: 'Full-stack industrial hardware e-commerce platform (AdiSync Solutions) for selling heavy machinery parts in India. Features WhatsApp checkout, a rotating hero banner, product catalog with categories, search & filtering, and INR currency support.',
@@ -115,7 +115,7 @@ const projects: Project[] = [
     technologies: ['React 19', 'TypeScript', 'Hono', 'Cloudflare Workers', 'Tailwind CSS', 'Netlify'],
     image: '/heavydutyparts-shop.webp',
     demoUrl: 'https://heavydutyparts-shop.netlify.app',
-    githubUrl: '#',
+    githubUrl: 'https://github.com/irfanshaikh110805-glitch/heavydutyparts-or-heavyduty-parts',
     highlights: [
       'WhatsApp Checkout',
       'Product Catalog & Search',
@@ -196,8 +196,8 @@ export default function ProjectShowcase() {
                   {project.type.charAt(0).toUpperCase() + project.type.slice(1)}
                 </div>
 
-                {/* Action Buttons */}
-                <div className="absolute top-4 right-4 flex gap-2 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity duration-300 z-20">
+                {/* Action Buttons - Always Visible */}
+                <div className="absolute top-4 right-4 flex gap-2 transition-all duration-300 z-20">
                   {project.demoUrl && (
                     <motion.button
                       onClick={() => {
@@ -208,11 +208,11 @@ export default function ProjectShowcase() {
                       disabled={project.demoUrl === '#'}
                       title={project.demoUrl === '#' ? `${project.title} demo coming soon!` : `View live demo of ${project.title}`}
                       aria-label={`View live demo of ${project.title}`}
-                      className={`p-2 bg-white/20 backdrop-blur-sm rounded-full text-white transition-colors duration-300 ${project.demoUrl === '#' ? 'opacity-50 cursor-not-allowed' : 'hover:bg-white/30'}`}
+                      className={`p-3 bg-white/90 backdrop-blur-sm rounded-full text-gray-900 shadow-lg transition-all duration-300 ${project.demoUrl === '#' ? 'opacity-50 cursor-not-allowed' : 'hover:bg-white hover:shadow-xl'}`}
                       whileHover={project.demoUrl !== '#' ? { scale: 1.1 } : {}}
                       whileTap={project.demoUrl !== '#' ? { scale: 0.95 } : {}}
                     >
-                      <ExternalLink size={16} />
+                      <ExternalLink size={18} />
                     </motion.button>
                   )}
                   {project.githubUrl && (
@@ -225,11 +225,11 @@ export default function ProjectShowcase() {
                       disabled={project.githubUrl === '#'}
                       title={project.githubUrl === '#' ? `Source code is private` : `View source code of ${project.title}`}
                       aria-label={`View source code of ${project.title}`}
-                      className={`p-2 bg-white/20 backdrop-blur-sm rounded-full text-white transition-colors duration-300 ${project.githubUrl === '#' ? 'opacity-50 cursor-not-allowed' : 'hover:bg-white/30'}`}
+                      className={`p-3 bg-white/90 backdrop-blur-sm rounded-full text-gray-900 shadow-lg transition-all duration-300 ${project.githubUrl === '#' ? 'opacity-50 cursor-not-allowed' : 'hover:bg-white hover:shadow-xl'}`}
                       whileHover={project.githubUrl !== '#' ? { scale: 1.1 } : {}}
                       whileTap={project.githubUrl !== '#' ? { scale: 0.95 } : {}}
                     >
-                      <GithubIcon size={16} />
+                      <GithubIcon size={18} />
                     </motion.button>
                   )}
                 </div>

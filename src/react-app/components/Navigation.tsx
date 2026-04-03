@@ -65,7 +65,7 @@ export default function Navigation({ activeSection, setActiveSection }: Navigati
       transition={{ duration: 0.8 }}
       className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-lg border-b border-gray-100 shadow-sm"
     >
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 py-3 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 py-2 flex items-center justify-between">
         {/* Logo */}
         <motion.div 
           className="flex items-center"
@@ -198,32 +198,47 @@ export default function Navigation({ activeSection, setActiveSection }: Navigati
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="md:hidden bg-white/95 backdrop-blur-md border-t border-gray-200"
+            className="md:hidden bg-white/95 backdrop-blur-md border-t border-gray-200 relative z-50"
           >
-            <div className="px-6 py-4 space-y-4">
+            <div className="px-6 py-4 space-y-4 relative z-50" style={{ pointerEvents: 'auto' }}>
               {/* Mobile Navigation Links */}
               {navigationItems.map((item, index) => (
-                <motion.button
+                <motion.div
                   key={item.id}
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.3, delay: index * 0.1 }}
-                  onClick={() => {
-                    setActiveSection(item.id)
-                    const element = document.getElementById(item.id)
-                    if (element) {
-                      element.scrollIntoView({ behavior: 'smooth' })
-                    }
-                    setIsMobileMenuOpen(false)
-                  }}
-                  className={`block w-full text-left px-4 py-3 rounded-lg transition-all duration-300 ${
-                    activeSection === item.id
-                      ? 'bg-amber-500 text-white'
-                      : 'text-gray-700 hover:text-gray-900 hover:bg-gray-100'
-                  }`}
                 >
-                  {item.label}
-                </motion.button>
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      console.log('Clicked:', item.id);
+                      setActiveSection(item.id);
+                      setIsMobileMenuOpen(false);
+                      
+                      // Use setTimeout to ensure menu closes before scrolling
+                      setTimeout(() => {
+                        const element = document.getElementById(item.id);
+                        console.log('Element found:', element);
+                        if (element) {
+                          const yOffset = -80; // Account for fixed header
+                          const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+                          window.scrollTo({ top: y, behavior: 'smooth' });
+                        }
+                      }, 300);
+                    }}
+                    className={`block w-full text-left px-4 py-3 rounded-lg transition-all duration-300 cursor-pointer ${
+                      activeSection === item.id
+                        ? 'bg-amber-500 text-white'
+                        : 'text-gray-700 hover:text-gray-900 hover:bg-gray-100'
+                    }`}
+                    style={{ touchAction: 'manipulation', pointerEvents: 'auto' }}
+                  >
+                    {item.label}
+                  </button>
+                </motion.div>
               ))}
 
               {/* Mobile Social Links */}

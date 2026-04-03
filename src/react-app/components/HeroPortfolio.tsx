@@ -22,7 +22,7 @@ export default function HeroPortfolio() {
   ]
 
   const heroContent = (
-      <section className="relative min-h-screen flex items-center justify-center pt-24 md:pt-32 pb-8 md:pb-16 overflow-x-hidden bg-gradient-to-br from-white via-amber-50/30 to-gray-50">
+      <section className="relative min-h-screen flex items-center justify-center pt-20 md:pt-24 pb-4 md:pb-8 overflow-x-hidden bg-gradient-to-br from-white via-amber-50/30 to-gray-50">
         {/* Premium Animated Background */}
         <div className="absolute inset-0 w-full h-full pointer-events-none">
           {/* Radial gradient overlay - soft and professional */}
@@ -62,13 +62,13 @@ export default function HeroPortfolio() {
         </div>
 
         {/* Content Grid */}
-        <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-8 md:gap-12 lg:gap-16 items-center">
+        <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-6 md:gap-8 lg:gap-10 items-center">
           {/* Left Content */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1, delay: 0.2 }}
-            className="text-center lg:text-left order-2 lg:order-1 space-y-8"
+            className="text-center lg:text-left order-2 lg:order-1 space-y-4 md:space-y-6"
           >
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -140,7 +140,7 @@ export default function HeroPortfolio() {
             </div>
 
             {/* Stats */}
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 pt-4">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 pt-2">
               {stats.map((stat, index) => (
                 <motion.div
                   key={stat.label}
@@ -161,7 +161,7 @@ export default function HeroPortfolio() {
           </motion.div>
 
           {/* Right side - Profile Image with Premium Effects */}
-          <div className="flex justify-center items-center relative lg:mt-0 order-1 lg:order-2 mb-8 lg:mb-0">
+          <div className="flex justify-center items-center relative lg:mt-0 order-1 lg:order-2 mb-4 lg:mb-0">
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}

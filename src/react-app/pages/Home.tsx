@@ -57,7 +57,7 @@ function DelayedMount({ children, delay = 1000 }: { children: React.ReactNode, d
     // Wait for the browser to become idle, or fallback to a timeout
     const timeout = setTimeout(() => {
       if ('requestIdleCallback' in window) {
-        (window as any).requestIdleCallback(() => setShouldMount(true), { timeout: 2000 });
+        (window as Window & { requestIdleCallback: (cb: () => void, options?: { timeout: number }) => void }).requestIdleCallback(() => setShouldMount(true), { timeout: 2000 });
       } else {
         setShouldMount(true);
       }
@@ -115,7 +115,7 @@ export default function Home() {
       <HeroPortfolio />
 
       {/* About Section */}
-      <LazySection className="py-20 px-4" id="about">
+      <LazySection className="py-12 px-4" id="about">
         <div className="max-w-7xl mx-auto">
           <Suspense fallback={<div className="min-h-[50vh] flex items-center justify-center">Loading...</div>}>
             <AboutSection />
@@ -124,13 +124,13 @@ export default function Home() {
       </LazySection>
 
       {/* Featured Work Section */}
-      <LazySection className="py-20 px-4 bg-white" id="work">
+      <LazySection className="py-12 px-4 bg-white" id="work">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-center mb-16"
+            className="text-center mb-10"
           >
             <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-amber-600 to-yellow-600 bg-clip-text text-transparent">
               Featured Work
@@ -146,27 +146,27 @@ export default function Home() {
       </LazySection>
 
       {/* Skills Section */}
-      <LazySection className="py-20 px-4" id="skills">
+      <LazySection className="py-12 px-4" id="skills">
         <Suspense fallback={<div className="min-h-[50vh] flex items-center justify-center">Loading...</div>}>
           <SkillsVisualization />
         </Suspense>
       </LazySection>
 
       {/* Services Section */}
-      <LazySection className="py-20 px-4 bg-white" id="services">
+      <LazySection className="py-12 px-4 bg-white" id="services">
         <Suspense fallback={<div className="min-h-[50vh] flex items-center justify-center">Loading...</div>}>
           <ServicesSection />
         </Suspense>
       </LazySection>
 
       {/* Contact Section */}
-      <LazySection className="py-20 px-4" id="contact">
+      <LazySection className="py-12 px-4" id="contact">
         <div className="max-w-4xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-center mb-16"
+            className="text-center mb-10"
           >
             <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-amber-400 to-yellow-300 bg-clip-text text-transparent">
               Let's Work Together
