@@ -47,6 +47,13 @@ export const handler: Handler = async (event) => {
       })
     })
     
+    const contentType = response.headers.get('content-type') || ''
+    if (!response.ok || !contentType.includes('application/json')) {
+      const errorText = await response.text()
+      console.error('FormSubmit error response:', errorText)
+      throw new Error(`FormSubmit returned status ${response.status}: ${errorText.substring(0, 300)}`)
+    }
+
     const data = await response.json()
     console.log('FormSubmit response:', data)
     
