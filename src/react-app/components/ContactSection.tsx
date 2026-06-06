@@ -101,9 +101,12 @@ export default function ContactSection() {
      setIsSubmitting(true)
      
      try {
-       const response = await fetch('/api/contact', {
+       const response = await fetch('https://formsubmit.co/ajax/irfanshaikh110805@gmail.com', {
          method: 'POST',
-         headers: { 'Content-Type': 'application/json' },
+         headers: { 
+           'Content-Type': 'application/json',
+           'Accept': 'application/json'
+         },
          body: JSON.stringify(formData)
        })
        
@@ -113,12 +116,12 @@ export default function ContactSection() {
 
        const data = await response.json()
        
-       if (data.success) {
+       if (data.success === 'true' || data.success === true) {
          setIsSubmitted(true)
          setFormData({ name: '', email: '', subject: '', message: '' })
          setTimeout(() => setIsSubmitted(false), 5000)
        } else {
-         alert('Failed to send message. Please try again.')
+         alert(data.message || 'Failed to send message. Please try again.')
        }
      } catch (error) {
        console.error('Submission error:', error)
