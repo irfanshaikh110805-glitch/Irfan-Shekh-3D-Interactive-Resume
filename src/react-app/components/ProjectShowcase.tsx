@@ -1,5 +1,7 @@
 import { motion } from 'framer-motion'
 import { Monitor, Smartphone, Database, ExternalLink } from 'lucide-react'
+import { projects } from '@/shared/data'
+import { getProjectColorClass } from '@/react-app/utils/colorUtils'
 
 // Custom GitHub icon (brand icons removed from lucide-react)
 const GithubIcon = ({ size = 16 }: { size?: number }) => (
@@ -7,124 +9,6 @@ const GithubIcon = ({ size = 16 }: { size?: number }) => (
     <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
   </svg>
 )
-
-interface Project {
-  id: string
-  title: string
-  description: string
-  type: 'web' | 'mobile' | 'fullstack'
-  technologies: string[]
-  image: string
-  demoUrl?: string
-  githubUrl?: string
-  highlights: string[]
-  color: string
-}
-
-const projects: Project[] = [
-  {
-    id: '1',
-    title: 'AI Architecture Generator',
-    description: 'Production-ready full-stack application that transforms plain English project ideas into comprehensive system architectures using Google Gemini AI, featuring JWT authentication, Redis caching, and real-time diagram generation.',
-    type: 'fullstack',
-    technologies: ['Python', 'FastAPI', 'React 19', 'Google Gemini AI', 'PostgreSQL', 'Redis', 'Docker'],
-    image: '/AI Architecture Generator project immage.png',
-    demoUrl: '#',
-    githubUrl: 'https://github.com/irfanshaikh110805-glitch/AI-Architecture-Generator',
-    highlights: [
-      'AI-Powered Architecture Generation',
-      'Real-time ER Diagrams',
-      '30% API Cost Reduction',
-      '75%+ Test Coverage'
-    ],
-    color: '#f59e0b'
-  },
-  {
-    id: '2',
-    title: 'Hotel Everest Family Restaurant',
-    description: 'A full-featured restaurant booking and food ordering platform with authentic Indian cuisine menu, table reservations, shopping cart, and user authentication.',
-    type: 'fullstack',
-    technologies: ['React', 'Supabase', 'Authentication', 'Responsive Design'],
-    image: '/restaurant-hero.webp',
-    demoUrl: 'https://hoteleverestfamilyrestaurant.netlify.app/',
-    githubUrl: 'https://github.com/irfanshaikh110805-glitch/restaurant-management-system-with-online-ordering-table-booking',
-    highlights: [
-      'Table Booking System',
-      'Menu Management',
-      'User Authentication',
-      'Mobile Responsive'
-    ],
-    color: '#f97316'
-  },
-  {
-    id: '3',
-    title: 'AI Healthcare Assistant Web App',
-    description: 'Built a Flask-based AI healthcare assistant using NLP logic and REST APIs to provide automated medical guidance for common health queries.',
-    type: 'web',
-    technologies: ['Python', 'Flask', 'NLP', 'REST APIs'],
-    image: '/mediguardianaipicture.webp',
-    demoUrl: 'https://mediguardian-frontend.onrender.com',
-    githubUrl: 'https://github.com/irfanshaikh110805-glitch/mediguardian-ai',
-    highlights: [
-      'NLP Integration',
-      'Medical Guidance',
-      'REST API',
-      'Flask Backend'
-    ],
-    color: '#f59e0b'
-  },
-  {
-    id: '4',
-    title: 'Fruit & Vegetable Disease Detection System',
-    description: 'Created an AI-based image classification system using TensorFlow MobileNetV2 and a Flask API for real-time fruit and vegetable disease detection.',
-    type: 'web',
-    technologies: ['Python', 'TensorFlow', 'MobileNetV2', 'Flask'],
-    image: '/detect-fruit-vegetable.webp',
-    demoUrl: 'https://fruit-veg-disease-detection-1.onrender.com',
-    githubUrl: 'https://github.com/irfanshaikh110805-glitch/fruit-veg-disease-detection',
-    highlights: [
-      'AI Classification',
-      'Image Recognition',
-      'Real-time Detection',
-      'Mobile Optimized'
-    ],
-    color: '#eab308'
-  },
-  {
-    id: '5',
-    title: 'Interactive Portfolio Website',
-    description: 'A modern portfolio website featuring interactive animations, smooth transitions, and responsive design built with React and Framer Motion.',
-    type: 'web',
-    technologies: ['React', 'TypeScript', 'Framer Motion', 'Tailwind CSS'],
-    image: '/portfolio-website.png',
-    demoUrl: '#',
-    githubUrl: 'https://github.com/irfanshaikh110805-glitch/Irfan-Shekh-3D-Interactive-Resume',
-    highlights: [
-      'Interactive Animations',
-      'Responsive Design',
-      'Modern UI',
-      'Performance Optimized'
-    ],
-    color: '#f59e0b'
-  },
-  {
-    id: '6',
-    title: 'HeavyDuty Parts — Industrial E-Commerce',
-    description: 'Full-stack industrial hardware e-commerce platform (AdiSync Solutions) for selling heavy machinery parts in India. Features WhatsApp checkout, a rotating hero banner, product catalog with categories, search & filtering, and INR currency support.',
-    type: 'fullstack',
-    technologies: ['React 19', 'TypeScript', 'Hono', 'Cloudflare Workers', 'Tailwind CSS', 'Netlify'],
-    image: '/heavydutyparts-shop.webp',
-    demoUrl: 'https://heavydutyparts-shop.netlify.app',
-    githubUrl: 'https://github.com/irfanshaikh110805-glitch/heavydutyparts-or-heavyduty-parts',
-    highlights: [
-      'WhatsApp Checkout',
-      'Product Catalog & Search',
-      'Cloudflare Workers API',
-      'Responsive Design'
-    ],
-    color: '#d97706'
-  }
-]
 
 const typeIcons = {
   web: Monitor,
@@ -134,16 +18,7 @@ const typeIcons = {
 
 const getTypeClass = (type: string) => `project-type-${type}`
 
-const getColorClass = (color: string) => {
-  const colorMap: Record<string, string> = {
-    '#f59e0b': 'project-color-amber',
-    '#d97706': 'project-color-green',
-    '#eab308': 'project-color-purple',
-    '#f97316': 'project-color-red',
-    '#fbbf24': 'project-color-orange'
-  }
-  return colorMap[color] || 'project-color-amber'
-}
+const getColorClass = getProjectColorClass
 
 const getColorOpacityClass = (color: string) => {
   const colorMap: Record<string, string> = {
@@ -151,7 +26,8 @@ const getColorOpacityClass = (color: string) => {
     '#d97706': 'project-color-green-opacity',
     '#eab308': 'project-color-purple-opacity',
     '#f97316': 'project-color-red-opacity',
-    '#fbbf24': 'project-color-orange-opacity'
+    '#fbbf24': 'project-color-orange-opacity',
+    '#dc2626': 'project-color-red-dark-opacity'
   }
   return colorMap[color] || 'project-color-amber-opacity'
 }
@@ -176,6 +52,8 @@ export default function ProjectShowcase() {
               <div className="relative h-48 overflow-hidden">
                 <img
                   src={project.image}
+                  srcSet={`${encodeURI(project.image)} 400w, ${encodeURI(project.image.replace('.webp', '.png'))} 400w`}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   alt={`${project.title} - ${project.description.substring(0, 100)}`}
                   loading="lazy"
                   width="400"
@@ -185,7 +63,14 @@ export default function ProjectShowcase() {
                     // Fallback for broken images
                     const target = e.target as HTMLImageElement
                     target.onerror = null;
-                    target.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300"%3E%3Crect fill="%23374151" width="400" height="300"/%3E%3Ctext fill="%239CA3AF" font-family="sans-serif" font-size="18" x="50%25" y="50%25" text-anchor="middle" dominant-baseline="middle"%3EImage unavailable%3C/text%3E%3C/svg%3E'
+                    // Try webp version first, then png, then fallback
+                    if (target.src.includes('.png')) {
+                      target.src = target.src.replace('.png', '.webp')
+                    } else if (target.src.includes('.webp')) {
+                      target.src = target.src.replace('.webp', '.png')
+                    } else {
+                      target.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300"%3E%3Crect fill="%23374151" width="400" height="300"/%3E%3Ctext fill="%239CA3AF" font-family="sans-serif" font-size="18" x="50%25" y="50%25" text-anchor="middle" dominant-baseline="middle"%3EImage unavailable%3C/text%3E%3C/svg%3E'
+                    }
                   }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent opacity-60" />

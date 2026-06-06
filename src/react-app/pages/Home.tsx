@@ -40,7 +40,7 @@ function LazySection({ children, id, className, minHeight = "50vh" }: { children
   }, [id])
 
   return (
-    <section className={className} id={id} style={{ minHeight: hasRendered ? 'auto' : minHeight }}>
+    <section className={`relative ${className || ''}`} id={id} style={{ minHeight: hasRendered ? 'auto' : minHeight }}>
       {hasRendered ? (
         <Suspense fallback={<div className="flex items-center justify-center h-full w-full">Loading...</div>}>
           {children}
@@ -99,13 +99,27 @@ export default function Home() {
     <main className="min-h-screen bg-gray-50 text-gray-900 overflow-x-hidden relative">
       {/* Enhanced UI Components */}
       {!isMobile && (
-        <DelayedMount delay={1500}>
-          <Suspense fallback={null}>
-            <MouseFollower />
-            <ScrollProgress />
-            <InteractiveBackground />
-          </Suspense>
-        </DelayedMount>
+        <>
+          <DelayedMount delay={1500}>
+            <Suspense fallback={null}>
+              <MouseFollower />
+            </Suspense>
+          </DelayedMount>
+          <DelayedMount delay={1500}>
+            <Suspense fallback={null}>
+              <div className="relative">
+                <ScrollProgress />
+              </div>
+            </Suspense>
+          </DelayedMount>
+          <DelayedMount delay={2000}>
+            <Suspense fallback={null}>
+              <div className="relative">
+                <InteractiveBackground />
+              </div>
+            </Suspense>
+          </DelayedMount>
+        </>
       )}
 
       {/* Navigation */}
@@ -269,7 +283,9 @@ export default function Home() {
       {/* FAQ Chatbot */}
       <DelayedMount delay={2500}>
         <Suspense fallback={null}>
-          <ResumeChatbot />
+          <div className="relative">
+            <ResumeChatbot />
+          </div>
         </Suspense>
       </DelayedMount>
 

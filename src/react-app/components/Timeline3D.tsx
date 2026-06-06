@@ -1,41 +1,9 @@
 import { useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { GraduationCap, Code, Database, Rocket } from 'lucide-react'
+import { milestones } from '@/shared/data'
 
-const milestones = [
-  {
-    year: '2023',
-    title: 'Started BCA Journey',
-    description: 'Began studying Computer Applications at Smt Kumudben Debar College, focusing on core programming concepts.',
-    icon: GraduationCap,
-    color: 'from-amber-500 to-yellow-500',
-    align: 'left'
-  },
-  {
-    year: '2024',
-    title: 'Full-Stack Development',
-    description: 'Built complex full-stack applications like Hotel Everest booking system, mastering React and Python Flask.',
-    icon: Code,
-    color: 'from-amber-500 to-yellow-500',
-    align: 'right'
-  },
-  {
-    year: '2025',
-    title: 'AI & Data Science',
-    description: 'Dove deep into Machine Learning. Developed a Fruit Disease Detection system using TensorFlow and MobileNetV2.',
-    icon: Database,
-    color: 'from-emerald-500 to-green-500',
-    align: 'left'
-  },
-  {
-    year: '2026',
-    title: 'Ready for the Industry',
-    description: 'Graduating as a Software Engineer, bringing ideas to life with scalable backend systems and immersive UIs.',
-    icon: Rocket,
-    color: 'from-purple-500 to-pink-500',
-    align: 'right'
-  }
-]
+const milestoneIcons = [GraduationCap, Code, Database, Rocket]
 
 export default function Timeline3D() {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -49,11 +17,11 @@ export default function Timeline3D() {
   const lineHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"])
 
   return (
-    <div ref={containerRef} className="relative w-full max-w-4xl mx-auto py-12 px-4 md:px-0 mt-8">
+    <div ref={containerRef} className="relative w-full max-w-4xl mx-auto py-12 px-4 md:px-0 mt-8" style={{ position: 'relative' }}>
       {/* 3D Perspective Container */}
       <h3 className="heading-sm text-center mb-12 text-gray-900">Education & Career Journey</h3>
 
-      <div className="relative" style={{ perspective: '1000px' }}>
+      <div className="relative" style={{ perspective: '1000px', position: 'relative' }}>
         
         {/* Background Vertical Line */}
         <div className="absolute left-[40px] md:left-1/2 top-0 bottom-0 w-1 bg-gray-200 transform md:-translate-x-1/2 rounded-full overflow-hidden">
@@ -67,7 +35,7 @@ export default function Timeline3D() {
         {/* Timeline Items */}
         <div className="relative z-10 space-y-12 md:space-y-24">
           {milestones.map((item, index) => {
-            const Icon = item.icon
+            const Icon = milestoneIcons[index] || Rocket
             const isLeft = item.align === 'left'
 
             return (

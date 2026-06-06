@@ -1,60 +1,7 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-
-const getSkillColorClass = (color: string): string => {
-  const colorMap: { [key: string]: string } = {
-    '#f97316': 'skill-orange',
-    '#f59e0b': 'skill-amber',
-    '#eab308': 'skill-yellow',
-    '#d97706': 'skill-orange-dark',
-    '#8b5cf6': 'skill-purple',
-    '#059669': 'skill-green',
-    '#dc2626': 'skill-red',
-    '#ec4899': 'skill-pink'
-  }
-  return colorMap[color] || 'skill-blue'
-}
-
-// Helper function to get Tailwind gradient class for skill glow
-const getGlowColorClass = (color: string): string => {
-  const colorMap: { [key: string]: string } = {
-    '#f97316': 'from-orange-500',
-    '#f59e0b': 'from-amber-500',
-    '#eab308': 'from-yellow-500',
-    '#d97706': 'from-orange-600',
-    '#8b5cf6': 'from-purple-500',
-    '#059669': 'from-green-500',
-    '#dc2626': 'from-red-500',
-    '#ec4899': 'from-pink-500'
-  }
-  return colorMap[color] || 'from-amber-500'
-}
-
-interface Skill {
-  name: string
-  level: number
-  color: string
-  category: string
-}
-
-const skills: Skill[] = [
-  { name: 'Python', level: 90, color: '#f59e0b', category: 'Programming' },
-  { name: 'JavaScript', level: 85, color: '#eab308', category: 'Programming' },
-  { name: 'Java', level: 80, color: '#f97316', category: 'Programming' },
-  { name: 'React', level: 88, color: '#fbbf24', category: 'Frontend' },
-  { name: 'HTML', level: 92, color: '#f97316', category: 'Frontend' },
-  { name: 'CSS', level: 90, color: '#f59e0b', category: 'Frontend' },
-  { name: 'Node.js', level: 82, color: '#d97706', category: 'Backend' },
-  { name: 'Flask', level: 85, color: '#eab308', category: 'Backend' },
-  { name: 'MongoDB', level: 80, color: '#f59e0b', category: 'Databases' },
-  { name: 'MySQL', level: 82, color: '#f59e0b', category: 'Databases' },
-  { name: 'TensorFlow', level: 75, color: '#f97316', category: 'AI/ML' },
-  { name: 'MobileNetV2', level: 75, color: '#fbbf24', category: 'AI/ML' },
-  { name: 'Git', level: 85, color: '#f97316', category: 'Tools' },
-  { name: 'Postman', level: 80, color: '#f97316', category: 'Tools' },
-  { name: 'Supabase', level: 78, color: '#d97706', category: 'Tools' },
-  { name: 'JWT Auth', level: 80, color: '#eab308', category: 'Tools' }
-]
+import { skills } from '@/shared/data'
+import { getSkillColorClass, getGlowColorClass } from '@/react-app/utils/colorUtils'
 
 export default function SkillsVisualization() {
   const [selectedCategory, setSelectedCategory] = useState('All')

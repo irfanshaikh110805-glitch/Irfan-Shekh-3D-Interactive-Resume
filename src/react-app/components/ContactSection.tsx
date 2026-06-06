@@ -1,15 +1,7 @@
+import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Mail, Phone, MapPin } from 'lucide-react'
-
-// Helper function to get CSS class name for contact colors
-const getContactColorClass = (color: string): string => {
-  const colorMap: { [key: string]: string } = {
-    '#f59e0b': 'contact-amber',
-    '#059669': 'contact-green',
-    '#8b5cf6': 'contact-purple'
-  }
-  return colorMap[color] || 'contact-amber'
-}
+import { Mail, Phone, MapPin, Send, CheckCircle } from 'lucide-react'
+import { getContactColorClass } from '@/react-app/utils/colorUtils'
 
 const contactInfo = [
   {
@@ -100,6 +92,46 @@ const socialLinks = [
 ]
 
 export default function ContactSection() {
+  const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' })
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [isSubmitted, setIsSubmitted] = useState(false)
+
+  const handleSubmit = async (e: React.FormEvent) => {
+     e.preventDefault()
+     setIsSubmitting(true)
+     
+     try {
+       const response = await fetch('/api/contact', {
+         method: 'POST',
+         headers: { 'Content-Type': 'application/json' },
+         body: JSON.stringify(formData)
+       })
+       
+       if (!response.ok) {
+         throw new Error(`Server error: ${response.status}`)
+       }
+
+       const data = await response.json()
+       
+       if (data.success) {
+         setIsSubmitted(true)
+         setFormData({ name: '', email: '', subject: '', message: '' })
+         setTimeout(() => setIsSubmitted(false), 5000)
+       } else {
+         alert('Failed to send message. Please try again.')
+       }
+     } catch (error) {
+       console.error('Submission error:', error)
+       alert('An error occurred. Please try again later.')
+     } finally {
+       setIsSubmitting(false)
+     }
+   }
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }))
+  }
+
   return (
     <div className="w-full">
       <motion.div
@@ -116,82 +148,181 @@ export default function ContactSection() {
         </p>
       </motion.div>
 
-      <div className="space-y-4 md:space-y-6">
-        {/* Contact Information */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="space-y-4 md:space-y-6">
+          {/* Contact Information */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="bg-white rounded-2xl p-5 md:p-6 border border-gray-200 shadow-sm"
+          >
+            <h3 className="text-xl font-bold text-gray-900 mb-6">Contact Information</h3>
+            <div className="space-y-4">
+              {contactInfo.map((contact, index) => {
+                const Icon = contact.icon
+                return (
+                  <motion.a
+                    key={contact.label}
+                    href={contact.href}
+                    initial={{ opacity: 0, x: -30 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.4, delay: index * 0.1 }}
+                    className={`flex items-center gap-4 p-3 rounded-lg hover:bg-gray-50 transition-all duration-300 group ${getContactColorClass(contact.color)}`}
+                    whileHover={{ x: 5 }}
+                  >
+                    <div className={`p-3 rounded-full contact-icon-bg ${getContactColorClass(contact.color)}`}>
+                      <Icon
+                        size={20}
+                        className={`contact-icon-color ${getContactColorClass(contact.color)}`}
+                      />
+                    </div>
+                    <div>
+                      <p className="text-sm text-gray-600 font-medium">{contact.label}</p>
+                      <p className="text-gray-900 group-hover:text-amber-600 transition-colors duration-300">
+                        {contact.value}
+                      </p>
+                    </div>
+                  </motion.a>
+                )
+              })}
+            </div>
+          </motion.div>
+
+          {/* Social Links */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="bg-white rounded-2xl p-5 md:p-6 border border-gray-200 shadow-sm"
+          >
+            <h3 className="text-xl font-bold text-gray-900 mb-6">Social Links</h3>
+            <div className="flex flex-wrap gap-4">
+              {socialLinks.map((social, index) => {
+                const IconComponent = social.icon
+                return (
+                  <motion.a
+                    key={social.label}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={social.label}
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.4, delay: index * 0.1 }}
+                    className="flex items-center justify-center w-12 h-12 rounded-full bg-gray-100 hover:bg-gray-200 transition-all duration-300 group"
+                    whileHover={{ scale: 1.1, rotate: 5 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <div className="text-gray-600 group-hover:text-gray-900 transition-colors duration-300">
+                      <IconComponent />
+                    </div>
+                  </motion.a>
+                )
+              })}
+            </div>
+          </motion.div>
+        </div>
+
+        {/* Contact Form */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
           className="bg-white rounded-2xl p-5 md:p-6 border border-gray-200 shadow-sm"
         >
-          <h3 className="text-xl font-bold text-gray-900 mb-6">Contact Information</h3>
-          <div className="space-y-4">
-            {contactInfo.map((contact, index) => {
-              const Icon = contact.icon
-              return (
-                <motion.a
-                  key={contact.label}
-                  href={contact.href}
-                  initial={{ opacity: 0, x: -30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.4, delay: index * 0.1 }}
-                  className={`flex items-center gap-4 p-3 rounded-lg hover:bg-gray-50 transition-all duration-300 group ${getContactColorClass(contact.color)}`}
-                  whileHover={{ x: 5 }}
-                >
-                  <div className={`p-3 rounded-full contact-icon-bg ${getContactColorClass(contact.color)}`}>
-                    <Icon
-                      size={20}
-                      className={`contact-icon-color ${getContactColorClass(contact.color)}`}
-                    />
-                  </div>
-                  <div>
-                    <p className="text-sm text-gray-600 font-medium">{contact.label}</p>
-                    <p className="text-gray-900 group-hover:text-amber-600 transition-colors duration-300">
-                      {contact.value}
-                    </p>
-                  </div>
-                </motion.a>
-              )
-            })}
-          </div>
+          <h3 className="text-xl font-bold text-gray-900 mb-6">Send me a Message</h3>
+          
+          {isSubmitted ? (
+            <div className="h-full flex flex-col items-center justify-center text-center py-10">
+              <div className="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mb-4">
+                <CheckCircle size={32} />
+              </div>
+              <h4 className="text-2xl font-bold text-gray-900 mb-2">Message Sent!</h4>
+              <p className="text-gray-600">Thank you for reaching out. I'll get back to you soon.</p>
+              <button 
+                onClick={() => setIsSubmitted(false)}
+                className="mt-6 text-amber-600 font-medium hover:underline"
+              >
+                Send another message
+              </button>
+            </div>
+          ) : (
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">Your Name</label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    required
+                    value={formData.name}
+                    onChange={handleChange}
+                    placeholder="Irfan Shaikh"
+                    className="w-full px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none transition-all"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    required
+                    value={formData.email}
+                    onChange={handleChange}
+                    placeholder="irfan@example.com"
+                    className="w-full px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none transition-all"
+                  />
+                </div>
+              </div>
+              <div>
+                <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-1">Subject</label>
+                <input
+                  type="text"
+                  id="subject"
+                  name="subject"
+                  required
+                  value={formData.subject}
+                  onChange={handleChange}
+                  placeholder="Project Collaboration"
+                  className="w-full px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none transition-all"
+                />
+              </div>
+              <div>
+                <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">Message</label>
+                <textarea
+                  id="message"
+                  name="message"
+                  required
+                  rows={4}
+                  value={formData.message}
+                  onChange={handleChange}
+                  placeholder="Tell me about your project..."
+                  className="w-full px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none transition-all resize-none"
+                />
+              </div>
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="w-full py-3 px-6 bg-gradient-to-r from-amber-500 to-yellow-500 text-white font-bold rounded-lg shadow-md hover:shadow-lg transform transition-all active:scale-95 disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+              >
+                {isSubmitting ? (
+                  <>
+                    <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                    Sending...
+                  </>
+                ) : (
+                  <>
+                    <Send size={18} />
+                    Send Message
+                  </>
+                )}
+              </button>
+            </form>
+          )}
         </motion.div>
-
-        {/* Social Links */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="bg-white rounded-2xl p-5 md:p-6 border border-gray-200 shadow-sm"
-        >
-          <h3 className="text-xl font-bold text-gray-900 mb-6">Social Links</h3>
-          <div className="flex gap-4">
-            {socialLinks.map((social, index) => {
-              const IconComponent = social.icon
-              return (
-                <motion.a
-                  key={social.label}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={social.label}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.4, delay: index * 0.1 }}
-                  className="flex items-center justify-center w-12 h-12 rounded-full bg-gray-100 hover:bg-gray-200 transition-all duration-300 group"
-                  whileHover={{ scale: 1.1, rotate: 5 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <div className="text-gray-600 group-hover:text-gray-900 transition-colors duration-300">
-                    <IconComponent />
-                  </div>
-                </motion.a>
-              )
-            })}
-          </div>
-        </motion.div>
-
-
-
       </div>
     </div>
   )

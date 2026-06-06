@@ -18,8 +18,8 @@ export const projects: Project[] = [
     description: 'Production-ready full-stack application that transforms plain English project ideas into comprehensive system architectures using Google Gemini AI, featuring JWT authentication, Redis caching, and real-time diagram generation.',
     type: 'fullstack',
     technologies: ['Python', 'FastAPI', 'React 19', 'Google Gemini AI', 'PostgreSQL', 'Redis', 'Docker'],
-    image: '/AI Architecture Generator project immage.png',
-    demoUrl: '#',
+    image: '/AI Architecture Generator project immage.webp',
+    demoUrl: 'https://ai-architecture.onrender.com/',
     githubUrl: 'https://github.com/irfanshaikh110805-glitch/AI-Architecture-Generator',
     highlights: [
       'AI-Powered Architecture Generation',
@@ -31,23 +31,6 @@ export const projects: Project[] = [
   },
   {
     id: '2',
-    title: 'Hotel Everest Family Restaurant',
-    description: 'A full-featured restaurant booking and food ordering platform with authentic Indian cuisine menu, table reservations, shopping cart, and user authentication.',
-    type: 'fullstack',
-    technologies: ['React', 'Supabase', 'Authentication', 'Responsive Design'],
-    image: '/restaurant-hero.webp',
-    demoUrl: 'https://hoteleverestfamilyrestaurant.netlify.app/',
-    githubUrl: 'https://github.com/irfanshaikh110805-glitch/restaurant-management-system-with-online-ordering-table-booking',
-    highlights: [
-      'Table Booking System',
-      'Menu Management',
-      'User Authentication',
-      'Mobile Responsive'
-    ],
-    color: '#f97316'
-  },
-  {
-    id: '3',
     title: 'AI Healthcare Assistant Web App',
     description: 'Built a Flask-based AI healthcare assistant using NLP logic and REST APIs to provide automated medical guidance for common health queries.',
     type: 'web',
@@ -64,7 +47,7 @@ export const projects: Project[] = [
     color: '#f59e0b'
   },
   {
-    id: '4',
+    id: '3',
     title: 'Fruit & Vegetable Disease Detection System',
     description: 'Created an AI-based image classification system using TensorFlow MobileNetV2 and a Flask API for real-time fruit and vegetable disease detection.',
     type: 'web',
@@ -80,13 +63,30 @@ export const projects: Project[] = [
     ],
     color: '#eab308'
   },
+    {
+    id: '4',
+    title: 'Hotel Everest Family Restaurant',
+    description: 'A full-featured restaurant booking and food ordering platform with authentic Indian cuisine menu, table reservations, shopping cart, and user authentication.',
+    type: 'fullstack',
+    technologies: ['React', 'Supabase', 'Authentication', 'Responsive Design'],
+    image: '/restaurant-hero.webp',
+    demoUrl: 'https://hoteleverestfamilyrestaurant.netlify.app/',
+    githubUrl: 'https://github.com/irfanshaikh110805-glitch/restaurant-management-system-with-online-ordering-table-booking',
+    highlights: [
+      'Table Booking System',
+      'Menu Management',
+      'User Authentication',
+      'Mobile Responsive'
+    ],
+    color: '#f97316'
+  },
   {
     id: '5',
     title: 'Interactive Portfolio Website',
     description: 'A modern portfolio website featuring interactive animations, smooth transitions, and responsive design built with React and Framer Motion.',
     type: 'web',
     technologies: ['React', 'TypeScript', 'Framer Motion', 'Tailwind CSS'],
-    image: '/portfolio-website.png',
+    image: '/portfolio-website.webp',
     demoUrl: 'https://irfanshaikhportfolio.netlify.app/',
     githubUrl: 'https://github.com/irfanshaikh110805-glitch/Irfan-Shekh-3D-Interactive-Resume',
     highlights: [
@@ -113,6 +113,23 @@ export const projects: Project[] = [
       'Responsive Design'
     ],
     color: '#d97706'
+  },
+  {
+    id: '7',
+    title: 'CyberGuard AI Security Platform',
+    description: 'Enterprise-grade cybersecurity platform combining machine learning threat detection with advanced reporting capabilities. Features real-time security analysis, automated vulnerability assessment, and comprehensive dashboard for security professionals.',
+    type: 'fullstack',
+    technologies: ['Python', 'TensorFlow', 'React', 'FastAPI', 'PostgreSQL', 'Redis', 'Docker', 'Elasticsearch'],
+    image: '/cyberguard-platform.webp',
+    demoUrl: '#',
+    githubUrl: 'https://github.com/irfanshaikh110805-glitch/phishing-detection-ml-tool',
+    highlights: [
+      'ML Threat Detection',
+      'Real-time Analysis',
+      'Advanced Reporting',
+      'Security Dashboard'
+    ],
+    color: '#dc2626'
   }
 ]
 

@@ -8,6 +8,7 @@
     "npm": ">=9.0.0"
   },
   "dependencies": {
+    "@google/generative-ai": "^0.24.1",
     "@hono/zod-validator": "^0.5.0",
     "@react-spring/three": "^10.0.1",
     "@react-spring/web": "^10.0.1",
@@ -15,6 +16,10 @@
     "@react-three/fiber": "^9.3.0",
     "@types/react-router-dom": "^5.3.3",
     "@types/three": "^0.180.0",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "esbuild": "^0.28.0",
+    "express": "^5.2.1",
     "framer-motion": "^12.23.12",
     "hono": "^4.9.8",
     "lucide-react": "^0.510.0",
@@ -28,11 +33,13 @@
   "devDependencies": {
     "@cloudflare/vite-plugin": "^1.12.0",
     "@eslint/js": "9.25.1",
+    "@netlify/functions": "^2.8.2",
     "@types/node": "22.14.1",
     "@types/react": "19.0.10",
     "@types/react-dom": "19.0.4",
     "@vitejs/plugin-react": "4.4.1",
     "autoprefixer": "^10.4.21",
+    "concurrently": "^9.2.1",
     "eslint": "^9.39.2",
     "eslint-plugin-react-hooks": "5.2.0",
     "eslint-plugin-react-refresh": "0.4.19",
@@ -47,10 +54,16 @@
     "wrangler": "^4.33.0"
   },
   "scripts": {
-    "build": "tsc -b && vite build",
+    "build": "npm run optimize && tsc -b && vite build",
     "cf-typegen": "wrangler types",
     "check": "tsc && vite build && wrangler deploy --dry-run",
-    "dev": "vite",
-    "lint": "eslint ."
+    "dev": "concurrently \"vite\" \"node server-local.js\"",
+    "dev:netlify": "netlify dev",
+    "dev:api": "wrangler dev",
+    "dev:api-local": "node server-local.js",
+    "dev:all": "concurrently \"npm run dev\" \"npm run dev:api\"",
+    "dev:local": "concurrently \"npm run dev\" \"npm run dev:api-local\"",
+    "lint": "eslint .",
+    "optimize": "node optimize-images.js"
   }
 }

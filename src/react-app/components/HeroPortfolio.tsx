@@ -162,43 +162,97 @@ export default function HeroPortfolio() {
 
           {/* Right side - Profile Image with Premium Effects */}
           <div className="flex justify-center items-center relative lg:mt-0 order-1 lg:order-2 mb-4 lg:mb-0">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.5 }}
-              className="relative w-[300px] h-[400px] sm:w-[380px] sm:h-[500px] lg:w-[420px] lg:h-[550px] z-10 rounded-[2rem] overflow-hidden"
-            >
-              {/* Premium border ring - subtle light theme */}
-              <div className="absolute inset-0 rounded-[2rem] border border-gray-200/60 shadow-2xl shadow-amber-500/5" />
+            {/* Outer glow ring matching website amber theme */}
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+              <div className="w-[320px] h-[420px] sm:w-[400px] sm:h-[520px] lg:w-[440px] lg:h-[570px] rounded-[2.5rem] bg-gradient-to-br from-amber-200/20 via-yellow-100/10 to-transparent blur-2xl" />
+            </div>
 
-              {/* Image Container */}
-              <div className="relative w-full h-full flex items-center justify-center overflow-hidden rounded-[2rem] bg-gradient-to-br from-gray-50 via-white to-amber-50/20">
-                {/* Enhanced image with premium styling */}
-                <div className="relative w-full h-full flex items-center justify-center">
-                  <img
-                    src="/profile-optimized.webp"
-                    srcSet="/profile-mobile.webp 600w, /profile-optimized.webp 840w"
-                    sizes="(max-width: 768px) 300px, (max-width: 1024px) 380px, 420px"
-                    alt="Irfan Shaikh - Full Stack Developer"
-                    width="420"
-                    height="550"
-                    loading="eager"
-                    fetchPriority="high"
-                    decoding="async"
-                    className="w-full h-full object-cover object-center hover:scale-105 transition-transform duration-700 ease-out z-10"
-                    style={{
-                      filter: 'drop-shadow(0 10px 40px rgba(0,0,0,0.08)) brightness(1.03) contrast(1.03)',
-                      objectPosition: 'center 30%',
-                      transform: 'scale(1.15)'
-                    }}
-                    onError={(e) => {
-                      const target = e.target as HTMLImageElement
-                      target.onerror = null;
-                      target.style.display = 'none'
-                    }}
-                  />
-                </div>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              transition={{ duration: 1, delay: 0.5, ease: 'easeOut' }}
+              className="relative w-[300px] h-[400px] sm:w-[380px] sm:h-[500px] lg:w-[420px] lg:h-[550px] z-10"
+            >
+              {/* Premium animated border ring */}
+              <div
+                className="absolute -inset-[2px] rounded-[2.2rem] z-20 pointer-events-none"
+                style={{
+                  background: 'linear-gradient(135deg, rgba(245,158,11,0.4) 0%, rgba(251,191,36,0.15) 40%, rgba(255,255,255,0.05) 60%, rgba(245,158,11,0.3) 100%)',
+                  boxShadow: '0 8px 40px rgba(245,158,11,0.18), 0 2px 8px rgba(0,0,0,0.06)'
+                }}
+              />
+
+              {/* Image container */}
+              <div className="relative w-full h-full rounded-[2rem] overflow-hidden">
+                {/* Warm background that matches website - sits behind image */}
+                <div
+                  className="absolute inset-0"
+                  style={{
+                    background: 'linear-gradient(160deg, #fef3c7 0%, #fffbeb 30%, #f9fafb 60%, #f3f4f6 100%)'
+                  }}
+                />
+
+                {/* The actual photo — high quality, no over-compression */}
+                <img
+                  src="/profile.webp"
+                  srcSet="/profile.webp 840w, /profile.png 840w"
+                  sizes="(max-width: 768px) 300px, (max-width: 1024px) 380px, 420px"
+                  alt="Irfan Shaikh - Full Stack Developer"
+                  width="420"
+                  height="550"
+                  loading="eager"
+                  fetchPriority="high"
+                  decoding="async"
+                  className="absolute inset-0 w-full h-full object-cover hover:scale-[1.03] transition-transform duration-700 ease-out"
+                  style={{
+                    objectPosition: 'center 15%',
+                    filter: 'brightness(1.04) contrast(1.02) saturate(0.95)'
+                  }}
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement
+                    target.onerror = null;
+                    target.src = '/profile.png';
+                  }}
+                />
+
+                {/* Warm color overlay — tints the cool gray photo bg to match warm site */}
+                <div
+                  className="absolute inset-0 pointer-events-none"
+                  style={{
+                    background: 'linear-gradient(to bottom, rgba(254,243,199,0.28) 0%, rgba(255,251,235,0.12) 40%, rgba(0,0,0,0) 70%, rgba(245,158,11,0.04) 100%)',
+                    mixBlendMode: 'multiply'
+                  }}
+                />
+
+                {/* Bottom fade — blends image into page */}
+                <div
+                  className="absolute bottom-0 left-0 right-0 h-1/4 pointer-events-none"
+                  style={{
+                    background: 'linear-gradient(to top, rgba(255,251,235,0.9) 0%, rgba(255,251,235,0.4) 50%, transparent 100%)'
+                  }}
+                />
+
+                {/* Inner subtle vignette for polish */}
+                <div
+                  className="absolute inset-0 rounded-[2rem] pointer-events-none"
+                  style={{
+                    boxShadow: 'inset 0 0 40px rgba(0,0,0,0.04), inset 0 -20px 40px rgba(254,243,199,0.3)'
+                  }}
+                />
               </div>
+
+              {/* Floating amber accent dot - top right */}
+              <motion.div
+                animate={{ y: [-4, 4, -4], opacity: [0.6, 1, 0.6] }}
+                transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
+                className="absolute -top-3 -right-3 w-5 h-5 bg-amber-400 rounded-full shadow-lg shadow-amber-400/40 z-30"
+              />
+              {/* Floating dot - bottom left */}
+              <motion.div
+                animate={{ y: [4, -4, 4], opacity: [0.4, 0.8, 0.4] }}
+                transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
+                className="absolute -bottom-2 -left-2 w-3 h-3 bg-yellow-300 rounded-full shadow-md shadow-yellow-400/30 z-30"
+              />
             </motion.div>
           </div>
         </div>

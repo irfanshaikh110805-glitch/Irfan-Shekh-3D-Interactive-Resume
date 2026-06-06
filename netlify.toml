@@ -2,6 +2,25 @@
   command = "npm run build"
   publish = "dist"
 
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
+
+# Local development settings
+[dev]
+  command = "vite"
+  port = 8888
+  targetPort = 5173
+  autoLaunch = false
+
+# Environment variables (set these in Netlify dashboard)
+# GEMINI_API_KEY = "your-api-key-here"
+
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
+
 [[redirects]]
   from = "/*"
   to = "/index.html"
@@ -18,7 +37,7 @@
     Permissions-Policy = "geolocation=(), microphone=(), camera=()"
     Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://www.google-analytics.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self' mailto:;"
     # Early hints: push the LCP image before HTML is fully parsed
-    Link = "</profile-optimized.webp>; rel=preload; as=image; type=image/webp; media=(min-width:769px), </profile-mobile.webp>; rel=preload; as=image; type=image/webp; media=(max-width:768px)"
+    Link = "</profile.webp>; rel=preload; as=image; type=image/webp; fetchpriority=high"
 
 # Cache JavaScript files
 [[headers]]

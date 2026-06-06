@@ -69,7 +69,7 @@ const philosophy = [
 
 export default function AboutSection() {
   return (
-    <div className="w-full max-w-7xl mx-auto">
+    <div className="relative w-full max-w-7xl mx-auto">
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
