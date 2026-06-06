@@ -90,7 +90,7 @@
     Cache-Control = "public, max-age=0, must-revalidate"
 
 [build.environment]
-  NODE_VERSION = "18"
+  NODE_VERSION = "22"
   NPM_FLAGS = "--legacy-peer-deps"
 
 # Enable asset optimization
