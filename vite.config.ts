@@ -7,6 +7,13 @@ export default defineConfig({
   base: '/',
   server: {
     allowedHosts: true,
+    proxy: {
+      '/api': {
+        target: 'http://localhost:8787',
+        changeOrigin: true,
+        secure: false,
+      },
+    },
   },
   build: {
     chunkSizeWarningLimit: 800,
@@ -17,7 +24,7 @@ export default defineConfig({
     rollupOptions: {
       output: {
         // Split chunks granularly so unused code is never loaded
-        manualChunks(id) {
+        manualChunks(id: string) {
           // Core React — always needed
           if (id.includes('node_modules/react/') || id.includes('node_modules/react-dom/')) {
             return 'react-vendor';
