@@ -7,9 +7,10 @@ export const getSkillColorClass = (color: string): string => {
     '#8b5cf6': 'skill-purple',
     '#059669': 'skill-green',
     '#dc2626': 'skill-red',
-    '#ec4899': 'skill-pink'
+    '#ec4899': 'skill-pink',
+    '#fbbf24': 'skill-amber'
   }
-  return colorMap[color] || 'skill-blue'
+  return colorMap[color] || 'skill-amber'
 }
 
 export const getGlowColorClass = (color: string): string => {
@@ -21,7 +22,8 @@ export const getGlowColorClass = (color: string): string => {
     '#8b5cf6': 'from-purple-500',
     '#059669': 'from-green-500',
     '#dc2626': 'from-red-500',
-    '#ec4899': 'from-pink-500'
+    '#ec4899': 'from-pink-500',
+    '#fbbf24': 'from-amber-400'
   }
   return colorMap[color] || 'from-amber-500'
 }
@@ -29,6 +31,8 @@ export const getGlowColorClass = (color: string): string => {
 export const getContactColorClass = (color: string): string => {
   const colorMap: { [key: string]: string } = {
     '#f59e0b': 'contact-amber',
+    '#eab308': 'contact-yellow',
+    '#fbbf24': 'contact-warm',
     '#059669': 'contact-green',
     '#8b5cf6': 'contact-purple'
   }
@@ -38,10 +42,10 @@ export const getContactColorClass = (color: string): string => {
 export const getProjectColorClass = (color: string) => {
   const colorMap: Record<string, string> = {
     '#f59e0b': 'project-color-amber',
-    '#d97706': 'project-color-green',
-    '#eab308': 'project-color-purple',
-    '#f97316': 'project-color-red',
-    '#fbbf24': 'project-color-orange',
+    '#d97706': 'project-color-amber',
+    '#eab308': 'project-color-amber',
+    '#f97316': 'project-color-orange',
+    '#fbbf24': 'project-color-amber',
     '#dc2626': 'project-color-red-dark'
   }
   return colorMap[color] || 'project-color-amber'

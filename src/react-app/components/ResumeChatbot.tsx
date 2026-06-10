@@ -43,7 +43,7 @@ export default function ResumeChatbot() {
     
     // Projects related
     if (lowerMessage.includes('project') || lowerMessage.includes('work') || lowerMessage.includes('portfolio')) {
-      return "Here are Irfan's key projects:\n\n1️⃣ AI Architecture Generator - Transforms ideas into system architectures using Gemini AI\n2️⃣ Hotel Everest - Restaurant booking system with React & Supabase\n3️⃣ MediGuardian AI - Healthcare assistant built with Flask\n4️⃣ Fruit & Vegetable Disease Detection - AI-powered image classification\n5️⃣ HeavyDuty Parts - Industrial e-commerce platform\n\nEach project showcases different aspects of his full-stack and AI capabilities!"
+      return "Here are Irfan's key projects:\n\n1️⃣ CaseSight AI - Indian AI Legal Operating System (Next.js & Gemini AI)\n2️⃣ AI Architecture Generator - Transforms ideas into system architectures using Gemini AI\n3️⃣ Hotel Everest - Restaurant booking system with React & Supabase\n4️⃣ MediGuardian AI - Healthcare assistant built with Flask\n5️⃣ Fruit & Vegetable Disease Detection - AI-powered image classification\n6️⃣ HeavyDuty Parts - Industrial e-commerce platform\n\nEach project showcases different aspects of his full-stack and AI capabilities!"
     }
     
     // Contact related
@@ -85,22 +85,46 @@ export default function ResumeChatbot() {
     return "I'm here to help you learn about Irfan! You can ask me about:\n\n• His skills and technologies\n• Projects he's built\n• Education and background\n• How to contact him\n• His availability for work\n\nWhat would you like to know?"
   }
 
-  // Client-side response (no API call needed!)
+  // Fetch response from serverless function with client-side fallback
   const generateAIResponse = async (input: string) => {
     setIsTyping(true)
     
-    // Simulate a small delay to make it feel more natural
-    await new Promise(resolve => setTimeout(resolve, 500))
-    
-    const response = getBotResponse(input)
-    
-    setMessages(prev => [...prev, { 
-      id: Date.now().toString(), 
-      text: response, 
-      sender: 'ai' 
-    }])
-    
-    setIsTyping(false)
+    try {
+      const response = await fetch('/api/chat', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ message: input })
+      })
+
+      if (!response.ok) {
+        throw new Error(`Server returned status ${response.status}`)
+      }
+
+      const data = await response.json()
+      if (data && data.response) {
+        setMessages(prev => [...prev, { 
+          id: Date.now().toString(), 
+          text: data.response, 
+          sender: 'ai' 
+        }])
+      } else {
+        throw new Error('Invalid response format')
+      }
+    } catch (err) {
+      console.warn('API error, falling back to rule-based responses:', err)
+      // Simulate a small delay for the fallback to feel natural
+      await new Promise(resolve => setTimeout(resolve, 500))
+      const response = getBotResponse(input)
+      setMessages(prev => [...prev, { 
+        id: Date.now().toString(), 
+        text: response, 
+        sender: 'ai' 
+      }])
+    } finally {
+      setIsTyping(false)
+    }
   }
 
   const handleSendMessage = (e: React.FormEvent) => {
@@ -123,7 +147,7 @@ export default function ResumeChatbot() {
             initial={{ opacity: 0, scale: 0.8, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.8, y: 20 }}
-            className="fixed bottom-20 sm:bottom-24 right-4 sm:right-8 w-[90%] sm:w-80 h-96 bg-white rounded-2xl shadow-2xl border border-gray-100 flex flex-col z-[100] overflow-hidden"
+            className="fixed bottom-20 sm:bottom-24 right-4 sm:right-8 w-[90%] sm:w-[400px] h-[550px] bg-white rounded-2xl shadow-2xl border border-gray-100 flex flex-col z-[100] overflow-hidden"
           >
             {/* Header */}
             <div className="bg-gradient-to-r from-amber-500 to-yellow-500 p-4 flex items-center justify-between text-white">
@@ -146,7 +170,7 @@ export default function ResumeChatbot() {
                   key={msg.id} 
                   className={`flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}
                 >
-                  <div className={`max-w-[80%] p-3 rounded-2xl text-sm ${
+                  <div className={`max-w-[85%] p-3 rounded-2xl text-sm whitespace-pre-wrap ${
                     msg.sender === 'user' 
                       ? 'bg-amber-500 text-white rounded-tr-sm' 
                       : 'bg-white border border-gray-100 shadow-sm text-gray-700 rounded-tl-sm'

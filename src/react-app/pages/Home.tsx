@@ -19,13 +19,22 @@ const ScrollProgress = lazy(() => import('@/react-app/components/ScrollProgress'
 const InteractiveBackground = lazy(() => import('@/react-app/components/InteractiveBackground'))
 const ResumeChatbot = lazy(() => import('@/react-app/components/ResumeChatbot'))
 
-// Helper for lazy loading sections to avoid main thread blocking on initial load
-function LazySection({ children, id, className, minHeight = "50vh" }: { children: React.ReactNode, id: string, className?: string, minHeight?: string }) {
+// Helper for lazy loading sections - renders immediately but defers heavy components
+function LazySection({ children, id, className }: { children: React.ReactNode, id: string, className?: string }) {
   const [hasRendered, setHasRendered] = useState(false)
   
   useEffect(() => {
+    // Render immediately if section is already in or near viewport
     const el = document.getElementById(id)
-    if (!el) return
+    if (!el) {
+      setHasRendered(true)
+      return
+    }
+    const rect = el.getBoundingClientRect()
+    if (rect.top < window.innerHeight + 600) {
+      setHasRendered(true)
+      return
+    }
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -33,19 +42,31 @@ function LazySection({ children, id, className, minHeight = "50vh" }: { children
           observer.disconnect()
         }
       },
-      { rootMargin: '200px' }
+      { rootMargin: '600px' }
     )
     observer.observe(el)
     return () => observer.disconnect()
   }, [id])
 
   return (
-    <section className={`relative ${className || ''}`} id={id} style={{ minHeight: hasRendered ? 'auto' : minHeight }}>
-      {hasRendered ? (
-        <Suspense fallback={<div className="flex items-center justify-center h-full w-full">Loading...</div>}>
-          {children}
-        </Suspense>
-      ) : null}
+    <section className={`relative ${className || ''}`} id={id}>
+      <Suspense fallback={
+        <div className="min-h-[40vh] flex items-center justify-center">
+          <div className="flex flex-col items-center gap-3">
+            <div className="w-8 h-8 border-3 border-amber-500 border-t-transparent rounded-full animate-spin" />
+            <span className="text-gray-500 text-sm font-medium">Loading...</span>
+          </div>
+        </div>
+      }>
+        {hasRendered ? children : (
+          <div className="min-h-[40vh] flex items-center justify-center">
+            <div className="flex flex-col items-center gap-3">
+              <div className="w-8 h-8 border-2 border-amber-500 border-t-transparent rounded-full animate-spin" />
+              <span className="text-gray-500 text-sm font-medium">Loading section...</span>
+            </div>
+          </div>
+        )}
+      </Suspense>
     </section>
   )
 }
@@ -131,9 +152,7 @@ export default function Home() {
       {/* About Section */}
       <LazySection className="py-12 px-4" id="about">
         <div className="max-w-7xl mx-auto">
-          <Suspense fallback={<div className="min-h-[50vh] flex items-center justify-center">Loading...</div>}>
-            <AboutSection />
-          </Suspense>
+          <AboutSection />
         </div>
       </LazySection>
 
@@ -153,24 +172,18 @@ export default function Home() {
               A curated selection of projects showcasing my expertise in web development, 3D experiences, and creative problem-solving
             </p>
           </motion.div>
-          <Suspense fallback={<div className="min-h-[50vh] flex items-center justify-center">Loading...</div>}>
-            <ProjectShowcase />
-          </Suspense>
+          <ProjectShowcase />
         </div>
       </LazySection>
 
       {/* Skills Section */}
       <LazySection className="py-12 px-4" id="skills">
-        <Suspense fallback={<div className="min-h-[50vh] flex items-center justify-center">Loading...</div>}>
-          <SkillsVisualization />
-        </Suspense>
+        <SkillsVisualization />
       </LazySection>
 
       {/* Services Section */}
       <LazySection className="py-12 px-4 bg-white" id="services">
-        <Suspense fallback={<div className="min-h-[50vh] flex items-center justify-center">Loading...</div>}>
-          <ServicesSection />
-        </Suspense>
+        <ServicesSection />
       </LazySection>
 
       {/* Contact Section */}
@@ -189,9 +202,7 @@ export default function Home() {
               Ready to bring your next project to life? Let's discuss how we can create something amazing together.
             </p>
           </motion.div>
-          <Suspense fallback={<div className="min-h-[50vh] flex items-center justify-center">Loading...</div>}>
-            <ContactSection />
-          </Suspense>
+          <ContactSection />
         </div>
       </LazySection>
 

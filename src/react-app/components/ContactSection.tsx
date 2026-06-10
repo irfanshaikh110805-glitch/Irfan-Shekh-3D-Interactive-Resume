@@ -101,7 +101,7 @@ export default function ContactSection() {
      setIsSubmitting(true)
      
      try {
-       const response = await fetch('https://formsubmit.co/ajax/irfanshaikh110805@gmail.com', {
+       const response = await fetch('/api/contact', {
          method: 'POST',
          headers: { 
            'Content-Type': 'application/json',

@@ -96,11 +96,12 @@ app.post('/api/chat', async (c) => {
     - Role: Web Developer & AI Enthusiast
     - Skills: Python, React, JavaScript, TypeScript, Java, Node.js, Flask, MongoDB, MySQL, TensorFlow, MobileNetV2, Git, Postman, Supabase, JWT Auth.
     - Projects: 
-      1. AI Architecture Generator: Transforms project ideas into architectures using Gemini AI.
-      2. Hotel Everest: Full-featured restaurant booking system with React & Supabase.
-      3. AI Healthcare Assistant: Flask-based medical guidance app.
-      4. Fruit & Vegetable Disease Detection: AI image classification with TensorFlow.
-      5. HeavyDuty Parts: Industrial E-Commerce with WhatsApp checkout.
+      1. CaseSight AI: Indian AI Legal Operating System (Next.js, Supabase, Gemini AI, pgvector, Upstash, Inngest).
+      2. AI Architecture Generator: Transforms project ideas into architectures using Gemini AI.
+      3. Hotel Everest: Full-featured restaurant booking system with React & Supabase.
+      4. AI Healthcare Assistant: Flask-based medical guidance app.
+      5. Fruit & Vegetable Disease Detection: AI image classification with TensorFlow.
+      6. HeavyDuty Parts: Industrial E-Commerce with WhatsApp checkout.
     - Education: Currently pursuing BCA at Smt Kumudben Debar College, Vijayapura, Karnataka.
     - Contact: irfanshaikh110805@gmail.com, +91 9964264412.
     - Availability: Open for freelance and full-time roles.

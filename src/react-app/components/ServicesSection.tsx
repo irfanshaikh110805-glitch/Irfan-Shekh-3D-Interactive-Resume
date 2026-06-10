@@ -5,10 +5,11 @@ import { Code, Palette, Smartphone, Globe, Zap, Users, LucideIcon } from 'lucide
 const getServiceColorClass = (color: string): string => {
   const colorMap: { [key: string]: string } = {
     '#f59e0b': 'service-amber',
-    '#eab308': 'service-purple',
-    '#d97706': 'service-green',
-    '#f97316': 'service-red',
-    '#fbbf24': 'service-cyan'
+    '#eab308': 'service-amber',
+    '#d97706': 'service-amber',
+    '#f97316': 'service-orange',
+    '#fbbf24': 'service-cyan',
+    '#ef4444': 'service-red'
   }
   return colorMap[color] || 'service-amber'
 }

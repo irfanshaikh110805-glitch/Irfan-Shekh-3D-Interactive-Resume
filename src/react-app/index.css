@@ -250,20 +250,35 @@ a:focus-visible {
   --dynamic-color: #ef4444;
 }
 
+/* service-cyan maps to yellow (fbbf24) for warm theme consistency */
+.service-cyan {
+  --dynamic-color: #fbbf24;
+}
+
 /* Contact specific colors and backgrounds */
 .contact-amber {
   --dynamic-color: #f59e0b;
-  --contact-bg-color: #f59e0b20;
+  --contact-bg-color: rgba(245, 158, 11, 0.12);
+}
+
+.contact-yellow {
+  --dynamic-color: #eab308;
+  --contact-bg-color: rgba(234, 179, 8, 0.12);
+}
+
+.contact-warm {
+  --dynamic-color: #fbbf24;
+  --contact-bg-color: rgba(251, 191, 36, 0.12);
 }
 
 .contact-green {
   --dynamic-color: #059669;
-  --contact-bg-color: #05966920;
+  --contact-bg-color: rgba(5, 150, 105, 0.12);
 }
 
 .contact-purple {
   --dynamic-color: #8b5cf6;
-  --contact-bg-color: #8b5cf620;
+  --contact-bg-color: rgba(139, 92, 246, 0.12);
 }
 
 .contact-icon-bg {
@@ -313,6 +328,11 @@ a:focus-visible {
 
 .skill-pink {
   background-color: #ec4899;
+}
+
+/* Fallback skill color - amber-based */
+.skill-blue {
+  background-color: #f59e0b;
 }
 
 /* Custom scrollbar for desktop */

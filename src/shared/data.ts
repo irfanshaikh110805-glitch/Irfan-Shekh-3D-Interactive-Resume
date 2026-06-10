@@ -14,6 +14,23 @@ export interface Project {
 export const projects: Project[] = [
   {
     id: '1',
+    title: 'CaseSight AI — Indian AI Legal Operating System',
+    description: 'A production-ready AI-powered legal intelligence platform built for Indian Law. CaseSight AI automates litigation management, chronologies, and document workflows, featuring a 6-Key Gemini API Router, hybrid semantic search, and an advanced mixed-mode OCR pipeline.',
+    type: 'fullstack',
+    technologies: ['Next.js 15', 'React 19', 'Supabase', 'pgvector', 'Google Gemini AI', 'Upstash Redis', 'Inngest', 'Resend'],
+    image: '/casesightai-platform.webp',
+    demoUrl: 'https://casesight-ai.onrender.com/',
+    githubUrl: 'https://github.com/irfanshaikh110805-glitch/casesight-ai',
+    highlights: [
+      '6-Key Gemini API Gateway',
+      'Hybrid Legal Search',
+      'Mixed-Mode OCR Pipeline',
+      'Procedural Intelligence'
+    ],
+    color: '#dc2626'
+  },
+  {
+    id: '2',
     title: 'AI Architecture Generator',
     description: 'Production-ready full-stack application that transforms plain English project ideas into comprehensive system architectures using Google Gemini AI, featuring JWT authentication, Redis caching, and real-time diagram generation.',
     type: 'fullstack',
@@ -30,7 +47,7 @@ export const projects: Project[] = [
     color: '#f59e0b'
   },
   {
-    id: '2',
+    id: '3',
     title: 'AI Healthcare Assistant Web App',
     description: 'Built a Flask-based AI healthcare assistant using NLP logic and REST APIs to provide automated medical guidance for common health queries.',
     type: 'web',
@@ -47,7 +64,7 @@ export const projects: Project[] = [
     color: '#f59e0b'
   },
   {
-    id: '3',
+    id: '4',
     title: 'Fruit & Vegetable Disease Detection System',
     description: 'Created an AI-based image classification system using TensorFlow MobileNetV2 and a Flask API for real-time fruit and vegetable disease detection.',
     type: 'web',
@@ -64,7 +81,7 @@ export const projects: Project[] = [
     color: '#eab308'
   },
     {
-    id: '4',
+    id: '5',
     title: 'Hotel Everest Family Restaurant',
     description: 'A full-featured restaurant booking and food ordering platform with authentic Indian cuisine menu, table reservations, shopping cart, and user authentication.',
     type: 'fullstack',
@@ -81,7 +98,7 @@ export const projects: Project[] = [
     color: '#f97316'
   },
   {
-    id: '5',
+    id: '6',
     title: 'Interactive Portfolio Website',
     description: 'A modern portfolio website featuring interactive animations, smooth transitions, and responsive design built with React and Framer Motion.',
     type: 'web',
@@ -98,7 +115,7 @@ export const projects: Project[] = [
     color: '#f59e0b'
   },
   {
-    id: '6',
+    id: '7',
     title: 'HeavyDuty Parts — Industrial E-Commerce',
     description: 'Full-stack industrial hardware e-commerce platform (AdiSync Solutions) for selling heavy machinery parts in India. Features WhatsApp checkout, a rotating hero banner, product catalog with categories, search & filtering, and INR currency support.',
     type: 'fullstack',
@@ -115,7 +132,7 @@ export const projects: Project[] = [
     color: '#d97706'
   },
   {
-    id: '7',
+    id: '8',
     title: 'CyberGuard AI Security Platform',
     description: 'Enterprise-grade cybersecurity platform combining machine learning threat detection with advanced reporting capabilities. Features real-time security analysis, automated vulnerability assessment, and comprehensive dashboard for security professionals.',
     type: 'fullstack',

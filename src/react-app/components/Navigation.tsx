@@ -214,14 +214,12 @@ export default function Navigation({ activeSection, setActiveSection }: Navigati
                     onClick={(e) => {
                       e.preventDefault();
                       e.stopPropagation();
-                      console.log('Clicked:', item.id);
                       setActiveSection(item.id);
                       setIsMobileMenuOpen(false);
                       
                       // Use setTimeout to ensure menu closes before scrolling
                       setTimeout(() => {
                         const element = document.getElementById(item.id);
-                        console.log('Element found:', element);
                         if (element) {
                           const yOffset = -80; // Account for fixed header
                           const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;

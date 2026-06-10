@@ -1,7 +1,8 @@
 import { Handler } from '@netlify/functions'
+import { GoogleGenerativeAI } from '@google/generative-ai'
 
-// Simple rule-based chatbot responses
-const getBotResponse = (message: string): string => {
+// Rule-based chatbot fallback responses
+const getBotResponseFallback = (message: string): string => {
   const lowerMessage = message.toLowerCase()
   
   // Skills related
@@ -93,7 +94,49 @@ export const handler: Handler = async (event) => {
     }
 
     const { message } = body
-    const response = getBotResponse(message)
+    const apiKey = process.env.GEMINI_API_KEY
+
+    if (apiKey) {
+      try {
+        const genAI = new GoogleGenerativeAI(apiKey)
+        const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" })
+
+        const prompt = `You are Irfan's AI Assistant for his 3D Interactive Portfolio. 
+        Your goal is to answer questions about Irfan's skills, projects, and experience.
+        
+        About Irfan:
+        - Name: Irfan Shaikh
+        - Role: Web Developer & AI Enthusiast
+        - Skills: Python, React, JavaScript, TypeScript, Java, Node.js, Flask, MongoDB, MySQL, TensorFlow, MobileNetV2, Git, Postman, Supabase, JWT Auth.
+        - Projects: 
+          1. AI Architecture Generator: Transforms project ideas into architectures using Gemini AI.
+          2. Hotel Everest: Full-featured restaurant booking system with React & Supabase.
+          3. AI Healthcare Assistant: Flask-based medical guidance app.
+          4. Fruit & Vegetable Disease Detection: AI image classification with TensorFlow.
+          5. HeavyDuty Parts: Industrial E-Commerce with WhatsApp checkout.
+        - Education: Currently pursuing BCA at Smt Kumudben Debar College, Vijayapura, Karnataka (2023-2026).
+        - Contact: irfanshaikh110805@gmail.com, +91 9964264412.
+        - Availability: Open for freelance and full-time roles.
+        
+        Be professional, helpful, and concise. Keep answers short and relevant to his resume.
+        
+        User message: ${message}`
+
+        const result = await model.generateContent(prompt)
+        const responseText = result.response.text()
+
+        return {
+          statusCode: 200,
+          headers: corsHeaders,
+          body: JSON.stringify({ response: responseText })
+        }
+      } catch (aiError) {
+        console.error('Gemini API call failed, falling back to rule-based response:', aiError)
+      }
+    }
+
+    // Fallback if apiKey is not defined or API call failed
+    const response = getBotResponseFallback(message)
     
     return {
       statusCode: 200,
