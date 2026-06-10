@@ -113,7 +113,7 @@ Currently pursuing BCA at Smt Kumudben Debar College (2023-2026) and seeking opp
 - **Email**: irfanshaikh110805@gmail.com
 - **Phone**: +91 9964264412
 - **Location**: Vijayapura, Karnataka, India
-- **LinkedIn**: [linkedin.com/in/irfan-shaikh-380461392](https://www.linkedin.com/in/irfan-shaikh-380461392)
+- **LinkedIn**: [linkedin.com/in/irfan-shekh-380461392](https://www.linkedin.com/in/irfan-shekh-380461392?utm_source=share_via&utm_content=profile&utm_medium=member_android)
 - **GitHub**: [github.com/irfan-shekh](https://github.com/irfan-shekh)
 
 ## 📄 License

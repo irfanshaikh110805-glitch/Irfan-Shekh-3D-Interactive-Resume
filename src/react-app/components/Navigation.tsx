@@ -129,7 +129,7 @@ export default function Navigation({ activeSection, setActiveSection }: Navigati
           </motion.a>
           
           <motion.a
-            href="https://www.linkedin.com/in/irfan-shaikh-380461392"
+            href="https://www.linkedin.com/in/irfan-shekh-380461392?utm_source=share_via&utm_content=profile&utm_medium=member_android"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Visit LinkedIn Profile"
@@ -252,7 +252,7 @@ export default function Navigation({ activeSection, setActiveSection }: Navigati
                 </motion.a>
                 
                 <motion.a
-                  href="https://www.linkedin.com/in/irfan-shaikh-380461392"
+                  href="https://www.linkedin.com/in/irfan-shekh-380461392?utm_source=share_via&utm_content=profile&utm_medium=member_android"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Visit LinkedIn Profile"

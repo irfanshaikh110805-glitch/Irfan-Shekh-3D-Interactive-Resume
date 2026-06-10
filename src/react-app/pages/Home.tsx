@@ -255,7 +255,7 @@ export default function Home() {
                 <a href="mailto:irfanshaikh110805@gmail.com" className="text-gray-500 hover:text-amber-500 transition-colors">
                   Email
                 </a>
-                <a href="https://www.linkedin.com/in/irfan-shaikh-380461392" className="text-gray-500 hover:text-amber-500 transition-colors">
+                <a href="https://www.linkedin.com/in/irfan-shekh-380461392?utm_source=share_via&utm_content=profile&utm_medium=member_android" className="text-gray-500 hover:text-amber-500 transition-colors">
                   LinkedIn
                 </a>
                 <a href="https://github.com" className="text-gray-500 hover:text-amber-500 transition-colors">

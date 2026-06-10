@@ -62,7 +62,7 @@ const socialLinks = [
   {
     icon: LinkedinIcon,
     label: 'LinkedIn',
-    href: 'https://www.linkedin.com/in/irfan-shaikh-380461392',
+    href: 'https://www.linkedin.com/in/irfan-shekh-380461392?utm_source=share_via&utm_content=profile&utm_medium=member_android',
     color: '#0077b5'
   },
   {
