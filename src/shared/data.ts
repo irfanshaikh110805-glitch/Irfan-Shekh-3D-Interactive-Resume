@@ -15,14 +15,14 @@ export const projects: Project[] = [
   {
     id: '1',
     title: 'CaseSight AI — Indian AI Legal Operating System',
-    description: 'A production-ready AI-powered legal intelligence platform built for Indian Law. CaseSight AI automates litigation management, chronologies, and document workflows, featuring a 6-Key Gemini API Router, hybrid semantic search, and an advanced mixed-mode OCR pipeline.',
+    description: 'A production-ready AI-powered legal intelligence platform built for Indian Law. CaseSight AI automates litigation management, chronologies, and document workflows, featuring an intelligent API gateway with failover support, hybrid semantic search, and an advanced mixed-mode OCR pipeline.',
     type: 'fullstack',
     technologies: ['Next.js 15', 'React 19', 'Supabase', 'pgvector', 'Google Gemini AI', 'Upstash Redis', 'Inngest', 'Resend'],
     image: '/casesightai-platform.webp',
     demoUrl: 'https://casesight-ai.onrender.com/',
     githubUrl: 'https://github.com/irfanshaikh110805-glitch/casesight-ai',
     highlights: [
-      '6-Key Gemini API Gateway',
+      'Intelligent API Gateway',
       'Hybrid Legal Search',
       'Mixed-Mode OCR Pipeline',
       'Procedural Intelligence'
