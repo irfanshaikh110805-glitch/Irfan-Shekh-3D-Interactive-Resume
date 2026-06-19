@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { MessageSquare, X, Send, Bot } from 'lucide-react'
+import { X, Send } from 'lucide-react'
 
 type Message = {
   id: string
@@ -152,7 +152,13 @@ export default function ResumeChatbot() {
             {/* Header */}
             <div className="bg-gradient-to-r from-amber-500 to-yellow-500 p-4 flex items-center justify-between text-white">
               <div className="flex items-center gap-2">
-                <Bot size={24} />
+                <div className="w-8 h-8 rounded-full bg-white/20 p-0.5 border border-white/30 flex items-center justify-center overflow-hidden flex-shrink-0">
+                  <img 
+                    src="/chatbot.webp" 
+                    alt="AI Avatar" 
+                    className="w-full h-full object-cover rounded-full"
+                  />
+                </div>
                 <span className="font-semibold font-display">Chat with Irfan AI</span>
               </div>
               <button 
@@ -168,9 +174,18 @@ export default function ResumeChatbot() {
               {messages.map((msg) => (
                 <div 
                   key={msg.id} 
-                  className={`flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}
+                  className={`flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'} items-start gap-2`}
                 >
-                  <div className={`max-w-[85%] p-3 rounded-2xl text-sm whitespace-pre-wrap ${
+                  {msg.sender === 'ai' && (
+                    <div className="w-8 h-8 rounded-full bg-white border border-amber-100 shadow-sm flex items-center justify-center overflow-hidden flex-shrink-0">
+                      <img 
+                        src="/chatbot.webp" 
+                        alt="AI Avatar" 
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  )}
+                  <div className={`max-w-[75%] p-3 rounded-2xl text-sm whitespace-pre-wrap ${
                     msg.sender === 'user' 
                       ? 'bg-amber-500 text-white rounded-tr-sm' 
                       : 'bg-white border border-gray-100 shadow-sm text-gray-700 rounded-tl-sm'
@@ -181,7 +196,14 @@ export default function ResumeChatbot() {
               ))}
               
               {isTyping && (
-                <div className="flex justify-start">
+                <div className="flex justify-start items-start gap-2">
+                  <div className="w-8 h-8 rounded-full bg-white border border-amber-100 shadow-sm flex items-center justify-center overflow-hidden flex-shrink-0">
+                    <img 
+                      src="/chatbot.webp" 
+                      alt="AI Avatar" 
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
                   <div className="bg-white border border-gray-100 shadow-sm text-gray-400 p-3 rounded-2xl rounded-tl-sm text-sm flex gap-1 items-center">
                     <span className="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></span>
                     <span className="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></span>
@@ -244,11 +266,34 @@ export default function ResumeChatbot() {
       <motion.button
         onClick={() => setIsOpen(!isOpen)}
         aria-label={isOpen ? "Close chat" : "Open chat"}
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.9 }}
-        className="fixed bottom-6 right-6 w-14 h-14 bg-gradient-to-r from-amber-500 to-yellow-500 rounded-full shadow-lg shadow-amber-500/30 flex items-center justify-center text-white z-[100] hover:shadow-xl hover:shadow-amber-500/40 transition-shadow"
+        whileHover={{ scale: 1.08 }}
+        whileTap={{ scale: 0.95 }}
+        className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-[100] focus:outline-none bg-transparent border-none p-0 cursor-pointer"
+        animate={isOpen ? {} : {
+          y: [0, -12, 0]
+        }}
+        transition={isOpen ? {} : {
+          duration: 3,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
       >
-        {isOpen ? <X size={24} /> : <MessageSquare size={24} />}
+        {isOpen ? (
+          <div className="w-14 h-14 bg-gradient-to-r from-amber-500 to-yellow-500 rounded-full shadow-lg shadow-amber-500/30 flex items-center justify-center text-white border-2 border-white hover:bg-amber-600 transition-colors">
+            <X size={24} />
+          </div>
+        ) : (
+          <div className="relative flex items-center justify-center">
+            {/* Glow / pulse effect behind the robot */}
+            <div className="absolute inset-0 bg-amber-400/20 rounded-full blur-xl scale-75 animate-pulse" />
+            
+            <img 
+              src="/chatbot.webp" 
+              alt="Open Chatbot" 
+              className="w-20 h-20 sm:w-24 sm:h-24 object-contain drop-shadow-[0_8px_16px_rgba(245,158,11,0.4)] hover:drop-shadow-[0_12px_20px_rgba(245,158,11,0.5)] transition-all duration-300"
+            />
+          </div>
+        )}
       </motion.button>
     </>
   )
