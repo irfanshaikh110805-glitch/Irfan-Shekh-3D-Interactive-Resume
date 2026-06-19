@@ -1,6 +1,8 @@
+import { Suspense, lazy } from 'react'
 import { motion } from 'framer-motion'
 import { Award, Coffee, Heart, Zap, Target } from 'lucide-react'
-import Timeline3D from './Timeline3D'
+
+const Timeline3D = lazy(() => import('./Timeline3D'))
 
 // Helper function to get CSS class name for achievement colors
 const getAchievementColorClass = (color: string): string => {
@@ -223,7 +225,13 @@ export default function AboutSection() {
       </div>
 
       {/* 3D Scrollable Career Timeline */}
-      <Timeline3D />
+      <Suspense fallback={
+        <div className="min-h-[200px] flex items-center justify-center">
+          <div className="w-8 h-8 border-2 border-amber-500 border-t-transparent rounded-full animate-spin" />
+        </div>
+      }>
+        <Timeline3D />
+      </Suspense>
     </div>
   )
 }

@@ -52,7 +52,6 @@ export default function ProjectShowcase() {
               <div className="relative h-48 overflow-hidden">
                 <img
                   src={project.image}
-                  srcSet={`${encodeURI(project.image)} 400w, ${encodeURI(project.image.replace('.webp', '.png'))} 400w`}
                   sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   alt={`${project.title} - ${project.description.substring(0, 100)}`}
                   loading="lazy"
@@ -63,14 +62,7 @@ export default function ProjectShowcase() {
                     // Fallback for broken images
                     const target = e.target as HTMLImageElement
                     target.onerror = null;
-                    // Try webp version first, then png, then fallback
-                    if (target.src.includes('.png')) {
-                      target.src = target.src.replace('.png', '.webp')
-                    } else if (target.src.includes('.webp')) {
-                      target.src = target.src.replace('.webp', '.png')
-                    } else {
-                      target.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300"%3E%3Crect fill="%23374151" width="400" height="300"/%3E%3Ctext fill="%239CA3AF" font-family="sans-serif" font-size="18" x="50%25" y="50%25" text-anchor="middle" dominant-baseline="middle"%3EImage unavailable%3C/text%3E%3C/svg%3E'
-                    }
+                    target.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300"%3E%3Crect fill="%23374151" width="400" height="300"/%3E%3Ctext fill="%239CA3AF" font-family="sans-serif" font-size="18" x="50%25" y="50%25" text-anchor="middle" dominant-baseline="middle"%3EImage unavailable%3C/text%3E%3C/svg%3E'
                   }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent opacity-60" />

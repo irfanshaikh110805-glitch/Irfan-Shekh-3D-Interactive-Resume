@@ -1,0 +1,14 @@
+# Irfan Shaikh - 3D Interactive Resume
+
+This is the developer portfolio and 3D interactive resume of Irfan Shaikh, a Web Developer and AI Enthusiast currently pursuing a Bachelor of Computer Applications (BCA).
+
+## Core Sections
+
+- [About Irfan](https://irfanshaikhportfolio.netlify.app/#about) - Learn about Irfan's career journey, studies, and development philosophy.
+- [Portfolio & Projects](https://irfanshaikhportfolio.netlify.app/#work) - Explore key full-stack and web projects including CaseSight AI, AI Architecture Generator, and Hotel Everest.
+- [Technical Skills](https://irfanshaikhportfolio.netlify.app/#skills) - Details on programming languages, frontend/backend frameworks, database engines, and AI/ML technologies.
+- [Services](https://irfanshaikhportfolio.netlify.app/#services) - Professional services offered by Irfan Shaikh.
+- [Contact Info](https://irfanshaikhportfolio.netlify.app/#contact) - Get in touch with Irfan via email, phone, or LinkedIn.
+
+## Technical Details
+This application is a React 19 single-page application built on Vite and Tailwind CSS. Static assets are served in optimized WebP formats, and heavy UI sections are dynamically lazy-loaded using React Suspense and Intersection Observers.

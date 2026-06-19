@@ -24,14 +24,9 @@ function LazySection({ children, id, className }: { children: React.ReactNode, i
   const [hasRendered, setHasRendered] = useState(false)
   
   useEffect(() => {
-    // Render immediately if section is already in or near viewport
+    // Render immediately if section is already in or near viewport using IntersectionObserver
     const el = document.getElementById(id)
     if (!el) {
-      setHasRendered(true)
-      return
-    }
-    const rect = el.getBoundingClientRect()
-    if (rect.top < window.innerHeight + 600) {
       setHasRendered(true)
       return
     }

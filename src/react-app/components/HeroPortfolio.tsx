@@ -195,7 +195,7 @@ export default function HeroPortfolio() {
                 {/* The actual photo — high quality, no over-compression */}
                 <img
                   src="/profile.webp"
-                  srcSet="/profile.webp 840w, /profile.png 840w"
+                  srcSet="/profile-small.webp 420w, /profile.webp 840w"
                   sizes="(max-width: 768px) 300px, (max-width: 1024px) 380px, 420px"
                   alt="Irfan Shaikh - Full Stack Developer"
                   width="420"
@@ -211,7 +211,7 @@ export default function HeroPortfolio() {
                   onError={(e) => {
                     const target = e.target as HTMLImageElement
                     target.onerror = null;
-                    target.src = '/profile.png';
+                    target.src = '/profile.webp';
                   }}
                 />
 
