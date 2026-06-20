@@ -132,6 +132,23 @@ export const projects: Project[] = [
     color: '#d97706'
   },
   {
+    id: '9',
+    title: 'Padma Cinematic — Cinematography & Photography Portfolio',
+    description: 'A modern, cinematic-style portfolio website designed for showcasing professional photography, videography, and cinematography services. Features event bookings, inquiry forms, and multi-channel client communication.',
+    type: 'web',
+    technologies: ['Next.js 15', 'React 19', 'TypeScript', 'Tailwind CSS', 'shadcn/ui', 'Radix UI', 'Lucide React'],
+    image: '/padamacinematic.webp',
+    demoUrl: 'https://padmacinematic.vercel.app/',
+    githubUrl: 'https://github.com/irfanshaikh110805-glitch/padma-cinematic',
+    highlights: [
+      'Cinematic Hero & Auto-Slideshow',
+      'Photography & Video Galleries',
+      'Event Bookings & Inquiry Options',
+      'Multi-Channel Contact Integration'
+    ],
+    color: '#f59e0b'
+  },
+  {
     id: '8',
     title: 'CyberGuard AI Security Platform',
     description: 'Enterprise-grade cybersecurity platform combining machine learning threat detection with advanced reporting capabilities. Features real-time security analysis, automated vulnerability assessment, and comprehensive dashboard for security professionals.',

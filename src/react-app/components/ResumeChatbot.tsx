@@ -43,7 +43,7 @@ export default function ResumeChatbot() {
     
     // Projects related
     if (lowerMessage.includes('project') || lowerMessage.includes('work') || lowerMessage.includes('portfolio')) {
-      return "Here are Irfan's key projects:\n\n1️⃣ CaseSight AI - Indian AI Legal Operating System (Next.js & Gemini AI)\n2️⃣ AI Architecture Generator - Transforms ideas into system architectures using Gemini AI\n3️⃣ Hotel Everest - Restaurant booking system with React & Supabase\n4️⃣ MediGuardian AI - Healthcare assistant built with Flask\n5️⃣ Fruit & Vegetable Disease Detection - AI-powered image classification\n6️⃣ HeavyDuty Parts - Industrial e-commerce platform\n\nEach project showcases different aspects of his full-stack and AI capabilities!"
+      return "Here are Irfan's key projects:\n\n1️⃣ CaseSight AI - Indian AI Legal Operating System (Next.js & Gemini AI)\n2️⃣ Padma Cinematic - Professional Cinematography & Photography Portfolio (Next.js 15 & React 19)\n3️⃣ AI Architecture Generator - Transforms ideas into system architectures using Gemini AI\n4️⃣ Hotel Everest - Restaurant booking system with React & Supabase\n5️⃣ MediGuardian AI - Healthcare assistant built with Flask\n6️⃣ Fruit & Vegetable Disease Detection - AI-powered image classification\n7️⃣ HeavyDuty Parts - Industrial e-commerce platform\n\nEach project showcases different aspects of his full-stack and AI capabilities!"
     }
     
     // Contact related
