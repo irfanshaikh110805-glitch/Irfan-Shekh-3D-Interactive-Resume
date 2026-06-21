@@ -35,7 +35,19 @@
         background: linear-gradient(135deg, #ffffff 0%, #fffbeb 50%, #f9fafb 100%);
         min-height: 100vh;
       }
-      img { max-width: 100%; height: auto; }
+      img {
+        max-width: 100%;
+        height: auto;
+        -webkit-user-drag: none;
+        -khtml-user-drag: none;
+        -moz-user-drag: none;
+        -o-user-drag: none;
+        user-drag: none;
+        user-select: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+      }
     </style>
 
     <meta name="description" content="Immersive 3D portfolio showcasing cutting-edge web development projects and creative solutions" />
@@ -117,10 +129,51 @@
 
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" type="image/png" />
-    <title>DevFolio - Irfan Shaikh Portfolio</title>
+    <title>Irfan Shaikh | Creative Full-Stack Developer Portfolio</title>
   </head>
   <body>
     <div id="root"></div>
+    <script>
+      // Disable right-click globally
+      document.addEventListener('contextmenu', function(e) {
+        e.preventDefault();
+      });
+
+      // Disable drag and drop for all images/assets
+      document.addEventListener('dragstart', function(e) {
+        if (e.target.tagName === 'IMG' || e.target.tagName === 'svg') {
+          e.preventDefault();
+        }
+      });
+
+      // Disable developer tools and save keyboard shortcuts
+      document.addEventListener('keydown', function(e) {
+        // Prevent Ctrl+S (Save)
+        if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+          e.preventDefault();
+        }
+        // Prevent F12 (DevTools)
+        if (e.key === 'F12') {
+          e.preventDefault();
+        }
+        // Prevent Ctrl+Shift+I (DevTools)
+        if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === 'I' || e.key === 'i')) {
+          e.preventDefault();
+        }
+        // Prevent Ctrl+Shift+J (DevTools Console)
+        if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === 'J' || e.key === 'j')) {
+          e.preventDefault();
+        }
+        // Prevent Ctrl+Shift+C (Inspect Element)
+        if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === 'C' || e.key === 'c')) {
+          e.preventDefault();
+        }
+        // Prevent Ctrl+U (View Source)
+        if ((e.ctrlKey || e.metaKey) && (e.key === 'U' || e.key === 'u')) {
+          e.preventDefault();
+        }
+      });
+    </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
