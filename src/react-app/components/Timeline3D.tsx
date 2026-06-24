@@ -1,9 +1,9 @@
 import { useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
-import { GraduationCap, Code, Database, Rocket } from 'lucide-react'
+import { GraduationCap, Code, Database, Rocket, Brain } from 'lucide-react'
 import { milestones } from '@/shared/data'
 
-const milestoneIcons = [GraduationCap, Code, Database, Rocket]
+const milestoneIcons = [GraduationCap, Code, Database, Brain, Rocket]
 
 export default function Timeline3D() {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -24,7 +24,7 @@ export default function Timeline3D() {
       <div className="relative" style={{ perspective: '1000px', position: 'relative' }}>
         
         {/* Background Vertical Line */}
-        <div className="absolute left-[40px] md:left-1/2 top-0 bottom-0 w-1 bg-gray-200 transform md:-translate-x-1/2 rounded-full overflow-hidden">
+        <div className="absolute left-[32px] md:left-1/2 top-0 bottom-0 w-1 bg-gray-200 transform -translate-x-1/2 rounded-full overflow-hidden">
           {/* Animated fill line */}
           <motion.div 
             className="w-full bg-gradient-to-b from-amber-400 via-amber-500 to-yellow-600"
@@ -87,9 +87,9 @@ function TimelineItem({ item, Icon, isLeft }: {
       <motion.div 
         ref={cardRef}
         style={{ scale, opacity }}
-        className="absolute left-[20px] md:left-1/2 transform -translate-x-1/2 bg-white border-4 border-white shadow-xl shadow-amber-500/20 w-12 h-12 rounded-full flex items-center justify-center z-20"
+        className="absolute left-[32px] md:left-1/2 transform -translate-x-1/2 bg-white border-4 border-white shadow-xl shadow-amber-500/20 w-12 h-12 rounded-full flex items-center justify-center z-20"
       >
-        <div className={`w-full h-full rounded-full bg-gradient-to-br ${item.color} flex items-center justify-center text-white`}>
+        <div className={`w-full h-full rounded-full ${item.color} flex items-center justify-center text-white`}>
           <Icon size={20} />
         </div>
       </motion.div>
@@ -103,14 +103,14 @@ function TimelineItem({ item, Icon, isLeft }: {
           y,
           perspective: 1000 
         }}
-        className={`w-full md:w-[45%] pl-[70px] md:pl-0 ${isLeft ? 'md:pr-10 order-1' : 'md:pl-10 order-2'} z-10 relative`}
+        className={`w-full md:w-[45%] pl-[64px] md:pl-0 ${isLeft ? 'md:pr-10 order-1' : 'md:pl-10 order-2'} z-10 relative`}
       >
         {/* Connector arrow pointing to node */}
         <div className={`hidden md:block absolute top-1/2 -mt-2 w-0 h-0 border-y-8 border-y-transparent ${isLeft ? 'right-8 border-l-8 border-l-white' : 'left-8 border-r-8 border-r-white'} z-30`} />
         
         <div className="bg-white p-6 rounded-2xl shadow-xl shadow-gray-200/50 hover:shadow-amber-500/10 border border-gray-100 transition-shadow">
           <div className="flex items-center gap-3 mb-2">
-            <span className={`px-3 py-1 bg-gradient-to-r ${item.color} text-white text-sm font-bold rounded-full`}>
+            <span className={`px-3 py-1 text-white text-sm font-bold rounded-full ${item.color}`}>
               {item.year}
             </span>
             <h4 className="text-xl font-bold text-gray-900">{item.title}</h4>

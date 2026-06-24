@@ -5,12 +5,13 @@ import HeroPortfolio from '@/react-app/components/HeroPortfolio'
 
 const AboutSection = lazy(() => import('@/react-app/components/AboutSection'))
 const SkillsVisualization = lazy(() => import('@/react-app/components/SkillsVisualization'))
+const CertificationsSection = lazy(() => import('@/react-app/components/CertificationsSection'))
 const ProjectShowcase = lazy(() => import('@/react-app/components/ProjectShowcase'))
 const ServicesSection = lazy(() => import('@/react-app/components/ServicesSection'))
 const ContactSection = lazy(() => import('@/react-app/components/ContactSection'))
 
 import Navigation from '@/react-app/components/Navigation'
-import { User, Code, Briefcase, Wrench, Mail } from 'lucide-react'
+import { User, Code, Briefcase, Wrench, Mail, Award } from 'lucide-react'
 import { useMobileDetection } from '@/react-app/hooks/useMobileDetection'
 
 // Lazy load non-critical decorative/interactive components
@@ -89,7 +90,7 @@ export default function Home() {
 
   // Intersection Observer for section detection
   useEffect(() => {
-    const sections = ['about', 'work', 'skills', 'services', 'contact']
+    const sections = ['about', 'work', 'skills', 'certifications', 'services', 'contact']
     const observers: IntersectionObserver[] = []
 
     sections.forEach(sectionId => {
@@ -176,8 +177,15 @@ export default function Home() {
         <SkillsVisualization />
       </LazySection>
 
+      {/* Certifications Section */}
+      <LazySection className="py-12 px-4 bg-white" id="certifications">
+        <div className="max-w-7xl mx-auto">
+          <CertificationsSection />
+        </div>
+      </LazySection>
+
       {/* Services Section */}
-      <LazySection className="py-12 px-4 bg-white" id="services">
+      <LazySection className="py-12 px-4" id="services">
         <ServicesSection />
       </LazySection>
 
@@ -207,6 +215,7 @@ export default function Home() {
           { id: 'about', icon: User, label: 'About' },
           { id: 'work', icon: Briefcase, label: 'Work' },
           { id: 'skills', icon: Code, label: 'Skills' },
+          { id: 'certifications', icon: Award, label: 'Certs' },
           { id: 'services', icon: Wrench, label: 'Services' },
           { id: 'contact', icon: Mail, label: 'Contact' }
         ].map((item) => (
@@ -236,15 +245,15 @@ export default function Home() {
 
       {/* Footer */}
       <footer className="border-t border-gray-200 bg-white backdrop-blur-sm">
-        <div className="max-w-7xl mx-auto px-4 py-12">
+        <div className="max-w-7xl mx-auto px-4 py-8 md:py-12">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div>
               <h3 className="text-2xl font-bold bg-gradient-to-r from-amber-400 to-yellow-300 bg-clip-text text-transparent mb-4">
-                DevFolio
+                Irfan Shaikh
               </h3>
               <p className="text-gray-600 mb-4">
-                Creating digital experiences that inspire and engage.
-                Specializing in modern web development and 3D interactions.
+                Full-Stack Developer & AI/ML Engineer. Building digital experiences
+                that solve real-world problems with cutting-edge technology.
               </p>
               <div className="flex space-x-4">
                 <a href="mailto:irfanshaikh110805@gmail.com" className="text-gray-500 hover:text-amber-500 transition-colors">
@@ -253,13 +262,13 @@ export default function Home() {
                 <a href="https://www.linkedin.com/in/irfan-shekh-380461392?utm_source=share_via&utm_content=profile&utm_medium=member_android" className="text-gray-500 hover:text-amber-500 transition-colors">
                   LinkedIn
                 </a>
-                <a href="https://github.com" className="text-gray-500 hover:text-amber-500 transition-colors">
+                <a href="https://github.com/irfanshaikh110805-glitch" className="text-gray-500 hover:text-amber-500 transition-colors">
                   GitHub
                 </a>
               </div>
             </div>
 
-            <div>
+            <div className="hidden md:block">
               <h4 className="text-lg font-semibold text-gray-900 mb-4">Services</h4>
               <ul className="space-y-2 text-gray-600">
                 <li><a href="#services" className="hover:text-amber-500 transition-colors">Web Development</a></li>
@@ -269,7 +278,7 @@ export default function Home() {
               </ul>
             </div>
 
-            <div>
+            <div className="hidden md:block">
               <h4 className="text-lg font-semibold text-gray-900 mb-4">Quick Links</h4>
               <ul className="space-y-2 text-gray-600">
                 <li><a href="#about" className="hover:text-amber-500 transition-colors">About</a></li>
@@ -280,8 +289,8 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="border-t border-gray-200 mt-8 pt-8 text-center text-gray-500">
-            <p>© 2024 Irfan Shaikh. All rights reserved. Crafted with passion and code.</p>
+          <div className="border-t border-gray-200 mt-8 pt-8 text-center text-gray-500 pr-16 md:pr-0">
+            <p>© 2026 Irfan Shaikh. All rights reserved. Crafted with passion and code.</p>
           </div>
         </div>
       </footer>

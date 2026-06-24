@@ -290,7 +290,7 @@ export default function ResumeChatbot() {
             <img 
               src="/chatbot.webp" 
               alt="Open Chatbot" 
-              className="w-20 h-20 sm:w-24 sm:h-24 object-contain drop-shadow-[0_8px_16px_rgba(245,158,11,0.4)] hover:drop-shadow-[0_12px_20px_rgba(245,158,11,0.5)] transition-all duration-300"
+              className="w-16 h-16 sm:w-20 sm:h-20 object-contain drop-shadow-[0_8px_16px_rgba(245,158,11,0.4)] hover:drop-shadow-[0_12px_20px_rgba(245,158,11,0.5)] transition-all duration-300"
             />
           </div>
         )}

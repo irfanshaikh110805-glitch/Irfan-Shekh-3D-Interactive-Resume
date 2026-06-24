@@ -176,21 +176,31 @@ export interface Skill {
 
 export const skills: Skill[] = [
   { name: 'Python', level: 90, color: '#f59e0b', category: 'Programming' },
-  { name: 'JavaScript', level: 85, color: '#eab308', category: 'Programming' },
-  { name: 'Java', level: 80, color: '#f97316', category: 'Programming' },
-  { name: 'React', level: 88, color: '#fbbf24', category: 'Frontend' },
-  { name: 'HTML', level: 92, color: '#f97316', category: 'Frontend' },
-  { name: 'CSS', level: 90, color: '#f59e0b', category: 'Frontend' },
+  { name: 'JavaScript', level: 88, color: '#eab308', category: 'Programming' },
+  { name: 'TypeScript', level: 82, color: '#fbbf24', category: 'Programming' },
+  { name: 'Java', level: 78, color: '#f97316', category: 'Programming' },
+  { name: 'React.js', level: 88, color: '#fbbf24', category: 'Frontend' },
+  { name: 'HTML5 & CSS3', level: 92, color: '#f97316', category: 'Frontend' },
+  { name: 'Tailwind CSS', level: 85, color: '#f59e0b', category: 'Frontend' },
+  { name: 'Framer Motion', level: 80, color: '#eab308', category: 'Frontend' },
   { name: 'Node.js', level: 82, color: '#d97706', category: 'Backend' },
   { name: 'Flask', level: 85, color: '#eab308', category: 'Backend' },
+  { name: 'Express.js', level: 78, color: '#f59e0b', category: 'Backend' },
+  { name: 'REST APIs', level: 88, color: '#fbbf24', category: 'Backend' },
   { name: 'MongoDB', level: 80, color: '#f59e0b', category: 'Databases' },
   { name: 'MySQL', level: 82, color: '#f59e0b', category: 'Databases' },
-  { name: 'TensorFlow', level: 75, color: '#f97316', category: 'AI/ML' },
+  { name: 'Supabase', level: 78, color: '#d97706', category: 'Databases' },
+  { name: 'NoSQL', level: 75, color: '#eab308', category: 'Databases' },
+  { name: 'TensorFlow', level: 78, color: '#f97316', category: 'AI/ML' },
   { name: 'MobileNetV2', level: 75, color: '#fbbf24', category: 'AI/ML' },
-  { name: 'Git', level: 85, color: '#f97316', category: 'Tools' },
+  { name: 'Keras', level: 72, color: '#f59e0b', category: 'AI/ML' },
+  { name: 'NLP', level: 70, color: '#eab308', category: 'AI/ML' },
+  { name: 'Computer Vision', level: 72, color: '#f97316', category: 'AI/ML' },
+  { name: 'Git & GitHub', level: 88, color: '#f97316', category: 'Tools' },
+  { name: 'Docker', level: 70, color: '#d97706', category: 'Tools' },
+  { name: 'Vite', level: 82, color: '#fbbf24', category: 'Tools' },
   { name: 'Postman', level: 80, color: '#f97316', category: 'Tools' },
-  { name: 'Supabase', level: 78, color: '#d97706', category: 'Tools' },
-  { name: 'JWT Auth', level: 80, color: '#eab308', category: 'Tools' }
+  { name: 'JWT Auth', level: 82, color: '#eab308', category: 'Tools' }
 ]
 
 export interface Milestone {
@@ -204,30 +214,37 @@ export interface Milestone {
 export const milestones: Milestone[] = [
   {
     year: '2023',
-    title: 'Started BCA Journey',
-    description: 'Began studying Computer Applications at Smt Kumudben Debar College, focusing on core programming concepts.',
-    color: 'from-amber-500 to-yellow-500',
+    title: 'Started BCA — Smt Kumudben Debar College',
+    description: 'Began Bachelor of Computer Applications at RCUB, Vijayapura. Focused on core CS: Data Structures, DBMS, Web Technologies, Software Engineering, OOP, and AI fundamentals.',
+    color: 'milestone-amber',
     align: 'left'
   },
   {
-    year: '2024',
-    title: 'Full-Stack Development',
-    description: 'Built complex full-stack applications like Hotel Everest booking system, mastering React and Python Flask.',
-    color: 'from-amber-500 to-yellow-500',
+    year: 'Jan–May 2024',
+    title: 'Full-Stack Intern — Smt Kumudben Darbar College',
+    description: 'Academic internship building responsive web modules with HTML5, CSS3, JavaScript & Flask. Implemented MySQL DB integration, designed RESTful API endpoints, and reduced load time by 30% through code refactoring.',
+    color: 'milestone-amber',
     align: 'right'
   },
   {
-    year: '2025',
-    title: 'AI & Data Science',
-    description: 'Dove deep into Machine Learning. Developed a Fruit Disease Detection system using TensorFlow and MobileNetV2.',
-    color: 'from-emerald-500 to-green-500',
+    year: 'Jan–Feb 2026',
+    title: 'Java Full Stack Intern — MTD, Mysuru',
+    description: 'Completed a full-stack development internship building applications with ReactJS, Spring Boot, and MongoDB under expert mentorship from MTD.',
+    color: 'milestone-green',
     align: 'left'
+  },
+  {
+    year: 'Jun–Jul 2026',
+    title: 'Machine Learning Intern — SkillCraft Technology',
+    description: 'Developed ML models for classification tasks and participated in data preprocessing, feature engineering, and model evaluation workflows.',
+    color: 'milestone-blue',
+    align: 'right'
   },
   {
     year: '2026',
-    title: 'Ready for the Industry',
-    description: 'Graduating as a Software Engineer, bringing ideas to life with scalable backend systems and immersive UIs.',
-    color: 'from-purple-500 to-pink-500',
-    align: 'right'
+    title: 'Graduating & Industry-Ready',
+    description: 'Completing BCA with 9+ deployed projects, 3 internships, and expertise in AI/ML, full-stack development, and scalable cloud deployments.',
+    color: 'milestone-purple',
+    align: 'left'
   }
 ]

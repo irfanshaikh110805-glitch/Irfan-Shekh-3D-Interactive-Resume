@@ -49,6 +49,16 @@ button, a {
   touch-action: manipulation;
 }
 
+/* Reset default browser blue link color site-wide */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:hover {
+  color: inherit;
+}
+
 /* Override default focus colors */
 button:focus,
 a:focus,
@@ -333,6 +343,23 @@ a:focus-visible {
 /* Fallback skill color - amber-based */
 .skill-blue {
   background-color: #f59e0b;
+}
+
+/* Timeline milestone gradient colors (static classes used instead of dynamic Tailwind) */
+.milestone-amber {
+  background: linear-gradient(135deg, #f59e0b, #eab308);
+}
+
+.milestone-green {
+  background: linear-gradient(135deg, #10b981, #22c55e);
+}
+
+.milestone-blue {
+  background: linear-gradient(135deg, #3b82f6, #06b6d4);
+}
+
+.milestone-purple {
+  background: linear-gradient(135deg, #a855f7, #ec4899);
 }
 
 /* Custom scrollbar for desktop */

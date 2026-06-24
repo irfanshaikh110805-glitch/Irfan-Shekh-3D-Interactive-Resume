@@ -7,18 +7,18 @@ import { useMobileDetection } from '@/react-app/hooks/useMobileDetection'
 export default function HeroPortfolio() {
   const isMobile = useMobileDetection()
   const roleTexts = [
-    'Creative Developer',
-    'Digital Artist',
+    'Full Stack Developer',
+    'AI/ML Engineer',
     'Problem Solver',
-    'UI/UX Designer',
-    'Full Stack Developer'
+    'Creative Developer',
+    'UI/UX Designer'
   ]
 
   const stats = [
-    { number: '5+ ', label: 'Major Projects' },
-    { number: '100%', label: 'Dedicated' },
-    { number: 'BCA', label: 'Computer Applications' },
-    { number: '24/7', label: 'Support Available' }
+    { number: '9+', label: 'Deployed Projects' },
+    { number: '3', label: 'Internships' },
+    { number: 'BCA', label: '2023–2026' },
+    { number: '7+', label: 'Certifications' }
   ]
 
   const heroContent = (
@@ -70,6 +70,43 @@ export default function HeroPortfolio() {
             transition={{ duration: 1, delay: 0.2 }}
             className="text-center lg:text-left order-2 lg:order-1 space-y-4 md:space-y-6"
           >
+            {/* Mobile Circular Profile Avatar */}
+            <div className="flex justify-center lg:hidden mb-4">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+                className="relative w-32 h-32 xs:w-36 xs:h-36 z-10"
+              >
+                {/* Glow / border ring */}
+                <div 
+                  className="absolute -inset-[2px] rounded-full z-20 pointer-events-none"
+                  style={{
+                    background: 'linear-gradient(135deg, rgba(245,158,11,0.4) 0%, rgba(251,191,36,0.15) 40%, rgba(255,255,255,0.05) 60%, rgba(245,158,11,0.3) 100%)',
+                    boxShadow: '0 8px 30px rgba(245,158,11,0.18)'
+                  }}
+                />
+                {/* Image wrapper */}
+                <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-white shadow-lg">
+                  <img
+                    src="/profile.webp"
+                    alt="Irfan Shaikh - Full Stack Developer"
+                    className="w-full h-full object-cover"
+                    style={{
+                      objectPosition: 'center 15%',
+                      filter: 'brightness(1.04) contrast(1.02) saturate(0.95)'
+                    }}
+                  />
+                </div>
+                {/* Floating accent dot */}
+                <motion.div
+                  animate={{ y: [-2, 2, -2], opacity: [0.6, 1, 0.6] }}
+                  transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
+                  className="absolute -top-1 -right-1 w-3.5 h-3.5 bg-amber-400 rounded-full shadow-md z-30"
+                />
+              </motion.div>
+            </div>
+
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -81,7 +118,7 @@ export default function HeroPortfolio() {
             </motion.div>
 
             <div className="relative z-10">
-              <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black tracking-tighter text-center lg:text-left font-display leading-[0.95] mb-2">
+              <h1 className="text-4xl min-[375px]:text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black tracking-tighter text-center lg:text-left font-display leading-[0.95] mb-2">
                 <span className="text-gray-900">IRFAN</span>
                 {' '}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-600 via-yellow-500 to-amber-600">
@@ -161,17 +198,17 @@ export default function HeroPortfolio() {
           </motion.div>
 
           {/* Right side - Profile Image with Premium Effects */}
-          <div className="flex justify-center items-center relative lg:mt-0 order-1 lg:order-2 mb-4 lg:mb-0">
+          <div className="hidden lg:flex justify-center items-center relative lg:mt-0 order-1 lg:order-2 mb-4 lg:mb-0">
             {/* Outer glow ring matching website amber theme */}
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-              <div className="w-[320px] h-[420px] sm:w-[400px] sm:h-[520px] lg:w-[440px] lg:h-[570px] rounded-[2.5rem] bg-gradient-to-br from-amber-200/20 via-yellow-100/10 to-transparent blur-2xl" />
+              <div className="w-[280px] h-[360px] min-[375px]:w-[320px] min-[375px]:h-[420px] sm:w-[400px] sm:h-[520px] lg:w-[440px] lg:h-[570px] rounded-[2.5rem] bg-gradient-to-br from-amber-200/20 via-yellow-100/10 to-transparent blur-2xl" />
             </div>
 
             <motion.div
               initial={{ opacity: 0, scale: 0.8, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.5, ease: 'easeOut' }}
-              className="relative w-[300px] h-[400px] sm:w-[380px] sm:h-[500px] lg:w-[420px] lg:h-[550px] z-10"
+              className="relative w-[260px] h-[340px] min-[375px]:w-[300px] min-[375px]:h-[400px] sm:w-[380px] sm:h-[500px] lg:w-[420px] lg:h-[550px] z-10"
             >
               {/* Premium animated border ring */}
               <div

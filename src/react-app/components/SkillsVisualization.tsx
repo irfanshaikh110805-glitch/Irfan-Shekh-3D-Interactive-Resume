@@ -6,6 +6,7 @@ import { getSkillColorClass, getGlowColorClass } from '@/react-app/utils/colorUt
 export default function SkillsVisualization() {
   const [selectedCategory, setSelectedCategory] = useState('All')
   const categories = ['All', 'Programming', 'Frontend', 'Backend', 'Databases', 'AI/ML', 'Tools']
+  // TypeScript added to Programming, Express.js to Backend, Docker to Tools in data.ts
 
   const visibleSkills = skills.filter(skill => selectedCategory === 'All' || skill.category === selectedCategory)
 
@@ -46,7 +47,7 @@ export default function SkillsVisualization() {
       {/* Premium 2D Skills Grid */}
       <motion.div
         layout
-        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6"
+        className="grid grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6"
       >
         {visibleSkills.map((skill, index) => (
           <motion.div
@@ -56,28 +57,28 @@ export default function SkillsVisualization() {
             exit={{ opacity: 0, scale: 0.8 }}
             transition={{ duration: 0.4, delay: index * 0.05 }}
             key={skill.name}
-            className="group relative bg-white/80 rounded-xl p-5 md:p-6 border border-gray-200 hover:border-amber-300 transition-all duration-300 backdrop-blur-sm overflow-hidden shadow-sm"
+            className="group relative bg-white/80 rounded-xl p-3 min-[375px]:p-4 md:p-6 border border-gray-200 hover:border-amber-300 transition-all duration-300 backdrop-blur-sm overflow-hidden shadow-sm"
             whileHover={{ y: -5, boxShadow: '0 10px 30px rgba(245, 158, 11, 0.1)' }}
           >
             {/* Hover Glow Effect */}
             <div className={`absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500 bg-gradient-to-br ${getGlowColorClass(skill.color)} to-transparent`} />
 
             <div className="relative z-10">
-              <div className="flex justify-between items-start mb-4">
-                <div className="flex items-center gap-3">
-                  <div className={`w-10 h-10 rounded-lg flex items-center justify-center bg-gray-50 border border-gray-200 group-hover:scale-110 transition-transform duration-300 shadow-sm`}>
-                    <div className={`w-3 h-3 rounded-full ${getSkillColorClass(skill.color)} shadow-[0_0_10px_currentColor]`} />
+              <div className="flex justify-between items-start mb-2 md:mb-4">
+                <div className="flex items-center gap-1.5 min-[375px]:gap-3">
+                  <div className={`w-7 h-7 min-[375px]:w-10 min-[375px]:h-10 rounded-md min-[375px]:rounded-lg flex items-center justify-center bg-gray-50 border border-gray-200 group-hover:scale-110 transition-transform duration-300 shadow-sm`}>
+                    <div className={`w-2 h-2 min-[375px]:w-3 min-[375px]:h-3 rounded-full ${getSkillColorClass(skill.color)} shadow-[0_0_10px_currentColor]`} />
                   </div>
                   <div>
-                    <h3 className="font-display font-bold text-lg text-gray-900 group-hover:text-amber-600 transition-colors">{skill.name}</h3>
-                    <span className="text-xs text-gray-500 uppercase tracking-wider font-mono">{skill.category}</span>
+                    <h3 className="font-display font-bold text-xs min-[375px]:text-sm sm:text-base md:text-lg text-gray-900 group-hover:text-amber-600 transition-colors leading-tight line-clamp-1">{skill.name}</h3>
+                    <span className="text-[9px] min-[375px]:text-xs text-gray-500 uppercase tracking-wider font-mono line-clamp-1">{skill.category}</span>
                   </div>
                 </div>
-                <span className="font-mono text-xl font-bold text-gray-600 group-hover:text-gray-900 transition-colors">{skill.level}%</span>
+                <span className="font-mono text-sm min-[375px]:text-base md:text-xl font-bold text-gray-600 group-hover:text-gray-900 transition-colors">{skill.level}%</span>
               </div>
 
               {/* Progress Bar */}
-              <div className="h-3 w-full bg-gray-100 rounded-full overflow-hidden p-[2px] border border-gray-200">
+              <div className="h-2.5 min-[375px]:h-3 w-full bg-gray-100 rounded-full overflow-hidden p-[2px] border border-gray-200">
                 <motion.div
                   className={`h-full rounded-full ${getSkillColorClass(skill.color)} shadow-[0_0_10px_currentColor]`}
                   initial={{ width: 0 }}

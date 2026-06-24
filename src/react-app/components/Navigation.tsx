@@ -45,6 +45,7 @@ export default function Navigation({ activeSection, setActiveSection }: Navigati
     { id: 'about', label: 'About' },
     { id: 'work', label: 'Work' },
     { id: 'skills', label: 'Skills' },
+    { id: 'certifications', label: 'Certs' },
     { id: 'services', label: 'Services' },
     { id: 'contact', label: 'Contact' }
   ]

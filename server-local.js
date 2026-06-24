@@ -104,15 +104,28 @@ app.post('/api/contact', async (req, res) => {
       })
     });
     
-    const contentType = response.headers.get('content-type') || '';
-    if (!response.ok || !contentType.includes('application/json')) {
+    // FormSubmit returns 200 with {success:'true'} on success
+    // Only treat non-2xx as a real failure
+    if (!response.ok) {
       const errorText = await response.text();
       console.error('FormSubmit error response:', errorText);
       throw new Error(`FormSubmit returned status ${response.status}: ${errorText.substring(0, 300)}`);
     }
 
-    const data = await response.json();
+    // Parse response — FormSubmit may return success:'true' as a string
+    let data;
+    try {
+      data = await response.json();
+    } catch {
+      data = { success: 'true' };
+    }
     console.log('FormSubmit response:', data);
+
+    // success field can be boolean true or string 'true'
+    const isSuccess = data.success === true || data.success === 'true';
+    if (!isSuccess) {
+      throw new Error(`FormSubmit indicated failure: ${JSON.stringify(data)}`);
+    }
 
     res.json({
       success: true,

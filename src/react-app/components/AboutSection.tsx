@@ -30,23 +30,23 @@ const getStatColorClass = (color: string): string => {
 const achievements = [
   {
     icon: Award,
-    title: 'Web Development Intern',
-    description: 'Smt Kumudben Debar College (Academic)',
-    year: '2026',
+    title: 'ML Intern — SkillCraft Technology',
+    description: 'Developed ML models for classification tasks, data preprocessing, feature engineering & model evaluation workflows.',
+    year: 'Jun–Jul 2026',
     color: '#f59e0b'
   },
   {
     icon: Zap,
-    title: 'Full-Stack Development',
-    description: 'Hands-on experience in development workflow',
-    year: '2026',
+    title: 'Java Full Stack Intern — MTD, Mysuru',
+    description: 'Built applications with ReactJS, Spring Boot, and MongoDB under expert mentorship.',
+    year: 'Jan–Feb 2026',
     color: '#eab308'
   },
   {
     icon: Target,
-    title: 'BCA Student',
-    description: 'Computer Applications (2023-2026)',
-    year: '2023-2026',
+    title: 'Full-Stack Dev Intern — Smt Kumudben Darbar',
+    description: 'Built responsive web modules using HTML5, CSS3, JS & Flask. Reduced load time by 30% through code refactoring.',
+    year: 'Jan–May 2024',
     color: '#d97706'
   }
 ]
@@ -169,9 +169,9 @@ export default function AboutSection() {
                       <Icon size={22} className={`text-dynamic ${getAchievementColorClass(achievement.color)}`} />
                     </div>
                     <div className="flex-1">
-                      <div className="flex items-center justify-between mb-2">
+                      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1.5 sm:gap-2 mb-2">
                         <h4 className="font-display font-semibold text-gray-900 text-lg group-hover:text-amber-600 transition-colors duration-300">{achievement.title}</h4>
-                        <span className="caption text-gray-600 bg-gray-200 px-3 py-1 rounded-full">
+                        <span className="caption text-gray-600 bg-gray-200 px-3 py-1 rounded-full w-fit">
                           {achievement.year}
                         </span>
                       </div>
@@ -186,10 +186,10 @@ export default function AboutSection() {
           {/* Quick Stats */}
           <div className="grid grid-cols-2 gap-4">
             {[
-              { number: '5+', label: 'Major Projects', color: '#f59e0b' },
-              { number: '100%', label: 'Dedicated Focus', color: '#eab308' },
-              { number: 'BCA', label: 'Student', color: '#fbbf24' },
-              { number: '24/7', label: 'Support', color: '#f97316' }
+              { number: '9+', label: 'Deployed Projects', color: '#f59e0b' },
+              { number: '3', label: 'Internships', color: '#eab308' },
+              { number: 'BCA', label: 'Graduate 2026', color: '#fbbf24' },
+              { number: '7+', label: 'Certifications', color: '#f97316' }
             ].map((stat, index) => (
               <motion.div
                 key={index}
