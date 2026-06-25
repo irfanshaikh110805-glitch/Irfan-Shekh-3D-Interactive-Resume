@@ -146,25 +146,25 @@ export default function Home() {
       <HeroPortfolio />
 
       {/* About Section */}
-      <LazySection className="py-12 px-4" id="about">
+      <LazySection className="py-12 md:py-24 px-4 sm:px-6" id="about">
         <div className="max-w-7xl mx-auto">
           <AboutSection />
         </div>
       </LazySection>
 
       {/* Featured Work Section */}
-      <LazySection className="py-12 px-4 bg-white" id="work">
+      <LazySection className="py-12 md:py-24 px-4 sm:px-6 bg-white" id="work">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-center mb-10"
+            className="text-center mb-12"
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-amber-600 to-yellow-600 bg-clip-text text-transparent">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 md:mb-6 bg-gradient-to-r from-amber-600 to-yellow-600 bg-clip-text text-transparent">
               Featured Work
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-base sm:text-xl text-gray-600 max-w-3xl mx-auto">
               A curated selection of projects showcasing my expertise in web development, 3D experiences, and creative problem-solving
             </p>
           </motion.div>
@@ -173,38 +173,29 @@ export default function Home() {
       </LazySection>
 
       {/* Skills Section */}
-      <LazySection className="py-12 px-4" id="skills">
-        <SkillsVisualization />
+      <LazySection className="py-12 md:py-24 px-4 sm:px-6" id="skills">
+        <div className="max-w-7xl mx-auto">
+          <SkillsVisualization />
+        </div>
       </LazySection>
 
       {/* Certifications Section */}
-      <LazySection className="py-12 px-4 bg-white" id="certifications">
+      <LazySection className="py-12 md:py-24 px-4 sm:px-6 bg-white" id="certifications">
         <div className="max-w-7xl mx-auto">
           <CertificationsSection />
         </div>
       </LazySection>
 
       {/* Services Section */}
-      <LazySection className="py-12 px-4" id="services">
-        <ServicesSection />
+      <LazySection className="py-12 md:py-24 px-4 sm:px-6" id="services">
+        <div className="max-w-7xl mx-auto">
+          <ServicesSection />
+        </div>
       </LazySection>
 
       {/* Contact Section */}
-      <LazySection className="py-12 px-4" id="contact">
-        <div className="max-w-4xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-10"
-          >
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-amber-400 to-yellow-300 bg-clip-text text-transparent">
-              Let's Work Together
-            </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Ready to bring your next project to life? Let's discuss how we can create something amazing together.
-            </p>
-          </motion.div>
+      <LazySection className="py-12 md:py-24 px-4 sm:px-6" id="contact">
+        <div className="max-w-5xl mx-auto">
           <ContactSection />
         </div>
       </LazySection>
@@ -289,7 +280,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="border-t border-gray-200 mt-8 pt-8 text-center text-gray-500 pr-16 md:pr-0">
+          <div className="border-t border-gray-200 mt-8 pt-8 text-center text-gray-500">
             <p>© 2026 Irfan Shaikh. All rights reserved. Crafted with passion and code.</p>
           </div>
         </div>

@@ -22,10 +22,10 @@ export default function HeroPortfolio() {
   ]
 
   const heroContent = (
-      <section className="relative min-h-screen flex items-center justify-center pt-20 md:pt-24 pb-4 md:pb-8 overflow-x-hidden bg-gradient-to-br from-white via-amber-50/30 to-gray-50">
+      <section className="relative min-h-screen flex items-center justify-center pt-16 sm:pt-20 md:pt-24 pb-10 md:pb-16 overflow-x-hidden bg-gradient-to-br from-white via-amber-50/30 to-gray-50">
         {/* Premium Animated Background */}
         <div className="absolute inset-0 w-full h-full pointer-events-none">
-          {/* Radial gradient overlay - soft and professional */}
+          {/* Radial gradient overlay */}
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-amber-100/30 via-transparent to-transparent" />
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-yellow-100/30 via-transparent to-transparent" />
 
@@ -38,22 +38,16 @@ export default function HeroPortfolio() {
             }} />
           </div>
 
-          {/* Floating orbs - subtle light theme */}
+          {/* Floating orbs */}
           {!isMobile && (
             <>
               <motion.div
-                animate={{
-                  scale: [1, 1.2, 1],
-                  opacity: [0.05, 0.1, 0.05],
-                }}
+                animate={{ scale: [1, 1.2, 1], opacity: [0.05, 0.1, 0.05] }}
                 transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
                 className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-amber-200/40 rounded-full blur-[100px] hidden md:block"
               />
               <motion.div
-                animate={{
-                  scale: [1, 1.3, 1],
-                  opacity: [0.04, 0.08, 0.04],
-                }}
+                animate={{ scale: [1, 1.3, 1], opacity: [0.04, 0.08, 0.04] }}
                 transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 2 }}
                 className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-yellow-200/40 rounded-full blur-[100px] hidden md:block"
               />
@@ -61,52 +55,109 @@ export default function HeroPortfolio() {
           )}
         </div>
 
-        {/* Content Grid */}
-        <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-6 md:gap-8 lg:gap-10 items-center">
-          {/* Left Content */}
+        {/* Content Grid — 1 col on mobile (circle top, text bottom), 2 cols on desktop */}
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-8 lg:gap-12 items-center">
+
+          {/* ── RIGHT: Amber Circle + Profile (shown on all sizes, order-1 on mobile = appears first) ── */}
+          <div className="flex justify-center items-center relative order-1 lg:order-2 py-0 lg:py-0">
+
+            {/* Outer amber glowing circle */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.7 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1, delay: 0.3, ease: 'easeOut' }}
+              className="relative flex items-center justify-center"
+              style={{
+                width: 'min(360px, 72vw)',
+                height: 'min(360px, 72vw)',
+                borderRadius: '50%',
+                background: 'radial-gradient(circle at 50% 45%, rgba(245,158,11,0.22) 0%, rgba(251,191,36,0.14) 45%, rgba(254,243,199,0.20) 70%, rgba(255,251,235,0.06) 100%)',
+                border: '2px solid rgba(245,158,11,0.30)',
+                boxShadow: '0 0 90px rgba(245,158,11,0.22), 0 0 35px rgba(245,158,11,0.12), inset 0 0 70px rgba(254,243,199,0.15)',
+              }}
+            >
+              {/* Inner decorative ring */}
+              <div
+                className="absolute inset-0 rounded-full pointer-events-none"
+                style={{
+                  border: '1px solid rgba(245,158,11,0.16)',
+                  margin: '5%',
+                  borderRadius: '50%',
+                }}
+              />
+
+              {/* Round-cropped profile image — centered inside circle */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.85 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 1, delay: 0.5, ease: 'easeOut' }}
+                className="relative z-10"
+                style={{
+                  width: 'min(300px, 60vw)',
+                  height: 'min(300px, 60vw)',
+                  borderRadius: '50%',
+                  overflow: 'hidden',
+                  border: '4px solid rgba(245,158,11,0.35)',
+                  boxShadow: '0 8px 40px rgba(245,158,11,0.20), 0 2px 12px rgba(0,0,0,0.10)',
+                }}
+              >
+                <img
+                  src="/profile.webp"
+                  alt="Irfan Shaikh - Full Stack Developer"
+                  loading="eager"
+                  fetchPriority="high"
+                  decoding="async"
+                  className="hover:scale-[1.04] transition-transform duration-700 ease-out select-none"
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                    objectPosition: 'center 20%',
+                    filter: 'brightness(1.05) contrast(1.03) saturate(0.97)',
+                  }}
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement
+                    target.onerror = null;
+                    target.src = '/profile.png';
+                  }}
+                />
+              </motion.div>
+
+              {/* Floating accent dots */}
+              <motion.div
+                animate={{ y: [-5, 5, -5], opacity: [0.5, 1, 0.5] }}
+                transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
+                className="absolute z-30 w-4 h-4 lg:w-5 lg:h-5 bg-amber-400 rounded-full shadow-lg shadow-amber-400/50"
+                style={{ top: '7%', right: '14%' }}
+              />
+              <motion.div
+                animate={{ y: [5, -5, 5], opacity: [0.35, 0.75, 0.35] }}
+                transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut', delay: 1.5 }}
+                className="absolute z-30 w-2.5 h-2.5 lg:w-3 lg:h-3 bg-yellow-300 rounded-full shadow-md"
+                style={{ top: '24%', left: '11%' }}
+              />
+              <motion.div
+                animate={{ scale: [1, 1.4, 1], opacity: [0.3, 0.7, 0.3] }}
+                transition={{ duration: 3.5, repeat: Infinity, ease: 'easeInOut', delay: 0.8 }}
+                className="absolute z-30 w-3 h-3 lg:w-3.5 lg:h-3.5 bg-orange-400 rounded-full"
+                style={{ bottom: '13%', right: '11%' }}
+              />
+              <motion.div
+                animate={{ y: [-3, 3, -3], opacity: [0.4, 0.8, 0.4] }}
+                transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut', delay: 2.5 }}
+                className="absolute z-30 w-2 h-2 bg-amber-300 rounded-full"
+                style={{ bottom: '19%', left: '13%' }}
+              />
+            </motion.div>
+          </div>
+
+          {/* ── LEFT: Text content (order-2 on mobile = appears below the circle) ── */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1, delay: 0.2 }}
-            className="text-center lg:text-left order-2 lg:order-1 space-y-4 md:space-y-6"
+            className="text-center lg:text-left order-2 lg:order-1 space-y-3 md:space-y-6"
           >
-            {/* Mobile Circular Profile Avatar */}
-            <div className="flex justify-center lg:hidden mb-4">
-              <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.8, delay: 0.3 }}
-                className="relative w-32 h-32 xs:w-36 xs:h-36 z-10"
-              >
-                {/* Glow / border ring */}
-                <div 
-                  className="absolute -inset-[2px] rounded-full z-20 pointer-events-none"
-                  style={{
-                    background: 'linear-gradient(135deg, rgba(245,158,11,0.4) 0%, rgba(251,191,36,0.15) 40%, rgba(255,255,255,0.05) 60%, rgba(245,158,11,0.3) 100%)',
-                    boxShadow: '0 8px 30px rgba(245,158,11,0.18)'
-                  }}
-                />
-                {/* Image wrapper */}
-                <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-white shadow-lg">
-                  <img
-                    src="/profile.webp"
-                    alt="Irfan Shaikh - Full Stack Developer"
-                    className="w-full h-full object-cover"
-                    style={{
-                      objectPosition: 'center 15%',
-                      filter: 'brightness(1.04) contrast(1.02) saturate(0.95)'
-                    }}
-                  />
-                </div>
-                {/* Floating accent dot */}
-                <motion.div
-                  animate={{ y: [-2, 2, -2], opacity: [0.6, 1, 0.6] }}
-                  transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-                  className="absolute -top-1 -right-1 w-3.5 h-3.5 bg-amber-400 rounded-full shadow-md z-30"
-                />
-              </motion.div>
-            </div>
-
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -118,7 +169,7 @@ export default function HeroPortfolio() {
             </motion.div>
 
             <div className="relative z-10">
-              <h1 className="text-4xl min-[375px]:text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black tracking-tighter text-center lg:text-left font-display leading-[0.95] mb-2">
+              <h1 className="text-5xl min-[375px]:text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black tracking-tighter text-center lg:text-left font-display leading-[0.95] mb-2">
                 <span className="text-gray-900">IRFAN</span>
                 {' '}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-600 via-yellow-500 to-amber-600">
@@ -127,7 +178,7 @@ export default function HeroPortfolio() {
               </h1>
             </div>
 
-            <div className="text-xl sm:text-2xl md:text-3xl lg:text-4xl h-12 sm:h-14 md:h-16 flex justify-center lg:justify-start items-center">
+            <div className="text-lg sm:text-2xl md:text-3xl lg:text-4xl h-10 sm:h-14 md:h-16 flex justify-center lg:justify-start items-center">
               <span className="text-gray-500 mr-2 font-light">Digital</span>
               <TypingAnimation
                 texts={roleTexts}
@@ -137,13 +188,13 @@ export default function HeroPortfolio() {
               />
             </div>
             
-            <p className="text-base sm:text-lg lg:text-xl text-gray-600 max-w-xl mx-auto lg:mx-0 leading-relaxed">
+            <p className="text-sm sm:text-base lg:text-xl text-gray-600 max-w-xl mx-auto lg:mx-0 leading-relaxed">
               Crafting <span className="text-amber-600 font-semibold">digital experiences</span> that blend creativity with cutting-edge technology.
               Specializing in <span className="font-mono text-sm text-amber-700 bg-amber-50/80 px-2 py-0.5 rounded border border-amber-100">interactive web applications</span> and immersive user interfaces.
             </p>
 
             {/* Action Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+            <div className="flex flex-row sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start">
               <motion.button
                 onClick={() => {
                   const workSection = document.getElementById('work')
@@ -151,7 +202,7 @@ export default function HeroPortfolio() {
                     workSection.scrollIntoView({ behavior: 'smooth' })
                   }
                 }}
-                className="group px-8 py-4 bg-gradient-to-r from-amber-500 to-yellow-500 text-white rounded-xl font-semibold flex items-center justify-center gap-3 hover:from-amber-600 hover:to-yellow-600 transition-all duration-300 shadow-lg shadow-amber-500/25 hover:shadow-xl hover:shadow-amber-500/40"
+                className="group px-5 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-amber-500 to-yellow-500 text-white rounded-xl font-semibold text-sm sm:text-base flex items-center justify-center gap-2 sm:gap-3 hover:from-amber-600 hover:to-yellow-600 transition-all duration-300 shadow-lg shadow-amber-500/25 hover:shadow-xl hover:shadow-amber-500/40"
                 whileHover={{ scale: 1.02, y: -2 }}
                 whileTap={{ scale: 0.98 }}
               >
@@ -167,7 +218,7 @@ export default function HeroPortfolio() {
               <motion.a
                 href="/resume.pdf"
                 download="Irfan_Shaikh_Resume.pdf"
-                className="group px-8 py-4 border-2 border-gray-200 bg-white/80 backdrop-blur-sm text-gray-900 rounded-xl font-semibold flex items-center justify-center gap-3 hover:border-amber-400 hover:bg-white hover:shadow-lg transition-all duration-300"
+                className="group px-5 sm:px-8 py-3 sm:py-4 border-2 border-gray-200 bg-white/80 backdrop-blur-sm text-gray-900 rounded-xl font-semibold text-sm sm:text-base flex items-center justify-center gap-2 sm:gap-3 hover:border-amber-400 hover:bg-white hover:shadow-lg transition-all duration-300"
                 whileHover={{ scale: 1.02, y: -2 }}
                 whileTap={{ scale: 0.98 }}
               >
@@ -177,7 +228,7 @@ export default function HeroPortfolio() {
             </div>
 
             {/* Stats */}
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 pt-2">
+            <div className="grid grid-cols-4 gap-2 md:gap-6 pt-1">
               {stats.map((stat, index) => (
                 <motion.div
                   key={stat.label}
@@ -186,117 +237,19 @@ export default function HeroPortfolio() {
                   transition={{ duration: 0.6, delay: 0.8 + index * 0.1 }}
                   className="text-center lg:text-left"
                 >
-                  <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-amber-600 to-yellow-600 bg-clip-text text-transparent mb-1">
+                  <div className="text-xl sm:text-2xl md:text-4xl font-bold bg-gradient-to-r from-amber-600 to-yellow-600 bg-clip-text text-transparent mb-0.5">
                     {stat.number}
                   </div>
-                  <div className="text-xs md:text-sm text-gray-500 font-medium">
+                  <div className="text-[10px] sm:text-xs md:text-sm text-gray-500 font-medium leading-tight">
                     {stat.label}
                   </div>
                 </motion.div>
               ))}
             </div>
           </motion.div>
-
-          {/* Right side - Profile Image with Premium Effects */}
-          <div className="hidden lg:flex justify-center items-center relative lg:mt-0 order-1 lg:order-2 mb-4 lg:mb-0">
-            {/* Outer glow ring matching website amber theme */}
-            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-              <div className="w-[280px] h-[360px] min-[375px]:w-[320px] min-[375px]:h-[420px] sm:w-[400px] sm:h-[520px] lg:w-[440px] lg:h-[570px] rounded-[2.5rem] bg-gradient-to-br from-amber-200/20 via-yellow-100/10 to-transparent blur-2xl" />
-            </div>
-
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.5, ease: 'easeOut' }}
-              className="relative w-[260px] h-[340px] min-[375px]:w-[300px] min-[375px]:h-[400px] sm:w-[380px] sm:h-[500px] lg:w-[420px] lg:h-[550px] z-10"
-            >
-              {/* Premium animated border ring */}
-              <div
-                className="absolute -inset-[2px] rounded-[2.2rem] z-20 pointer-events-none"
-                style={{
-                  background: 'linear-gradient(135deg, rgba(245,158,11,0.4) 0%, rgba(251,191,36,0.15) 40%, rgba(255,255,255,0.05) 60%, rgba(245,158,11,0.3) 100%)',
-                  boxShadow: '0 8px 40px rgba(245,158,11,0.18), 0 2px 8px rgba(0,0,0,0.06)'
-                }}
-              />
-
-              {/* Image container */}
-              <div className="relative w-full h-full rounded-[2rem] overflow-hidden">
-                {/* Warm background that matches website - sits behind image */}
-                <div
-                  className="absolute inset-0"
-                  style={{
-                    background: 'linear-gradient(160deg, #fef3c7 0%, #fffbeb 30%, #f9fafb 60%, #f3f4f6 100%)'
-                  }}
-                />
-
-                {/* The actual photo — high quality, no over-compression */}
-                <img
-                  src="/profile.webp"
-                  srcSet="/profile-small.webp 420w, /profile.webp 840w"
-                  sizes="(max-width: 768px) 300px, (max-width: 1024px) 380px, 420px"
-                  alt="Irfan Shaikh - Full Stack Developer"
-                  width="420"
-                  height="550"
-                  loading="eager"
-                  fetchPriority="high"
-                  decoding="async"
-                  className="absolute inset-0 w-full h-full object-cover hover:scale-[1.03] transition-transform duration-700 ease-out"
-                  style={{
-                    objectPosition: 'center 15%',
-                    filter: 'brightness(1.04) contrast(1.02) saturate(0.95)'
-                  }}
-                  onError={(e) => {
-                    const target = e.target as HTMLImageElement
-                    target.onerror = null;
-                    target.src = '/profile.webp';
-                  }}
-                />
-
-                {/* Warm color overlay — tints the cool gray photo bg to match warm site */}
-                <div
-                  className="absolute inset-0 pointer-events-none"
-                  style={{
-                    background: 'linear-gradient(to bottom, rgba(254,243,199,0.28) 0%, rgba(255,251,235,0.12) 40%, rgba(0,0,0,0) 70%, rgba(245,158,11,0.04) 100%)',
-                    mixBlendMode: 'multiply'
-                  }}
-                />
-
-                {/* Bottom fade — blends image into page */}
-                <div
-                  className="absolute bottom-0 left-0 right-0 h-1/4 pointer-events-none"
-                  style={{
-                    background: 'linear-gradient(to top, rgba(255,251,235,0.9) 0%, rgba(255,251,235,0.4) 50%, transparent 100%)'
-                  }}
-                />
-
-                {/* Inner subtle vignette for polish */}
-                <div
-                  className="absolute inset-0 rounded-[2rem] pointer-events-none"
-                  style={{
-                    boxShadow: 'inset 0 0 40px rgba(0,0,0,0.04), inset 0 -20px 40px rgba(254,243,199,0.3)'
-                  }}
-                />
-              </div>
-
-              {/* Floating amber accent dot - top right */}
-              <motion.div
-                animate={{ y: [-4, 4, -4], opacity: [0.6, 1, 0.6] }}
-                transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-                className="absolute -top-3 -right-3 w-5 h-5 bg-amber-400 rounded-full shadow-lg shadow-amber-400/40 z-30"
-              />
-              {/* Floating dot - bottom left */}
-              <motion.div
-                animate={{ y: [4, -4, 4], opacity: [0.4, 0.8, 0.4] }}
-                transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
-                className="absolute -bottom-2 -left-2 w-3 h-3 bg-yellow-300 rounded-full shadow-md shadow-yellow-400/30 z-30"
-              />
-            </motion.div>
-          </div>
         </div>
 
-
-
-        {/* Decorative Elements */}
+        {/* Decorative background dots */}
         <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-amber-500 rounded-full opacity-40 animate-pulse" />
         <div className="absolute top-1/3 right-1/4 w-1 h-1 bg-yellow-500 rounded-full opacity-30 animate-pulse animate-delay-1s" />
         <div className="absolute bottom-1/3 left-1/3 w-1.5 h-1.5 bg-orange-500 rounded-full opacity-35 animate-pulse animate-delay-2s" />
@@ -305,7 +258,7 @@ export default function HeroPortfolio() {
 
   return isMobile ? heroContent : (
     <ClickSpark
-      sparkColor="#60a5fa"
+      sparkColor="#f59e0b"
       sparkSize={12}
       sparkRadius={25}
       sparkCount={12}
