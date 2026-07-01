@@ -53,7 +53,7 @@ export const projects: Project[] = [
     type: 'web',
     technologies: ['Python', 'Flask', 'NLP', 'REST APIs'],
     image: '/mediguardianaipicture.webp',
-    demoUrl: 'https://mediguardian-frontend.onrender.com',
+    demoUrl: 'https://mediguardian-frontend-jewj.onrender.com',
     githubUrl: 'https://github.com/irfanshaikh110805-glitch/mediguardian-ai',
     highlights: [
       'NLP Integration',
