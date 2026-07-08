@@ -68,8 +68,8 @@ export default function HeroPortfolio() {
               transition={{ duration: 1, delay: 0.3, ease: 'easeOut' }}
               className="relative flex items-center justify-center"
               style={{
-                width: 'min(360px, 72vw)',
-                height: 'min(360px, 72vw)',
+                width: 'min(440px, 85vw)',
+                height: 'min(440px, 85vw)',
                 borderRadius: '50%',
                 background: 'radial-gradient(circle at 50% 45%, rgba(245,158,11,0.22) 0%, rgba(251,191,36,0.14) 45%, rgba(254,243,199,0.20) 70%, rgba(255,251,235,0.06) 100%)',
                 border: '2px solid rgba(245,158,11,0.30)',
@@ -93,8 +93,8 @@ export default function HeroPortfolio() {
                 transition={{ duration: 1, delay: 0.5, ease: 'easeOut' }}
                 className="relative z-10"
                 style={{
-                  width: 'min(300px, 60vw)',
-                  height: 'min(300px, 60vw)',
+                  width: 'min(370px, 72vw)',
+                  height: 'min(370px, 72vw)',
                   borderRadius: '50%',
                   overflow: 'hidden',
                   border: '4px solid rgba(245,158,11,0.35)',

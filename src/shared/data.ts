@@ -52,7 +52,7 @@ export const projects: Project[] = [
     description: 'Built a Flask-based AI healthcare assistant using NLP logic and REST APIs to provide automated medical guidance for common health queries.',
     type: 'web',
     technologies: ['Python', 'Flask', 'NLP', 'REST APIs'],
-    image: '/mediguardianaipicture.webp',
+    image: '/medigu.webp',
     demoUrl: 'https://mediguardian-frontend.onrender.com',
     githubUrl: 'https://github.com/irfanshaikh110805-glitch/mediguardian-ai',
     highlights: [
