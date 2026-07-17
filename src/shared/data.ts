@@ -18,7 +18,7 @@ export const projects: Project[] = [
     description: 'A production-ready AI-powered legal intelligence platform built for Indian Law. CaseSight AI automates litigation management, chronologies, and document workflows, featuring an intelligent API gateway with failover support, hybrid semantic search, and an advanced mixed-mode OCR pipeline.',
     type: 'fullstack',
     technologies: ['Next.js 15', 'React 19', 'Supabase', 'pgvector', 'Google Gemini AI', 'Upstash Redis', 'Inngest', 'Resend'],
-    image: '/casesightai-platform.webp',
+    image: '/casesightimage1.webp',
     demoUrl: 'https://casesight-ai.onrender.com/',
     githubUrl: 'https://github.com/irfanshaikh110805-glitch/casesight-ai',
     highlights: [
