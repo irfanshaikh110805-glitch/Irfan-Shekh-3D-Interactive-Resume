@@ -345,21 +345,17 @@ a:focus-visible {
   background-color: #f59e0b;
 }
 
-/* Timeline milestone gradient colors (static classes used instead of dynamic Tailwind) */
+/* Timeline milestone gradient colors (brand amber/yellow/orange theme) */
 .milestone-amber {
   background: linear-gradient(135deg, #f59e0b, #eab308);
 }
 
-.milestone-green {
-  background: linear-gradient(135deg, #10b981, #22c55e);
+.milestone-yellow {
+  background: linear-gradient(135deg, #eab308, #fbbf24);
 }
 
-.milestone-blue {
-  background: linear-gradient(135deg, #3b82f6, #06b6d4);
-}
-
-.milestone-purple {
-  background: linear-gradient(135deg, #a855f7, #ec4899);
+.milestone-orange {
+  background: linear-gradient(135deg, #f97316, #fb923c);
 }
 
 /* Custom scrollbar for desktop */

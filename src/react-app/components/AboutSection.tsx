@@ -30,24 +30,24 @@ const getStatColorClass = (color: string): string => {
 const achievements = [
   {
     icon: Award,
-    title: 'ML Intern — SkillCraft Technology',
+    title: 'Machine Learning Intern — SkillCraft Technology',
     description: 'Developed ML models for classification tasks, data preprocessing, feature engineering & model evaluation workflows.',
-    year: 'Jun–Jul 2026',
+    year: 'Jun 2026 – Jul 2026',
     color: '#f59e0b'
   },
   {
     icon: Zap,
     title: 'Java Full Stack Intern — MTD, Mysuru',
-    description: 'Built applications with ReactJS, Spring Boot, and MongoDB under expert mentorship.',
-    year: 'Jan–Feb 2026',
+    description: 'Completed full-stack development internship building applications with ReactJS, Spring Boot, and MongoDB under expert mentorship.',
+    year: 'Jan 2026 – Feb 2026',
     color: '#eab308'
   },
   {
     icon: Target,
-    title: 'Full-Stack Dev Intern — Smt Kumudben Darbar',
-    description: 'Built responsive web modules using HTML5, CSS3, JS & Flask. Reduced load time by 30% through code refactoring.',
-    year: 'Jan–May 2024',
-    color: '#d97706'
+    title: 'Full-Stack Development Intern — Smt Kumudben Darbar College',
+    description: 'Built responsive web modules using HTML5, CSS3, JavaScript & Flask. Implemented MySQL DB integration, designed RESTful API endpoints, and reduced load time by 30% through code refactoring.',
+    year: 'Jan 2024 – May 2024',
+    color: '#f97316'
   }
 ]
 
@@ -99,17 +99,16 @@ export default function AboutSection() {
 
             <div className="space-y-6 text-gray-700 body-md">
               <p className="leading-loose">
-                <span className="bg-gradient-to-r from-amber-600 to-yellow-600 bg-clip-text text-transparent font-semibold text-lg">Hi! I'm Irfan Shaikh</span>, an enthusiastic Computer Applications student with strong <span className="font-semibold text-amber-600">problem-solving skills</span> and hands-on experience in Python, web development, and database management.
-                My journey is driven by a passion for building and deploying web applications that solve real-world challenges.
+                <span className="bg-gradient-to-r from-amber-600 to-yellow-600 bg-clip-text text-transparent font-semibold text-lg">Hi! I'm Irfan Shaikh</span>, a results-driven <span className="font-semibold text-amber-600">BCA graduate</span> with hands-on experience in full-stack web development, AI/ML integration, and database management.
+                Skilled in building scalable applications with <span className="mono-text text-amber-700 bg-amber-50 px-2 py-1 rounded">React</span>, <span className="mono-text text-green-700 bg-green-50 px-2 py-1 rounded">Node.js</span>, and <span className="mono-text text-yellow-700 bg-yellow-50 px-2 py-1 rounded">Flask</span>, with proven work delivering AI-powered healthcare, legal-tech, and enterprise-grade solutions.
               </p>
 
               <p className="leading-loose">
-                Currently pursuing my <span className="font-semibold text-amber-700">Bachelor of Computer Applications (BCA)</span> at <span className="font-semibold text-amber-600">Smt Kumudben Debar College of Commerce, Science & Management Studies / RCUB</span> (2023-2026), I'm skilled in building web applications, managing data, and applying analytical approaches to solve challenges.
+                Completed my <span className="font-semibold text-amber-700">Bachelor of Computer Applications (BCA)</span> from <span className="font-semibold text-amber-600">Smt Kumudben Debar College of Commerce, Science & Management Studies, Rani Channamma University, Belagavi (RCUB)</span> (2023–2026), with relevant coursework in Data Structures & Algorithms, DBMS, Web Technologies, Software Engineering, OOP, and AI.
               </p>
 
               <p className="leading-loose">
-                I specialize in <span className="mono-text text-amber-700 bg-amber-50 px-2 py-1 rounded">Python</span>, <span className="mono-text text-green-700 bg-green-50 px-2 py-1 rounded">JavaScript</span>, <span className="mono-text text-orange-700 bg-orange-50 px-2 py-1 rounded">React</span>, and <span className="mono-text text-yellow-700 bg-yellow-50 px-2 py-1 rounded">Flask</span>, with experience in <span className="bg-gradient-to-r from-amber-600 to-yellow-600 bg-clip-text text-transparent font-semibold">AI/ML technologies</span> like TensorFlow and MobileNetV2.
-                I'm interested in emerging areas such as prompt engineering and seeking opportunities as a Software Engineer, Web Developer, or Data Analyst.
+                Successfully completed <span className="font-bold text-amber-600">3 internships</span> (Machine Learning — SkillCraft Technology, Java Full Stack — MTD Mysuru, Full-Stack Development — Smt Kumudben Darbar College) and deployed <span className="font-bold text-yellow-600">9+ production projects</span> with expertise in <span className="bg-gradient-to-r from-amber-600 to-yellow-600 bg-clip-text text-transparent font-semibold">AI/ML technologies</span> (TensorFlow, NLP, Computer Vision, OCR, RAG), modern frameworks (<span className="mono-text text-orange-700 bg-orange-50 px-2 py-1 rounded">Spring Boot</span>, <span className="mono-text text-amber-700 bg-amber-50 px-2 py-1 rounded">Flask</span>, <span className="mono-text text-green-700 bg-green-50 px-2 py-1 rounded">React</span>, <span className="mono-text text-yellow-700 bg-yellow-50 px-2 py-1 rounded">Node.js</span>), and cloud deployment platforms (Render, Netlify).
               </p>
             </div>
 
@@ -169,9 +168,9 @@ export default function AboutSection() {
                       <Icon size={22} className={`text-dynamic ${getAchievementColorClass(achievement.color)}`} />
                     </div>
                     <div className="flex-1">
-                      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1.5 sm:gap-2 mb-2">
+                      <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-2">
                         <h4 className="font-display font-semibold text-gray-900 text-lg group-hover:text-amber-600 transition-colors duration-300">{achievement.title}</h4>
-                        <span className="caption text-gray-600 bg-gray-200 px-3 py-1 rounded-full w-fit">
+                        <span className="text-xs font-bold px-4 py-2 rounded-full text-white shadow-sm bg-gradient-to-r from-amber-500 to-yellow-500 whitespace-nowrap shrink-0 self-start">
                           {achievement.year}
                         </span>
                       </div>
@@ -187,8 +186,8 @@ export default function AboutSection() {
           <div className="grid grid-cols-2 gap-4">
             {[
               { number: '9+', label: 'Deployed Projects', color: '#f59e0b' },
-              { number: '3', label: 'Internships', color: '#eab308' },
-              { number: 'BCA', label: 'Graduate 2026', color: '#fbbf24' },
+              { number: '3', label: 'Internships Completed', color: '#eab308' },
+              { number: 'BCA', label: 'Graduate 2023–2026', color: '#fbbf24' },
               { number: '7+', label: 'Certifications', color: '#f97316' }
             ].map((stat, index) => (
               <motion.div
@@ -208,17 +207,27 @@ export default function AboutSection() {
             ))}
           </div>
 
-          {/* Fun Fact */}
+          {/* Languages */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="bg-gradient-to-r from-amber-50 to-yellow-50 border border-amber-200 rounded-xl p-5 md:p-6 text-center hover:from-amber-100 hover:to-yellow-100 transition-all duration-300 shadow-sm"
+            className="bg-white border border-gray-200 rounded-xl p-5 md:p-6 hover:border-amber-300 transition-all duration-300 shadow-sm"
           >
-            <h4 className="font-display text-xl font-bold text-gray-900 mb-3 bg-gradient-to-r from-amber-600 to-yellow-600 bg-clip-text text-transparent">Languages</h4>
-            <p className="body-md text-gray-700 leading-relaxed">
-              I speak <span className="font-bold text-amber-600">English</span>, <span className="font-bold text-yellow-600">Hindi</span>, and <span className="font-bold text-orange-600">Kannada</span>, enabling me to collaborate effectively with diverse teams and clients.
-              <span className="text-2xl ml-2">🌍💬</span>
+            <h4 className="font-display text-lg font-semibold text-gray-900 mb-4">Languages Known</h4>
+            <div className="flex flex-wrap gap-2 md:gap-3">
+              <span className="px-4 py-2 bg-amber-50 border border-amber-200 rounded-lg text-sm font-medium text-gray-800 hover:bg-amber-100 transition-colors">
+                English
+              </span>
+              <span className="px-4 py-2 bg-amber-50 border border-amber-200 rounded-lg text-sm font-medium text-gray-800 hover:bg-amber-100 transition-colors">
+                Hindi
+              </span>
+              <span className="px-4 py-2 bg-amber-50 border border-amber-200 rounded-lg text-sm font-medium text-gray-800 hover:bg-amber-100 transition-colors">
+                Kannada
+              </span>
+            </div>
+            <p className="text-xs md:text-sm text-gray-600 mt-3 leading-relaxed">
+              Multilingual proficiency enabling effective collaboration with diverse teams and clients across different regions.
             </p>
           </motion.div>
         </motion.div>

@@ -175,16 +175,17 @@ export interface Skill {
 }
 
 export const skills: Skill[] = [
-  { name: 'Python', level: 90, color: '#f59e0b', category: 'Programming' },
+  { name: 'Python', level: 92, color: '#f59e0b', category: 'Programming' },
   { name: 'JavaScript', level: 88, color: '#eab308', category: 'Programming' },
   { name: 'TypeScript', level: 82, color: '#fbbf24', category: 'Programming' },
   { name: 'Java', level: 78, color: '#f97316', category: 'Programming' },
-  { name: 'React.js', level: 88, color: '#fbbf24', category: 'Frontend' },
+  { name: 'React.js', level: 90, color: '#fbbf24', category: 'Frontend' },
   { name: 'HTML5 & CSS3', level: 92, color: '#f97316', category: 'Frontend' },
   { name: 'Tailwind CSS', level: 85, color: '#f59e0b', category: 'Frontend' },
   { name: 'Framer Motion', level: 80, color: '#eab308', category: 'Frontend' },
   { name: 'Node.js', level: 82, color: '#d97706', category: 'Backend' },
   { name: 'Flask', level: 85, color: '#eab308', category: 'Backend' },
+  { name: 'Spring Boot', level: 78, color: '#f97316', category: 'Backend' },
   { name: 'Express.js', level: 78, color: '#f59e0b', category: 'Backend' },
   { name: 'REST APIs', level: 88, color: '#fbbf24', category: 'Backend' },
   { name: 'MongoDB', level: 80, color: '#f59e0b', category: 'Databases' },
@@ -196,11 +197,16 @@ export const skills: Skill[] = [
   { name: 'Keras', level: 72, color: '#f59e0b', category: 'AI/ML' },
   { name: 'NLP', level: 70, color: '#eab308', category: 'AI/ML' },
   { name: 'Computer Vision', level: 72, color: '#f97316', category: 'AI/ML' },
+  { name: 'OCR', level: 75, color: '#f59e0b', category: 'AI/ML' },
+  { name: 'RAG', level: 73, color: '#eab308', category: 'AI/ML' },
   { name: 'Git & GitHub', level: 88, color: '#f97316', category: 'Tools' },
   { name: 'Docker', level: 70, color: '#d97706', category: 'Tools' },
   { name: 'Vite', level: 82, color: '#fbbf24', category: 'Tools' },
+  { name: 'VS Code', level: 90, color: '#f59e0b', category: 'Tools' },
   { name: 'Postman', level: 80, color: '#f97316', category: 'Tools' },
-  { name: 'JWT Auth', level: 82, color: '#eab308', category: 'Tools' }
+  { name: 'JWT Auth', level: 82, color: '#eab308', category: 'Tools' },
+  { name: 'Render', level: 85, color: '#f97316', category: 'Deployment' },
+  { name: 'Netlify', level: 88, color: '#f59e0b', category: 'Deployment' }
 ]
 
 export interface Milestone {
@@ -220,31 +226,31 @@ export const milestones: Milestone[] = [
     align: 'left'
   },
   {
-    year: 'Jan–May 2024',
-    title: 'Full-Stack Intern — Smt Kumudben Darbar College',
+    year: 'Jan 2024 – May 2024',
+    title: 'Full-Stack Development Intern — Smt Kumudben Darbar College',
     description: 'Academic internship building responsive web modules with HTML5, CSS3, JavaScript & Flask. Implemented MySQL DB integration, designed RESTful API endpoints, and reduced load time by 30% through code refactoring.',
-    color: 'milestone-amber',
+    color: 'milestone-orange',
     align: 'right'
   },
   {
-    year: 'Jan–Feb 2026',
+    year: 'Jan 2026 – Feb 2026',
     title: 'Java Full Stack Intern — MTD, Mysuru',
     description: 'Completed a full-stack development internship building applications with ReactJS, Spring Boot, and MongoDB under expert mentorship from MTD.',
-    color: 'milestone-green',
+    color: 'milestone-amber',
     align: 'left'
   },
   {
-    year: 'Jun–Jul 2026',
+    year: 'Jun 2026 – Jul 2026',
     title: 'Machine Learning Intern — SkillCraft Technology',
     description: 'Developed ML models for classification tasks and participated in data preprocessing, feature engineering, and model evaluation workflows.',
-    color: 'milestone-blue',
+    color: 'milestone-yellow',
     align: 'right'
   },
   {
-    year: '2026',
-    title: 'Graduating & Industry-Ready',
-    description: 'Completing BCA with 9+ deployed projects, 3 internships, and expertise in AI/ML, full-stack development, and scalable cloud deployments.',
-    color: 'milestone-purple',
+    year: '2023 – 2026',
+    title: 'BCA Graduate — Industry-Ready Professional',
+    description: 'Completed Bachelor of Computer Applications with 9+ deployed production projects, 3 internships, 7+ certifications, and expertise in AI/ML, full-stack development, and scalable cloud deployments.',
+    color: 'milestone-orange',
     align: 'left'
   }
 ]

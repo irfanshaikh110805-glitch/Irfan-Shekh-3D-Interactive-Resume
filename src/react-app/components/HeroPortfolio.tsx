@@ -17,7 +17,7 @@ export default function HeroPortfolio() {
   const stats = [
     { number: '9+', label: 'Deployed Projects' },
     { number: '3', label: 'Internships' },
-    { number: 'BCA', label: '2023–2026' },
+    { number: 'BCA', label: 'Graduate 2023–2026' },
     { number: '7+', label: 'Certifications' }
   ]
 
@@ -189,8 +189,8 @@ export default function HeroPortfolio() {
             </div>
             
             <p className="text-sm sm:text-base lg:text-xl text-gray-600 max-w-xl mx-auto lg:mx-0 leading-relaxed">
-              Crafting <span className="text-amber-600 font-semibold">digital experiences</span> that blend creativity with cutting-edge technology.
-              Specializing in <span className="font-mono text-sm text-amber-700 bg-amber-50/80 px-2 py-0.5 rounded border border-amber-100">interactive web applications</span> and immersive user interfaces.
+              BCA graduate specializing in <span className="text-amber-600 font-semibold">full-stack development</span> and <span className="text-yellow-600 font-semibold">AI/ML integration</span>.
+              Proven expertise building <span className="font-mono text-sm text-amber-700 bg-amber-50/80 px-2 py-0.5 rounded border border-amber-100">scalable web applications</span> with React, Node.js, and Flask, backed by 3 internships and 9+ deployed projects.
             </p>
 
             {/* Action Buttons */}

@@ -83,14 +83,14 @@ function TimelineItem({ item, Icon, isLeft }: {
       {/* Desktop empty spacer to push content */}
       <div className={`hidden md:block w-1/2 ${isLeft ? 'order-2' : 'order-1'}`} />
 
-      {/* The Center Node / Icon */}
+      {/* The Center Node / Icon - Now Bigger and Better */}
       <motion.div 
         ref={cardRef}
         style={{ scale, opacity }}
-        className="absolute left-[32px] md:left-1/2 transform -translate-x-1/2 bg-white border-4 border-white shadow-xl shadow-amber-500/20 w-12 h-12 rounded-full flex items-center justify-center z-20"
+        className="absolute left-[32px] md:left-1/2 transform -translate-x-1/2 bg-white border-4 border-white shadow-xl shadow-amber-500/20 w-16 h-16 md:w-20 md:h-20 rounded-full flex items-center justify-center z-20"
       >
         <div className={`w-full h-full rounded-full ${item.color} flex items-center justify-center text-white`}>
-          <Icon size={20} />
+          <Icon size={28} />
         </div>
       </motion.div>
 
@@ -103,19 +103,20 @@ function TimelineItem({ item, Icon, isLeft }: {
           y,
           perspective: 1000 
         }}
-        className={`w-full md:w-[45%] pl-[64px] md:pl-0 ${isLeft ? 'md:pr-10 order-1' : 'md:pl-10 order-2'} z-10 relative`}
+        className={`w-full md:w-[45%] pl-[80px] md:pl-0 ${isLeft ? 'md:pr-10 order-1' : 'md:pl-10 order-2'} z-10 relative`}
       >
         {/* Connector arrow pointing to node */}
         <div className={`hidden md:block absolute top-1/2 -mt-2 w-0 h-0 border-y-8 border-y-transparent ${isLeft ? 'right-8 border-l-8 border-l-white' : 'left-8 border-r-8 border-r-white'} z-30`} />
         
-        <div className="bg-white p-6 rounded-2xl shadow-xl shadow-gray-200/50 hover:shadow-amber-500/10 border border-gray-100 transition-shadow">
-          <div className="flex items-center gap-3 mb-2">
-            <span className={`px-3 py-1 text-white text-sm font-bold rounded-full ${item.color}`}>
+        <div className="bg-white p-5 md:p-6 rounded-2xl shadow-xl shadow-gray-200/50 hover:shadow-amber-500/10 border border-gray-100 transition-shadow">
+          <div className="flex items-start gap-3 mb-3 flex-wrap">
+            {/* Enhanced Date Badge - Wider and Better Formatted */}
+            <span className={`inline-flex items-center justify-center min-w-[140px] px-4 py-2 text-white text-xs md:text-sm font-bold rounded-full ${item.color} shadow-md whitespace-nowrap`}>
               {item.year}
             </span>
-            <h4 className="text-xl font-bold text-gray-900">{item.title}</h4>
+            <h4 className="text-base md:text-xl font-bold text-gray-900 flex-1 min-w-[200px]">{item.title}</h4>
           </div>
-          <p className="text-gray-600 leading-relaxed font-light">{item.description}</p>
+          <p className="text-sm md:text-base text-gray-600 leading-relaxed font-light">{item.description}</p>
         </div>
       </motion.div>
 

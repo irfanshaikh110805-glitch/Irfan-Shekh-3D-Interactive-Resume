@@ -2,11 +2,58 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { skills } from '@/shared/data'
 import { getSkillColorClass, getGlowColorClass } from '@/react-app/utils/colorUtils'
+// Import tech icons
+import { 
+  SiPython, SiJavascript, SiTypescript, SiReact, SiHtml5,
+  SiTailwindcss, SiFramer, SiNodedotjs, SiFlask, SiSpring, SiExpress,
+  SiMongodb, SiMysql, SiSupabase, SiTensorflow, SiKeras,
+  SiGithub, SiDocker, SiPostman, SiVite,
+  SiRender, SiNetlify
+} from 'react-icons/si'
+import { Database, Brain, Shield, FileCode, Code2 } from 'lucide-react'
+
+// Define proper type for icon components
+type IconComponent = React.ComponentType<{ size?: number; className?: string }>
+
+// Icon mapping for each skill
+const skillIcons: { [key: string]: IconComponent } = {
+  'Python': SiPython,
+  'JavaScript': SiJavascript,
+  'TypeScript': SiTypescript,
+  'Java': Code2,
+  'React.js': SiReact,
+  'HTML5 & CSS3': SiHtml5,
+  'Tailwind CSS': SiTailwindcss,
+  'Framer Motion': SiFramer,
+  'Node.js': SiNodedotjs,
+  'Flask': SiFlask,
+  'Spring Boot': SiSpring,
+  'Express.js': SiExpress,
+  'REST APIs': FileCode,
+  'MongoDB': SiMongodb,
+  'MySQL': SiMysql,
+  'Supabase': SiSupabase,
+  'NoSQL': Database,
+  'TensorFlow': SiTensorflow,
+  'MobileNetV2': Brain,
+  'Keras': SiKeras,
+  'NLP': Brain,
+  'Computer Vision': Brain,
+  'OCR': FileCode,
+  'RAG': Brain,
+  'Git & GitHub': SiGithub,
+  'Docker': SiDocker,
+  'Vite': SiVite,
+  'VS Code': Code2,
+  'Postman': SiPostman,
+  'JWT Auth': Shield,
+  'Render': SiRender,
+  'Netlify': SiNetlify
+}
 
 export default function SkillsVisualization() {
   const [selectedCategory, setSelectedCategory] = useState('All')
-  const categories = ['All', 'Programming', 'Frontend', 'Backend', 'Databases', 'AI/ML', 'Tools']
-  // TypeScript added to Programming, Express.js to Backend, Docker to Tools in data.ts
+  const categories = ['All', 'Programming', 'Frontend', 'Backend', 'Databases', 'AI/ML', 'Tools', 'Deployment']
 
   const visibleSkills = skills.filter(skill => selectedCategory === 'All' || skill.category === selectedCategory)
 
@@ -44,51 +91,50 @@ export default function SkillsVisualization() {
         </div>
       </motion.div>
 
-      {/* Premium 2D Skills Grid */}
+      {/* Clean Skills Grid with Real Icons */}
       <motion.div
         layout
-        className="grid grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6"
+        className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 md:gap-4"
       >
-        {visibleSkills.map((skill, index) => (
-          <motion.div
-            layout
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.8 }}
-            transition={{ duration: 0.4, delay: index * 0.05 }}
-            key={skill.name}
-            className="group relative bg-white/80 rounded-xl p-3 min-[375px]:p-4 md:p-6 border border-gray-200 hover:border-amber-300 transition-all duration-300 backdrop-blur-sm overflow-hidden shadow-sm"
-            whileHover={{ y: -5, boxShadow: '0 10px 30px rgba(245, 158, 11, 0.1)' }}
-          >
-            {/* Hover Glow Effect */}
-            <div className={`absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500 bg-gradient-to-br ${getGlowColorClass(skill.color)} to-transparent`} />
+        {visibleSkills.map((skill, index) => {
+          const SkillIcon = skillIcons[skill.name] || FileCode
+          
+          return (
+            <motion.div
+              layout
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.8 }}
+              transition={{ duration: 0.4, delay: index * 0.03 }}
+              key={skill.name}
+              className="group relative bg-white rounded-xl p-4 md:p-5 border border-gray-200 hover:border-amber-300 transition-all duration-300 shadow-sm hover:shadow-md overflow-hidden"
+              whileHover={{ y: -5, scale: 1.02 }}
+            >
+              {/* Hover Glow Effect */}
+              <div className={`absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500 bg-gradient-to-br ${getGlowColorClass(skill.color)} to-transparent`} />
 
-            <div className="relative z-10">
-              <div className="flex justify-between items-start mb-2 md:mb-4">
-                <div className="flex items-center gap-1.5 min-[375px]:gap-3">
-                  <div className={`w-7 h-7 min-[375px]:w-10 min-[375px]:h-10 rounded-md min-[375px]:rounded-lg flex items-center justify-center bg-gray-50 border border-gray-200 group-hover:scale-110 transition-transform duration-300 shadow-sm`}>
-                    <div className={`w-2 h-2 min-[375px]:w-3 min-[375px]:h-3 rounded-full ${getSkillColorClass(skill.color)} shadow-[0_0_10px_currentColor]`} />
-                  </div>
-                  <div>
-                    <h3 className="font-display font-bold text-xs min-[375px]:text-sm sm:text-base md:text-lg text-gray-900 group-hover:text-amber-600 transition-colors leading-tight line-clamp-1">{skill.name}</h3>
-                    <span className="text-[9px] min-[375px]:text-xs text-gray-500 uppercase tracking-wider font-mono line-clamp-1">{skill.category}</span>
-                  </div>
+              <div className="relative z-10 flex flex-col items-center text-center gap-3">
+                {/* Real Tech Icon */}
+                <div className={`w-12 h-12 md:w-14 md:h-14 rounded-xl flex items-center justify-center bg-gradient-to-br ${getGlowColorClass(skill.color)} group-hover:scale-110 transition-transform duration-300 shadow-md`}>
+                  <SkillIcon className={`w-6 h-6 md:w-7 md:h-7 ${getSkillColorClass(skill.color)} text-white`} />
                 </div>
-                <span className="font-mono text-sm min-[375px]:text-base md:text-xl font-bold text-gray-600 group-hover:text-gray-900 transition-colors">{skill.level}%</span>
+
+                {/* Skill Name */}
+                <div className="w-full">
+                  <h3 className="font-display font-bold text-sm md:text-base text-gray-900 group-hover:text-amber-600 transition-colors leading-tight mb-1">
+                    {skill.name}
+                  </h3>
+                  <span className="text-[10px] md:text-xs text-gray-500 uppercase tracking-wider font-medium">
+                    {skill.category}
+                  </span>
+                </div>
               </div>
 
-              {/* Progress Bar */}
-              <div className="h-2.5 min-[375px]:h-3 w-full bg-gray-100 rounded-full overflow-hidden p-[2px] border border-gray-200">
-                <motion.div
-                  className={`h-full rounded-full ${getSkillColorClass(skill.color)} shadow-[0_0_10px_currentColor]`}
-                  initial={{ width: 0 }}
-                  whileInView={{ width: `${skill.level}%` }}
-                  transition={{ duration: 1.5, ease: "easeOut", delay: 0.2 }}
-                />
-              </div>
-            </div>
-          </motion.div>
-        ))}
+              {/* Decorative corner accent */}
+              <div className="absolute -bottom-2 -right-2 w-12 h-12 rounded-full bg-amber-100/60 group-hover:bg-amber-200/60 transition-colors duration-500" />
+            </motion.div>
+          )
+        })}
       </motion.div>
     </div>
   )

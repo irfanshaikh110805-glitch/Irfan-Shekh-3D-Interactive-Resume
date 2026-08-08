@@ -7,8 +7,8 @@ const contactInfo = [
   {
     icon: Mail,
     label: 'Email',
-    value: 'irfanshaikh110805@email.com',
-    href: 'mailto:irfanshaikh110805@email.com',
+    value: 'irfanshaikh110805@gmail.com',
+    href: 'mailto:irfanshaikh110805@gmail.com',
     color: '#f59e0b'
   },
   {

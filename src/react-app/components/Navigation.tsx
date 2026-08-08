@@ -120,7 +120,7 @@ export default function Navigation({ activeSection, setActiveSection }: Navigati
         {/* Desktop Action Buttons */}
         <div className="hidden md:flex items-center space-x-1">
           <motion.a
-            href="mailto:irfanshaikh110805@email.com"
+            href="mailto:irfanshaikh110805@gmail.com"
             aria-label="Email Irfan Shaikh"
             className="p-2.5 text-gray-500 hover:text-gray-900 hover:bg-gray-50 rounded-lg transition-all duration-300"
             whileHover={{ scale: 1.05 }}
@@ -243,7 +243,7 @@ export default function Navigation({ activeSection, setActiveSection }: Navigati
               {/* Mobile Social Links */}
               <div className="flex flex-wrap justify-center gap-4 pt-4 border-t border-gray-200">
                 <motion.a
-                  href="mailto:irfanshaikh110805@email.com"
+                  href="mailto:irfanshaikh110805@gmail.com"
                   aria-label="Email Irfan Shaikh"
                   className="p-3 text-gray-600 hover:text-gray-900 transition-colors duration-300"
                   whileHover={{ scale: 1.1 }}

@@ -38,47 +38,47 @@ export default function ResumeChatbot() {
     
     // Skills related
     if (lowerMessage.includes('skill') || lowerMessage.includes('technology') || lowerMessage.includes('tech stack')) {
-      return "Irfan is proficient in:\n\n🔹 Frontend: React, JavaScript, TypeScript, HTML, CSS, Tailwind\n🔹 Backend: Node.js, Express, Flask, Python\n🔹 Databases: MongoDB, MySQL, Supabase\n🔹 AI/ML: TensorFlow, MobileNetV2, Gemini AI\n🔹 Tools: Git, Postman, JWT Authentication\n\nHe's always learning new technologies to stay current!"
+      return "Irfan is proficient in:\n\n• Frontend: React, JavaScript, TypeScript, HTML5, CSS3, Tailwind CSS, Framer Motion\n\n• Backend: Node.js, Express.js, Flask, Spring Boot, Python, Java\n\n• Databases: MongoDB, MySQL, PostgreSQL, Supabase, NoSQL\n\n• AI/ML: TensorFlow, MobileNetV2, Keras, NLP, Computer Vision, OCR, RAG, Gemini AI\n\n• Tools: Git, GitHub, Docker, VS Code, Postman, Vite, JWT Authentication\n\n• Deployment: Render, Netlify (Git-Triggered Auto-Deploy)\n\nHe's always learning new technologies to stay current!"
     }
     
     // Projects related
     if (lowerMessage.includes('project') || lowerMessage.includes('work') || lowerMessage.includes('portfolio')) {
-      return "Here are Irfan's key projects:\n\n1️⃣ CaseSight AI - Indian AI Legal Operating System (Next.js & Gemini AI)\n2️⃣ Padma Cinematic - Professional Cinematography & Photography Portfolio (Next.js 15 & React 19)\n3️⃣ AI Architecture Generator - Transforms ideas into system architectures using Gemini AI\n4️⃣ Hotel Everest - Restaurant booking system with React & Supabase\n5️⃣ MediGuardian AI - Healthcare assistant built with Flask\n6️⃣ Fruit & Vegetable Disease Detection - AI-powered image classification\n7️⃣ HeavyDuty Parts - Industrial e-commerce platform\n\nEach project showcases different aspects of his full-stack and AI capabilities!"
+      return "Here are Irfan's key projects:\n\n• CaseSight AI — Indian AI Legal Operating System (Next.js & Gemini AI)\n\n• AI Architecture Generator — Transforms ideas into system architectures using Gemini AI\n\n• Padma Cinematic — Professional Cinematography & Photography Portfolio (Next.js 15 & React 19)\n\n• MediGuardian AI — Healthcare assistant built with Flask\n\n• Hotel Everest — Restaurant booking system with React & Supabase\n\n• Fruit & Vegetable Disease Detection — AI-powered image classification\n\n• HeavyDuty Parts — Industrial e-commerce platform\n\nEach project showcases different aspects of his full-stack and AI capabilities!"
     }
     
     // Contact related
     if (lowerMessage.includes('contact') || lowerMessage.includes('email') || lowerMessage.includes('phone') || lowerMessage.includes('reach')) {
-      return "📧 Email: irfanshaikh110805@gmail.com\n📱 Phone: +91 9964264412\n💼 LinkedIn: Available on request\n🐙 GitHub: Check out the portfolio for links\n\nFeel free to reach out for collaborations or opportunities!"
+      return "Contact Information:\n\n• Email: irfanshaikh110805@gmail.com\n• Phone: +91 9964264412\n• LinkedIn: Available on request\n• GitHub: Check out the portfolio for links\n\nFeel free to reach out for collaborations or opportunities!"
     }
     
     // Education related
     if (lowerMessage.includes('education') || lowerMessage.includes('degree') || lowerMessage.includes('college') || lowerMessage.includes('study')) {
-      return "🎓 Irfan is currently pursuing a Bachelor of Computer Applications (BCA) at Smt Kumudben Debar College in Vijayapura, Karnataka. He's passionate about combining academic knowledge with practical development experience!"
+      return "Education:\n\nIrfan completed his Bachelor of Computer Applications (BCA) from Smt Kumudben Debar College of Commerce, Science & Management Studies, Rani Channamma University, Belagavi (RCUB) in Vijayapura, Karnataka (2023–2026).\n\nRelevant Coursework:\n• Data Structures & Algorithms\n• Database Management Systems\n• Web Technologies\n• Software Engineering\n• Object-Oriented Programming\n• Artificial Intelligence"
     }
     
     // Availability/Freelance
     if (lowerMessage.includes('available') || lowerMessage.includes('freelance') || lowerMessage.includes('hire') || lowerMessage.includes('job')) {
-      return "✅ Yes! Irfan is available for:\n\n• Freelance projects\n• Full-time opportunities\n• Contract work\n• Consulting\n\nHe's particularly interested in web development, AI integration, and full-stack projects. Let's discuss your requirements!"
+      return "Yes! Irfan is available for:\n\n• Freelance projects\n• Full-time opportunities\n• Contract work\n• Consulting\n\nHe's particularly interested in web development, AI integration, and full-stack projects. Let's discuss your requirements!"
     }
     
     // Experience related
-    if (lowerMessage.includes('experience') || lowerMessage.includes('background')) {
-      return "Irfan has hands-on experience in:\n\n✨ Building full-stack web applications\n✨ Integrating AI/ML models into production apps\n✨ Database design and optimization\n✨ RESTful API development\n✨ Responsive UI/UX implementation\n\nHis diverse project portfolio demonstrates real-world problem-solving skills!"
+    if (lowerMessage.includes('experience') || lowerMessage.includes('background') || lowerMessage.includes('internship')) {
+      return "Irfan completed 3 internships:\n\n• Machine Learning Intern — SkillCraft Technology (Jun–Jul 2026):\nDeveloped ML models for classification tasks with data preprocessing and feature engineering\n\n• Java Full Stack Intern — MTD, Mysuru (Jan–Feb 2026):\nBuilt applications with ReactJS, Spring Boot, and MongoDB\n\n• Full-Stack Development Intern — Smt Kumudben Darbar College (Jan–May 2024):\nBuilt responsive web modules with HTML5, CSS3, JS, Flask & MySQL, reduced load time by 30%\n\nHis diverse experience demonstrates real-world problem-solving skills!"
     }
     
     // About/Who
     if (lowerMessage.includes('who') || lowerMessage.includes('about') || lowerMessage.includes('introduce')) {
-      return "👋 Hi! I'm Irfan's AI assistant. Irfan Shaikh is a passionate Web Developer and AI Enthusiast currently pursuing BCA in Karnataka. He specializes in building modern web applications with React, Node.js, and integrating AI capabilities. With a strong foundation in both frontend and backend development, he creates innovative solutions that solve real-world problems!"
+      return "Hi! I'm Irfan's AI assistant.\n\nIrfan Shaikh is a results-driven BCA graduate and Full-Stack Developer from Vijayapura, Karnataka. He specializes in building scalable web applications with React, Node.js, Flask, and Spring Boot, with proven expertise in AI/ML integration.\n\nHighlights:\n• 3 internships completed\n• 9+ production projects deployed\n• Expertise in AI/ML, full-stack development\n• Creates innovative solutions for real-world problems"
     }
     
     // Greetings
     if (lowerMessage.includes('hello') || lowerMessage.includes('hi') || lowerMessage.includes('hey')) {
-      return "👋 Hello! I'm Irfan's AI assistant. I can help you learn about his skills, projects, experience, and how to get in touch. What would you like to know?"
+      return "Hello! I'm Irfan's AI assistant.\n\nI can help you learn about his skills, projects, experience, and how to get in touch. What would you like to know?"
     }
     
     // Thanks
     if (lowerMessage.includes('thank') || lowerMessage.includes('thanks')) {
-      return "You're welcome! Feel free to ask anything else about Irfan's work or reach out directly via email or phone. Have a great day! 😊"
+      return "You're welcome! Feel free to ask anything else about Irfan's work or reach out directly via email or phone. Have a great day!"
     }
     
     // Default response
