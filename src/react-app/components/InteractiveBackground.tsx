@@ -1,35 +1,46 @@
-import { useEffect } from 'react'
+import { useEffect, useCallback } from 'react'
 import { motion, useMotionValue, useSpring, useMotionTemplate, useTransform } from 'framer-motion'
 
 export default function InteractiveBackground() {
   const mouseX = useMotionValue(50)
   const mouseY = useMotionValue(50)
 
-  // Use springs to smooth the mouse movement
-  const smoothX = useSpring(mouseX, { stiffness: 50, damping: 20 })
-  const smoothY = useSpring(mouseY, { stiffness: 50, damping: 20 })
+  // Use springs with optimized settings for performance
+  const smoothX = useSpring(mouseX, { stiffness: 100, damping: 30 })
+  const smoothY = useSpring(mouseY, { stiffness: 100, damping: 30 })
 
   // Animate the gradient directly without triggering React state updates
   const backgroundGradient = useMotionTemplate`radial-gradient(circle at ${smoothX}% ${smoothY}%, #fef3c7 0%, #fde68a 25%, #fcd34d 50%, #ffffff 100%)`
 
-  const gridX = useTransform(smoothX, (v) => v * 0.02)
-  const gridY = useTransform(smoothY, (v) => v * 0.02)
+  const gridX = useTransform(smoothX, (v) => v * 0.01)
+  const gridY = useTransform(smoothY, (v) => v * 0.01)
+
+  const handleMouseMove = useCallback((e: MouseEvent) => {
+    // Throttle updates for better performance
+    const xObj = (e.clientX / window.innerWidth) * 100
+    const yObj = (e.clientY / window.innerHeight) * 100
+    
+    mouseX.set(50 + (xObj - 50) * 0.05)
+    mouseY.set(50 + (yObj - 50) * 0.05)
+  }, [mouseX, mouseY])
 
   useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      // Calculate percentage, default at 50%
-      const xObj = (e.clientX / window.innerWidth) * 100
-      const yObj = (e.clientY / window.innerHeight) * 100
-      
-      mouseX.set(50 + (xObj - 50) * 0.1)
-      mouseY.set(50 + (yObj - 50) * 0.1)
+    // Use throttled event listener for better performance
+    let rafId: number
+    const throttledMouseMove = (e: MouseEvent) => {
+      if (rafId) return
+      rafId = requestAnimationFrame(() => {
+        handleMouseMove(e)
+        rafId = 0
+      })
     }
 
-    window.addEventListener('mousemove', handleMouseMove, { passive: true })
+    window.addEventListener('mousemove', throttledMouseMove, { passive: true })
     return () => {
-      window.removeEventListener('mousemove', handleMouseMove)
+      window.removeEventListener('mousemove', throttledMouseMove)
+      if (rafId) cancelAnimationFrame(rafId)
     }
-  }, [mouseX, mouseY])
+  }, [handleMouseMove])
 
   return (
     <div className="fixed inset-0 overflow-hidden pointer-events-none z-[-1]">

@@ -22,13 +22,9 @@ export default function HeroPortfolio() {
   ]
 
   const heroContent = (
-      <section className="relative min-h-screen flex items-center justify-center pt-16 sm:pt-20 md:pt-24 pb-10 md:pb-16 overflow-x-hidden bg-gradient-to-br from-white via-amber-50/30 to-gray-50">
+      <section className="relative min-h-screen flex items-center justify-center pt-16 sm:pt-18 md:pt-20 pb-12 md:pb-16 overflow-x-hidden bg-gradient-to-br from-white via-amber-50/30 to-gray-50">
         {/* Premium Animated Background */}
         <div className="absolute inset-0 w-full h-full pointer-events-none">
-          {/* Radial gradient overlay */}
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-amber-100/30 via-transparent to-transparent" />
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-yellow-100/30 via-transparent to-transparent" />
-
           {/* Animated grid pattern */}
           <div className="absolute inset-0 opacity-[0.02]">
             <div className="absolute inset-0" style={{
@@ -56,98 +52,116 @@ export default function HeroPortfolio() {
         </div>
 
         {/* Content Grid — 1 col on mobile (circle top, text bottom), 2 cols on desktop */}
-        <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-8 lg:gap-12 items-center">
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-8 items-center">
 
-          {/* ── RIGHT: Amber Circle + Profile (shown on all sizes, order-1 on mobile = appears first) ── */}
+          {/* ── RIGHT: Enhanced Profile Image with Effects ── */}
           <div className="flex justify-center items-center relative order-1 lg:order-2 py-0 lg:py-0">
-
-            {/* Outer amber glowing circle */}
+            
+            {/* Enhanced Profile Container */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.7 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1, delay: 0.3, ease: 'easeOut' }}
-              className="relative flex items-center justify-center"
-              style={{
-                width: 'min(440px, 85vw)',
-                height: 'min(440px, 85vw)',
-                borderRadius: '50%',
-                background: 'radial-gradient(circle at 50% 45%, rgba(245,158,11,0.22) 0%, rgba(251,191,36,0.14) 45%, rgba(254,243,199,0.20) 70%, rgba(255,251,235,0.06) 100%)',
-                border: '2px solid rgba(245,158,11,0.30)',
-                boxShadow: '0 0 90px rgba(245,158,11,0.22), 0 0 35px rgba(245,158,11,0.12), inset 0 0 70px rgba(254,243,199,0.15)',
-              }}
+              initial={{ opacity: 0, scale: 0.8, rotateY: 15 }}
+              animate={{ opacity: 1, scale: 1, rotateY: 0 }}
+              transition={{ duration: 1.2, delay: 0.3, ease: 'easeOut' }}
+              className="relative group"
+              style={{ perspective: '1000px' }}
             >
-              {/* Inner decorative ring */}
-              <div
-                className="absolute inset-0 rounded-full pointer-events-none"
-                style={{
-                  border: '1px solid rgba(245,158,11,0.16)',
-                  margin: '5%',
-                  borderRadius: '50%',
-                }}
-              />
-
-              {/* Round-cropped profile image — centered inside circle */}
-              <motion.div
-                initial={{ opacity: 0, scale: 0.85 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 1, delay: 0.5, ease: 'easeOut' }}
-                className="relative z-10"
-                style={{
-                  width: 'min(370px, 72vw)',
-                  height: 'min(370px, 72vw)',
-                  borderRadius: '50%',
-                  overflow: 'hidden',
-                  border: '4px solid rgba(245,158,11,0.35)',
-                  boxShadow: '0 8px 40px rgba(245,158,11,0.20), 0 2px 12px rgba(0,0,0,0.10)',
-                }}
-              >
-                <img
-                  src="/profile.webp"
+              {/* Glowing Background Effect */}
+              <div className="absolute -inset-8 bg-gradient-to-br from-amber-400/20 via-yellow-400/15 to-orange-400/20 rounded-3xl blur-2xl group-hover:blur-3xl transition-all duration-700 scale-110 animate-pulse opacity-60" />
+              
+              {/* Main Image Container */}
+              <div className="relative">
+                {/* Image with Enhanced Effects */}
+                <motion.img
+                  src="/profile.png"
                   alt="Irfan Shaikh - Full Stack Developer"
                   loading="eager"
                   fetchPriority="high"
-                  decoding="async"
-                  className="hover:scale-[1.04] transition-transform duration-700 ease-out select-none"
+                  decoding="sync"
+                  className="relative z-10 select-none rounded-2xl shadow-2xl group-hover:shadow-3xl transition-all duration-700"
                   style={{
-                    width: '100%',
-                    height: '100%',
-                    objectFit: 'cover',
-                    objectPosition: 'center 20%',
-                    filter: 'brightness(1.05) contrast(1.03) saturate(0.97)',
+                    width: 'min(380px, 85vw)',
+                    height: 'auto',
+                    imageRendering: 'auto' as const,
+                    filter: 'drop-shadow(0 25px 50px rgba(0, 0, 0, 0.15))',
+                    transform: 'translateZ(0)',
+                  }}
+                  whileHover={{ 
+                    scale: 1.05, 
+                    rotateY: -5,
+                    rotateX: 5,
+                    transition: { duration: 0.3 }
                   }}
                   onError={(e) => {
                     const target = e.target as HTMLImageElement
                     target.onerror = null;
-                    target.src = '/profile.png';
+                    target.src = '/profile.webp';
                   }}
                 />
-              </motion.div>
 
-              {/* Floating accent dots */}
-              <motion.div
-                animate={{ y: [-5, 5, -5], opacity: [0.5, 1, 0.5] }}
-                transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-                className="absolute z-30 w-4 h-4 lg:w-5 lg:h-5 bg-amber-400 rounded-full shadow-lg shadow-amber-400/50"
-                style={{ top: '7%', right: '14%' }}
-              />
-              <motion.div
-                animate={{ y: [5, -5, 5], opacity: [0.35, 0.75, 0.35] }}
-                transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut', delay: 1.5 }}
-                className="absolute z-30 w-2.5 h-2.5 lg:w-3 lg:h-3 bg-yellow-300 rounded-full shadow-md"
-                style={{ top: '24%', left: '11%' }}
-              />
-              <motion.div
-                animate={{ scale: [1, 1.4, 1], opacity: [0.3, 0.7, 0.3] }}
-                transition={{ duration: 3.5, repeat: Infinity, ease: 'easeInOut', delay: 0.8 }}
-                className="absolute z-30 w-3 h-3 lg:w-3.5 lg:h-3.5 bg-orange-400 rounded-full"
-                style={{ bottom: '13%', right: '11%' }}
-              />
-              <motion.div
-                animate={{ y: [-3, 3, -3], opacity: [0.4, 0.8, 0.4] }}
-                transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut', delay: 2.5 }}
-                className="absolute z-30 w-2 h-2 bg-amber-300 rounded-full"
-                style={{ bottom: '19%', left: '13%' }}
-              />
+                {/* Shine Effect Overlay */}
+                <div className="absolute inset-0 rounded-2xl overflow-hidden pointer-events-none">
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                    animate={{
+                      x: ['-100%', '100%'],
+                    }}
+                    transition={{
+                      duration: 2,
+                      repeat: Infinity,
+                      repeatDelay: 3,
+                      ease: 'easeInOut'
+                    }}
+                    style={{
+                      transform: 'skewX(-20deg)',
+                    }}
+                  />
+                </div>
+
+                {/* Floating Decorative Elements */}
+                <motion.div
+                  animate={{ 
+                    y: [-10, 10, -10], 
+                    rotate: [0, 5, -5, 0],
+                    opacity: [0.8, 1, 0.8] 
+                  }}
+                  transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+                  className="absolute -top-4 -right-4 w-12 h-12 bg-gradient-to-br from-amber-400 to-yellow-500 rounded-2xl shadow-lg shadow-amber-400/50 flex items-center justify-center z-20 backdrop-blur-sm border border-white/20"
+                >
+                  <div className="w-4 h-4 bg-white rounded-full opacity-90" />
+                </motion.div>
+                
+                <motion.div
+                  animate={{ 
+                    y: [10, -10, 10], 
+                    rotate: [0, -8, 8, 0],
+                    opacity: [0.7, 0.9, 0.7] 
+                  }}
+                  transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut', delay: 1.5 }}
+                  className="absolute -bottom-4 -left-4 w-8 h-8 bg-gradient-to-br from-orange-400 to-red-500 rounded-xl shadow-md shadow-orange-400/40 z-20 backdrop-blur-sm border border-white/20"
+                />
+                
+                <motion.div
+                  animate={{ 
+                    scale: [1, 1.3, 1], 
+                    opacity: [0.6, 0.9, 0.6] 
+                  }}
+                  transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut', delay: 0.8 }}
+                  className="absolute top-1/2 -left-6 w-6 h-6 bg-yellow-300 rounded-full shadow-lg z-20 backdrop-blur-sm border border-white/30"
+                />
+
+                <motion.div
+                  animate={{ 
+                    y: [-5, 5, -5], 
+                    x: [-2, 2, -2],
+                    opacity: [0.5, 0.8, 0.5] 
+                  }}
+                  transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut', delay: 2.2 }}
+                  className="absolute top-1/4 -right-6 w-4 h-4 bg-gradient-to-br from-purple-400 to-pink-500 rounded-full shadow-md z-20"
+                />
+
+                {/* Reflection Effect */}
+                <div className="absolute -bottom-2 left-0 right-0 h-8 bg-gradient-to-t from-white/10 to-transparent rounded-b-2xl opacity-60" />
+              </div>
             </motion.div>
           </div>
 
@@ -156,7 +170,7 @@ export default function HeroPortfolio() {
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1, delay: 0.2 }}
-            className="text-center lg:text-left order-2 lg:order-1 space-y-3 md:space-y-6"
+            className="text-center lg:text-left order-2 lg:order-1 space-y-3 md:space-y-4 py-4"
           >
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -228,7 +242,7 @@ export default function HeroPortfolio() {
             </div>
 
             {/* Stats */}
-            <div className="grid grid-cols-4 gap-2 md:gap-6 pt-1">
+            <div className="grid grid-cols-4 gap-3 sm:gap-4 md:gap-5 pt-2 pb-2">
               {stats.map((stat, index) => (
                 <motion.div
                   key={stat.label}
@@ -237,10 +251,10 @@ export default function HeroPortfolio() {
                   transition={{ duration: 0.6, delay: 0.8 + index * 0.1 }}
                   className="text-center lg:text-left"
                 >
-                  <div className="text-xl sm:text-2xl md:text-4xl font-bold bg-gradient-to-r from-amber-600 to-yellow-600 bg-clip-text text-transparent mb-0.5">
+                  <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold bg-gradient-to-r from-amber-600 to-yellow-600 bg-clip-text text-transparent mb-1">
                     {stat.number}
                   </div>
-                  <div className="text-[10px] sm:text-xs md:text-sm text-gray-500 font-medium leading-tight">
+                  <div className="text-[10px] sm:text-xs md:text-sm lg:text-sm text-gray-500 font-medium leading-tight">
                     {stat.label}
                   </div>
                 </motion.div>

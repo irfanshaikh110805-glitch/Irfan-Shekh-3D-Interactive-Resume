@@ -16,11 +16,17 @@ export default defineConfig({
     },
   },
   build: {
-    chunkSizeWarningLimit: 800,
+    chunkSizeWarningLimit: 600,
     // Enable CSS code splitting for better caching
     cssCodeSplit: true,
-    // Minify with esbuild (default, fast)
-    minify: 'esbuild',
+    // Use terser for better minification in production
+    minify: 'terser',
+    terserOptions: {
+      compress: {
+        drop_console: true,
+        drop_debugger: true,
+      },
+    },
     rollupOptions: {
       output: {
         // Split chunks granularly so unused code is never loaded
@@ -37,16 +43,13 @@ export default defineConfig({
           if (id.includes('node_modules/framer-motion')) {
             return 'animation-vendor';
           }
-          // Three.js ecosystem — only used in 3D components, defer
-          if (
-            id.includes('node_modules/three') ||
-            id.includes('node_modules/@react-three')
-          ) {
-            return 'three-vendor';
-          }
           // Lucide icons — split out from main
           if (id.includes('node_modules/lucide-react')) {
             return 'icons-vendor';
+          }
+          // React Icons - separate chunk
+          if (id.includes('node_modules/react-icons')) {
+            return 'react-icons-vendor';
           }
         },
       },

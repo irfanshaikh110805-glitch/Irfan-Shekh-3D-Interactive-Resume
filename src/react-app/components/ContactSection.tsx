@@ -101,7 +101,8 @@ export default function ContactSection() {
      setIsSubmitting(true)
      
      try {
-       const response = await fetch('/api/contact', {
+       // Try the primary endpoint first
+       let response = await fetch('/api/contact', {
          method: 'POST',
          headers: { 
            'Content-Type': 'application/json',
@@ -109,14 +110,49 @@ export default function ContactSection() {
          },
          body: JSON.stringify(formData)
        })
+
+       // If primary fails, try direct Netlify functions path
+       if (!response.ok) {
+         console.log('Primary endpoint failed, trying direct path...')
+         response = await fetch('/.netlify/functions/contact', {
+           method: 'POST',
+           headers: { 
+             'Content-Type': 'application/json',
+             'Accept': 'application/json'
+           },
+           body: JSON.stringify(formData)
+         })
+       }
        
        if (!response.ok) {
-         throw new Error(`Server error: ${response.status}`)
+         // If both fail, use FormSubmit directly as fallback
+         console.log('Both endpoints failed, using FormSubmit directly...')
+         const formSubmitResponse = await fetch('https://formsubmit.co/ajax/irfanshaikh110805@gmail.com', {
+           method: 'POST',
+           headers: { 
+             'Content-Type': 'application/json',
+             'Accept': 'application/json'
+           },
+           body: JSON.stringify({
+             name: formData.name,
+             email: formData.email,
+             subject: `Portfolio Contact: ${formData.subject}`,
+             message: `From: ${formData.name} (${formData.email})\n\nSubject: ${formData.subject}\n\nMessage:\n${formData.message}`,
+             _template: 'box',
+             _captcha: 'false'
+           })
+         })
+         
+         if (!formSubmitResponse.ok) {
+           throw new Error(`All endpoints failed. Status: ${response.status}`)
+         }
+         
+         response = formSubmitResponse
        }
 
        const data = await response.json()
        
-       if (data.success === 'true' || data.success === true) {
+       if (data.success === 'true' || data.success === true || response.ok) {
          setIsSubmitted(true)
          setFormData({ name: '', email: '', subject: '', message: '' })
          setTimeout(() => setIsSubmitted(false), 5000)
@@ -125,7 +161,7 @@ export default function ContactSection() {
        }
      } catch (error) {
        console.error('Submission error:', error)
-       alert('An error occurred. Please try again later.')
+       alert('An error occurred. Please email me directly at irfanshaikh110805@gmail.com or try again later.')
      } finally {
        setIsSubmitting(false)
      }
