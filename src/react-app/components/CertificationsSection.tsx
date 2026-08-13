@@ -75,6 +75,7 @@ export default function CertificationsSection() {
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
         transition={{ duration: 0.8 }}
         className="text-center mb-10"
       >
@@ -96,6 +97,7 @@ export default function CertificationsSection() {
             key={cert.id}
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.5, delay: index * 0.08 }}
             className="group relative bg-white rounded-2xl p-3 min-[375px]:p-4 md:p-6 border border-gray-200 hover:border-amber-300 transition-all duration-300 shadow-sm overflow-hidden"
             whileHover={{ y: -4, boxShadow: '0 12px 32px rgba(245, 158, 11, 0.12)' }}

@@ -1,6 +1,8 @@
-import { Handler } from '@netlify/functions'
+import { Handler, HandlerEvent } from '@netlify/functions'
 
-export const handler: Handler = async (event) => {
+const handler: Handler = async (event: HandlerEvent) => {
+  console.log('Function invoked:', event.httpMethod, event.path)
+  
   const corsHeaders = {
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Headers': 'Content-Type',
@@ -10,6 +12,7 @@ export const handler: Handler = async (event) => {
 
   // Handle CORS preflight
   if (event.httpMethod === 'OPTIONS') {
+    console.log('CORS preflight request')
     return {
       statusCode: 200,
       headers: corsHeaders,
@@ -19,6 +22,7 @@ export const handler: Handler = async (event) => {
 
   // Only allow POST
   if (event.httpMethod !== 'POST') {
+    console.log('Method not allowed:', event.httpMethod)
     return {
       statusCode: 405,
       headers: corsHeaders,
@@ -27,9 +31,20 @@ export const handler: Handler = async (event) => {
   }
 
   try {
-    const body = JSON.parse(event.body || '{}')
-    console.log('Contact form submission:', body)
+    console.log('Processing POST request')
     
+    if (!event.body) {
+      throw new Error('Request body is empty')
+    }
+
+    const body = JSON.parse(event.body)
+    console.log('Received form data:', { ...body, message: body.message?.substring(0, 50) + '...' })
+    
+    // Validate required fields
+    if (!body.name || !body.email || !body.subject || !body.message) {
+      throw new Error('Missing required fields')
+    }
+
     // Create professional HTML email template
     const htmlMessage = `
 <!DOCTYPE html>
@@ -71,10 +86,10 @@ export const handler: Handler = async (event) => {
                       Sender Details
                     </p>
                     <p style="margin: 0 0 5px 0; color: #1f2937; font-size: 16px;">
-                      <strong>Name:</strong> ${body.name || 'Not provided'}
+                      <strong>Name:</strong> ${body.name}
                     </p>
                     <p style="margin: 0; color: #1f2937; font-size: 16px;">
-                      <strong>Email:</strong> <a href="mailto:${body.email}" style="color: #f59e0b; text-decoration: none;">${body.email || 'Not provided'}</a>
+                      <strong>Email:</strong> <a href="mailto:${body.email}" style="color: #f59e0b; text-decoration: none;">${body.email}</a>
                     </p>
                   </td>
                 </tr>
@@ -86,7 +101,7 @@ export const handler: Handler = async (event) => {
                   Subject
                 </p>
                 <p style="margin: 0; color: #1f2937; font-size: 18px; font-weight: 600;">
-                  ${body.subject || 'No subject'}
+                  ${body.subject}
                 </p>
               </div>
               
@@ -96,7 +111,7 @@ export const handler: Handler = async (event) => {
                   Message
                 </p>
                 <div style="padding: 20px; background-color: #f9fafb; border-radius: 6px; border: 1px solid #e5e7eb;">
-                  <p style="margin: 0; color: #374151; font-size: 15px; line-height: 1.8; white-space: pre-wrap;">${body.message || 'No message'}</p>
+                  <p style="margin: 0; color: #374151; font-size: 15px; line-height: 1.8; white-space: pre-wrap;">${body.message}</p>
                 </div>
               </div>
               
@@ -104,7 +119,7 @@ export const handler: Handler = async (event) => {
               <table role="presentation" style="width: 100%; border-collapse: collapse;">
                 <tr>
                   <td style="text-align: center; padding: 20px 0;">
-                    <a href="mailto:${body.email}?subject=Re: ${encodeURIComponent(body.subject || 'Your inquiry')}" 
+                    <a href="mailto:${body.email}?subject=Re: ${encodeURIComponent(body.subject)}" 
                        style="display: inline-block; padding: 14px 32px; background: linear-gradient(135deg, #f59e0b 0%, #eab308 100%); color: #ffffff; text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 15px; box-shadow: 0 2px 4px rgba(245, 158, 11, 0.3);">
                       📧 Reply to ${body.name?.split(' ')[0] || 'Sender'}
                     </a>
@@ -133,6 +148,8 @@ export const handler: Handler = async (event) => {
 </html>
     `.trim()
     
+    console.log('Sending to FormSubmit...')
+    
     // Forward to FormSubmit.co with HTML template and anti-spam headers
     const referer = event.headers.referer || event.headers.origin || 'https://irfanshaikhportfolio.netlify.app';
     const response = await fetch('https://formsubmit.co/ajax/irfanshaikh110805@gmail.com', {
@@ -140,7 +157,8 @@ export const handler: Handler = async (event) => {
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
-        'Referer': referer
+        'Referer': referer,
+        'User-Agent': 'Netlify Functions'
       },
       body: JSON.stringify({
         name: body.name,
@@ -155,15 +173,26 @@ export const handler: Handler = async (event) => {
       })
     })
     
-    const contentType = response.headers.get('content-type') || ''
-    if (!response.ok || !contentType.includes('application/json')) {
-      const errorText = await response.text()
-      console.error('FormSubmit error response:', errorText)
-      throw new Error(`FormSubmit returned status ${response.status}: ${errorText.substring(0, 300)}`)
+    console.log('FormSubmit response status:', response.status)
+    
+    const responseText = await response.text()
+    
+    console.log('FormSubmit response:', responseText.substring(0, 200))
+    
+    if (!response.ok) {
+      console.error('FormSubmit error:', response.status, responseText)
+      throw new Error(`FormSubmit returned status ${response.status}: ${responseText.substring(0, 300)}`)
     }
 
-    const data = await response.json()
-    console.log('FormSubmit response:', data)
+    let data
+    try {
+      data = JSON.parse(responseText)
+    } catch (e) {
+      console.error('Failed to parse FormSubmit response as JSON:', e)
+      throw new Error('Invalid response from FormSubmit service')
+    }
+    
+    console.log('FormSubmit parsed response:', data)
     
     // Return success
     return {
@@ -177,6 +206,8 @@ export const handler: Handler = async (event) => {
   } catch (error) {
     const errorMessage = error instanceof Error ? error.message : "Unknown error"
     console.error('Contact Handler Error:', error)
+    console.error('Error stack:', error instanceof Error ? error.stack : 'No stack trace')
+    
     return {
       statusCode: 500,
       headers: corsHeaders,
@@ -188,4 +219,6 @@ export const handler: Handler = async (event) => {
     }
   }
 }
+
+export { handler }
 

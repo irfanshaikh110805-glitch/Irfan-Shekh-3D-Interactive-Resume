@@ -87,6 +87,7 @@ export default function ServicesSection() {
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
         transition={{ duration: 0.8 }}
         className="text-center mb-10 md:mb-16"
       >
@@ -107,6 +108,7 @@ export default function ServicesSection() {
               key={service.id}
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
               className="group relative bg-white rounded-2xl p-3 min-[375px]:p-4 md:p-8 border border-gray-200 hover:border-gray-300 transition-all duration-500 overflow-hidden shadow-sm flex flex-col justify-between"
               whileHover={{ y: -10, scale: 1.02 }}
@@ -146,6 +148,7 @@ export default function ServicesSection() {
                         key={fIndex}
                         initial={{ opacity: 0, x: -20 }}
                         whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
                         transition={{ duration: 0.4, delay: (index * 0.1) + (fIndex * 0.05) }}
                         className="flex items-center text-xs md:text-sm text-gray-700"
                       >
@@ -184,6 +187,7 @@ export default function ServicesSection() {
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
         transition={{ duration: 0.8, delay: 0.4 }}
         className="text-center mt-10 md:mt-16"
       >

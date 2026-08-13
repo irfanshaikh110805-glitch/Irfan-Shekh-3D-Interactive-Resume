@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { skills } from '@/shared/data'
-import { getSkillColorClass, getGlowColorClass } from '@/react-app/utils/colorUtils'
 // Import tech icons
 import { 
   SiPython, SiJavascript, SiTypescript, SiReact, SiHtml5,
@@ -62,6 +61,7 @@ export default function SkillsVisualization() {
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
         transition={{ duration: 0.8 }}
         className="text-center mb-8 md:mb-12"
       >
@@ -111,12 +111,14 @@ export default function SkillsVisualization() {
               whileHover={{ y: -5, scale: 1.02 }}
             >
               {/* Hover Glow Effect */}
-              <div className={`absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500 bg-gradient-to-br ${getGlowColorClass(skill.color)} to-transparent`} />
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-5 transition-opacity duration-500 bg-gradient-to-br from-gray-200 to-transparent" />
 
               <div className="relative z-10 flex flex-col items-center text-center gap-3">
-                {/* Real Tech Icon */}
-                <div className={`w-12 h-12 md:w-14 md:h-14 rounded-xl flex items-center justify-center bg-gradient-to-br ${getGlowColorClass(skill.color)} group-hover:scale-110 transition-transform duration-300 shadow-md`}>
-                  <SkillIcon className={`w-6 h-6 md:w-7 md:h-7 ${getSkillColorClass(skill.color)} text-white`} />
+                {/* Real Tech Icon with Brand Colors */}
+                <div className="w-12 h-12 md:w-14 md:h-14 rounded-xl flex items-center justify-center bg-white border border-gray-200 group-hover:scale-110 transition-transform duration-300 shadow-md group-hover:shadow-lg">
+                  <div style={{ color: skill.color }}>
+                    <SkillIcon className="w-6 h-6 md:w-7 md:h-7" />
+                  </div>
                 </div>
 
                 {/* Skill Name */}
@@ -129,9 +131,6 @@ export default function SkillsVisualization() {
                   </span>
                 </div>
               </div>
-
-              {/* Decorative corner accent */}
-              <div className="absolute -bottom-2 -right-2 w-12 h-12 rounded-full bg-amber-100/60 group-hover:bg-amber-200/60 transition-colors duration-500" />
             </motion.div>
           )
         })}

@@ -75,6 +75,7 @@ export default function AboutSection() {
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
         transition={{ duration: 0.8 }}
         className="text-center mb-10 md:mb-16"
       >
@@ -161,6 +162,7 @@ export default function AboutSection() {
                     key={index}
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
                     className="flex items-start gap-4 p-5 bg-gray-50 rounded-xl hover:bg-gray-100 transition-all duration-300 group"
                   >
@@ -211,6 +213,7 @@ export default function AboutSection() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.3 }}
             className="bg-white border border-gray-200 rounded-xl p-5 md:p-6 hover:border-amber-300 transition-all duration-300 shadow-sm"
           >

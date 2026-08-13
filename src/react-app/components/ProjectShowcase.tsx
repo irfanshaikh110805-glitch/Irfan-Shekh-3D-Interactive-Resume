@@ -70,6 +70,7 @@ export default function ProjectShowcase() {
               key={project.id}
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
               className="group relative bg-white rounded-2xl overflow-hidden border border-gray-200 hover:border-gray-300 transition-all duration-500 shadow-sm"
               whileHover={{ y: -5, boxShadow: '0 20px 40px rgba(0,0,0,0.3)' }}
@@ -166,6 +167,7 @@ export default function ProjectShowcase() {
                       key={tech}
                       initial={{ opacity: 0, scale: 0.8 }}
                       whileInView={{ opacity: 1, scale: 1 }}
+                      viewport={{ once: true }}
                       transition={{ duration: 0.3, delay: techIndex * 0.05 }}
                       className="px-1.5 py-0.5 md:px-2 md:py-1 bg-gray-100 text-gray-700 text-[9px] min-[375px]:text-[11px] md:text-xs rounded-full border border-gray-200"
                     >
@@ -190,6 +192,7 @@ export default function ProjectShowcase() {
                         key={highlightIndex}
                         initial={{ opacity: 0, x: -20 }}
                         whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
                         transition={{ duration: 0.4, delay: highlightIndex * 0.1 }}
                         className="flex items-center text-sm text-gray-700"
                       >
@@ -212,6 +215,7 @@ export default function ProjectShowcase() {
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
         transition={{ duration: 0.6, delay: 0.4 }}
         className="text-center mt-6 md:mt-8"
       >

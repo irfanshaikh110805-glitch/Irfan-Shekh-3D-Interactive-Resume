@@ -140,6 +140,7 @@ export default function ContactSection() {
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
         transition={{ duration: 0.8 }}
         className="text-center mb-6 md:mb-8"
       >
@@ -157,6 +158,7 @@ export default function ContactSection() {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
             className="bg-white rounded-2xl p-5 md:p-6 border border-gray-200 shadow-sm"
           >
@@ -196,6 +198,7 @@ export default function ContactSection() {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
             className="bg-white rounded-2xl p-5 md:p-6 border border-gray-200 shadow-sm"
           >
@@ -231,6 +234,7 @@ export default function ContactSection() {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.3 }}
           className="bg-white rounded-2xl p-5 md:p-6 border border-gray-200 shadow-sm"
         >
