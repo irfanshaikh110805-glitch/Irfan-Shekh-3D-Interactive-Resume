@@ -72,7 +72,7 @@ export default function HeroPortfolio() {
               <div className="relative">
                 {/* Image with Enhanced Effects */}
                 <motion.img
-                  src="/profile.png"
+                  src="/profile.webp"
                   alt="Irfan Shaikh - Full Stack Developer"
                   loading="eager"
                   fetchPriority="high"
@@ -90,11 +90,6 @@ export default function HeroPortfolio() {
                     rotateY: -5,
                     rotateX: 5,
                     transition: { duration: 0.3 }
-                  }}
-                  onError={(e) => {
-                    const target = e.target as HTMLImageElement
-                    target.onerror = null;
-                    target.src = '/profile.webp';
                   }}
                 />
 
