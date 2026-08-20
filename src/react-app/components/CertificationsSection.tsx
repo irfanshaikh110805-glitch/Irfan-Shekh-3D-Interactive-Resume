@@ -18,7 +18,7 @@ const certifications: Certification[] = [
     issuer: 'Oracle University',
     year: 'Jul 2026',
     badge: '🏆',
-    image: '/cirtificats/Oracle Certified Foundations Associate Agentic AI Certified Foundations Associate.jpg',
+    image: '/cirtificats/Oracle%20Certified%20Foundations%20Associate%20Agentic%20AI%20Certified%20Foundations%20Associate.jpg',
     link: '#'
   },
   {
@@ -27,7 +27,7 @@ const certifications: Certification[] = [
     issuer: 'MTD, Mysuru',
     year: 'Jan-Feb 2026',
     badge: '💼',
-    image: '/cirtificats/Java Full Stack Internship – ReactJS, Spring Boot & MongoDB — MTD, Mysuru.jpg',
+    image: '/cirtificats/Java%20Full%20Stack%20Internship%20%E2%80%93%20ReactJS%2C%20Spring%20Boot%20%26%20MongoDB%20%E2%80%94%20MTD%2C%20Mysuru.jpg',
     link: '#'
   },
   {
@@ -36,7 +36,7 @@ const certifications: Certification[] = [
     issuer: 'Tata, via Forage',
     year: 'Jun 2026',
     badge: '🔐',
-    image: '/cirtificats/Cybersecurity Analyst Job Simulation Tata  Forage.jpg',
+    image: '/cirtificats/Cybersecurity%20Analyst%20Job%20Simulation%20Tata%20%20Forage.jpg',
     link: '#'
   },
   {
@@ -45,7 +45,7 @@ const certifications: Certification[] = [
     issuer: 'Tata, via Forage',
     year: 'Jun 2026',
     badge: '📊',
-    image: '/cirtificats/GenAI Powered Data Analytics Job Simulation Tata Forage.jpg',
+    image: '/cirtificats/GenAI%20Powered%20Data%20Analytics%20Job%20Simulation%20Tata%20Forage.jpg',
     link: '#'
   },
   {
@@ -54,7 +54,7 @@ const certifications: Certification[] = [
     issuer: 'Completion Certificate',
     year: 'Sep 2025',
     badge: '🤖',
-    image: '/cirtificats/Generative AI – A Way of Life.jpg',
+    image: '/cirtificats/Generative%20AI%20%E2%80%93%20A%20Way%20of%20Life.jpg',
     link: '#'
   },
   {
@@ -63,7 +63,7 @@ const certifications: Certification[] = [
     issuer: 'DevTown',
     year: 'Mar 2024',
     badge: '⚡',
-    image: '/cirtificats/JavaScript & React.JS from A to Z  Certificate of Completion  DevTownAWS Community Builders..jpg',
+    image: '/cirtificats/JavaScript%20%26%20React.JS%20from%20A%20to%20Z%20%20Certificate%20of%20Completion%20%20DevTownAWS%20Community%20Builders..jpg',
     link: '#'
   },
   {
@@ -72,7 +72,7 @@ const certifications: Certification[] = [
     issuer: 'freeCodeCamp',
     year: '2024',
     badge: '🧮',
-    image: '/cirtificats/JavaScript Algorithms and Data Structures.jpg',
+    image: '/cirtificats/JavaScript%20Algorithms%20and%20Data%20Structures.jpg',
     link: '#'
   },
   {
@@ -81,7 +81,7 @@ const certifications: Certification[] = [
     issuer: 'DevTown',
     year: 'Mar 2024',
     badge: '🎖️',
-    image: '/cirtificats/Certificate of Appreciation — DevTown, dated 20 March 2024..jpg',
+    image: '/cirtificats/Certificate%20of%20Appreciation%20%E2%80%94%20DevTown%2C%20dated%2020%20March%202024..jpg',
     link: '#'
   }
 ]
