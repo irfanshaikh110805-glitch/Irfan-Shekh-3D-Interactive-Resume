@@ -39,6 +39,14 @@
     # Early hints: push the LCP image before HTML is fully parsed
     Link = "</profile.webp>; rel=preload; as=image; type=image/webp; fetchpriority=high"
 
+# Certificate images - explicit headers
+[[headers]]
+  for = "/cirtificats/*"
+  [headers.values]
+    Content-Type = "image/jpeg"
+    Cache-Control = "public, max-age=31536000, immutable"
+    Access-Control-Allow-Origin = "*"
+
 # Cache JavaScript files
 [[headers]]
   for = "/*.js"
