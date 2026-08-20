@@ -178,7 +178,7 @@ export const skills: Skill[] = [
   { name: 'Python', level: 92, color: '#3776ab', category: 'Programming' },
   { name: 'JavaScript', level: 88, color: '#f7df1e', category: 'Programming' },
   { name: 'TypeScript', level: 82, color: '#3178c6', category: 'Programming' },
-  { name: 'Java', level: 78, color: '#ed8b00', category: 'Programming' },
+  { name: 'Java', level: 78, color: '#007396', category: 'Programming' }, // Fixed: Official Java blue
   { name: 'React.js', level: 90, color: '#61dafb', category: 'Frontend' },
   { name: 'HTML5 & CSS3', level: 92, color: '#e34f26', category: 'Frontend' },
   { name: 'Tailwind CSS', level: 85, color: '#06b6d4', category: 'Frontend' },
@@ -187,11 +187,11 @@ export const skills: Skill[] = [
   { name: 'Flask', level: 85, color: '#000000', category: 'Backend' },
   { name: 'Spring Boot', level: 78, color: '#6db33f', category: 'Backend' },
   { name: 'Express.js', level: 78, color: '#000000', category: 'Backend' },
-  { name: 'REST APIs', level: 88, color: '#ff6c37', category: 'Backend' },
+  { name: 'REST APIs', level: 88, color: '#009688', category: 'Backend' }, // Fixed: Teal/turquoise for APIs
   { name: 'MongoDB', level: 80, color: '#47a248', category: 'Databases' },
   { name: 'MySQL', level: 82, color: '#4479a1', category: 'Databases' },
   { name: 'Supabase', level: 78, color: '#3ecf8e', category: 'Databases' },
-  { name: 'NoSQL', level: 75, color: '#ff6c37', category: 'Databases' },
+  { name: 'NoSQL', level: 75, color: '#4db33d', category: 'Databases' }, // Fixed: Green for databases
   { name: 'TensorFlow', level: 78, color: '#ff6f00', category: 'AI/ML' },
   { name: 'MobileNetV2', level: 75, color: '#ff6f00', category: 'AI/ML' },
   { name: 'Keras', level: 72, color: '#d00000', category: 'AI/ML' },
@@ -199,7 +199,7 @@ export const skills: Skill[] = [
   { name: 'Computer Vision', level: 72, color: '#ff6f00', category: 'AI/ML' },
   { name: 'OCR', level: 75, color: '#0066cc', category: 'AI/ML' },
   { name: 'RAG', level: 73, color: '#0066cc', category: 'AI/ML' },
-  { name: 'Git & GitHub', level: 88, color: '#f05032', category: 'Tools' },
+  { name: 'Git & GitHub', level: 88, color: '#181717', category: 'Tools' },
   { name: 'Docker', level: 70, color: '#2496ed', category: 'Tools' },
   { name: 'Vite', level: 82, color: '#646cff', category: 'Tools' },
   { name: 'VS Code', level: 90, color: '#007acc', category: 'Tools' },

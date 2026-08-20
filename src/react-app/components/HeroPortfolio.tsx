@@ -18,7 +18,7 @@ export default function HeroPortfolio() {
     { number: '9+', label: 'Deployed Projects' },
     { number: '3', label: 'Internships' },
     { number: 'BCA', label: 'Graduate 2023–2026' },
-    { number: '7+', label: 'Certifications' }
+    { number: '8+', label: 'Certifications' }
   ]
 
   const heroContent = (
@@ -165,7 +165,7 @@ export default function HeroPortfolio() {
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1, delay: 0.2 }}
-            className="text-center lg:text-left order-2 lg:order-1 space-y-3 md:space-y-4 py-4"
+            className="text-center lg:text-left order-2 lg:order-1 space-y-3 md:space-y-4 py-4 relative"
           >
             <motion.div
               initial={{ opacity: 0, y: 20 }}

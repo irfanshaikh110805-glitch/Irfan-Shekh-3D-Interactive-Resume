@@ -7,56 +7,63 @@ interface Certification {
   issuer: string
   year: string
   badge: string
+  image?: string
   link?: string
 }
 
 const certifications: Certification[] = [
   {
     id: '1',
-    title: 'JavaScript & React.JS from A to Z (7-Day Bootcamp)',
-    issuer: 'DevTown',
-    year: 'Mar 2024',
-    badge: '⚡',
+    title: 'Oracle Certified Foundations Associate — Agentic AI',
+    issuer: 'Oracle University',
+    year: 'Jul 2026',
+    badge: '🏆',
+    image: '/cirtificats/Oracle Certified Foundations Associate Agentic AI Certified Foundations Associate.jpg',
     link: '#'
   },
   {
     id: '2',
-    title: 'Generative AI – A Way of Life',
-    issuer: 'Completion Certificate',
-    year: 'Sep 2025',
-    badge: '🤖',
+    title: 'Java Full Stack Internship',
+    issuer: 'MTD, Mysuru',
+    year: 'Jan-Feb 2026',
+    badge: '💼',
+    image: '/cirtificats/Java Full Stack Internship – ReactJS, Spring Boot & MongoDB — MTD, Mysuru.jpg',
     link: '#'
   },
   {
     id: '3',
-    title: 'GenAI Powered Data Analytics Job Simulation',
-    issuer: 'Tata, via Forage',
-    year: 'Jun 2026',
-    badge: '📊',
-    link: '#'
-  },
-  {
-    id: '4',
     title: 'Cybersecurity Analyst Job Simulation',
     issuer: 'Tata, via Forage',
     year: 'Jun 2026',
     badge: '🔐',
+    image: '/cirtificats/Cybersecurity Analyst Job Simulation Tata  Forage.jpg',
+    link: '#'
+  },
+  {
+    id: '4',
+    title: 'GenAI Powered Data Analytics Job Simulation',
+    issuer: 'Tata, via Forage',
+    year: 'Jun 2026',
+    badge: '📊',
+    image: '/cirtificats/GenAI Powered Data Analytics Job Simulation Tata Forage.jpg',
     link: '#'
   },
   {
     id: '5',
-    title: 'Python for Everybody',
-    issuer: 'Coursera',
-    year: '2025',
-    badge: '🐍',
+    title: 'Generative AI – A Way of Life',
+    issuer: 'Completion Certificate',
+    year: 'Sep 2025',
+    badge: '🤖',
+    image: '/cirtificats/Generative AI – A Way of Life.jpg',
     link: '#'
   },
   {
     id: '6',
-    title: 'Responsive Web Design',
-    issuer: 'freeCodeCamp',
-    year: '2024',
-    badge: '🎨',
+    title: 'JavaScript & React.JS from A to Z (7-Day Bootcamp)',
+    issuer: 'DevTown',
+    year: 'Mar 2024',
+    badge: '⚡',
+    image: '/cirtificats/JavaScript & React.JS from A to Z  Certificate of Completion  DevTownAWS Community Builders..jpg',
     link: '#'
   },
   {
@@ -65,6 +72,16 @@ const certifications: Certification[] = [
     issuer: 'freeCodeCamp',
     year: '2024',
     badge: '🧮',
+    image: '/cirtificats/JavaScript Algorithms and Data Structures.jpg',
+    link: '#'
+  },
+  {
+    id: '8',
+    title: 'DevTown Certificate of Appreciation',
+    issuer: 'DevTown',
+    year: 'Mar 2024',
+    badge: '🎖️',
+    image: '/cirtificats/Certificate of Appreciation — DevTown, dated 20 March 2024..jpg',
     link: '#'
   }
 ]
@@ -106,6 +123,18 @@ export default function CertificationsSection() {
             <div className="absolute inset-0 bg-gradient-to-br from-amber-50/60 to-yellow-50/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
             <div className="relative z-10">
+              {/* Certificate Image (if available) */}
+              {cert.image && (
+                <div className="mb-3 md:mb-4 rounded-lg overflow-hidden bg-gray-50 border border-gray-100">
+                  <img 
+                    src={cert.image} 
+                    alt={`${cert.title} certificate`}
+                    className="w-full h-32 md:h-40 object-contain object-center hover:scale-105 transition-transform duration-500"
+                    loading="lazy"
+                  />
+                </div>
+              )}
+
               {/* Badge & Year Row */}
               <div className="flex items-start justify-between mb-3 md:mb-4">
                 <div className="text-2xl min-[375px]:text-3xl">{cert.badge}</div>

@@ -19,6 +19,7 @@ const MouseFollower = lazy(() => import('@/react-app/components/MouseFollower'))
 const ScrollProgress = lazy(() => import('@/react-app/components/ScrollProgress'))
 const InteractiveBackground = lazy(() => import('@/react-app/components/InteractiveBackground'))
 const ResumeChatbot = lazy(() => import('@/react-app/components/ResumeChatbot'))
+const RainEffect = lazy(() => import('@/react-app/components/RainEffect'))
 
 // Helper for lazy loading sections - renders immediately but defers heavy components
 function LazySection({ children, id, className }: { children: React.ReactNode, id: string, className?: string }) {
@@ -138,6 +139,13 @@ export default function Home() {
           </DelayedMount>
         </>
       )}
+
+      {/* Rain Effect - Available on all devices */}
+      <Suspense fallback={null}>
+        <div className="relative">
+          <RainEffect />
+        </div>
+      </Suspense>
 
       {/* Navigation */}
       <Navigation activeSection={activeSection} setActiveSection={setActiveSection} />
