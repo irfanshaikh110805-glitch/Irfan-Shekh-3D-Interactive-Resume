@@ -14,74 +14,83 @@ interface Certification {
 const certifications: Certification[] = [
   {
     id: '1',
-    title: 'Oracle Certified Foundations Associate — Agentic AI',
-    issuer: 'Oracle University',
-    year: 'Jul 2026',
-    badge: '🏆',
-    image: '/cirtificats/Oracle Certified Foundations Associate Agentic AI Certified Foundations Associate.jpg',
+    title: 'PG-DCA [Post Graduate Diploma in Computer Applications]',
+    issuer: 'IACT — Institute for Advanced Computer Technology',
+    year: 'Dec 2022',
+    badge: '🎓',
+    image: '/cirtificats/PG-DCA Diploma in Computer Application — IACT.webp',
     link: '#'
   },
   {
     id: '2',
-    title: 'Java Full Stack Internship',
-    issuer: 'MTD, Mysuru',
-    year: 'Jan-Feb 2026',
-    badge: '💼',
-    image: '/cirtificats/Java Full Stack Internship – ReactJS, Spring Boot & MongoDB — MTD, Mysuru.jpg',
+    title: 'Oracle Certified Foundations Associate — Agentic AI',
+    issuer: 'Oracle University',
+    year: 'Jul 2026',
+    badge: '🏆',
+    image: '/cirtificats/Oracle Certified Foundations Associate Agentic AI Certified Foundations Associate.webp',
     link: '#'
   },
   {
     id: '3',
-    title: 'Cybersecurity Analyst Job Simulation',
-    issuer: 'Tata, via Forage',
-    year: 'Jun 2026',
-    badge: '🔐',
-    image: '/cirtificats/Cybersecurity Analyst Job Simulation Tata  Forage.jpg',
+    title: 'Java Full Stack Internship',
+    issuer: 'MTD, Mysuru',
+    year: 'Jan-Feb 2026',
+    badge: '💼',
+    image: '/cirtificats/Java Full Stack Internship – ReactJS, Spring Boot & MongoDB — MTD, Mysuru.webp',
     link: '#'
   },
   {
     id: '4',
-    title: 'GenAI Powered Data Analytics Job Simulation',
+    title: 'Cybersecurity Analyst Job Simulation',
     issuer: 'Tata, via Forage',
     year: 'Jun 2026',
-    badge: '📊',
-    image: '/cirtificats/GenAI Powered Data Analytics Job Simulation Tata Forage.jpg',
+    badge: '🔐',
+    image: '/cirtificats/Cybersecurity Analyst Job Simulation Tata  Forage.webp',
     link: '#'
   },
   {
     id: '5',
-    title: 'Generative AI – A Way of Life',
-    issuer: 'Completion Certificate',
-    year: 'Sep 2025',
-    badge: '🤖',
-    image: '/cirtificats/Generative AI – A Way of Life.jpg',
+    title: 'GenAI Powered Data Analytics Job Simulation',
+    issuer: 'Tata, via Forage',
+    year: 'Jun 2026',
+    badge: '📊',
+    image: '/cirtificats/GenAI Powered Data Analytics Job Simulation Tata Forage.webp',
     link: '#'
   },
   {
     id: '6',
-    title: 'JavaScript & React.JS from A to Z (7-Day Bootcamp)',
-    issuer: 'DevTown',
-    year: 'Mar 2024',
-    badge: '⚡',
-    image: '/cirtificats/JavaScript & React.JS from A to Z  Certificate of Completion  DevTownAWS Community Builders..jpg',
+    title: 'Generative AI – A Way of Life',
+    issuer: 'Completion Certificate',
+    year: 'Sep 2025',
+    badge: '🤖',
+    image: '/cirtificats/Generative AI – A Way of Life.webp',
     link: '#'
   },
   {
     id: '7',
-    title: 'JavaScript Algorithms & Data Structures',
-    issuer: 'freeCodeCamp',
-    year: '2024',
-    badge: '🧮',
-    image: '/cirtificats/JavaScript Algorithms and Data Structures.jpg',
+    title: 'JavaScript & React.JS from A to Z (7-Day Bootcamp)',
+    issuer: 'DevTown',
+    year: 'Mar 2024',
+    badge: '⚡',
+    image: '/cirtificats/JavaScript & React.JS from A to Z  Certificate of Completion  DevTownAWS Community Builders..webp',
     link: '#'
   },
   {
     id: '8',
+    title: 'JavaScript Algorithms & Data Structures',
+    issuer: 'freeCodeCamp',
+    year: '2024',
+    badge: '🧮',
+    image: '/cirtificats/JavaScript Algorithms and Data Structures.webp',
+    link: '#'
+  },
+  {
+    id: '9',
     title: 'DevTown Certificate of Appreciation',
     issuer: 'DevTown',
     year: 'Mar 2024',
     badge: '🎖️',
-    image: '/cirtificats/Certificate of Appreciation — DevTown, dated 20 March 2024..jpg',
+    image: '/cirtificats/Certificate of Appreciation — DevTown, dated 20 March 2024..webp',
     link: '#'
   }
 ]
@@ -129,6 +138,9 @@ export default function CertificationsSection() {
                   <img 
                     src={cert.image} 
                     alt={`${cert.title} certificate`}
+                    width="400"
+                    height="280"
+                    decoding="async"
                     className="w-full h-32 md:h-40 object-contain object-center hover:scale-105 transition-transform duration-500"
                     loading="lazy"
                     onError={(e) => {

@@ -18,7 +18,7 @@ export default function HeroPortfolio() {
     { number: '9+', label: 'Deployed Projects' },
     { number: '3', label: 'Internships' },
     { number: 'BCA', label: 'Graduate 2023–2026' },
-    { number: '8+', label: 'Certifications' }
+    { number: '9', label: 'Certifications' }
   ]
 
   const heroContent = (
@@ -34,18 +34,14 @@ export default function HeroPortfolio() {
             }} />
           </div>
 
-          {/* Floating orbs */}
+          {/* Floating orbs - GPU accelerated */}
           {!isMobile && (
             <>
-              <motion.div
-                animate={{ scale: [1, 1.2, 1], opacity: [0.05, 0.1, 0.05] }}
-                transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-amber-200/40 rounded-full blur-[100px] hidden md:block"
+              <div
+                className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-amber-200/40 rounded-full blur-[100px] hidden md:block animate-pulse-orb pointer-events-none"
               />
-              <motion.div
-                animate={{ scale: [1, 1.3, 1], opacity: [0.04, 0.08, 0.04] }}
-                transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-                className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-yellow-200/40 rounded-full blur-[100px] hidden md:block"
+              <div
+                className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-yellow-200/40 rounded-full blur-[100px] hidden md:block animate-pulse-orb-delayed pointer-events-none"
               />
             </>
           )}
@@ -54,109 +50,47 @@ export default function HeroPortfolio() {
         {/* Content Grid — 1 col on mobile (circle top, text bottom), 2 cols on desktop */}
         <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-8 items-center">
 
-          {/* ── RIGHT: Enhanced Profile Image with Effects ── */}
-          <div className="flex justify-center items-center relative order-1 lg:order-2 py-0 lg:py-0">
+          {/* ── RIGHT: Profile Image with Studio Lighting & Smooth Bottom Blend ── */}
+          <div className="flex justify-center items-center lg:items-end relative order-1 lg:order-2 py-2 lg:py-0">
             
-            {/* Enhanced Profile Container */}
+            {/* Profile Container */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.8, rotateY: 15 }}
-              animate={{ opacity: 1, scale: 1, rotateY: 0 }}
-              transition={{ duration: 1.2, delay: 0.3, ease: 'easeOut' }}
-              className="relative group"
-              style={{ perspective: '1000px' }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.1, ease: 'easeOut' }}
+              className="relative flex items-center justify-center"
             >
-              {/* Glowing Background Effect */}
-              <div className="absolute -inset-8 bg-gradient-to-br from-amber-400/20 via-yellow-400/15 to-orange-400/20 rounded-3xl blur-2xl group-hover:blur-3xl transition-all duration-700 scale-110 animate-pulse opacity-60" />
-              
-              {/* Main Image Container */}
-              <div className="relative">
-                {/* Image with Enhanced Effects */}
-                <motion.img
+              {/* Studio Ambient Glow */}
+              <div 
+                aria-hidden="true"
+                className="absolute w-[85%] h-[85%] bg-gradient-to-tr from-amber-300/35 via-yellow-200/25 to-orange-200/20 rounded-full blur-3xl pointer-events-none -z-10"
+              />
+
+              {/* Original Full-Quality Profile Image with Smooth Bottom Gradient Fade */}
+              <picture>
+                <source type="image/webp" srcSet="/profile.webp" />
+                <img
                   src="/profile.webp"
                   alt="Irfan Shaikh - Full Stack Developer"
                   loading="eager"
                   fetchPriority="high"
-                  decoding="sync"
-                  className="relative z-10 select-none rounded-2xl shadow-2xl group-hover:shadow-3xl transition-all duration-700"
+                  decoding="async"
+                  width="1317"
+                  height="1194"
+                  className="relative z-10 select-none w-full max-w-[340px] sm:max-w-[400px] md:max-w-[440px] lg:max-w-[480px] xl:max-w-[520px] transition-transform duration-500 hover:scale-[1.02]"
                   style={{
-                    width: 'min(380px, 85vw)',
                     height: 'auto',
-                    imageRendering: 'auto' as const,
-                    filter: 'drop-shadow(0 25px 50px rgba(0, 0, 0, 0.15))',
+                    aspectRatio: '1317 / 1194',
+                    filter: 'drop-shadow(0 20px 35px rgba(245, 158, 11, 0.15)) drop-shadow(0 10px 20px rgba(0, 0, 0, 0.08))',
+                    maskImage: 'linear-gradient(to bottom, rgba(0,0,0,1) 82%, rgba(0,0,0,0) 100%)',
+                    WebkitMaskImage: 'linear-gradient(to bottom, rgba(0,0,0,1) 82%, rgba(0,0,0,0) 100%)',
                     transform: 'translateZ(0)',
                   }}
-                  whileHover={{ 
-                    scale: 1.05, 
-                    rotateY: -5,
-                    rotateX: 5,
-                    transition: { duration: 0.3 }
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).src = '/profile.png'
                   }}
                 />
-
-                {/* Shine Effect Overlay */}
-                <div className="absolute inset-0 rounded-2xl overflow-hidden pointer-events-none">
-                  <motion.div
-                    className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                    animate={{
-                      x: ['-100%', '100%'],
-                    }}
-                    transition={{
-                      duration: 2,
-                      repeat: Infinity,
-                      repeatDelay: 3,
-                      ease: 'easeInOut'
-                    }}
-                    style={{
-                      transform: 'skewX(-20deg)',
-                    }}
-                  />
-                </div>
-
-                {/* Floating Decorative Elements */}
-                <motion.div
-                  animate={{ 
-                    y: [-10, 10, -10], 
-                    rotate: [0, 5, -5, 0],
-                    opacity: [0.8, 1, 0.8] 
-                  }}
-                  transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-                  className="absolute -top-4 -right-4 w-12 h-12 bg-gradient-to-br from-amber-400 to-yellow-500 rounded-2xl shadow-lg shadow-amber-400/50 flex items-center justify-center z-20 backdrop-blur-sm border border-white/20"
-                >
-                  <div className="w-4 h-4 bg-white rounded-full opacity-90" />
-                </motion.div>
-                
-                <motion.div
-                  animate={{ 
-                    y: [10, -10, 10], 
-                    rotate: [0, -8, 8, 0],
-                    opacity: [0.7, 0.9, 0.7] 
-                  }}
-                  transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut', delay: 1.5 }}
-                  className="absolute -bottom-4 -left-4 w-8 h-8 bg-gradient-to-br from-orange-400 to-red-500 rounded-xl shadow-md shadow-orange-400/40 z-20 backdrop-blur-sm border border-white/20"
-                />
-                
-                <motion.div
-                  animate={{ 
-                    scale: [1, 1.3, 1], 
-                    opacity: [0.6, 0.9, 0.6] 
-                  }}
-                  transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut', delay: 0.8 }}
-                  className="absolute top-1/2 -left-6 w-6 h-6 bg-yellow-300 rounded-full shadow-lg z-20 backdrop-blur-sm border border-white/30"
-                />
-
-                <motion.div
-                  animate={{ 
-                    y: [-5, 5, -5], 
-                    x: [-2, 2, -2],
-                    opacity: [0.5, 0.8, 0.5] 
-                  }}
-                  transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut', delay: 2.2 }}
-                  className="absolute top-1/4 -right-6 w-4 h-4 bg-gradient-to-br from-purple-400 to-pink-500 rounded-full shadow-md z-20"
-                />
-
-                {/* Reflection Effect */}
-                <div className="absolute -bottom-2 left-0 right-0 h-8 bg-gradient-to-t from-white/10 to-transparent rounded-b-2xl opacity-60" />
-              </div>
+              </picture>
             </motion.div>
           </div>
 
@@ -258,10 +192,6 @@ export default function HeroPortfolio() {
           </motion.div>
         </div>
 
-        {/* Decorative background dots */}
-        <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-amber-500 rounded-full opacity-40 animate-pulse" />
-        <div className="absolute top-1/3 right-1/4 w-1 h-1 bg-yellow-500 rounded-full opacity-30 animate-pulse animate-delay-1s" />
-        <div className="absolute bottom-1/3 left-1/3 w-1.5 h-1.5 bg-orange-500 rounded-full opacity-35 animate-pulse animate-delay-2s" />
       </section>
   )
 

@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react'
-import { motion } from 'framer-motion'
 
 interface TypingAnimationProps {
   texts: string[]
@@ -15,7 +14,7 @@ export default function TypingAnimation({
   delay = 2000 
 }: TypingAnimationProps) {
   const [currentTextIndex, setCurrentTextIndex] = useState(0)
-  const [currentText, setCurrentText] = useState('')
+  const [currentText, setCurrentText] = useState(texts[0] ? texts[0].slice(0, 1) : '')
   const [isDeleting, setIsDeleting] = useState(false)
 
   useEffect(() => {
@@ -55,20 +54,14 @@ export default function TypingAnimation({
   }, [currentText, isDeleting, currentTextIndex, texts, speed, delay])
 
   return (
-    <motion.span 
-      className={className}
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.5 }}
-    >
+    <span className={`inline-block ${className}`}>
       {currentText}
-      <motion.span
-        animate={{ opacity: [0, 1, 0] }}
-        transition={{ duration: 1, repeat: Infinity }}
-        className="ml-1"
+      <span
+        aria-hidden="true"
+        className="ml-1 inline-block animate-cursor-blink text-amber-500 font-bold"
       >
         |
-      </motion.span>
-    </motion.span>
+      </span>
+    </span>
   )
 }

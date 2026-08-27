@@ -10,11 +10,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <!-- Optimized font loading - reduced to essential fonts only -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@400;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@400;600;700&display=swap"></noscript>
+    <!-- Optimized font loading - essential Outfit weights only -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;900&display=swap"></noscript>
 
-    <!-- Preload LCP image — browser fetches immediately before React even boots -->
+    <!-- Preload full-quality original LCP hero image -->
     <link rel="preload" href="/profile.webp" as="image" type="image/webp" fetchpriority="high">
 
     <!-- Critical inline CSS: paints background instantly, no blank screen during JS load -->

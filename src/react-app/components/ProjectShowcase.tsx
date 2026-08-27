@@ -81,16 +81,22 @@ export default function ProjectShowcase() {
                 onClick={() => setSelectedProject(project)}
               >
                 <img
-                  src={project.image}
+                  src={project.image.replace('.webp', '-thumb.webp')}
                   sizes="(max-width: 768px) 50vw, (max-width: 1024px) 50vw, 33vw"
                   alt={`${project.title} - ${project.description.substring(0, 100)}`}
                   loading="lazy"
+                  decoding="async"
                   width="400"
-                  height="300"
+                  height="225"
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                   onError={(e) => {
-                    // Fallback for broken images
+                    // Fallback to original image if thumb fails, then fallback svg
                     const target = e.target as HTMLImageElement
+                    if (!target.dataset.triedOriginal) {
+                      target.dataset.triedOriginal = 'true'
+                      target.src = project.image
+                      return
+                    }
                     target.onerror = null;
                     target.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300"%3E%3Crect fill="%23374151" width="400" height="300"/%3E%3Ctext fill="%239CA3AF" font-family="sans-serif" font-size="18" x="50%25" y="50%25" text-anchor="middle" dominant-baseline="middle"%3EImage unavailable%3C/text%3E%3C/svg%3E'
                   }}

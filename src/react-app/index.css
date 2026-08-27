@@ -662,3 +662,72 @@ img {
     scroll-behavior: auto !important;
   }
 }
+
+/* GPU-accelerated CSS Keyframe Animations (0ms main-thread cost) */
+@keyframes float-gentle {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+  50% {
+    transform: translate3d(0, -8px, 0) rotate(3deg);
+  }
+}
+
+@keyframes float-reverse {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+  50% {
+    transform: translate3d(0, 8px, 0) rotate(-4deg);
+  }
+}
+
+@keyframes pulse-orb {
+  0%, 100% {
+    transform: scale3d(1, 1, 1);
+    opacity: 0.05;
+  }
+  50% {
+    transform: scale3d(1.2, 1.2, 1);
+    opacity: 0.1;
+  }
+}
+
+@keyframes pulse-orb-delayed {
+  0%, 100% {
+    transform: scale3d(1, 1, 1);
+    opacity: 0.04;
+  }
+  50% {
+    transform: scale3d(1.3, 1.3, 1);
+    opacity: 0.08;
+  }
+}
+
+@keyframes cursor-blink {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 1; }
+}
+
+.animate-float-gentle {
+  animation: float-gentle 4s ease-in-out infinite;
+  will-change: transform;
+}
+
+.animate-float-reverse {
+  animation: float-reverse 5s ease-in-out infinite;
+  will-change: transform;
+}
+
+.animate-pulse-orb {
+  animation: pulse-orb 8s ease-in-out infinite;
+}
+
+.animate-pulse-orb-delayed {
+  animation: pulse-orb-delayed 10s ease-in-out infinite;
+}
+
+.animate-cursor-blink {
+  animation: cursor-blink 1s infinite;
+}
+

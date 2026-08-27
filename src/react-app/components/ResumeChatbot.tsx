@@ -154,8 +154,12 @@ export default function ResumeChatbot() {
               <div className="flex items-center gap-2">
                 <div className="w-8 h-8 rounded-full bg-white/20 p-0.5 border border-white/30 flex items-center justify-center overflow-hidden flex-shrink-0">
                   <img 
-                    src="/chatbot.webp" 
+                    src="/chatbot-80.webp" 
                     alt="AI Avatar" 
+                    width="32"
+                    height="32"
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-cover rounded-full"
                   />
                 </div>
@@ -179,8 +183,12 @@ export default function ResumeChatbot() {
                   {msg.sender === 'ai' && (
                     <div className="w-8 h-8 rounded-full bg-white border border-amber-100 shadow-sm flex items-center justify-center overflow-hidden flex-shrink-0">
                       <img 
-                        src="/chatbot.webp" 
+                        src="/chatbot-80.webp" 
                         alt="AI Avatar" 
+                        width="32"
+                        height="32"
+                        loading="lazy"
+                        decoding="async"
                         className="w-full h-full object-cover"
                       />
                     </div>
@@ -199,8 +207,12 @@ export default function ResumeChatbot() {
                 <div className="flex justify-start items-start gap-2">
                   <div className="w-8 h-8 rounded-full bg-white border border-amber-100 shadow-sm flex items-center justify-center overflow-hidden flex-shrink-0">
                     <img 
-                      src="/chatbot.webp" 
+                      src="/chatbot-80.webp" 
                       alt="AI Avatar" 
+                      width="32"
+                      height="32"
+                      loading="lazy"
+                      decoding="async"
                       className="w-full h-full object-cover"
                     />
                   </div>
@@ -288,8 +300,12 @@ export default function ResumeChatbot() {
             <div className="absolute inset-0 bg-amber-400/20 rounded-full blur-xl scale-75 animate-pulse" />
             
             <img 
-              src="/chatbot.webp" 
+              src="/chatbot-160.webp" 
               alt="Open Chatbot" 
+              width="80"
+              height="88"
+              loading="lazy"
+              decoding="async"
               className="w-16 h-16 sm:w-20 sm:h-20 object-contain drop-shadow-[0_8px_16px_rgba(245,158,11,0.4)] hover:drop-shadow-[0_12px_20px_rgba(245,158,11,0.5)] transition-all duration-300"
             />
           </div>

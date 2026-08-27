@@ -35,7 +35,7 @@ export const projects: Project[] = [
     description: 'Production-ready full-stack application that transforms plain English project ideas into comprehensive system architectures using Google Gemini AI, featuring JWT authentication, Redis caching, and real-time diagram generation.',
     type: 'fullstack',
     technologies: ['Python', 'FastAPI', 'React 19', 'Google Gemini AI', 'PostgreSQL', 'Redis', 'Docker'],
-    image: '/AI Architecture Generator project immage.webp',
+    image: '/ai-architecture-generator.webp',
     demoUrl: 'https://ai-architecture.onrender.com/',
     githubUrl: 'https://github.com/irfanshaikh110805-glitch/AI-Architecture-Generator',
     highlights: [
@@ -249,7 +249,7 @@ export const milestones: Milestone[] = [
   {
     year: '2023 – 2026',
     title: 'BCA Graduate — Industry-Ready Professional',
-    description: 'Completed Bachelor of Computer Applications with 9+ deployed production projects, 3 internships, 7+ certifications, and expertise in AI/ML, full-stack development, and scalable cloud deployments.',
+    description: 'Completed Bachelor of Computer Applications with 9+ deployed production projects, 3 internships, 9 certifications, and expertise in AI/ML, full-stack development, and scalable cloud deployments.',
     color: 'milestone-orange',
     align: 'left'
   }

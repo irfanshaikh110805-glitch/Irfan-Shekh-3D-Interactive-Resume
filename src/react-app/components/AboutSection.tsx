@@ -190,7 +190,7 @@ export default function AboutSection() {
               { number: '9+', label: 'Deployed Projects', color: '#f59e0b' },
               { number: '3', label: 'Internships Completed', color: '#eab308' },
               { number: 'BCA', label: 'Graduate 2023–2026', color: '#fbbf24' },
-              { number: '7+', label: 'Certifications', color: '#f97316' }
+              { number: '9', label: 'Certifications', color: '#f97316' }
             ].map((stat, index) => (
               <motion.div
                 key={index}

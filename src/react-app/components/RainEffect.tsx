@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { CloudRain, EyeOff, Droplets, Cloud, Sparkles } from 'lucide-react'
+import { CloudRain, EyeOff, Droplets, Code2, Sparkles } from 'lucide-react'
 
 interface RainDrop {
   x: number
@@ -307,285 +307,89 @@ export default function RainEffect() {
 
   return (
     <div className="fixed inset-0 pointer-events-none z-[80] overflow-hidden">
-      {/* Dynamic Small 3D Clouds Floating Across the Sky */}
+      {/* Dynamic Modern Floating Tech Symbols & Cyber Particle Mesh */}
       {cloudsVisible && (
-        <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          {/* Cloud 1: Small foreground cloud floating across left to right - HIDDEN ON MOBILE */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden select-none">
+          {/* Tech Glyph 1: <developer /> - Upper Left to Right */}
           <motion.div
-            className="absolute top-2 sm:top-4 w-24 sm:w-40 md:w-48 lg:w-56 select-none pointer-events-none hidden sm:block"
-            initial={{ x: '-25vw' }}
-            animate={{
-              x: '110vw'
-            }}
-            transition={{
-              duration: 70,
-              repeat: Infinity,
-              ease: 'linear'
-            }}
-            style={{
-              filter: 'drop-shadow(0 10px 20px rgba(30, 58, 138, 0.06))',
-              opacity: 0.88
-            }}
+            className="absolute top-4 sm:top-7 select-none pointer-events-none"
+            initial={{ x: '-20vw' }}
+            animate={{ x: '110vw' }}
+            transition={{ duration: 65, repeat: Infinity, ease: 'linear' }}
           >
-            <motion.div
-              animate={{
-                y: [0, 8, -6, 0],
-                rotate: [0, 1.2, -1.2, 0]
-              }}
-              transition={{
-                duration: 7,
-                repeat: Infinity,
-                ease: 'easeInOut'
-              }}
-            >
-              <img
-                src="/cloud-3d.webp"
-                alt="3D Floating Cloud"
-                className="w-full h-auto transform scale-x-[-1]"
-                onError={(e) => {
-                  (e.target as HTMLImageElement).src = '/cloud-3d.png'
-                }}
-              />
-            </motion.div>
+            <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/75 backdrop-blur-md border border-amber-300/40 text-amber-700/80 font-mono text-[11px] font-semibold shadow-sm hover:shadow-md transition-shadow">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+              <span>{'<developer />'}</span>
+            </div>
           </motion.div>
 
-          {/* Cloud 2: Compact midground cloud drifting right to left - HIDDEN ON MOBILE */}
+          {/* Tech Glyph 2: { AI / ML } - Upper Right to Left */}
           <motion.div
-            className="absolute top-6 sm:top-10 w-20 sm:w-32 md:w-40 lg:w-44 select-none pointer-events-none hidden sm:block"
+            className="absolute top-10 sm:top-14 select-none pointer-events-none hidden sm:block"
             initial={{ x: '110vw' }}
-            animate={{
-              x: '-30vw'
-            }}
-            transition={{
-              duration: 85,
-              repeat: Infinity,
-              ease: 'linear',
-              delay: 8
-            }}
-            style={{
-              filter: 'drop-shadow(0 8px 16px rgba(30, 58, 138, 0.05))',
-              opacity: 0.80
-            }}
+            animate={{ x: '-25vw' }}
+            transition={{ duration: 75, repeat: Infinity, ease: 'linear', delay: 5 }}
           >
-            <motion.div
-              animate={{
-                y: [0, -7, 6, 0],
-                rotate: [0, -1, 1, 0]
-              }}
-              transition={{
-                duration: 8.5,
-                repeat: Infinity,
-                ease: 'easeInOut'
-              }}
-            >
-              <img
-                src="/cloud-3d.webp"
-                alt="3D Drifting Cloud"
-                className="w-full h-auto"
-                onError={(e) => {
-                  (e.target as HTMLImageElement).src = '/cloud-3d.png'
-                }}
-              />
-            </motion.div>
+            <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/75 backdrop-blur-md border border-yellow-300/40 text-yellow-700/80 font-mono text-[11px] font-semibold shadow-sm">
+              <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-ping" />
+              <span>{'{ AI / ML }'}</span>
+            </div>
           </motion.div>
 
-          {/* Cloud 3: Small distant cloud gliding slowly across center-high sky - VISIBLE ON MOBILE */}
+          {/* Tech Glyph 3: ( ) => deploy() - Gliding across center */}
           <motion.div
-            className="absolute top-1 sm:top-2 w-16 sm:w-28 md:w-32 lg:w-36 select-none pointer-events-none"
-            initial={{ x: '15vw' }}
-            animate={{
-              x: '110vw'
-            }}
-            transition={{
-              duration: 95,
-              repeat: Infinity,
-              ease: 'linear',
-              delay: 0
-            }}
-            style={{
-              filter: 'drop-shadow(0 6px 12px rgba(30, 58, 138, 0.04))',
-              opacity: 0.72
-            }}
+            className="absolute top-2 sm:top-4 select-none pointer-events-none"
+            initial={{ x: '25vw' }}
+            animate={{ x: '115vw' }}
+            transition={{ duration: 80, repeat: Infinity, ease: 'linear' }}
           >
-            <motion.div
-              animate={{
-                y: [0, 5, -5, 0]
-              }}
-              transition={{
-                duration: 6,
-                repeat: Infinity,
-                ease: 'easeInOut'
-              }}
-            >
-              <img
-                src="/cloud-3d.webp"
-                alt="3D Background Cloud"
-                className="w-full h-auto opacity-75"
-                onError={(e) => {
-                  (e.target as HTMLImageElement).src = '/cloud-3d.png'
-                }}
-              />
-            </motion.div>
+            <div className="flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-white/70 backdrop-blur-md border border-orange-300/30 text-orange-700/75 font-mono text-[10px] font-medium shadow-xs">
+              <span>{'() => deploy()'}</span>
+            </div>
           </motion.div>
 
-          {/* Cloud 4: Delicate accent cloud drifting on upper right - VISIBLE ON MOBILE */}
+          {/* Tech Glyph 4: [ React 19 ] - Subtle drifting badge */}
           <motion.div
-            className="absolute top-8 sm:top-14 w-14 sm:w-24 md:w-28 lg:w-32 select-none pointer-events-none"
-            initial={{ x: '75vw' }}
-            animate={{
-              x: '-25vw'
-            }}
-            transition={{
-              duration: 105,
-              repeat: Infinity,
-              ease: 'linear',
-              delay: 0
-            }}
-            style={{
-              filter: 'drop-shadow(0 6px 12px rgba(30, 58, 138, 0.04))',
-              opacity: 0.68
-            }}
+            className="absolute top-16 sm:top-24 select-none pointer-events-none hidden sm:block"
+            initial={{ x: '80vw' }}
+            animate={{ x: '-20vw' }}
+            transition={{ duration: 90, repeat: Infinity, ease: 'linear' }}
           >
-            <motion.div
-              animate={{
-                y: [0, -4, 4, 0]
-              }}
-              transition={{
-                duration: 9,
-                repeat: Infinity,
-                ease: 'easeInOut'
-              }}
-            >
-              <img
-                src="/cloud-3d.webp"
-                alt="3D Accent Cloud"
-                className="w-full h-auto opacity-65 transform scale-x-[-1]"
-                onError={(e) => {
-                  (e.target as HTMLImageElement).src = '/cloud-3d.png'
-                }}
-              />
-            </motion.div>
+            <div className="flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-white/70 backdrop-blur-md border border-cyan-300/35 text-cyan-800/75 font-mono text-[10px] font-medium shadow-xs">
+              <span className="text-cyan-500">⚛</span>
+              <span>React 19</span>
+            </div>
           </motion.div>
 
-          {/* Cloud 6: NEW - Small top cloud left to right - VISIBLE ON MOBILE */}
+          {/* Tech Glyph 5: // 0101 - Binary Matrix accent */}
           <motion.div
-            className="absolute top-4 sm:top-8 w-12 sm:w-26 md:w-30 lg:w-34 select-none pointer-events-none"
-            initial={{ x: '40vw' }}
-            animate={{
-              x: '110vw'
-            }}
-            transition={{
-              duration: 88,
-              repeat: Infinity,
-              ease: 'linear',
-              delay: 0
-            }}
-            style={{
-              filter: 'drop-shadow(0 6px 12px rgba(30, 58, 138, 0.045))',
-              opacity: 0.7
-            }}
+            className="absolute top-6 sm:top-10 select-none pointer-events-none"
+            initial={{ x: '50vw' }}
+            animate={{ x: '110vw' }}
+            transition={{ duration: 85, repeat: Infinity, ease: 'linear' }}
           >
-            <motion.div
-              animate={{
-                y: [0, 6, -5, 0],
-                rotate: [0, 1, -1, 0]
-              }}
-              transition={{
-                duration: 7.2,
-                repeat: Infinity,
-                ease: 'easeInOut'
-              }}
-            >
-              <img
-                src="/cloud-3d.webp"
-                alt="3D Small Top Cloud"
-                className="w-full h-auto opacity-70"
-                onError={(e) => {
-                  (e.target as HTMLImageElement).src = '/cloud-3d.png'
-                }}
-              />
-            </motion.div>
+            <div className="px-2 py-0.5 rounded-md bg-amber-50/60 backdrop-blur-xs border border-amber-200/30 text-amber-600/60 font-mono text-[9px] tracking-wider">
+              {'// 01001001'}
+            </div>
           </motion.div>
 
-          {/* Cloud 7: NEW - Small top cloud right to left - VISIBLE ON MOBILE */}
+          {/* Tech Glyph 6: λ full-stack - Mobile & Desktop visible */}
           <motion.div
-            className="absolute top-2 sm:top-5 w-12 sm:w-22 md:w-26 lg:w-30 select-none pointer-events-none"
-            initial={{ x: '90vw' }}
-            animate={{
-              x: '-30vw'
-            }}
-            transition={{
-              duration: 92,
-              repeat: Infinity,
-              ease: 'linear',
-              delay: 0
-            }}
-            style={{
-              filter: 'drop-shadow(0 5px 10px rgba(30, 58, 138, 0.04))',
-              opacity: 0.65
-            }}
+            className="absolute top-8 sm:top-12 select-none pointer-events-none"
+            initial={{ x: '95vw' }}
+            animate={{ x: '-25vw' }}
+            transition={{ duration: 88, repeat: Infinity, ease: 'linear' }}
           >
-            <motion.div
-              animate={{
-                y: [0, -5, 6, 0],
-                rotate: [0, -1.1, 1.1, 0]
-              }}
-              transition={{
-                duration: 8.2,
-                repeat: Infinity,
-                ease: 'easeInOut'
-              }}
-            >
-              <img
-                src="/cloud-3d.webp"
-                alt="3D Small Top Cloud"
-                className="w-full h-auto opacity-70 transform scale-x-[-1]"
-                onError={(e) => {
-                  (e.target as HTMLImageElement).src = '/cloud-3d.png'
-                }}
-              />
-            </motion.div>
+            <div className="flex items-center gap-1 px-2 py-0.5 rounded-full bg-white/70 backdrop-blur-md border border-amber-300/30 text-amber-700/70 font-mono text-[10px]">
+              <span className="text-amber-500 font-bold">λ</span>
+              <span>full-stack</span>
+            </div>
           </motion.div>
 
-          {/* Cloud 5: NEW - Additional cloud for more dynamic sky - HIDDEN ON MOBILE */}
-          <motion.div
-            className="absolute top-3 sm:top-6 w-22 sm:w-36 md:w-42 lg:w-48 select-none pointer-events-none hidden sm:block"
-            initial={{ x: '-30vw' }}
-            animate={{
-              x: '115vw'
-            }}
-            transition={{
-              duration: 80,
-              repeat: Infinity,
-              ease: 'linear',
-              delay: 45
-            }}
-            style={{
-              filter: 'drop-shadow(0 8px 18px rgba(30, 58, 138, 0.055))',
-              opacity: 0.75
-            }}
-          >
-            <motion.div
-              animate={{
-                y: [0, -6, 7, 0],
-                rotate: [0, -0.8, 0.8, 0]
-              }}
-              transition={{
-                duration: 7.5,
-                repeat: Infinity,
-                ease: 'easeInOut'
-              }}
-            >
-              <img
-                src="/cloud-3d.webp"
-                alt="3D Additional Cloud"
-                className="w-full h-auto"
-                onError={(e) => {
-                  (e.target as HTMLImageElement).src = '/cloud-3d.png'
-                }}
-              />
-            </motion.div>
-          </motion.div>
+          {/* Subtle Ambient Tech Particles / Glowing Circuit Nodes */}
+          <div className="absolute top-1/6 left-1/5 w-2 h-2 rounded-full bg-amber-400/40 blur-[1px] animate-pulse" />
+          <div className="absolute top-1/4 right-1/4 w-1.5 h-1.5 rounded-full bg-yellow-400/50 blur-[1px] animate-ping" />
+          <div className="absolute top-1/8 right-1/3 w-1 h-1 rounded-full bg-orange-400/45 blur-[0.5px] animate-pulse" />
         </div>
       )}
 
@@ -676,17 +480,17 @@ export default function RainEffect() {
                   </div>
                 </div>
 
-                {/* Cloud layer toggle */}
+                {/* Tech Atmosphere layer toggle */}
                 <div className="flex items-center justify-between pt-1 border-t border-gray-100">
                   <span className="text-[11px] text-gray-600 flex items-center gap-1">
-                    <Cloud className="w-3 h-3 text-sky-500" />
-                    3D Clouds
+                    <Code2 className="w-3 h-3 text-amber-500" />
+                    Tech Atmosphere
                   </span>
                   <button
                     onClick={() => setCloudsVisible(!cloudsVisible)}
                     className={`text-[10px] px-2 py-0.5 rounded-full font-semibold transition-colors ${
                       cloudsVisible
-                        ? 'bg-sky-100 text-sky-700'
+                        ? 'bg-amber-100 text-amber-700'
                         : 'bg-gray-100 text-gray-500'
                     }`}
                   >

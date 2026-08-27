@@ -15,7 +15,7 @@
     "caniuse-lite": "^1.0.30001809",
     "cors": "^2.8.6",
     "dotenv": "^17.4.2",
-    "esbuild": "^0.28.0",
+    "esbuild": "^0.28.2",
     "express": "^5.2.1",
     "framer-motion": "^12.23.12",
     "hono": "^4.9.8",
@@ -26,6 +26,9 @@
     "react-router": "^7.5.3",
     "react-router-dom": "^7.9.3",
     "zod": "^3.24.3"
+  },
+  "overrides": {
+    "esbuild": "^0.28.2"
   },
   "devDependencies": {
     "@cloudflare/vite-plugin": "^1.12.0",

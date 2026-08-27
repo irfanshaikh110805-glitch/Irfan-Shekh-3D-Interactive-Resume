@@ -140,12 +140,14 @@ export default function Home() {
         </>
       )}
 
-      {/* Rain Effect - Available on all devices */}
-      <Suspense fallback={null}>
-        <div className="relative">
-          <RainEffect />
-        </div>
-      </Suspense>
+      {/* Rain Effect - Delayed until main thread is idle after hero paints */}
+      <DelayedMount delay={600}>
+        <Suspense fallback={null}>
+          <div className="relative">
+            <RainEffect />
+          </div>
+        </Suspense>
+      </DelayedMount>
 
       {/* Navigation */}
       <Navigation activeSection={activeSection} setActiveSection={setActiveSection} />
