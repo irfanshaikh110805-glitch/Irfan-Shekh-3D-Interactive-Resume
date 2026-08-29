@@ -86,7 +86,7 @@ const socialLinks = [
   {
     icon: WhatsappIcon,
     label: 'WhatsApp',
-    href: 'https://wa.link/5fgh90',
+    href: 'https://wa.me/919964264412?text=Hi%20Irfan!%20%F0%9F%91%8B%20I%20came%20across%20your%20portfolio%20and%20would%20like%20to%20connect%20regarding%20a%20project%20%2F%20opportunity.',
     color: '#25d366'
   }
 ]

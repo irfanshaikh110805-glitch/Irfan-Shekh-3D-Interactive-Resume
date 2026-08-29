@@ -11,7 +11,10 @@ const certsDir = path.join(publicDir, 'cirtificats');
 
 async function optimizeImages() {
   console.log('--- Preserving Original Full-Quality Profile Image ---');
-  let profileSrc = path.join(__dirname, 'profile pic.png');
+  let profileSrc = path.join(__dirname, 'new profile.png');
+  if (!fs.existsSync(profileSrc)) {
+    profileSrc = path.join(__dirname, 'profile pic.png');
+  }
   if (!fs.existsSync(profileSrc)) {
     profileSrc = path.join(__dirname, 'profile.png');
   }

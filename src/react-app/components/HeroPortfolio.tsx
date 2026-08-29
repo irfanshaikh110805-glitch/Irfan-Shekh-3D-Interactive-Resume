@@ -75,15 +75,15 @@ export default function HeroPortfolio() {
                   loading="eager"
                   fetchPriority="high"
                   decoding="async"
-                  width="1317"
-                  height="1194"
-                  className="relative z-10 select-none w-full max-w-[340px] sm:max-w-[400px] md:max-w-[440px] lg:max-w-[480px] xl:max-w-[520px] transition-transform duration-500 hover:scale-[1.02]"
+                  width="720"
+                  height="1127"
+                  className="relative z-10 select-none w-full max-w-[300px] sm:max-w-[340px] md:max-w-[380px] lg:max-w-[420px] xl:max-w-[440px] transition-transform duration-500 hover:scale-[1.02]"
                   style={{
                     height: 'auto',
-                    aspectRatio: '1317 / 1194',
+                    aspectRatio: '720 / 1127',
                     filter: 'drop-shadow(0 20px 35px rgba(245, 158, 11, 0.15)) drop-shadow(0 10px 20px rgba(0, 0, 0, 0.08))',
-                    maskImage: 'linear-gradient(to bottom, rgba(0,0,0,1) 82%, rgba(0,0,0,0) 100%)',
-                    WebkitMaskImage: 'linear-gradient(to bottom, rgba(0,0,0,1) 82%, rgba(0,0,0,0) 100%)',
+                    maskImage: 'linear-gradient(to bottom, rgba(0,0,0,1) 85%, rgba(0,0,0,0) 100%)',
+                    WebkitMaskImage: 'linear-gradient(to bottom, rgba(0,0,0,1) 85%, rgba(0,0,0,0) 100%)',
                     transform: 'translateZ(0)',
                   }}
                   onError={(e) => {
