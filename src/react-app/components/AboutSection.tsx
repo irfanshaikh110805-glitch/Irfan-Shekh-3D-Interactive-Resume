@@ -100,7 +100,7 @@ export default function AboutSection() {
 
             <div className="space-y-6 text-gray-700 body-md">
               <p className="leading-loose">
-                <span className="bg-gradient-to-r from-amber-600 to-yellow-600 bg-clip-text text-transparent font-semibold text-lg">Hi! I'm Irfan Shaikh</span>, a results-driven <span className="font-semibold text-amber-600">BCA graduate</span> with hands-on experience in full-stack web development, AI/ML integration, and database management.
+                <span className="bg-gradient-to-r from-amber-600 to-yellow-600 bg-clip-text text-transparent font-semibold text-lg">Hi! I'm Irfan Shekh</span>, a results-driven <span className="font-semibold text-amber-600">BCA graduate</span> with hands-on experience in full-stack web development, AI/ML integration, and database management.
                 Skilled in building scalable applications with <span className="mono-text text-amber-700 bg-amber-50 px-2 py-1 rounded">React</span>, <span className="mono-text text-green-700 bg-green-50 px-2 py-1 rounded">Node.js</span>, and <span className="mono-text text-yellow-700 bg-yellow-50 px-2 py-1 rounded">Flask</span>, with proven work delivering AI-powered healthcare, legal-tech, and enterprise-grade solutions.
               </p>
 

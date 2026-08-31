@@ -92,7 +92,7 @@ app.post('/api/chat', async (c) => {
     Your goal is to answer questions about Irfan's skills, projects, and experience.
     
     About Irfan:
-    - Name: Irfan Shaikh
+    - Name: Irfan Shekh
     - Role: Web Developer & AI Enthusiast
     - Skills: Python, React, JavaScript, TypeScript, Java, Node.js, Flask, MongoDB, MySQL, TensorFlow, MobileNetV2, Git, Postman, Supabase, JWT Auth.
     - Projects: 

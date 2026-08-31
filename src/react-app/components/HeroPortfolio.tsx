@@ -71,7 +71,7 @@ export default function HeroPortfolio() {
                 <source type="image/webp" srcSet="/profile.webp" />
                 <img
                   src="/profile.webp"
-                  alt="Irfan Shaikh - Full Stack Developer"
+                  alt="Irfan Shekh - Full Stack Developer"
                   loading="eager"
                   fetchPriority="high"
                   decoding="async"
@@ -116,7 +116,7 @@ export default function HeroPortfolio() {
                 <span className="text-gray-900">IRFAN</span>
                 {' '}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-600 via-yellow-500 to-amber-600">
-                  SHAIKH
+                  SHEKH
                 </span>
               </h1>
             </div>
@@ -160,7 +160,7 @@ export default function HeroPortfolio() {
 
               <motion.a
                 href="/resume.pdf"
-                download="Irfan_Shaikh_Resume.pdf"
+                download="Irfan_Shekh_Resume.pdf"
                 className="group px-5 sm:px-8 py-3 sm:py-4 border-2 border-gray-200 bg-white/80 backdrop-blur-sm text-gray-900 rounded-xl font-semibold text-sm sm:text-base flex items-center justify-center gap-2 sm:gap-3 hover:border-amber-400 hover:bg-white hover:shadow-lg transition-all duration-300"
                 whileHover={{ scale: 1.02, y: -2 }}
                 whileTap={{ scale: 0.98 }}

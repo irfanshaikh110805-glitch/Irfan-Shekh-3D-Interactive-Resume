@@ -68,7 +68,7 @@ export default function ResumeChatbot() {
     
     // About/Who
     if (lowerMessage.includes('who') || lowerMessage.includes('about') || lowerMessage.includes('introduce')) {
-      return "Hi! I'm Irfan's AI assistant.\n\nIrfan Shaikh is a results-driven BCA graduate and Full-Stack Developer from Vijayapura, Karnataka. He specializes in building scalable web applications with React, Node.js, Flask, and Spring Boot, with proven expertise in AI/ML integration.\n\nHighlights:\n• 3 internships completed\n• 9+ production projects deployed\n• Expertise in AI/ML, full-stack development\n• Creates innovative solutions for real-world problems"
+      return "Hi! I'm Irfan's AI assistant.\n\nIrfan Shekh is a results-driven BCA graduate and Full-Stack Developer from Vijayapura, Karnataka. He specializes in building scalable web applications with React, Node.js, Flask, and Spring Boot, with proven expertise in AI/ML integration.\n\nHighlights:\n• 3 internships completed\n• 9+ production projects deployed\n• Expertise in AI/ML, full-stack development\n• Creates innovative solutions for real-world problems"
     }
     
     // Greetings

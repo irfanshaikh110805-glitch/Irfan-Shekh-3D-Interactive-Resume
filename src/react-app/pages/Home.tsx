@@ -251,7 +251,7 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div>
               <h3 className="text-2xl font-bold bg-gradient-to-r from-amber-400 to-yellow-300 bg-clip-text text-transparent mb-4">
-                Irfan Shaikh
+                Irfan Shekh
               </h3>
               <p className="text-gray-600 mb-4">
                 Full-Stack Developer & AI/ML Engineer. Building digital experiences
@@ -292,7 +292,7 @@ export default function Home() {
           </div>
 
           <div className="border-t border-gray-200 mt-8 pt-8 text-center text-gray-500">
-            <p>© 2026 Irfan Shaikh. All rights reserved. Crafted with passion and code.</p>
+            <p>© 2026 Irfan Shekh. All rights reserved. Crafted with passion and code.</p>
           </div>
         </div>
       </footer>
