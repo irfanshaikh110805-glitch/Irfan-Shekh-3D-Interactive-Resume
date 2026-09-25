@@ -22,17 +22,6 @@ const getTypeClass = (type: string) => `project-type-${type}`
 
 const getColorClass = getProjectColorClass
 
-const getColorOpacityClass = (color: string) => {
-  const colorMap: Record<string, string> = {
-    '#f59e0b': 'project-color-amber-opacity',
-    '#d97706': 'project-color-green-opacity',
-    '#eab308': 'project-color-purple-opacity',
-    '#f97316': 'project-color-red-opacity',
-    '#fbbf24': 'project-color-orange-opacity',
-    '#dc2626': 'project-color-red-dark-opacity'
-  }
-  return colorMap[color] || 'project-color-amber-opacity'
-}
 
 export default function ProjectShowcase() {
   const isMobile = useMobileDetection()
@@ -61,7 +50,7 @@ export default function ProjectShowcase() {
 
   return (
     <div className="w-full">
-      <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 md:gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
         {projects.map((project, index) => {
           const Icon = typeIcons[project.type]
           
@@ -72,146 +61,144 @@ export default function ProjectShowcase() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="group relative bg-white rounded-2xl overflow-hidden border border-gray-200 hover:border-gray-300 transition-all duration-500 shadow-sm"
-              whileHover={{ y: -5, boxShadow: '0 20px 40px rgba(0,0,0,0.3)' }}
+              className="group relative bg-white rounded-3xl p-3 sm:p-4 border border-gray-100 shadow-[-4px_-4px_12px_rgba(255,255,255,1),4px_6px_18px_rgba(0,0,0,0.05)] hover:shadow-[-6px_-6px_16px_rgba(255,255,255,1),6px_12px_24px_rgba(0,0,0,0.09)] transition-all duration-500 flex flex-col justify-between"
+              whileHover={{ y: -6 }}
             >
-              {/* Project Image Container */}
-              <div 
-                className="relative h-28 min-[375px]:h-36 sm:h-44 md:h-48 overflow-hidden cursor-pointer"
-                onClick={() => setSelectedProject(project)}
-              >
-                <img
-                  src={project.image.replace('.webp', '-thumb.webp')}
-                  sizes="(max-width: 768px) 50vw, (max-width: 1024px) 50vw, 33vw"
-                  alt={`${project.title} - ${project.description.substring(0, 100)}`}
-                  loading="lazy"
-                  decoding="async"
-                  width="400"
-                  height="225"
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                  onError={(e) => {
-                    // Fallback to original image if thumb fails, then fallback svg
-                    const target = e.target as HTMLImageElement
-                    if (!target.dataset.triedOriginal) {
-                      target.dataset.triedOriginal = 'true'
-                      target.src = project.image
-                      return
-                    }
-                    target.onerror = null;
-                    target.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300"%3E%3Crect fill="%23374151" width="400" height="300"/%3E%3Ctext fill="%239CA3AF" font-family="sans-serif" font-size="18" x="50%25" y="50%25" text-anchor="middle" dominant-baseline="middle"%3EImage unavailable%3C/text%3E%3C/svg%3E'
-                  }}
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent opacity-60" />
-                
-                {/* Click to zoom overlay */}
-                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-all duration-300">
-                  <div className="p-2 min-[375px]:p-3 bg-white/10 backdrop-blur-md rounded-full border border-white/20 text-white transform scale-90 group-hover:scale-100 transition-transform duration-300">
-                    <ZoomIn size={20} className="w-4 h-4 min-[375px]:w-5 min-[375px]:h-5" />
+              <div>
+                {/* Sunken Bezel Display Frame */}
+                <div className="p-1.5 rounded-2xl bg-gray-50 border border-gray-100 mb-4">
+                  <div 
+                    className="relative h-44 sm:h-48 md:h-52 overflow-hidden rounded-xl cursor-pointer"
+                    onClick={() => setSelectedProject(project)}
+                  >
+                    <img
+                      src={project.image.replace('.webp', '-thumb.webp')}
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      alt={`${project.title} - ${project.description.substring(0, 100)}`}
+                      loading="lazy"
+                      decoding="async"
+                      width="400"
+                      height="225"
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      onError={(e) => {
+                        const target = e.target as HTMLImageElement
+                        if (!target.dataset.triedOriginal) {
+                          target.dataset.triedOriginal = 'true'
+                          target.src = project.image
+                          return
+                        }
+                        target.onerror = null;
+                        target.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300"%3E%3Crect fill="%23374151" width="400" height="300"/%3E%3Ctext fill="%239CA3AF" font-family="sans-serif" font-size="18" x="50%25" y="50%25" text-anchor="middle" dominant-baseline="middle"%3EImage unavailable%3C/text%3E%3C/svg%3E'
+                      }}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-transparent to-transparent opacity-60" />
+                    
+                    {/* Click to zoom overlay */}
+                    <div className="absolute inset-0 bg-black/35 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-all duration-300">
+                      <div className="p-2.5 bg-white/90 backdrop-blur-md rounded-full shadow-md text-gray-900 transform scale-90 group-hover:scale-100 transition-transform duration-300">
+                        <ZoomIn size={18} />
+                      </div>
+                    </div>
+
+                    {/* Project Type Badge */}
+                    <div className={`absolute top-3 left-3 flex items-center gap-1.5 px-3 py-1 rounded-full text-white text-xs font-bold shadow-md ${getTypeClass(project.type)}`}>
+                      <Icon size={13} />
+                      <span>{project.type.charAt(0).toUpperCase() + project.type.slice(1)}</span>
+                    </div>
+
+                    {/* Action Buttons - Always Accessible with tactile feedback */}
+                    <div className="absolute top-3 right-3 flex gap-2 z-20">
+                      {project.demoUrl && (
+                        <motion.button
+                          onClick={(e) => {
+                            e.stopPropagation()
+                            if (project.demoUrl !== '#') {
+                              window.open(project.demoUrl, '_blank')
+                            }
+                          }}
+                          disabled={project.demoUrl === '#'}
+                          title={project.demoUrl === '#' ? `${project.title} demo coming soon!` : `View live demo of ${project.title}`}
+                          aria-label={`View live demo of ${project.title}`}
+                          className={`p-2 rounded-full bg-white/90 backdrop-blur-md text-gray-800 shadow-sm border border-gray-100 transition-all duration-300 ${project.demoUrl === '#' ? 'opacity-50 cursor-not-allowed' : 'hover:shadow-md hover:text-amber-600'}`}
+                          whileHover={project.demoUrl !== '#' ? { scale: 1.1 } : {}}
+                          whileTap={project.demoUrl !== '#' ? { scale: 0.95 } : {}}
+                        >
+                          <ExternalLink size={15} />
+                        </motion.button>
+                      )}
+                      {project.githubUrl && (
+                        <motion.button
+                          onClick={(e) => {
+                            e.stopPropagation()
+                            if (project.githubUrl !== '#') {
+                              window.open(project.githubUrl, '_blank')
+                            }
+                          }}
+                          disabled={project.githubUrl === '#'}
+                          title={project.githubUrl === '#' ? `Source code is private` : `View source code of ${project.title}`}
+                          aria-label={`View source code of ${project.title}`}
+                          className={`p-2 rounded-full bg-white/90 backdrop-blur-md text-gray-800 shadow-sm border border-gray-100 transition-all duration-300 ${project.githubUrl === '#' ? 'opacity-50 cursor-not-allowed' : 'hover:shadow-md hover:text-amber-600'}`}
+                          whileHover={project.githubUrl !== '#' ? { scale: 1.1 } : {}}
+                          whileTap={project.githubUrl !== '#' ? { scale: 0.95 } : {}}
+                        >
+                          <GithubIcon size={15} />
+                        </motion.button>
+                      )}
+                    </div>
                   </div>
                 </div>
 
-                {/* Project Type Badge */}
-                <div className={`absolute top-2 left-2 min-[375px]:top-4 min-[375px]:left-4 flex items-center gap-1 px-1.5 py-0.5 min-[375px]:px-2.5 min-[375px]:py-1 rounded-full text-white text-[10px] min-[375px]:text-xs sm:text-sm font-medium ${getTypeClass(project.type)}`}>
-                  <Icon size={12} className="min-[375px]:w-3.5 min-[375px]:h-3.5 md:w-4 md:h-4" />
-                  <span className="hidden min-[375px]:inline">{project.type.charAt(0).toUpperCase() + project.type.slice(1)}</span>
-                </div>
+                {/* Project Content */}
+                <div className="px-2 pb-2">
+                  <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 mb-2 group-hover:text-amber-600 transition-all duration-300 leading-snug">
+                    {project.title}
+                  </h3>
+                  <p className="text-xs sm:text-sm text-gray-600 leading-relaxed mb-4 line-clamp-3">
+                    {project.description}
+                  </p>
 
-                {/* Action Buttons - Always Visible */}
-                <div className="absolute top-2 right-2 min-[375px]:top-4 min-[375px]:right-4 flex gap-1 min-[375px]:gap-2 transition-all duration-300 z-20">
-                  {project.demoUrl && (
-                    <motion.button
-                      onClick={(e) => {
-                        e.stopPropagation()
-                        if (project.demoUrl !== '#') {
-                          window.open(project.demoUrl, '_blank')
-                        }
-                      }}
-                      disabled={project.demoUrl === '#'}
-                      title={project.demoUrl === '#' ? `${project.title} demo coming soon!` : `View live demo of ${project.title}`}
-                      aria-label={`View live demo of ${project.title}`}
-                      className={`p-1.5 min-[375px]:p-2.5 bg-white/90 backdrop-blur-sm rounded-full text-gray-900 shadow-lg transition-all duration-300 ${project.demoUrl === '#' ? 'opacity-50 cursor-not-allowed' : 'hover:bg-white hover:shadow-xl'}`}
-                      whileHover={project.demoUrl !== '#' ? { scale: 1.1 } : {}}
-                      whileTap={project.demoUrl !== '#' ? { scale: 0.95 } : {}}
-                    >
-                      <ExternalLink size={14} className="min-[375px]:w-4 min-[375px]:h-4 md:w-[18px] md:h-[18px]" />
-                    </motion.button>
-                  )}
-                  {project.githubUrl && (
-                    <motion.button
-                      onClick={(e) => {
-                        e.stopPropagation()
-                        if (project.githubUrl !== '#') {
-                          window.open(project.githubUrl, '_blank')
-                        }
-                      }}
-                      disabled={project.githubUrl === '#'}
-                      title={project.githubUrl === '#' ? `Source code is private` : `View source code of ${project.title}`}
-                      aria-label={`View source code of ${project.title}`}
-                      className={`p-1.5 min-[375px]:p-2.5 bg-white/90 backdrop-blur-sm rounded-full text-gray-900 shadow-lg transition-all duration-300 ${project.githubUrl === '#' ? 'opacity-50 cursor-not-allowed' : 'hover:bg-white hover:shadow-xl'}`}
-                      whileHover={project.githubUrl !== '#' ? { scale: 1.1 } : {}}
-                      whileTap={project.githubUrl !== '#' ? { scale: 0.95 } : {}}
-                    >
-                      <GithubIcon size={14} className="min-[375px]:w-4 min-[375px]:h-4 md:w-[18px] md:h-[18px]" />
-                    </motion.button>
-                  )}
-                </div>
-              </div>
-
-              {/* Project Content */}
-              <div className="p-3 min-[375px]:p-4 md:p-6">
-                <h3 className="text-sm min-[375px]:text-base md:text-lg lg:text-xl font-bold text-gray-900 mb-1.5 md:mb-4 group-hover:text-amber-600 transition-all duration-300 leading-snug line-clamp-1">
-                  {project.title}
-                </h3>
-                <p className="text-[11px] min-[375px]:text-xs md:text-sm text-gray-700 leading-relaxed mb-3 md:mb-4 line-clamp-3 md:line-clamp-none">
-                  {project.description}
-                </p>
-
-                {/* Technologies */}
-                <div className="flex flex-wrap gap-1 min-[375px]:gap-1.5 md:gap-2 mb-3 md:mb-4">
-                  {project.technologies.slice(0, isMobile ? 3 : project.technologies.length).map((tech, techIndex) => (
-                    <motion.span
-                      key={tech}
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.3, delay: techIndex * 0.05 }}
-                      className="px-1.5 py-0.5 md:px-2 md:py-1 bg-gray-100 text-gray-700 text-[9px] min-[375px]:text-[11px] md:text-xs rounded-full border border-gray-200"
-                    >
-                      {tech}
-                    </motion.span>
-                  ))}
-                  {isMobile && project.technologies.length > 3 && (
-                    <span className="px-1.5 py-0.5 bg-gray-100 text-gray-500 text-[9px] min-[375px]:text-[11px] rounded-full border border-gray-200">
-                      +{project.technologies.length - 3}
-                    </span>
-                  )}
-                </div>
-
-                {/* Highlights */}
-                <div className="hidden sm:block space-y-2">
-                  <h4 className="text-xs font-semibold text-gray-600 uppercase tracking-wide">
-                    Key Features
-                  </h4>
-                  <div className="space-y-1">
-                    {project.highlights.map((highlight, highlightIndex) => (
-                      <motion.div
-                        key={highlightIndex}
-                        initial={{ opacity: 0, x: -20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
+                  {/* Technologies Chips */}
+                  <div className="flex flex-wrap gap-1.5 mb-4">
+                    {project.technologies.slice(0, isMobile ? 3 : project.technologies.length).map((tech, techIndex) => (
+                      <motion.span
+                        key={tech}
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true }}
-                        transition={{ duration: 0.4, delay: highlightIndex * 0.1 }}
-                        className="flex items-center text-sm text-gray-700"
+                        transition={{ duration: 0.3, delay: techIndex * 0.05 }}
+                        className="px-2.5 py-1 bg-gray-50 border border-gray-200/60 text-gray-700 text-[11px] font-semibold rounded-full shadow-sm"
                       >
-                        <div className={`w-2 h-2 rounded-full mr-3 flex-shrink-0 ${getColorClass(project.color)}`} />
-                        {highlight}
-                      </motion.div>
+                        {tech}
+                      </motion.span>
                     ))}
+                    {isMobile && project.technologies.length > 3 && (
+                      <span className="px-2.5 py-1 bg-gray-50 border border-gray-200/60 text-gray-500 text-[11px] font-semibold rounded-full shadow-sm">
+                        +{project.technologies.length - 3}
+                      </span>
+                    )}
+                  </div>
+
+                  {/* Key Highlights */}
+                  <div className="space-y-2 pt-2 border-t border-gray-100">
+                    <h4 className="text-[11px] font-bold text-gray-500 uppercase tracking-wider">
+                      Key Highlights
+                    </h4>
+                    <div className="space-y-1.5">
+                      {project.highlights.slice(0, 3).map((highlight, highlightIndex) => (
+                        <div
+                          key={highlightIndex}
+                          className="flex items-center text-xs text-gray-700"
+                        >
+                          <div className="w-3.5 h-3.5 rounded-full bg-gray-50 border border-gray-200/50 flex items-center justify-center mr-2 flex-shrink-0">
+                            <div className={`w-1.5 h-1.5 rounded-full ${getColorClass(project.color)}`} />
+                          </div>
+                          <span className="line-clamp-1">{highlight}</span>
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>
-
-              {/* Decorative Element */}
-              <div className={`absolute bottom-0 right-0 w-32 h-32 rounded-full transform translate-x-16 translate-y-16 ${getColorOpacityClass(project.color)}`} />
             </motion.div>
           )
         })}
@@ -223,17 +210,17 @@ export default function ProjectShowcase() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6, delay: 0.4 }}
-        className="text-center mt-6 md:mt-8"
+        className="text-center mt-10 md:mt-12"
       >
         <motion.button
           onClick={() => {
             window.open('https://github.com/irfanshaikh110805-glitch', '_blank')
           }}
-          className="px-6 py-3 bg-gradient-to-r from-amber-500 to-yellow-500 text-white rounded-lg font-medium hover:from-amber-600 hover:to-yellow-600 transition-all duration-300"
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
+          className="px-8 py-4 bg-gradient-to-r from-amber-500 to-yellow-500 text-white rounded-2xl font-bold text-sm sm:text-base hover:from-amber-600 hover:to-yellow-600 shadow-lg shadow-amber-500/25 hover:shadow-xl hover:shadow-amber-500/40 transition-all duration-300 cursor-pointer"
+          whileHover={{ scale: 1.04 }}
+          whileTap={{ scale: 0.96 }}
         >
-          View All Projects
+          View All Projects on GitHub
         </motion.button>
       </motion.div>
 

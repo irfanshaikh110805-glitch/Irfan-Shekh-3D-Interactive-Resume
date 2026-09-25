@@ -73,28 +73,32 @@ export default function SkillsVisualization() {
         </p>
 
         {/* Category Filter */}
-        <div className="flex flex-wrap justify-center gap-3">
-          {categories.map((category) => (
-            <motion.button
-              key={category}
-              onClick={() => setSelectedCategory(category)}
-              className={`px-5 py-2.5 rounded-full transition-all duration-300 ${selectedCategory === category
-                  ? 'bg-amber-500 text-white shadow-md'
-                  : 'bg-white border border-gray-200 text-gray-600 hover:bg-gray-50 hover:border-amber-300 uppercase text-xs font-semibold tracking-wider'
+        <div className="flex flex-wrap justify-center gap-2 p-1.5 bg-gray-100/90 rounded-2xl border border-gray-200/50 max-w-fit mx-auto mb-8 md:mb-12 shadow-inner">
+          {categories.map((category) => {
+            const isSelected = selectedCategory === category
+            return (
+              <motion.button
+                key={category}
+                onClick={() => setSelectedCategory(category)}
+                className={`px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl transition-all duration-300 text-xs sm:text-sm uppercase font-bold tracking-wider cursor-pointer ${
+                  isSelected
+                    ? 'bg-white text-amber-600 shadow-sm border border-gray-200/60'
+                    : 'text-gray-600 hover:text-gray-900 hover:bg-white/60'
                 }`}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              {category}
-            </motion.button>
-          ))}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                {category}
+              </motion.button>
+            )
+          })}
         </div>
       </motion.div>
 
       {/* Clean Skills Grid with Real Icons */}
       <motion.div
         layout
-        className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 md:gap-4"
+        className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-5"
       >
         {visibleSkills.map((skill, index) => {
           const SkillIcon = skillIcons[skill.name] || FileCode
@@ -105,17 +109,14 @@ export default function SkillsVisualization() {
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.8 }}
-              transition={{ duration: 0.4, delay: index * 0.03 }}
+              transition={{ duration: 0.4, delay: index * 0.02 }}
               key={skill.name}
-              className="group relative bg-white rounded-xl p-4 md:p-5 border border-gray-200 hover:border-amber-300 transition-all duration-300 shadow-sm hover:shadow-md overflow-hidden"
-              whileHover={{ y: -5, scale: 1.02 }}
+              className="group relative bg-white rounded-2xl p-4 md:p-5 border border-gray-100 shadow-[-3px_-3px_8px_rgba(255,255,255,1),3px_4px_14px_rgba(0,0,0,0.04)] hover:shadow-[-4px_-4px_12px_rgba(255,255,255,1),4px_8px_20px_rgba(0,0,0,0.08)] transition-all duration-300 overflow-hidden"
+              whileHover={{ y: -6, scale: 1.02 }}
             >
-              {/* Hover Glow Effect */}
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-5 transition-opacity duration-500 bg-gradient-to-br from-gray-200 to-transparent" />
-
               <div className="relative z-10 flex flex-col items-center text-center gap-3">
-                {/* Real Tech Icon with Brand Colors */}
-                <div className="w-12 h-12 md:w-14 md:h-14 rounded-xl flex items-center justify-center bg-white border border-gray-200 group-hover:scale-110 transition-transform duration-300 shadow-md group-hover:shadow-lg">
+                {/* Real Tech Icon inside Socket */}
+                <div className="w-12 h-12 md:w-14 md:h-14 rounded-2xl flex items-center justify-center bg-gray-50 border border-gray-100 shadow-inner group-hover:scale-110 transition-transform duration-300">
                   <div style={{ color: skill.color }}>
                     <SkillIcon className="w-6 h-6 md:w-7 md:h-7" />
                   </div>
@@ -126,7 +127,7 @@ export default function SkillsVisualization() {
                   <h3 className="font-display font-bold text-sm md:text-base text-gray-900 group-hover:text-amber-600 transition-colors leading-tight mb-1">
                     {skill.name}
                   </h3>
-                  <span className="text-[10px] md:text-xs text-gray-500 uppercase tracking-wider font-medium">
+                  <span className="text-[10px] md:text-xs text-gray-500 uppercase tracking-wider font-semibold">
                     {skill.category}
                   </span>
                 </div>

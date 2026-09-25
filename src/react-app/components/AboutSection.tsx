@@ -95,13 +95,13 @@ export default function AboutSection() {
           transition={{ duration: 0.8 }}
           className="space-y-6"
         >
-          <div className="bg-white rounded-2xl p-6 md:p-8 border border-gray-200 shadow-sm">
+          <div className="bg-white rounded-3xl p-6 md:p-8 border border-gray-100 shadow-[-4px_-4px_10px_rgba(255,255,255,1),4px_6px_16px_rgba(0,0,0,0.04)]">
             <h3 className="heading-sm text-gray-900 mb-6">My Journey</h3>
 
             <div className="space-y-6 text-gray-700 body-md">
               <p className="leading-loose">
                 <span className="bg-gradient-to-r from-amber-600 to-yellow-600 bg-clip-text text-transparent font-semibold text-lg">Hi! I'm Irfan Shekh</span>, a results-driven <span className="font-semibold text-amber-600">BCA graduate</span> with hands-on experience in full-stack web development, AI/ML integration, and database management.
-                Skilled in building scalable applications with <span className="mono-text text-amber-700 bg-amber-50 px-2 py-1 rounded">React</span>, <span className="mono-text text-green-700 bg-green-50 px-2 py-1 rounded">Node.js</span>, and <span className="mono-text text-yellow-700 bg-yellow-50 px-2 py-1 rounded">Flask</span>, with proven work delivering AI-powered healthcare, legal-tech, and enterprise-grade solutions.
+                Skilled in building scalable applications with <span className="mono-text text-amber-700 bg-amber-50/80 border border-amber-200/60 px-2.5 py-1 rounded-md font-semibold inline-block">React</span>, <span className="mono-text text-green-700 bg-green-50/80 border border-green-200/60 px-2.5 py-1 rounded-md font-semibold inline-block">Node.js</span>, and <span className="mono-text text-yellow-700 bg-yellow-50/80 border border-yellow-200/60 px-2.5 py-1 rounded-md font-semibold inline-block">Flask</span>, with proven work delivering AI-powered healthcare, legal-tech, and enterprise-grade solutions.
               </p>
 
               <p className="leading-loose">
@@ -109,12 +109,9 @@ export default function AboutSection() {
               </p>
 
               <p className="leading-loose">
-                Successfully completed <span className="font-bold text-amber-600">3 internships</span> (Machine Learning — SkillCraft Technology, Java Full Stack — MTD Mysuru, Full-Stack Development — Smt Kumudben Darbar College) and deployed <span className="font-bold text-yellow-600">9+ production projects</span> with expertise in <span className="bg-gradient-to-r from-amber-600 to-yellow-600 bg-clip-text text-transparent font-semibold">AI/ML technologies</span> (TensorFlow, NLP, Computer Vision, OCR, RAG), modern frameworks (<span className="mono-text text-orange-700 bg-orange-50 px-2 py-1 rounded">Spring Boot</span>, <span className="mono-text text-amber-700 bg-amber-50 px-2 py-1 rounded">Flask</span>, <span className="mono-text text-green-700 bg-green-50 px-2 py-1 rounded">React</span>, <span className="mono-text text-yellow-700 bg-yellow-50 px-2 py-1 rounded">Node.js</span>), and cloud deployment platforms (Render, Netlify).
+                Successfully completed <span className="font-bold text-amber-600">3 internships</span> (Machine Learning — SkillCraft Technology, Java Full Stack — MTD Mysuru, Full-Stack Development — Smt Kumudben Darbar College) and deployed <span className="font-bold text-yellow-600">9+ production projects</span> with expertise in <span className="bg-gradient-to-r from-amber-600 to-yellow-600 bg-clip-text text-transparent font-semibold">AI/ML technologies</span> (TensorFlow, NLP, Computer Vision, OCR, RAG), modern frameworks (<span className="mono-text text-orange-700 bg-orange-50/80 border border-orange-200/60 px-2 py-0.5 rounded font-semibold">Spring Boot</span>, <span className="mono-text text-amber-700 bg-amber-50/80 border border-amber-200/60 px-2 py-0.5 rounded font-semibold">Flask</span>, <span className="mono-text text-green-700 bg-green-50/80 border border-green-200/60 px-2 py-0.5 rounded font-semibold">React</span>, <span className="mono-text text-yellow-700 bg-yellow-50/80 border border-yellow-200/60 px-2 py-0.5 rounded font-semibold">Node.js</span>), and cloud deployment platforms (Render, Netlify).
               </p>
             </div>
-
-
-
           </div>
 
           {/* Philosophy */}
@@ -128,13 +125,13 @@ export default function AboutSection() {
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="flex items-start gap-4 p-5 bg-white rounded-xl border border-gray-200 hover:bg-gray-50 transition-all duration-300 shadow-sm"
+                  className="flex items-start gap-4 p-5 bg-white rounded-2xl border border-gray-100 shadow-[-3px_-3px_8px_rgba(255,255,255,1),3px_4px_12px_rgba(0,0,0,0.04)] hover:shadow-[-4px_-4px_10px_rgba(255,255,255,1),4px_6px_16px_rgba(0,0,0,0.08)] hover:-translate-y-0.5 transition-all duration-300"
                 >
-                  <div className="p-3 bg-amber-50 rounded-lg">
+                  <div className="p-3 bg-amber-50/80 border border-amber-200/40 rounded-xl shrink-0">
                     <Icon size={22} className="text-amber-500" />
                   </div>
                   <div>
-                    <h4 className="font-display font-semibold text-gray-900 mb-2 text-lg">{item.title}</h4>
+                    <h4 className="font-display font-semibold text-gray-900 mb-1.5 text-lg">{item.title}</h4>
                     <p className="body-sm text-gray-600 leading-relaxed">{item.description}</p>
                   </div>
                 </motion.div>
@@ -151,7 +148,7 @@ export default function AboutSection() {
           className="space-y-6"
         >
           {/* Achievements */}
-          <div className="bg-white rounded-2xl p-6 md:p-8 border border-gray-200 shadow-sm">
+          <div className="bg-white rounded-3xl p-6 md:p-8 border border-gray-100 shadow-[-4px_-4px_10px_rgba(255,255,255,1),4px_6px_16px_rgba(0,0,0,0.04)]">
             <h3 className="heading-sm text-gray-900 mb-6">Key Achievements</h3>
 
             <div className="space-y-4">
@@ -164,15 +161,15 @@ export default function AboutSection() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
-                    className="flex items-start gap-4 p-5 bg-gray-50 rounded-xl hover:bg-gray-100 transition-all duration-300 group"
+                    className="flex items-start gap-4 p-5 bg-white rounded-2xl border border-gray-100 shadow-[-3px_-3px_8px_rgba(255,255,255,1),3px_4px_12px_rgba(0,0,0,0.04)] hover:shadow-[-4px_-4px_10px_rgba(255,255,255,1),4px_6px_16px_rgba(0,0,0,0.08)] hover:-translate-y-0.5 transition-all duration-300 group"
                   >
-                    <div className={`p-3 rounded-full group-hover:scale-110 transition-transform duration-300 bg-dynamic-alpha-25 shadow-dynamic ${getAchievementColorClass(achievement.color)}`}>
+                    <div className="p-3 rounded-full bg-gray-50 border border-gray-100 group-hover:scale-110 transition-transform duration-300 shrink-0">
                       <Icon size={22} className={`text-dynamic ${getAchievementColorClass(achievement.color)}`} />
                     </div>
                     <div className="flex-1">
                       <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-2">
                         <h4 className="font-display font-semibold text-gray-900 text-lg group-hover:text-amber-600 transition-colors duration-300">{achievement.title}</h4>
-                        <span className="text-xs font-bold px-4 py-2 rounded-full text-white shadow-sm bg-gradient-to-r from-amber-500 to-yellow-500 whitespace-nowrap shrink-0 self-start">
+                        <span className="text-xs font-bold px-4 py-1.5 rounded-full text-white shadow-sm bg-gradient-to-r from-amber-500 to-yellow-500 whitespace-nowrap shrink-0 self-start">
                           {achievement.year}
                         </span>
                       </div>
@@ -197,12 +194,12 @@ export default function AboutSection() {
                 initial={{ opacity: 0, scale: 0.8 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-white rounded-xl p-4 md:p-6 border border-gray-200 text-center hover:border-gray-300 transition-all duration-300 group shadow-sm"
+                className="bg-white rounded-2xl p-4 md:p-6 border border-gray-100 shadow-[-3px_-3px_8px_rgba(255,255,255,1),3px_4px_12px_rgba(0,0,0,0.04)] hover:shadow-[-4px_-4px_10px_rgba(255,255,255,1),4px_6px_16px_rgba(0,0,0,0.08)] hover:-translate-y-1 text-center transition-all duration-300 group"
               >
                 <div className={`text-4xl font-display font-black mb-2 group-hover:scale-110 transition-transform duration-300 text-dynamic ${getStatColorClass(stat.color)}`}>
                   {stat.number}
                 </div>
-                <div className="caption text-gray-600 font-medium">
+                <div className="caption text-gray-600 font-semibold">
                   {stat.label}
                 </div>
               </motion.div>
@@ -215,17 +212,17 @@ export default function AboutSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="bg-white border border-gray-200 rounded-xl p-5 md:p-6 hover:border-amber-300 transition-all duration-300 shadow-sm"
+            className="bg-white rounded-3xl p-5 md:p-6 border border-gray-100 shadow-[-3px_-3px_8px_rgba(255,255,255,1),3px_4px_12px_rgba(0,0,0,0.04)] hover:shadow-[-4px_-4px_10px_rgba(255,255,255,1),4px_6px_16px_rgba(0,0,0,0.08)] transition-all duration-300"
           >
             <h4 className="font-display text-lg font-semibold text-gray-900 mb-4">Languages Known</h4>
             <div className="flex flex-wrap gap-2 md:gap-3">
-              <span className="px-4 py-2 bg-amber-50 border border-amber-200 rounded-lg text-sm font-medium text-gray-800 hover:bg-amber-100 transition-colors">
+              <span className="px-4 py-2 bg-gray-50 border border-gray-200/60 rounded-xl text-sm font-semibold text-gray-800 shadow-sm">
                 English
               </span>
-              <span className="px-4 py-2 bg-amber-50 border border-amber-200 rounded-lg text-sm font-medium text-gray-800 hover:bg-amber-100 transition-colors">
+              <span className="px-4 py-2 bg-gray-50 border border-gray-200/60 rounded-xl text-sm font-semibold text-gray-800 shadow-sm">
                 Hindi
               </span>
-              <span className="px-4 py-2 bg-amber-50 border border-amber-200 rounded-lg text-sm font-medium text-gray-800 hover:bg-amber-100 transition-colors">
+              <span className="px-4 py-2 bg-gray-50 border border-gray-200/60 rounded-xl text-sm font-semibold text-gray-800 shadow-sm">
                 Kannada
               </span>
             </div>

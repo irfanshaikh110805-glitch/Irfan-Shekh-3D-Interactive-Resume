@@ -309,7 +309,7 @@ export default function RainEffect() {
     <div className="fixed inset-0 pointer-events-none z-[80] overflow-hidden">
       {/* Dynamic Modern Floating Tech Symbols & Cyber Particle Mesh */}
       {cloudsVisible && (
-        <div className="absolute inset-0 pointer-events-none overflow-hidden select-none">
+        <div className="absolute inset-0 pointer-events-none overflow-hidden select-none hidden md:block">
           {/* Tech Glyph 1: <developer /> - Upper Left to Right */}
           <motion.div
             className="absolute top-4 sm:top-7 select-none pointer-events-none"
@@ -406,7 +406,7 @@ export default function RainEffect() {
       <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-blue-900/4 via-sky-800/2 to-transparent pointer-events-none" />
 
       {/* Interactive Rain Floating Controls Toggle Button */}
-      <div className="fixed top-20 right-4 pointer-events-auto z-[101]">
+      <div className="fixed bottom-20 left-4 sm:top-20 sm:right-4 sm:bottom-auto sm:left-auto pointer-events-auto z-40">
         <div className="relative">
           <motion.button
             onClick={() => setShowControls(!showControls)}
@@ -431,11 +431,11 @@ export default function RainEffect() {
           <AnimatePresence>
             {showControls && (
               <motion.div
-                initial={{ opacity: 0, y: -10, scale: 0.95 }}
+                initial={{ opacity: 0, y: 10, scale: 0.95 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
-                exit={{ opacity: 0, y: -10, scale: 0.95 }}
+                exit={{ opacity: 0, y: 10, scale: 0.95 }}
                 transition={{ duration: 0.2 }}
-                className="absolute right-0 mt-3 w-56 p-3 bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-amber-100/80 text-gray-800 space-y-3"
+                className="absolute left-0 sm:left-auto sm:right-0 bottom-full mb-3 sm:bottom-auto sm:top-full sm:mt-3 w-56 p-3 bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-amber-100/80 text-gray-800 space-y-3"
               >
                 <div className="flex items-center justify-between border-b border-gray-100 pb-2">
                   <span className="text-xs font-bold text-gray-700 flex items-center gap-1.5">

@@ -99,7 +99,7 @@ export default function ServicesSection() {
         </p>
       </motion.div>
 
-      <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 md:gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
         {services.map((service, index) => {
           const Icon = service.icon
 
@@ -110,51 +110,42 @@ export default function ServicesSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="group relative bg-white rounded-2xl p-3 min-[375px]:p-4 md:p-8 border border-gray-200 hover:border-gray-300 transition-all duration-500 overflow-hidden shadow-sm flex flex-col justify-between"
-              whileHover={{ y: -10, scale: 1.02 }}
+              className="group relative bg-white rounded-3xl p-5 md:p-8 border border-gray-100 shadow-[-4px_-4px_12px_rgba(255,255,255,1),4px_6px_18px_rgba(0,0,0,0.05)] hover:shadow-[-6px_-6px_16px_rgba(255,255,255,1),6px_10px_22px_rgba(0,0,0,0.09)] transition-all duration-500 flex flex-col justify-between"
+              whileHover={{ y: -6 }}
             >
-              {/* Background Gradient */}
-              <div
-                className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-500`}
-              />
-
               <div>
-                {/* Icon */}
-                <motion.div
-                  className={`inline-flex items-center justify-center w-9 h-9 min-[375px]:w-14 min-[375px]:h-14 rounded-xl min-[375px]:rounded-2xl bg-gradient-to-br ${service.gradient} mb-3 md:mb-6 relative z-10`}
-                  whileHover={{ rotate: 5, scale: 1.1 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <Icon className="text-white w-4.5 h-4.5 min-[375px]:w-6 min-[375px]:h-6 md:w-7 md:h-7" />
-                </motion.div>
+                {/* Icon Dock */}
+                <div className="p-2 rounded-2xl bg-amber-50/80 border border-amber-100 inline-block mb-4 md:mb-6 shadow-sm">
+                  <div className={`w-12 h-12 md:w-14 md:h-14 rounded-xl flex items-center justify-center bg-gradient-to-br ${service.gradient} text-white shadow-md`}>
+                    <Icon className="w-6 h-6 md:w-7 md:h-7" />
+                  </div>
+                </div>
 
                 {/* Content */}
-                <h3 className="text-xs min-[375px]:text-sm sm:text-base md:text-lg lg:text-xl font-bold text-gray-900 mb-1.5 md:mb-4 group-hover:text-amber-600 transition-all duration-300 leading-snug line-clamp-1">
+                <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 mb-2 md:mb-3 group-hover:text-amber-600 transition-all duration-300 leading-snug">
                   {service.title}
                 </h3>
 
-                <p className="text-[10px] min-[375px]:text-xs md:text-sm text-gray-700 leading-relaxed mb-4 line-clamp-3 md:line-clamp-none">
+                <p className="text-xs sm:text-sm text-gray-600 leading-relaxed mb-5">
                   {service.description}
                 </p>
 
                 {/* Features */}
-                <div className="hidden sm:block space-y-3">
-                  <h4 className="text-xs md:text-sm font-semibold text-gray-600 uppercase tracking-wide">
+                <div className="space-y-3 pt-3 border-t border-gray-100">
+                  <h4 className="text-xs font-bold text-gray-500 uppercase tracking-wider">
                     Key Features
                   </h4>
                   <div className="space-y-2">
                     {service.features.map((feature, fIndex) => (
-                      <motion.div
+                      <div
                         key={fIndex}
-                        initial={{ opacity: 0, x: -20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.4, delay: (index * 0.1) + (fIndex * 0.05) }}
                         className="flex items-center text-xs md:text-sm text-gray-700"
                       >
-                        <div className={`w-1.5 h-1.5 md:w-2 md:h-2 rounded-full mr-2 md:mr-3 flex-shrink-0 bg-dynamic ${getServiceColorClass(service.color)}`} />
+                        <div className="w-3.5 h-3.5 rounded-full bg-gray-50 border border-gray-200/50 flex items-center justify-center mr-2.5 flex-shrink-0">
+                          <div className={`w-1.5 h-1.5 rounded-full bg-dynamic ${getServiceColorClass(service.color)}`} />
+                        </div>
                         {feature}
-                      </motion.div>
+                      </div>
                     ))}
                   </div>
                 </div>
@@ -168,16 +159,12 @@ export default function ServicesSection() {
                     contactSection.scrollIntoView({ behavior: 'smooth' })
                   }
                 }}
-                className={`mt-4 md:mt-8 w-full px-3 py-2 md:px-6 md:py-3 bg-gradient-to-r ${service.gradient} text-white rounded-lg md:rounded-xl font-medium text-[10px] min-[375px]:text-xs sm:text-sm md:text-base opacity-100 translate-y-0 lg:opacity-0 lg:group-hover:opacity-100 lg:translate-y-4 lg:group-hover:translate-y-0 transition-all duration-300`}
+                className="mt-6 w-full py-3 px-6 bg-gradient-to-r from-amber-500 to-yellow-500 text-white rounded-xl font-bold text-xs sm:text-sm hover:from-amber-600 hover:to-yellow-600 shadow-md shadow-amber-500/20 hover:shadow-lg transition-all duration-300 cursor-pointer"
                 whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
+                whileTap={{ scale: 0.96 }}
               >
-                Learn More
+                Inquire About Service
               </motion.button>
-
-              {/* Decorative Elements */}
-              <div className={`absolute top-4 right-4 w-20 h-20 rounded-full bg-dynamic-opacity-5 transition-all duration-500 group-hover:opacity-10 group-hover:scale-150 ${getServiceColorClass(service.color)}`} />
-              <div className={`absolute -bottom-8 -right-8 w-24 h-24 rounded-full bg-dynamic-opacity-3 ${getServiceColorClass(service.color)}`} />
             </motion.div>
           )
         })}
@@ -189,18 +176,24 @@ export default function ServicesSection() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8, delay: 0.4 }}
-        className="text-center mt-10 md:mt-16"
+        className="text-center mt-12 md:mt-16"
       >
         <motion.button
           onClick={() => {
             const contactSection = document.getElementById('contact')
             if (contactSection) {
-              contactSection.scrollIntoView({ behavior: 'smooth' })
+              const navOffset = 80
+              const elementPosition = contactSection.getBoundingClientRect().top
+              const offsetPosition = elementPosition + window.scrollY - navOffset
+              window.scrollTo({
+                top: offsetPosition,
+                behavior: 'smooth'
+              })
             }
           }}
-          className="px-8 py-4 bg-gradient-to-r from-amber-500 to-yellow-500 text-white rounded-xl font-bold flex items-center gap-3 mx-auto hover:from-amber-600 hover:to-yellow-600 transition-all duration-300 shadow-lg hover:shadow-amber-500/25"
-          whileHover={{ scale: 1.05, y: -2 }}
-          whileTap={{ scale: 0.98 }}
+          className="px-8 py-4 bg-gradient-to-r from-amber-500 to-yellow-500 text-white rounded-2xl font-bold text-sm sm:text-base hover:from-amber-600 hover:to-yellow-600 shadow-lg shadow-amber-500/25 hover:shadow-xl hover:shadow-amber-500/40 transition-all duration-300 cursor-pointer inline-flex items-center gap-3 mx-auto"
+          whileHover={{ scale: 1.04, y: -2 }}
+          whileTap={{ scale: 0.96 }}
         >
           <span>Start Your Project</span>
           <motion.div
@@ -210,7 +203,7 @@ export default function ServicesSection() {
             →
           </motion.div>
         </motion.button>
-        <p className="text-gray-600 text-sm mt-4">
+        <p className="text-gray-600 text-sm mt-4 font-medium">
           Let's discuss how I can help bring your vision to life
         </p>
       </motion.div>

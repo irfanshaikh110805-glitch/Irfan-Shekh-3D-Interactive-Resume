@@ -147,7 +147,7 @@ export default function ResumeChatbot() {
             initial={{ opacity: 0, scale: 0.8, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.8, y: 20 }}
-            className="fixed bottom-20 sm:bottom-24 right-4 sm:right-8 w-[90%] sm:w-[400px] h-[550px] bg-white rounded-2xl shadow-2xl border border-gray-100 flex flex-col z-[100] overflow-hidden"
+            className="fixed bottom-20 sm:bottom-24 right-3 sm:right-8 w-[calc(100vw-24px)] sm:w-[400px] max-w-[400px] h-[min(520px,calc(100dvh-120px))] bg-white rounded-2xl shadow-2xl border border-gray-100 flex flex-col z-[100] overflow-hidden"
           >
             {/* Header */}
             <div className="bg-gradient-to-r from-amber-500 to-yellow-500 p-4 flex items-center justify-between text-white">

@@ -105,9 +105,9 @@ export default function CertificationsSection() {
         transition={{ duration: 0.8 }}
         className="text-center mb-10"
       >
-        <div className="inline-flex items-center gap-2 bg-amber-50 border border-amber-200 rounded-full px-5 py-2 mb-4">
+        <div className="inline-flex items-center gap-2 bg-amber-50/80 border border-amber-200/60 rounded-full px-5 py-2 mb-4 shadow-sm">
           <Award className="w-4 h-4 text-amber-600" />
-          <span className="text-sm text-amber-700 font-medium">Professional Development</span>
+          <span className="text-sm text-amber-700 font-semibold">Professional Development</span>
         </div>
         <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-amber-600 to-yellow-600 bg-clip-text text-transparent">
           Certifications
@@ -117,7 +117,7 @@ export default function CertificationsSection() {
         </p>
       </motion.div>
 
-      <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
         {certifications.map((cert, index) => (
           <motion.div
             key={cert.id}
@@ -125,23 +125,20 @@ export default function CertificationsSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: index * 0.08 }}
-            className="group relative bg-white rounded-2xl p-3 min-[375px]:p-4 md:p-6 border border-gray-200 hover:border-amber-300 transition-all duration-300 shadow-sm overflow-hidden"
-            whileHover={{ y: -4, boxShadow: '0 12px 32px rgba(245, 158, 11, 0.12)' }}
+            className="group relative bg-white rounded-3xl p-4 md:p-6 border border-gray-100 shadow-[-4px_-4px_12px_rgba(255,255,255,1),4px_6px_16px_rgba(0,0,0,0.05)] hover:shadow-[-6px_-6px_16px_rgba(255,255,255,1),6px_10px_22px_rgba(0,0,0,0.09)] transition-all duration-300 overflow-hidden flex flex-col justify-between"
+            whileHover={{ y: -6 }}
           >
-            {/* Background glow */}
-            <div className="absolute inset-0 bg-gradient-to-br from-amber-50/60 to-yellow-50/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
             <div className="relative z-10">
-              {/* Certificate Image (if available) */}
+              {/* Certificate Image Frame */}
               {cert.image && (
-                <div className="mb-3 md:mb-4 rounded-lg overflow-hidden bg-gray-50 border border-gray-100">
+                <div className="mb-4 rounded-2xl overflow-hidden bg-gray-50 border border-gray-100 p-1.5">
                   <img 
                     src={cert.image} 
                     alt={`${cert.title} certificate`}
                     width="400"
                     height="280"
                     decoding="async"
-                    className="w-full h-32 md:h-40 object-contain object-center hover:scale-105 transition-transform duration-500"
+                    className="w-full h-36 md:h-44 object-contain object-center rounded-xl hover:scale-105 transition-transform duration-500 bg-white"
                     loading="lazy"
                     onError={(e) => {
                       console.error('Failed to load certificate image:', cert.image);
@@ -152,37 +149,34 @@ export default function CertificationsSection() {
               )}
 
               {/* Badge & Year Row */}
-              <div className="flex items-start justify-between mb-3 md:mb-4">
-                <div className="text-2xl min-[375px]:text-3xl">{cert.badge}</div>
-                <span className="text-[9px] min-[375px]:text-[11px] md:text-xs font-semibold text-amber-600 bg-amber-50 border border-amber-200 px-1.5 py-0.5 min-[375px]:px-3 min-[375px]:py-1 rounded-full">
+              <div className="flex items-center justify-between mb-3">
+                <div className="text-2xl p-1.5 rounded-xl bg-gray-50 border border-gray-100 shadow-sm inline-block">{cert.badge}</div>
+                <span className="text-xs font-bold text-amber-700 bg-amber-50 border border-amber-200/60 px-3 py-1 rounded-full shadow-sm">
                   {cert.year}
                 </span>
               </div>
 
               {/* Title */}
-              <h3 className="font-bold text-gray-900 text-xs min-[375px]:text-sm md:text-base mb-1.5 md:mb-2 group-hover:text-amber-700 transition-colors leading-snug line-clamp-2 md:line-clamp-none">
+              <h3 className="font-bold text-gray-900 text-sm md:text-base mb-2 group-hover:text-amber-700 transition-colors leading-snug">
                 {cert.title}
               </h3>
 
               {/* Issuer */}
-              <div className="flex items-center justify-between mt-2 md:mt-3">
-                <span className="text-[10px] min-[375px]:text-xs md:text-sm text-gray-500 font-medium line-clamp-1">{cert.issuer}</span>
+              <div className="flex items-center justify-between mt-3 pt-3 border-t border-gray-100">
+                <span className="text-xs md:text-sm text-gray-600 font-semibold line-clamp-1">{cert.issuer}</span>
                 {cert.link && cert.link !== '#' && (
                   <a
                     href={cert.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-amber-500 hover:text-amber-700 transition-colors"
+                    className="p-2 rounded-full bg-amber-50 border border-amber-200/60 text-amber-600 hover:bg-amber-100 shadow-sm transition-all"
                     aria-label={`View certificate: ${cert.title}`}
                   >
-                    <ExternalLink size={14} className="min-[375px]:w-4 min-[375px]:h-4 md:w-[18px] md:h-[18px]" />
+                    <ExternalLink size={15} />
                   </a>
                 )}
               </div>
             </div>
-
-            {/* Decorative corner */}
-            <div className="absolute -bottom-4 -right-4 w-16 h-16 rounded-full bg-amber-100/60 group-hover:bg-amber-200/60 transition-colors duration-500" />
           </motion.div>
         ))}
       </div>

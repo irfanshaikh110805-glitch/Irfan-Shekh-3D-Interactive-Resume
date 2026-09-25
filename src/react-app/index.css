@@ -18,6 +18,11 @@
   --font-display: 'Space Grotesk', sans-serif;
   --font-mono: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono', monospace;
   --font-inter: 'Inter', sans-serif;
+  --neu-base: #FFFFFF;
+  --neu-light: #FFFFFF;
+  --neu-dark: #E2E8F0;
+  --neu-shadow-light: rgba(255, 255, 255, 1);
+  --neu-shadow-dark: rgba(0, 0, 0, 0.06);
 }
 
 /* Mobile optimizations */
@@ -425,6 +430,112 @@ a:focus-visible {
 
 /* Custom Text Effects */
 @layer components {
+  /* Neumorphic 3D System (Soft UI on light background preserving Amber/Gold brand colors) */
+  .neu-surface {
+    background-color: #ffffff;
+  }
+
+  .neu-raised {
+    background-color: #ffffff;
+    box-shadow: -4px -4px 12px rgba(255, 255, 255, 1), 4px 6px 16px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(229, 231, 235, 0.7);
+  }
+
+  .neu-raised-sm {
+    background-color: #ffffff;
+    box-shadow: -2px -2px 6px rgba(255, 255, 255, 1), 2px 3px 8px rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(229, 231, 235, 0.6);
+  }
+
+  .neu-raised-lg {
+    background-color: #ffffff;
+    box-shadow: -6px -6px 18px rgba(255, 255, 255, 1), 8px 12px 24px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(229, 231, 235, 0.8);
+  }
+
+  .neu-card {
+    background-color: #ffffff;
+    border-radius: 1.25rem;
+    box-shadow: -4px -4px 12px rgba(255, 255, 255, 1), 4px 6px 16px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(229, 231, 235, 0.7);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .neu-card-hover {
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .neu-card-hover:hover {
+    transform: translateY(-4px);
+    box-shadow: -6px -6px 16px rgba(255, 255, 255, 1), 8px 14px 24px rgba(0, 0, 0, 0.09);
+  }
+
+  .neu-inset {
+    background-color: #f9fafb;
+    box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.05), inset -2px -2px 5px rgba(255, 255, 255, 1);
+    border: 1px solid rgba(229, 231, 235, 0.5);
+  }
+
+  .neu-inset-sm {
+    background-color: #f9fafb;
+    box-shadow: inset 1.5px 1.5px 3px rgba(0, 0, 0, 0.04), inset -1.5px -1.5px 3px rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(229, 231, 235, 0.4);
+  }
+
+  .neu-btn {
+    background-color: #ffffff;
+    box-shadow: -3px -3px 8px rgba(255, 255, 255, 1), 3px 4px 10px rgba(0, 0, 0, 0.06);
+    border: 1px solid rgba(229, 231, 235, 0.8);
+    transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .neu-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: -4px -4px 12px rgba(255, 255, 255, 1), 4px 6px 14px rgba(0, 0, 0, 0.09);
+  }
+
+  .neu-btn:active {
+    transform: translateY(1px);
+    box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.06), inset -2px -2px 5px rgba(255, 255, 255, 1);
+  }
+
+  .neu-btn-primary {
+    background: linear-gradient(135deg, #f59e0b, #eab308);
+    color: #ffffff;
+    box-shadow: -2px -2px 8px rgba(255, 255, 255, 0.7), 3px 5px 16px rgba(245, 158, 11, 0.35);
+    border: none;
+    transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .neu-btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: -3px -3px 10px rgba(255, 255, 255, 0.85), 4px 8px 22px rgba(245, 158, 11, 0.45);
+  }
+
+  .neu-btn-primary:active {
+    transform: translateY(1px);
+    box-shadow: inset 2px 2px 6px rgba(0, 0, 0, 0.25);
+  }
+
+  .neu-input {
+    background-color: #f9fafb;
+    box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.05), inset -2px -2px 4px rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(229, 231, 235, 0.7);
+    transition: all 0.2s ease;
+  }
+
+  .neu-input:focus {
+    background-color: #ffffff;
+    border-color: rgba(245, 158, 11, 0.6);
+    box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.15);
+  }
+
+  .neu-icon-socket {
+    background-color: #f9fafb;
+    box-shadow: inset 1.5px 1.5px 3px rgba(0, 0, 0, 0.05), inset -1.5px -1.5px 3px rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(229, 231, 235, 0.5);
+  }
+
   .text-gradient {
     background: linear-gradient(135deg, #f59e0b, #d97706, #eab308);
     background-size: 200% 200%;

@@ -89,28 +89,75 @@ export default function Home() {
   const [activeSection, setActiveSection] = useState('about')
   const isMobile = useMobileDetection()
 
-  // Intersection Observer for section detection
+  const scrollToSection = (id: string) => {
+    setActiveSection(id)
+    const element = document.getElementById(id)
+    if (element) {
+      const navOffset = 80
+      const elementPosition = element.getBoundingClientRect().top
+      const offsetPosition = elementPosition + window.scrollY - navOffset
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      })
+    }
+  }
+
+  // Accurate, high-performance scroll spy for active section tracking
   useEffect(() => {
     const sections = ['about', 'work', 'skills', 'certifications', 'services', 'contact']
-    const observers: IntersectionObserver[] = []
+    let ticking = false
 
-    sections.forEach(sectionId => {
-      const element = document.getElementById(sectionId)
-      if (element) {
-        const observer = new IntersectionObserver(
-          ([entry]) => {
-            if (entry.isIntersecting) {
-              setActiveSection(sectionId)
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const scrollPosition = window.scrollY
+          const viewportHeight = window.innerHeight
+          const docHeight = document.documentElement.scrollHeight
+
+          // If scrolled to bottom of page (or within 80px), activate last section (contact)
+          if (scrollPosition + viewportHeight >= docHeight - 80) {
+            setActiveSection('contact')
+            ticking = false
+            return
+          }
+
+          // If scrolled to top (within Hero area), keep 'about' active
+          if (scrollPosition < 300) {
+            setActiveSection('about')
+            ticking = false
+            return
+          }
+
+          // Probe point at 35% of viewport height (natural reading line)
+          const probeY = scrollPosition + viewportHeight * 0.35
+
+          let matched = 'about'
+          for (const id of sections) {
+            const el = document.getElementById(id)
+            if (el) {
+              const top = el.offsetTop
+              const height = el.offsetHeight
+              if (probeY >= top && probeY < top + height) {
+                matched = id
+                break
+              } else if (probeY >= top) {
+                matched = id
+              }
             }
-          },
-          { threshold: 0.3 }
-        )
-        observer.observe(element)
-        observers.push(observer)
-      }
-    })
+          }
 
-    return () => observers.forEach(observer => observer.disconnect())
+          setActiveSection(matched)
+          ticking = false
+        })
+        ticking = true
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    handleScroll()
+
+    return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
   return (
@@ -156,14 +203,14 @@ export default function Home() {
       <HeroPortfolio />
 
       {/* About Section */}
-      <LazySection className="py-12 md:py-24 px-4 sm:px-6" id="about">
+      <LazySection className="py-12 md:py-24 px-4 sm:px-6 bg-gray-50 relative" id="about">
         <div className="max-w-7xl mx-auto">
           <AboutSection />
         </div>
       </LazySection>
 
       {/* Featured Work Section */}
-      <LazySection className="py-12 md:py-24 px-4 sm:px-6 bg-white" id="work">
+      <LazySection className="py-12 md:py-24 px-4 sm:px-6 bg-white relative" id="work">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -184,114 +231,123 @@ export default function Home() {
       </LazySection>
 
       {/* Skills Section */}
-      <LazySection className="py-12 md:py-24 px-4 sm:px-6" id="skills">
+      <LazySection className="py-12 md:py-24 px-4 sm:px-6 bg-gray-50 relative" id="skills">
         <div className="max-w-7xl mx-auto">
           <SkillsVisualization />
         </div>
       </LazySection>
 
       {/* Certifications Section */}
-      <LazySection className="py-12 md:py-24 px-4 sm:px-6 bg-white" id="certifications">
+      <LazySection className="py-12 md:py-24 px-4 sm:px-6 bg-white relative" id="certifications">
         <div className="max-w-7xl mx-auto">
           <CertificationsSection />
         </div>
       </LazySection>
 
       {/* Services Section */}
-      <LazySection className="py-12 md:py-24 px-4 sm:px-6" id="services">
+      <LazySection className="py-12 md:py-24 px-4 sm:px-6 bg-gray-50 relative" id="services">
         <div className="max-w-7xl mx-auto">
           <ServicesSection />
         </div>
       </LazySection>
 
       {/* Contact Section */}
-      <LazySection className="py-12 md:py-24 px-4 sm:px-6" id="contact">
+      <LazySection className="py-12 md:py-24 px-4 sm:px-6 bg-white relative" id="contact">
         <div className="max-w-5xl mx-auto">
           <ContactSection />
         </div>
       </LazySection>
 
-      {/* Quick Navigation Dots */}
-      <div className="fixed right-8 top-1/2 transform -translate-y-1/2 z-50 hidden lg:flex flex-col gap-4">
+      {/* Quick Navigation 3D Floating Dock */}
+      <div className="fixed right-4 sm:right-6 top-1/2 transform -translate-y-1/2 z-40 hidden lg:flex flex-col gap-2.5 p-2 bg-white/95 backdrop-blur-md rounded-full border border-gray-200/80 shadow-[0_8px_30px_rgb(0,0,0,0.1)]">
         {[
           { id: 'about', icon: User, label: 'About' },
           { id: 'work', icon: Briefcase, label: 'Work' },
           { id: 'skills', icon: Code, label: 'Skills' },
-          { id: 'certifications', icon: Award, label: 'Certs' },
+          { id: 'certifications', icon: Award, label: 'Certifications' },
           { id: 'services', icon: Wrench, label: 'Services' },
           { id: 'contact', icon: Mail, label: 'Contact' }
-        ].map((item) => (
-          <motion.button
-            key={item.id}
-            onClick={() => {
-              setActiveSection(item.id)
-              const element = document.getElementById(item.id)
-              if (element) {
-                element.scrollIntoView({ behavior: 'smooth' })
-              }
-            }}
-            className={`p-3 rounded-full transition-all duration-300 group relative ${activeSection === item.id
-              ? 'bg-amber-500 text-white shadow-lg shadow-amber-500/25'
-              : 'bg-white/80 border border-gray-200 text-gray-500 hover:bg-white hover:text-amber-500'
+        ].map((item) => {
+          const isActive = activeSection === item.id
+          return (
+            <motion.button
+              key={item.id}
+              onClick={() => scrollToSection(item.id)}
+              className={`p-3 rounded-full transition-all duration-300 group relative flex items-center justify-center ${
+                isActive
+                  ? 'bg-gradient-to-r from-amber-500 to-amber-600 text-white shadow-md shadow-amber-500/35 ring-2 ring-amber-400/50'
+                  : 'bg-white border border-gray-100 text-gray-500 hover:text-amber-600 hover:bg-amber-50/60 shadow-sm'
               }`}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <item.icon size={20} />
-            <span className="absolute right-full mr-3 top-1/2 transform -translate-y-1/2 px-3 py-2 bg-white border border-gray-200 text-gray-900 text-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap shadow-lg">
-              {item.label}
-            </span>
-          </motion.button>
-        ))}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+              aria-label={`Jump to ${item.label}`}
+            >
+              <item.icon size={18} />
+              <span className="absolute right-full mr-3 top-1/2 -translate-y-1/2 px-2.5 py-1 bg-gray-900 text-white text-xs font-medium rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap shadow-lg pointer-events-none z-50">
+                {item.label}
+              </span>
+            </motion.button>
+          )
+        })}
       </div>
 
       {/* Footer */}
-      <footer className="border-t border-gray-200 bg-white backdrop-blur-sm">
+      <footer className="border-t border-gray-200 bg-white">
         <div className="max-w-7xl mx-auto px-4 py-8 md:py-12">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div>
-              <h3 className="text-2xl font-bold bg-gradient-to-r from-amber-400 to-yellow-300 bg-clip-text text-transparent mb-4">
+              <h3 className="text-2xl font-bold bg-gradient-to-r from-amber-600 to-yellow-500 bg-clip-text text-transparent mb-4">
                 Irfan Shekh
               </h3>
-              <p className="text-gray-600 mb-4">
+              <p className="text-gray-600 mb-4 text-sm leading-relaxed">
                 Full-Stack Developer & AI/ML Engineer. Building digital experiences
                 that solve real-world problems with cutting-edge technology.
               </p>
               <div className="flex space-x-4">
-                <a href="mailto:irfanshaikh110805@gmail.com" className="text-gray-500 hover:text-amber-500 transition-colors">
+                <a href="mailto:irfanshaikh110805@gmail.com" className="text-gray-500 hover:text-amber-600 transition-colors text-sm font-semibold">
                   Email
                 </a>
-                <a href="https://www.linkedin.com/in/irfan-shekh-380461392?utm_source=share_via&utm_content=profile&utm_medium=member_android" className="text-gray-500 hover:text-amber-500 transition-colors">
+                <a 
+                  href="https://www.linkedin.com/in/irfan-shekh-380461392?utm_source=share_via&utm_content=profile&utm_medium=member_android" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="text-gray-500 hover:text-amber-600 transition-colors text-sm font-semibold"
+                >
                   LinkedIn
                 </a>
-                <a href="https://github.com/irfanshaikh110805-glitch" className="text-gray-500 hover:text-amber-500 transition-colors">
+                <a 
+                  href="https://github.com/irfanshaikh110805-glitch" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="text-gray-500 hover:text-amber-600 transition-colors text-sm font-semibold"
+                >
                   GitHub
                 </a>
               </div>
             </div>
 
             <div className="hidden md:block">
-              <h4 className="text-lg font-semibold text-gray-900 mb-4">Services</h4>
-              <ul className="space-y-2 text-gray-600">
-                <li><a href="#services" className="hover:text-amber-500 transition-colors">Web Development</a></li>
-                <li><a href="#services" className="hover:text-amber-500 transition-colors">UI/UX Design</a></li>
-                <li><a href="#services" className="hover:text-amber-500 transition-colors">3D Experiences</a></li>
-                <li><a href="#services" className="hover:text-amber-500 transition-colors">Consulting</a></li>
+              <h4 className="text-base font-bold text-gray-900 mb-4">Services</h4>
+              <ul className="space-y-2 text-sm text-gray-600">
+                <li><a href="#services" className="hover:text-amber-600 transition-colors">Web Development</a></li>
+                <li><a href="#services" className="hover:text-amber-600 transition-colors">UI/UX Design</a></li>
+                <li><a href="#services" className="hover:text-amber-600 transition-colors">3D Experiences</a></li>
+                <li><a href="#services" className="hover:text-amber-600 transition-colors">AI / ML Integration</a></li>
               </ul>
             </div>
 
             <div className="hidden md:block">
-              <h4 className="text-lg font-semibold text-gray-900 mb-4">Quick Links</h4>
-              <ul className="space-y-2 text-gray-600">
-                <li><a href="#about" className="hover:text-amber-500 transition-colors">About</a></li>
-                <li><a href="#work" className="hover:text-amber-500 transition-colors">Portfolio</a></li>
-                <li><a href="#skills" className="hover:text-amber-500 transition-colors">Skills</a></li>
-                <li><a href="#contact" className="hover:text-amber-500 transition-colors">Contact</a></li>
+              <h4 className="text-base font-bold text-gray-900 mb-4">Quick Links</h4>
+              <ul className="space-y-2 text-sm text-gray-600">
+                <li><a href="#about" className="hover:text-amber-600 transition-colors">About</a></li>
+                <li><a href="#work" className="hover:text-amber-600 transition-colors">Portfolio</a></li>
+                <li><a href="#skills" className="hover:text-amber-600 transition-colors">Skills</a></li>
+                <li><a href="#contact" className="hover:text-amber-600 transition-colors">Contact</a></li>
               </ul>
             </div>
           </div>
 
-          <div className="border-t border-gray-200 mt-8 pt-8 text-center text-gray-500">
+          <div className="border-t border-gray-100 mt-8 pt-8 text-center text-xs text-gray-500">
             <p>© 2026 Irfan Shekh. All rights reserved. Crafted with passion and code.</p>
           </div>
         </div>

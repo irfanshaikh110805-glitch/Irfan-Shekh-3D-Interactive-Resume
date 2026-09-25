@@ -196,7 +196,7 @@ export default function ContactSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="bg-white rounded-2xl p-5 md:p-6 border border-gray-200 shadow-sm"
+            className="bg-white rounded-3xl p-6 md:p-8 border border-gray-100 shadow-[-4px_-4px_12px_rgba(255,255,255,1),4px_6px_18px_rgba(0,0,0,0.05)]"
           >
             <h3 className="text-xl font-bold text-gray-900 mb-6">Contact Information</h3>
             <div className="space-y-4">
@@ -209,18 +209,18 @@ export default function ContactSection() {
                     initial={{ opacity: 0, x: -30 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.4, delay: index * 0.1 }}
-                    className={`flex items-center gap-4 p-3 rounded-lg hover:bg-gray-50 transition-all duration-300 group ${getContactColorClass(contact.color)}`}
+                    className={`flex items-center gap-4 p-3.5 rounded-2xl hover:bg-amber-50/40 border border-transparent hover:border-amber-100 transition-all duration-300 group ${getContactColorClass(contact.color)}`}
                     whileHover={{ x: 5 }}
                   >
-                    <div className={`p-3 rounded-full contact-icon-bg ${getContactColorClass(contact.color)}`}>
+                    <div className={`p-3 rounded-xl contact-icon-bg shadow-sm ${getContactColorClass(contact.color)}`}>
                       <Icon
                         size={20}
                         className={`contact-icon-color ${getContactColorClass(contact.color)}`}
                       />
                     </div>
                     <div>
-                      <p className="text-sm text-gray-600 font-medium">{contact.label}</p>
-                      <p className="text-gray-900 group-hover:text-amber-600 transition-colors duration-300">
+                      <p className="text-xs text-gray-500 font-semibold">{contact.label}</p>
+                      <p className="text-gray-900 font-medium group-hover:text-amber-600 transition-colors duration-300">
                         {contact.value}
                       </p>
                     </div>
@@ -236,7 +236,7 @@ export default function ContactSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="bg-white rounded-2xl p-5 md:p-6 border border-gray-200 shadow-sm"
+            className="bg-white rounded-3xl p-6 md:p-8 border border-gray-100 shadow-[-4px_-4px_12px_rgba(255,255,255,1),4px_6px_18px_rgba(0,0,0,0.05)]"
           >
             <h3 className="text-xl font-bold text-gray-900 mb-6">Social Links</h3>
             <div className="flex flex-wrap gap-4">
@@ -252,11 +252,11 @@ export default function ContactSection() {
                     initial={{ opacity: 0, scale: 0.8 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.4, delay: index * 0.1 }}
-                    className="flex items-center justify-center w-12 h-12 rounded-full bg-gray-100 hover:bg-gray-200 transition-all duration-300 group"
-                    whileHover={{ scale: 1.1, rotate: 5 }}
+                    className="flex items-center justify-center w-12 h-12 rounded-2xl bg-white border border-gray-100 text-gray-600 hover:text-amber-600 shadow-[-2px_-2px_6px_rgba(255,255,255,1),2px_3px_8px_rgba(0,0,0,0.05)] hover:shadow-md transition-all duration-300 group"
+                    whileHover={{ scale: 1.08, y: -2 }}
                     whileTap={{ scale: 0.95 }}
                   >
-                    <div className="text-gray-600 group-hover:text-gray-900 transition-colors duration-300">
+                    <div className="text-gray-600 group-hover:text-amber-600 transition-colors duration-300">
                       <IconComponent />
                     </div>
                   </motion.a>
@@ -272,20 +272,20 @@ export default function ContactSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="bg-white rounded-2xl p-5 md:p-6 border border-gray-200 shadow-sm"
+          className="bg-white rounded-3xl p-6 md:p-8 border border-gray-100 shadow-[-4px_-4px_12px_rgba(255,255,255,1),4px_6px_18px_rgba(0,0,0,0.05)]"
         >
           <h3 className="text-xl font-bold text-gray-900 mb-6">Send me a Message</h3>
           
           {isSubmitted ? (
             <div className="h-full flex flex-col items-center justify-center text-center py-10">
-              <div className="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mb-4">
+              <div className="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mb-4 shadow-inner">
                 <CheckCircle size={32} />
               </div>
               <h4 className="text-2xl font-bold text-gray-900 mb-2">Message Sent!</h4>
               <p className="text-gray-600">Thank you for reaching out. I'll get back to you soon.</p>
               <button 
                 onClick={() => setIsSubmitted(false)}
-                className="mt-6 text-amber-600 font-medium hover:underline"
+                className="mt-6 text-amber-600 font-semibold hover:underline"
               >
                 Send another message
               </button>
@@ -294,7 +294,7 @@ export default function ContactSection() {
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">Your Name</label>
+                  <label htmlFor="name" className="block text-sm font-semibold text-gray-700 mb-1.5">Your Name</label>
                   <input
                     type="text"
                     id="name"
@@ -303,11 +303,11 @@ export default function ContactSection() {
                     value={formData.name}
                     onChange={handleChange}
                     placeholder="Irfan Shekh"
-                    className="w-full px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none transition-all"
+                    className="w-full px-4 py-3 bg-gray-50 border border-gray-200/80 rounded-xl focus:bg-white shadow-[inset_1.5px_1.5px_3px_rgba(0,0,0,0.03)] focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500 outline-none transition-all text-sm"
                   />
                 </div>
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+                  <label htmlFor="email" className="block text-sm font-semibold text-gray-700 mb-1.5">Email Address</label>
                   <input
                     type="email"
                     id="email"
@@ -316,12 +316,12 @@ export default function ContactSection() {
                     value={formData.email}
                     onChange={handleChange}
                     placeholder="irfan@example.com"
-                    className="w-full px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none transition-all"
+                    className="w-full px-4 py-3 bg-gray-50 border border-gray-200/80 rounded-xl focus:bg-white shadow-[inset_1.5px_1.5px_3px_rgba(0,0,0,0.03)] focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500 outline-none transition-all text-sm"
                   />
                 </div>
               </div>
               <div>
-                <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-1">Subject</label>
+                <label htmlFor="subject" className="block text-sm font-semibold text-gray-700 mb-1.5">Subject</label>
                 <input
                   type="text"
                   id="subject"
@@ -330,11 +330,11 @@ export default function ContactSection() {
                   value={formData.subject}
                   onChange={handleChange}
                   placeholder="Project Collaboration"
-                  className="w-full px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none transition-all"
+                  className="w-full px-4 py-3 bg-gray-50 border border-gray-200/80 rounded-xl focus:bg-white shadow-[inset_1.5px_1.5px_3px_rgba(0,0,0,0.03)] focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500 outline-none transition-all text-sm"
                 />
               </div>
               <div>
-                <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">Message</label>
+                <label htmlFor="message" className="block text-sm font-semibold text-gray-700 mb-1.5">Message</label>
                 <textarea
                   id="message"
                   name="message"
@@ -343,13 +343,13 @@ export default function ContactSection() {
                   value={formData.message}
                   onChange={handleChange}
                   placeholder="Tell me about your project..."
-                  className="w-full px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none transition-all resize-none"
+                  className="w-full px-4 py-3 bg-gray-50 border border-gray-200/80 rounded-xl focus:bg-white shadow-[inset_1.5px_1.5px_3px_rgba(0,0,0,0.03)] focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500 outline-none transition-all resize-none text-sm"
                 />
               </div>
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full py-3 px-6 bg-gradient-to-r from-amber-500 to-yellow-500 text-white font-bold rounded-lg shadow-md hover:shadow-lg transform transition-all active:scale-95 disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                className="w-full py-3.5 px-6 bg-gradient-to-r from-amber-500 to-yellow-500 text-white font-bold rounded-xl shadow-lg shadow-amber-500/25 hover:shadow-xl hover:shadow-amber-500/40 hover:-translate-y-0.5 transform transition-all active:translate-y-0 disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2 cursor-pointer"
               >
                 {isSubmitting ? (
                   <>
