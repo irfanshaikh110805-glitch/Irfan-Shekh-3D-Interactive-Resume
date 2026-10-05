@@ -19,15 +19,23 @@ export default function Timeline3D() {
   return (
     <div ref={containerRef} className="relative w-full max-w-4xl mx-auto py-12 px-4 md:px-0 mt-8" style={{ position: 'relative' }}>
       {/* 3D Perspective Container */}
-      <h3 className="heading-sm text-center mb-12 text-gray-900">Education & Career Journey</h3>
+      <div className="text-center mb-14">
+        <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-amber-500/10 text-amber-700 border border-amber-200/50 mb-3 uppercase tracking-wider font-mono">
+          <GraduationCap size={14} className="text-amber-500" />
+          Milestones & Evolution
+        </span>
+        <h3 className="text-2xl sm:text-3xl md:text-4xl font-display font-bold text-gray-900">
+          Education & Career Journey
+        </h3>
+      </div>
 
       <div className="relative" style={{ perspective: '1000px', position: 'relative' }}>
         
         {/* Background Vertical Line */}
-        <div className="absolute left-[32px] md:left-1/2 top-0 bottom-0 w-1 bg-gray-200 transform -translate-x-1/2 rounded-full overflow-hidden">
+        <div className="absolute left-[32px] md:left-1/2 top-0 bottom-0 w-1 bg-gray-200/80 transform -translate-x-1/2 rounded-full overflow-hidden">
           {/* Animated fill line */}
           <motion.div 
-            className="w-full bg-gradient-to-b from-amber-400 via-amber-500 to-yellow-600"
+            className="w-full bg-gradient-to-b from-amber-400 via-amber-500 to-yellow-600 shadow-sm"
             style={{ height: lineHeight, originY: 0 }}
           />
         </div>
@@ -87,10 +95,10 @@ function TimelineItem({ item, Icon, isLeft }: {
       <motion.div 
         ref={cardRef}
         style={{ scale, opacity }}
-        className="absolute left-[32px] md:left-1/2 transform -translate-x-1/2 bg-white border-4 border-white shadow-xl shadow-amber-500/20 w-16 h-16 md:w-20 md:h-20 rounded-full flex items-center justify-center z-20"
+        className="absolute left-[32px] md:left-1/2 transform -translate-x-1/2 bg-white border-4 border-white shadow-xl shadow-amber-500/20 w-16 h-16 md:w-20 md:h-20 rounded-full flex items-center justify-center z-20 group"
       >
-        <div className={`w-full h-full rounded-full ${item.color} flex items-center justify-center text-white`}>
-          <Icon size={28} />
+        <div className={`w-full h-full rounded-full ${item.color} flex items-center justify-center text-white shadow-inner relative overflow-hidden transition-transform duration-300 group-hover:scale-105`}>
+          <Icon size={26} />
         </div>
       </motion.div>
 
@@ -108,15 +116,17 @@ function TimelineItem({ item, Icon, isLeft }: {
         {/* Connector arrow pointing to node */}
         <div className={`hidden md:block absolute top-1/2 -mt-2 w-0 h-0 border-y-8 border-y-transparent ${isLeft ? 'right-8 border-l-8 border-l-white' : 'left-8 border-r-8 border-r-white'} z-30`} />
         
-        <div className="bg-white p-5 md:p-6 rounded-2xl shadow-xl shadow-gray-200/50 hover:shadow-amber-500/10 border border-gray-100 transition-shadow">
+        <div className="bg-white p-5 md:p-6 rounded-2xl shadow-xl shadow-gray-200/50 hover:shadow-amber-500/10 border border-gray-100 hover:border-amber-200 transition-all duration-300 group hover:-translate-y-1">
           <div className="flex items-start gap-3 mb-3 flex-wrap">
-            {/* Enhanced Date Badge - Wider and Better Formatted */}
-            <span className={`inline-flex items-center justify-center min-w-[140px] px-4 py-2 text-white text-xs md:text-sm font-bold rounded-full ${item.color} shadow-md whitespace-nowrap`}>
+            {/* Enhanced Date Badge with font-mono */}
+            <span className={`inline-flex items-center justify-center min-w-[130px] px-3.5 py-1.5 text-white text-xs md:text-sm font-mono font-semibold rounded-full ${item.color} shadow-md whitespace-nowrap tracking-wide`}>
               {item.year}
             </span>
-            <h4 className="text-base md:text-xl font-bold text-gray-900 flex-1 min-w-[200px]">{item.title}</h4>
+            <h4 className="text-base md:text-xl font-display font-bold text-gray-900 group-hover:text-amber-600 transition-colors flex-1 min-w-[200px]">
+              {item.title}
+            </h4>
           </div>
-          <p className="text-sm md:text-base text-gray-600 leading-relaxed font-light">{item.description}</p>
+          <p className="text-sm md:text-base text-gray-600 leading-relaxed font-normal">{item.description}</p>
         </div>
       </motion.div>
 

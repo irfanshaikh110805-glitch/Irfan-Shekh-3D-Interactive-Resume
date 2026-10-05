@@ -4,6 +4,7 @@ import { Monitor, Smartphone, Database, ExternalLink, X, ZoomIn } from 'lucide-r
 import { projects, Project } from '@/shared/data'
 import { getProjectColorClass } from '@/react-app/utils/colorUtils'
 import { useMobileDetection } from '@/react-app/hooks/useMobileDetection'
+import TiltCard from '@/react-app/components/TiltCard'
 
 // Custom GitHub icon (brand icons removed from lucide-react)
 const GithubIcon = ({ size = 16, className }: { size?: number; className?: string }) => (
@@ -21,7 +22,6 @@ const typeIcons = {
 const getTypeClass = (type: string) => `project-type-${type}`
 
 const getColorClass = getProjectColorClass
-
 
 export default function ProjectShowcase() {
   const isMobile = useMobileDetection()
@@ -61,144 +61,150 @@ export default function ProjectShowcase() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="group relative bg-white rounded-3xl p-3 sm:p-4 border border-gray-100 shadow-[-4px_-4px_12px_rgba(255,255,255,1),4px_6px_18px_rgba(0,0,0,0.05)] hover:shadow-[-6px_-6px_16px_rgba(255,255,255,1),6px_12px_24px_rgba(0,0,0,0.09)] transition-all duration-500 flex flex-col justify-between"
-              whileHover={{ y: -6 }}
+              className="h-full"
             >
-              <div>
-                {/* Sunken Bezel Display Frame */}
-                <div className="p-1.5 rounded-2xl bg-gray-50 border border-gray-100 mb-4">
-                  <div 
-                    className="relative h-44 sm:h-48 md:h-52 overflow-hidden rounded-xl cursor-pointer"
-                    onClick={() => setSelectedProject(project)}
-                  >
-                    <img
-                      src={project.image.replace('.webp', '-thumb.webp')}
-                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                      alt={`${project.title} - ${project.description.substring(0, 100)}`}
-                      loading="lazy"
-                      decoding="async"
-                      width="400"
-                      height="225"
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                      onError={(e) => {
-                        const target = e.target as HTMLImageElement
-                        if (!target.dataset.triedOriginal) {
-                          target.dataset.triedOriginal = 'true'
-                          target.src = project.image
-                          return
-                        }
-                        target.onerror = null;
-                        target.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300"%3E%3Crect fill="%23374151" width="400" height="300"/%3E%3Ctext fill="%239CA3AF" font-family="sans-serif" font-size="18" x="50%25" y="50%25" text-anchor="middle" dominant-baseline="middle"%3EImage unavailable%3C/text%3E%3C/svg%3E'
-                      }}
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-transparent to-transparent opacity-60" />
-                    
-                    {/* Click to zoom overlay */}
-                    <div className="absolute inset-0 bg-black/35 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-all duration-300">
-                      <div className="p-2.5 bg-white/90 backdrop-blur-md rounded-full shadow-md text-gray-900 transform scale-90 group-hover:scale-100 transition-transform duration-300">
-                        <ZoomIn size={18} />
+              <TiltCard
+                maxTilt={5}
+                glareOpacity={0.15}
+                className="group relative bg-white rounded-3xl p-3 sm:p-4 border border-gray-100/90 shadow-[-4px_-4px_12px_rgba(255,255,255,1),4px_6px_18px_rgba(0,0,0,0.05)] hover:shadow-[-6px_-6px_16px_rgba(255,255,255,1),6px_14px_28px_rgba(245,158,11,0.12)] transition-all duration-300 flex flex-col justify-between h-full"
+              >
+                <div>
+                  {/* Sunken Bezel Display Frame with Shimmer Sheen */}
+                  <div className="p-1.5 rounded-2xl bg-gray-50 border border-gray-100 mb-4 overflow-hidden">
+                    <div 
+                      className="shimmer-hover-trigger relative h-44 sm:h-48 md:h-52 overflow-hidden rounded-xl cursor-pointer"
+                      onClick={() => setSelectedProject(project)}
+                    >
+                      <img
+                        src={project.image.replace('.webp', '-thumb.webp')}
+                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        alt={`${project.title} - ${project.description.substring(0, 100)}`}
+                        loading="lazy"
+                        decoding="async"
+                        width="400"
+                        height="225"
+                        className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                        onError={(e) => {
+                          const target = e.target as HTMLImageElement
+                          if (!target.dataset.triedOriginal) {
+                            target.dataset.triedOriginal = 'true'
+                            target.src = project.image
+                            return
+                          }
+                          target.onerror = null;
+                          target.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300"%3E%3Crect fill="%23374151" width="400" height="300"/%3E%3Ctext fill="%239CA3AF" font-family="sans-serif" font-size="18" x="50%25" y="50%25" text-anchor="middle" dominant-baseline="middle"%3EImage unavailable%3C/text%3E%3C/svg%3E'
+                        }}
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-transparent to-transparent opacity-60" />
+                      
+                      {/* Click to zoom overlay */}
+                      <div className="absolute inset-0 bg-black/35 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-all duration-300">
+                        <div className="p-2.5 bg-white/95 backdrop-blur-md rounded-full shadow-lg text-gray-900 transform scale-90 group-hover:scale-100 transition-transform duration-300 flex items-center gap-1.5 px-3.5">
+                          <ZoomIn size={16} className="text-amber-600" />
+                          <span className="text-xs font-bold font-sans">Details</span>
+                        </div>
+                      </div>
+
+                      {/* Project Type Badge */}
+                      <div className={`absolute top-3 left-3 flex items-center gap-1.5 px-3 py-1 rounded-full text-white text-xs font-bold font-mono tracking-wide shadow-md ${getTypeClass(project.type)}`}>
+                        <Icon size={12} />
+                        <span>{project.type.charAt(0).toUpperCase() + project.type.slice(1)}</span>
+                      </div>
+
+                      {/* Action Buttons with Spring Feedback */}
+                      <div className="absolute top-3 right-3 flex gap-2 z-20">
+                        {project.demoUrl && (
+                          <motion.button
+                            onClick={(e) => {
+                              e.stopPropagation()
+                              if (project.demoUrl !== '#') {
+                                window.open(project.demoUrl, '_blank')
+                              }
+                            }}
+                            disabled={project.demoUrl === '#'}
+                            title={project.demoUrl === '#' ? `${project.title} demo coming soon!` : `View live demo of ${project.title}`}
+                            aria-label={`View live demo of ${project.title}`}
+                            className={`p-2 rounded-full bg-white/95 backdrop-blur-md text-gray-800 shadow-sm border border-gray-100 transition-all duration-300 ${project.demoUrl === '#' ? 'opacity-50 cursor-not-allowed' : 'hover:shadow-md hover:text-amber-600 hover:scale-110'}`}
+                            whileHover={project.demoUrl !== '#' ? { scale: 1.15 } : {}}
+                            whileTap={project.demoUrl !== '#' ? { scale: 0.92 } : {}}
+                          >
+                            <ExternalLink size={15} />
+                          </motion.button>
+                        )}
+                        {project.githubUrl && (
+                          <motion.button
+                            onClick={(e) => {
+                              e.stopPropagation()
+                              if (project.githubUrl !== '#') {
+                                window.open(project.githubUrl, '_blank')
+                              }
+                            }}
+                            disabled={project.githubUrl === '#'}
+                            title={project.githubUrl === '#' ? `Source code is private` : `View source code of ${project.title}`}
+                            aria-label={`View source code of ${project.title}`}
+                            className={`p-2 rounded-full bg-white/95 backdrop-blur-md text-gray-800 shadow-sm border border-gray-100 transition-all duration-300 ${project.githubUrl === '#' ? 'opacity-50 cursor-not-allowed' : 'hover:shadow-md hover:text-amber-600 hover:scale-110'}`}
+                            whileHover={project.githubUrl !== '#' ? { scale: 1.15 } : {}}
+                            whileTap={project.githubUrl !== '#' ? { scale: 0.92 } : {}}
+                          >
+                            <GithubIcon size={15} />
+                          </motion.button>
+                        )}
                       </div>
                     </div>
-
-                    {/* Project Type Badge */}
-                    <div className={`absolute top-3 left-3 flex items-center gap-1.5 px-3 py-1 rounded-full text-white text-xs font-bold shadow-md ${getTypeClass(project.type)}`}>
-                      <Icon size={13} />
-                      <span>{project.type.charAt(0).toUpperCase() + project.type.slice(1)}</span>
-                    </div>
-
-                    {/* Action Buttons - Always Accessible with tactile feedback */}
-                    <div className="absolute top-3 right-3 flex gap-2 z-20">
-                      {project.demoUrl && (
-                        <motion.button
-                          onClick={(e) => {
-                            e.stopPropagation()
-                            if (project.demoUrl !== '#') {
-                              window.open(project.demoUrl, '_blank')
-                            }
-                          }}
-                          disabled={project.demoUrl === '#'}
-                          title={project.demoUrl === '#' ? `${project.title} demo coming soon!` : `View live demo of ${project.title}`}
-                          aria-label={`View live demo of ${project.title}`}
-                          className={`p-2 rounded-full bg-white/90 backdrop-blur-md text-gray-800 shadow-sm border border-gray-100 transition-all duration-300 ${project.demoUrl === '#' ? 'opacity-50 cursor-not-allowed' : 'hover:shadow-md hover:text-amber-600'}`}
-                          whileHover={project.demoUrl !== '#' ? { scale: 1.1 } : {}}
-                          whileTap={project.demoUrl !== '#' ? { scale: 0.95 } : {}}
-                        >
-                          <ExternalLink size={15} />
-                        </motion.button>
-                      )}
-                      {project.githubUrl && (
-                        <motion.button
-                          onClick={(e) => {
-                            e.stopPropagation()
-                            if (project.githubUrl !== '#') {
-                              window.open(project.githubUrl, '_blank')
-                            }
-                          }}
-                          disabled={project.githubUrl === '#'}
-                          title={project.githubUrl === '#' ? `Source code is private` : `View source code of ${project.title}`}
-                          aria-label={`View source code of ${project.title}`}
-                          className={`p-2 rounded-full bg-white/90 backdrop-blur-md text-gray-800 shadow-sm border border-gray-100 transition-all duration-300 ${project.githubUrl === '#' ? 'opacity-50 cursor-not-allowed' : 'hover:shadow-md hover:text-amber-600'}`}
-                          whileHover={project.githubUrl !== '#' ? { scale: 1.1 } : {}}
-                          whileTap={project.githubUrl !== '#' ? { scale: 0.95 } : {}}
-                        >
-                          <GithubIcon size={15} />
-                        </motion.button>
-                      )}
-                    </div>
-                  </div>
-                </div>
-
-                {/* Project Content */}
-                <div className="px-2 pb-2">
-                  <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 mb-2 group-hover:text-amber-600 transition-all duration-300 leading-snug">
-                    {project.title}
-                  </h3>
-                  <p className="text-xs sm:text-sm text-gray-600 leading-relaxed mb-4 line-clamp-3">
-                    {project.description}
-                  </p>
-
-                  {/* Technologies Chips */}
-                  <div className="flex flex-wrap gap-1.5 mb-4">
-                    {project.technologies.slice(0, isMobile ? 3 : project.technologies.length).map((tech, techIndex) => (
-                      <motion.span
-                        key={tech}
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.3, delay: techIndex * 0.05 }}
-                        className="px-2.5 py-1 bg-gray-50 border border-gray-200/60 text-gray-700 text-[11px] font-semibold rounded-full shadow-sm"
-                      >
-                        {tech}
-                      </motion.span>
-                    ))}
-                    {isMobile && project.technologies.length > 3 && (
-                      <span className="px-2.5 py-1 bg-gray-50 border border-gray-200/60 text-gray-500 text-[11px] font-semibold rounded-full shadow-sm">
-                        +{project.technologies.length - 3}
-                      </span>
-                    )}
                   </div>
 
-                  {/* Key Highlights */}
-                  <div className="space-y-2 pt-2 border-t border-gray-100">
-                    <h4 className="text-[11px] font-bold text-gray-500 uppercase tracking-wider">
-                      Key Highlights
-                    </h4>
-                    <div className="space-y-1.5">
-                      {project.highlights.slice(0, 3).map((highlight, highlightIndex) => (
-                        <div
-                          key={highlightIndex}
-                          className="flex items-center text-xs text-gray-700"
+                  {/* Project Content */}
+                  <div className="px-2 pb-2">
+                    <h3 className="font-display text-base sm:text-lg md:text-xl font-bold text-gray-900 mb-2 group-hover:text-amber-600 transition-colors duration-300 leading-snug tracking-tight">
+                      {project.title}
+                    </h3>
+                    <p className="font-sans text-xs sm:text-sm text-gray-600 leading-relaxed mb-4 line-clamp-3">
+                      {project.description}
+                    </p>
+
+                    {/* Technologies Chips */}
+                    <div className="flex flex-wrap gap-1.5 mb-4">
+                      {project.technologies.slice(0, isMobile ? 3 : project.technologies.length).map((tech, techIndex) => (
+                        <motion.span
+                          key={tech}
+                          initial={{ opacity: 0, scale: 0.8 }}
+                          whileInView={{ opacity: 1, scale: 1 }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.3, delay: techIndex * 0.05 }}
+                          className="font-mono px-2.5 py-1 bg-gray-50 border border-gray-200/70 text-gray-700 text-[11px] font-medium rounded-lg shadow-sm hover:border-amber-300 hover:bg-amber-50/60 hover:text-amber-700 transition-colors"
                         >
-                          <div className="w-3.5 h-3.5 rounded-full bg-gray-50 border border-gray-200/50 flex items-center justify-center mr-2 flex-shrink-0">
-                            <div className={`w-1.5 h-1.5 rounded-full ${getColorClass(project.color)}`} />
-                          </div>
-                          <span className="line-clamp-1">{highlight}</span>
-                        </div>
+                          {tech}
+                        </motion.span>
                       ))}
+                      {isMobile && project.technologies.length > 3 && (
+                        <span className="font-mono px-2.5 py-1 bg-gray-50 border border-gray-200/70 text-gray-500 text-[11px] font-medium rounded-lg shadow-sm">
+                          +{project.technologies.length - 3}
+                        </span>
+                      )}
+                    </div>
+
+                    {/* Key Highlights */}
+                    <div className="space-y-2 pt-2 border-t border-gray-100">
+                      <h4 className="font-mono text-[11px] font-bold text-gray-500 uppercase tracking-wider">
+                        Key Highlights
+                      </h4>
+                      <div className="space-y-1.5">
+                        {project.highlights.slice(0, 3).map((highlight, highlightIndex) => (
+                          <div
+                            key={highlightIndex}
+                            className="flex items-center font-sans text-xs text-gray-700"
+                          >
+                            <div className="w-3.5 h-3.5 rounded-full bg-gray-50 border border-gray-200/50 flex items-center justify-center mr-2 flex-shrink-0 group-hover:scale-110 transition-transform">
+                              <div className={`w-1.5 h-1.5 rounded-full ${getColorClass(project.color)}`} />
+                            </div>
+                            <span className="line-clamp-1">{highlight}</span>
+                          </div>
+                        ))}
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
+              </TiltCard>
             </motion.div>
           )
         })}
@@ -261,29 +267,29 @@ export default function ProjectShowcase() {
                 {/* Header (Static) */}
                 <div className="flex-shrink-0 mb-3">
                   <div className="flex items-center gap-2 mb-2">
-                    <span className={`flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold ${getTypeClass(selectedProject.type)}`}>
+                    <span className={`flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold font-mono ${getTypeClass(selectedProject.type)}`}>
                       {selectedProject.type.charAt(0).toUpperCase() + selectedProject.type.slice(1)}
                     </span>
                   </div>
                   
-                  <h3 className="text-lg sm:text-2xl font-bold bg-gradient-to-r from-amber-400 to-yellow-500 bg-clip-text text-transparent leading-snug">
+                  <h3 className="font-display text-lg sm:text-2xl font-bold bg-gradient-to-r from-amber-400 to-yellow-500 bg-clip-text text-transparent leading-snug">
                     {selectedProject.title}
                   </h3>
                 </div>
                 
                 {/* Scrollable Body Content */}
                 <div className="flex-1 overflow-y-auto pr-2 space-y-4 mb-4 scrollbar-thin scrollbar-thumb-neutral-700">
-                  <p className="text-xs sm:text-sm text-neutral-300 leading-relaxed">
+                  <p className="font-sans text-xs sm:text-sm text-neutral-300 leading-relaxed">
                     {selectedProject.description}
                   </p>
 
                   <div>
-                    <h4 className="text-[10px] sm:text-xs font-bold text-neutral-400 uppercase tracking-widest mb-2">
+                    <h4 className="font-mono text-[10px] sm:text-xs font-bold text-neutral-400 uppercase tracking-widest mb-2">
                       Technologies Used
                     </h4>
                     <div className="flex flex-wrap gap-1.5">
                       {selectedProject.technologies.map((tech) => (
-                        <span key={tech} className="px-2 py-0.5 md:py-1 bg-neutral-800 text-neutral-300 text-[10px] sm:text-xs rounded-md border border-neutral-700">
+                        <span key={tech} className="font-mono px-2 py-0.5 md:py-1 bg-neutral-800 text-amber-300 text-[10px] sm:text-xs rounded-md border border-neutral-700">
                           {tech}
                         </span>
                       ))}
@@ -291,12 +297,12 @@ export default function ProjectShowcase() {
                   </div>
 
                   <div>
-                    <h4 className="text-[10px] sm:text-xs font-bold text-neutral-400 uppercase tracking-widest mb-2">
+                    <h4 className="font-mono text-[10px] sm:text-xs font-bold text-neutral-400 uppercase tracking-widest mb-2">
                       Key Highlights
                     </h4>
                     <ul className="space-y-1.5">
                       {selectedProject.highlights.map((highlight, idx) => (
-                        <li key={idx} className="flex items-start text-xs sm:text-sm text-neutral-300">
+                        <li key={idx} className="flex items-start font-sans text-xs sm:text-sm text-neutral-300">
                           <span className="text-amber-500 mr-2 mt-0.5">•</span>
                           <span>{highlight}</span>
                         </li>

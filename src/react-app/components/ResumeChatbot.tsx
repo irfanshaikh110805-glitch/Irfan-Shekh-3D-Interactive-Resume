@@ -151,7 +151,7 @@ export default function ResumeChatbot() {
           >
             {/* Header */}
             <div className="bg-gradient-to-r from-amber-500 to-yellow-500 p-4 flex items-center justify-between text-white">
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2.5">
                 <div className="w-8 h-8 rounded-full bg-white/20 p-0.5 border border-white/30 flex items-center justify-center overflow-hidden flex-shrink-0">
                   <img 
                     src="/chatbot-80.webp" 
@@ -163,13 +163,20 @@ export default function ResumeChatbot() {
                     className="w-full h-full object-cover rounded-full"
                   />
                 </div>
-                <span className="font-semibold font-display">Chat with Irfan AI</span>
+                <div>
+                  <div className="font-semibold font-display text-sm leading-tight flex items-center gap-1.5">
+                    Chat with Irfan AI
+                    <span className="w-2 h-2 rounded-full bg-emerald-300 animate-pulse" />
+                  </div>
+                  <span className="text-[10px] text-amber-100 font-mono">Instant AI Assistant</span>
+                </div>
               </div>
               <button 
                 onClick={() => setIsOpen(false)}
-                className="hover:bg-amber-600 rounded-full p-1 transition-colors"
+                className="hover:bg-amber-600 rounded-full p-1.5 transition-colors"
+                aria-label="Close chat"
               >
-                <X size={20} />
+                <X size={18} />
               </button>
             </div>
 
@@ -295,10 +302,16 @@ export default function ResumeChatbot() {
             <X size={24} />
           </div>
         ) : (
-          <div className="relative flex items-center justify-center">
+          <div className="relative flex items-center justify-center group">
             {/* Glow / pulse effect behind the robot */}
             <div className="absolute inset-0 bg-amber-400/20 rounded-full blur-xl scale-75 animate-pulse" />
             
+            {/* Floating Tooltip */}
+            <div className="hidden sm:flex absolute right-full mr-2.5 top-1/2 -translate-y-1/2 items-center gap-1.5 px-3 py-1.5 bg-gray-900/90 backdrop-blur-sm text-white text-xs font-semibold rounded-full shadow-xl border border-gray-700/50 whitespace-nowrap pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-200 before:absolute before:left-full before:top-1/2 before:-translate-y-1/2 before:border-4 before:border-transparent before:border-l-gray-900/90">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+              <span>Ask Irfan AI</span>
+            </div>
+
             <img 
               src="/chatbot-160.webp" 
               alt="Open Chatbot" 
@@ -306,7 +319,7 @@ export default function ResumeChatbot() {
               height="88"
               loading="lazy"
               decoding="async"
-              className="w-16 h-16 sm:w-20 sm:h-20 object-contain drop-shadow-[0_8px_16px_rgba(245,158,11,0.4)] hover:drop-shadow-[0_12px_20px_rgba(245,158,11,0.5)] transition-all duration-300"
+              className="w-16 h-16 sm:w-20 sm:h-20 object-contain drop-shadow-[0_8px_16px_rgba(245,158,11,0.4)] group-hover:drop-shadow-[0_12px_20px_rgba(245,158,11,0.5)] transition-all duration-300"
             />
           </div>
         )}

@@ -1,28 +1,34 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { Mail, Phone, MapPin, Send, CheckCircle } from 'lucide-react'
+import { Mail, Phone, MapPin, Send, CheckCircle, Copy, Check } from 'lucide-react'
 import { getContactColorClass } from '@/react-app/utils/colorUtils'
 
 const contactInfo = [
   {
+    id: 'email',
     icon: Mail,
     label: 'Email',
     value: 'irfanshaikh110805@gmail.com',
     href: 'mailto:irfanshaikh110805@gmail.com',
+    copyable: true,
     color: '#f59e0b'
   },
   {
+    id: 'phone',
     icon: Phone,
     label: 'Phone',
     value: '+91 9964264412',
     href: 'tel:+919964264412',
+    copyable: true,
     color: '#eab308'
   },
   {
+    id: 'location',
     icon: MapPin,
     label: 'Location',
     value: 'Vijayapura, Karnataka, India',
     href: '#',
+    copyable: false,
     color: '#fbbf24'
   }
 ]
@@ -63,31 +69,31 @@ const socialLinks = [
     icon: LinkedinIcon,
     label: 'LinkedIn',
     href: 'https://www.linkedin.com/in/irfan-shekh-380461392?utm_source=share_via&utm_content=profile&utm_medium=member_android',
-    color: '#0077b5'
+    hoverClass: 'hover:text-[#0077b5] hover:border-[#0077b5]/50 hover:shadow-[0_4px_16px_rgba(0,119,181,0.25)]'
   },
   {
     icon: GithubIcon,
     label: 'GitHub',
     href: 'https://github.com/irfanshaikh110805-glitch',
-    color: '#333'
-  },
-  {
-    icon: FacebookIcon,
-    label: 'Facebook',
-    href: 'https://www.facebook.com/irfan.shaikh.870227',
-    color: '#1877f2'
-  },
-  {
-    icon: InstagramIcon,
-    label: 'Instagram',
-    href: 'https://www.instagram.com/dark_rider170?igsh=dWhha2FqeHlqNHky',
-    color: '#e4405f'
+    hoverClass: 'hover:text-black hover:border-gray-900/50 hover:shadow-[0_4px_16px_rgba(0,0,0,0.2)]'
   },
   {
     icon: WhatsappIcon,
     label: 'WhatsApp',
     href: 'https://wa.me/919964264412?text=Hi%20Irfan!%20%F0%9F%91%8B%20I%20came%20across%20your%20portfolio%20and%20would%20like%20to%20connect%20regarding%20a%20project%20%2F%20opportunity.',
-    color: '#25d366'
+    hoverClass: 'hover:text-[#25d366] hover:border-[#25d366]/50 hover:shadow-[0_4px_16px_rgba(37,211,102,0.25)]'
+  },
+  {
+    icon: InstagramIcon,
+    label: 'Instagram',
+    href: 'https://www.instagram.com/dark_rider170?igsh=dWhha2FqeHlqNHky',
+    hoverClass: 'hover:text-[#e4405f] hover:border-[#e4405f]/50 hover:shadow-[0_4px_16px_rgba(228,64,95,0.25)]'
+  },
+  {
+    icon: FacebookIcon,
+    label: 'Facebook',
+    href: 'https://www.facebook.com/irfan.shaikh.870227',
+    hoverClass: 'hover:text-[#1877f2] hover:border-[#1877f2]/50 hover:shadow-[0_4px_16px_rgba(24,119,242,0.25)]'
   }
 ]
 
@@ -95,6 +101,31 @@ export default function ContactSection() {
   const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const [copiedId, setCopiedId] = useState<string | null>(null)
+
+  // Listen for 'select-service' event to auto-fill subject
+  useEffect(() => {
+    const handleServiceSelect = (e: CustomEvent) => {
+      if (e.detail) {
+        setFormData(prev => ({
+          ...prev,
+          subject: `Inquiry: ${e.detail}`
+        }))
+        const messageInput = document.getElementById('message')
+        if (messageInput) {
+          messageInput.focus()
+        }
+      }
+    }
+    window.addEventListener('select-service', handleServiceSelect as EventListener)
+    return () => window.removeEventListener('select-service', handleServiceSelect as EventListener)
+  }, [])
+
+  const handleCopy = (id: string, text: string) => {
+    navigator.clipboard.writeText(text)
+    setCopiedId(id)
+    setTimeout(() => setCopiedId(null), 2500)
+  }
 
   const handleSubmit = async (e: React.FormEvent) => {
      e.preventDefault()
@@ -178,19 +209,23 @@ export default function ContactSection() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8 }}
-        className="text-center mb-6 md:mb-8"
+        className="text-center mb-10 md:mb-14"
       >
-        <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-amber-500 to-yellow-400 bg-clip-text text-transparent">
-          Let's Connect
+        <div className="inline-flex items-center gap-2 bg-amber-50/90 border border-amber-200/70 rounded-full px-5 py-2 mb-4 shadow-sm">
+          <Mail className="w-4 h-4 text-amber-600 shrink-0" />
+          <span className="text-xs sm:text-sm text-amber-800 font-semibold font-mono tracking-tight">Direct Channel</span>
+        </div>
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold font-display mb-4 bg-gradient-to-r from-amber-600 via-amber-500 to-yellow-600 bg-clip-text text-transparent tracking-tight">
+          Let's Build Something Great
         </h2>
-        <p className="text-gray-700">
-          Ready to bring your ideas to life? Let's discuss your next project.
+        <p className="font-sans text-sm sm:text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
+          Open for full-time engineering roles, AI/ML initiatives, and select high-impact freelance projects.
         </p>
       </motion.div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        <div className="space-y-4 md:space-y-6">
-          {/* Contact Information */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+        <div className="space-y-6">
+          {/* Contact Information Cards with 1-Click Copy */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -198,39 +233,66 @@ export default function ContactSection() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="bg-white rounded-3xl p-6 md:p-8 border border-gray-100 shadow-[-4px_-4px_12px_rgba(255,255,255,1),4px_6px_18px_rgba(0,0,0,0.05)]"
           >
-            <h3 className="text-xl font-bold text-gray-900 mb-6">Contact Information</h3>
-            <div className="space-y-4">
+            <h3 className="font-display text-xl font-bold text-gray-900 mb-6 tracking-tight">Direct Contacts</h3>
+            <div className="space-y-3.5">
               {contactInfo.map((contact, index) => {
                 const Icon = contact.icon
+                const isCopied = copiedId === contact.id
+
                 return (
-                  <motion.a
-                    key={contact.label}
-                    href={contact.href}
-                    initial={{ opacity: 0, x: -30 }}
+                  <motion.div
+                    key={contact.id}
+                    initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.4, delay: index * 0.1 }}
-                    className={`flex items-center gap-4 p-3.5 rounded-2xl hover:bg-amber-50/40 border border-transparent hover:border-amber-100 transition-all duration-300 group ${getContactColorClass(contact.color)}`}
-                    whileHover={{ x: 5 }}
+                    className="flex items-center justify-between p-3.5 sm:p-4 rounded-2xl bg-gray-50/70 border border-gray-100/90 hover:border-amber-200/80 hover:bg-amber-50/30 transition-all duration-300 group"
                   >
-                    <div className={`p-3 rounded-xl contact-icon-bg shadow-sm ${getContactColorClass(contact.color)}`}>
-                      <Icon
-                        size={20}
-                        className={`contact-icon-color ${getContactColorClass(contact.color)}`}
-                      />
-                    </div>
-                    <div>
-                      <p className="text-xs text-gray-500 font-semibold">{contact.label}</p>
-                      <p className="text-gray-900 font-medium group-hover:text-amber-600 transition-colors duration-300">
-                        {contact.value}
-                      </p>
-                    </div>
-                  </motion.a>
+                    <a
+                      href={contact.href}
+                      className="flex items-center gap-3.5 flex-1 min-w-0"
+                    >
+                      <div className={`p-3 rounded-xl bg-white border border-gray-100 shadow-sm group-hover:scale-110 transition-transform ${getContactColorClass(contact.color)}`}>
+                        <Icon size={18} className={`contact-icon-color ${getContactColorClass(contact.color)}`} />
+                      </div>
+                      <div className="min-w-0">
+                        <p className="text-xs text-gray-500 font-semibold font-mono uppercase tracking-wider">{contact.label}</p>
+                        <p className="text-gray-900 font-medium font-sans text-xs sm:text-sm group-hover:text-amber-600 transition-colors truncate">
+                          {contact.value}
+                        </p>
+                      </div>
+                    </a>
+
+                    {contact.copyable && (
+                      <button
+                        onClick={() => handleCopy(contact.id, contact.value)}
+                        className={`ml-2 p-2 rounded-xl border transition-all duration-300 flex items-center gap-1.5 cursor-pointer text-xs font-semibold ${
+                          isCopied
+                            ? 'bg-emerald-50 border-emerald-200 text-emerald-600'
+                            : 'bg-white border-gray-200/80 text-gray-500 hover:text-amber-600 hover:border-amber-300 shadow-sm'
+                        }`}
+                        title={`Copy ${contact.label}`}
+                        aria-label={`Copy ${contact.label}`}
+                      >
+                        {isCopied ? (
+                          <>
+                            <Check size={14} className="text-emerald-600 animate-bounce" />
+                            <span className="hidden sm:inline font-mono">Copied!</span>
+                          </>
+                        ) : (
+                          <>
+                            <Copy size={14} />
+                            <span className="hidden sm:inline font-mono">Copy</span>
+                          </>
+                        )}
+                      </button>
+                    )}
+                  </motion.div>
                 )
               })}
             </div>
           </motion.div>
 
-          {/* Social Links */}
+          {/* Social Links with Distinct Brand Glowing Micro-Interactions */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -238,8 +300,9 @@ export default function ContactSection() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="bg-white rounded-3xl p-6 md:p-8 border border-gray-100 shadow-[-4px_-4px_12px_rgba(255,255,255,1),4px_6px_18px_rgba(0,0,0,0.05)]"
           >
-            <h3 className="text-xl font-bold text-gray-900 mb-6">Social Links</h3>
-            <div className="flex flex-wrap gap-4">
+            <h3 className="font-display text-xl font-bold text-gray-900 mb-4 tracking-tight">Social Channels</h3>
+            <p className="font-sans text-xs text-gray-500 mb-5">Connect with me across platforms for updates and collaborations.</p>
+            <div className="flex flex-wrap gap-3 sm:gap-4">
               {socialLinks.map((social, index) => {
                 const IconComponent = social.icon
                 return (
@@ -251,14 +314,12 @@ export default function ContactSection() {
                     aria-label={social.label}
                     initial={{ opacity: 0, scale: 0.8 }}
                     whileInView={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.4, delay: index * 0.1 }}
-                    className="flex items-center justify-center w-12 h-12 rounded-2xl bg-white border border-gray-100 text-gray-600 hover:text-amber-600 shadow-[-2px_-2px_6px_rgba(255,255,255,1),2px_3px_8px_rgba(0,0,0,0.05)] hover:shadow-md transition-all duration-300 group"
-                    whileHover={{ scale: 1.08, y: -2 }}
-                    whileTap={{ scale: 0.95 }}
+                    transition={{ duration: 0.4, delay: index * 0.08 }}
+                    className={`flex items-center justify-center w-12 h-12 rounded-2xl bg-white border border-gray-200/80 text-gray-600 shadow-[-2px_-2px_6px_rgba(255,255,255,1),2px_3px_8px_rgba(0,0,0,0.05)] transition-all duration-300 ${social.hoverClass}`}
+                    whileHover={{ scale: 1.12, y: -3 }}
+                    whileTap={{ scale: 0.94 }}
                   >
-                    <div className="text-gray-600 group-hover:text-amber-600 transition-colors duration-300">
-                      <IconComponent />
-                    </div>
+                    <IconComponent />
                   </motion.a>
                 )
               })}
@@ -274,27 +335,27 @@ export default function ContactSection() {
           transition={{ duration: 0.6, delay: 0.3 }}
           className="bg-white rounded-3xl p-6 md:p-8 border border-gray-100 shadow-[-4px_-4px_12px_rgba(255,255,255,1),4px_6px_18px_rgba(0,0,0,0.05)]"
         >
-          <h3 className="text-xl font-bold text-gray-900 mb-6">Send me a Message</h3>
+          <h3 className="font-display text-xl font-bold text-gray-900 mb-6 tracking-tight">Send a Message</h3>
           
           {isSubmitted ? (
             <div className="h-full flex flex-col items-center justify-center text-center py-10">
-              <div className="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mb-4 shadow-inner">
+              <div className="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mb-4 shadow-inner">
                 <CheckCircle size={32} />
               </div>
-              <h4 className="text-2xl font-bold text-gray-900 mb-2">Message Sent!</h4>
-              <p className="text-gray-600">Thank you for reaching out. I'll get back to you soon.</p>
+              <h4 className="font-display text-2xl font-bold text-gray-900 mb-2">Message Dispatched!</h4>
+              <p className="font-sans text-gray-600 text-sm">Thank you for reaching out. I'll get back to you shortly.</p>
               <button 
                 onClick={() => setIsSubmitted(false)}
-                className="mt-6 text-amber-600 font-semibold hover:underline"
+                className="mt-6 text-amber-600 font-semibold font-sans text-sm hover:underline cursor-pointer"
               >
                 Send another message
               </button>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form onSubmit={handleSubmit} className="space-y-4 font-sans">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-semibold text-gray-700 mb-1.5">Your Name</label>
+                  <label htmlFor="name" className="block text-xs font-bold font-mono uppercase tracking-wider text-gray-700 mb-1.5">Your Name</label>
                   <input
                     type="text"
                     id="name"
@@ -302,12 +363,12 @@ export default function ContactSection() {
                     required
                     value={formData.name}
                     onChange={handleChange}
-                    placeholder="Irfan Shekh"
+                    placeholder="e.g. Alex Morgan"
                     className="w-full px-4 py-3 bg-gray-50 border border-gray-200/80 rounded-xl focus:bg-white shadow-[inset_1.5px_1.5px_3px_rgba(0,0,0,0.03)] focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500 outline-none transition-all text-sm"
                   />
                 </div>
                 <div>
-                  <label htmlFor="email" className="block text-sm font-semibold text-gray-700 mb-1.5">Email Address</label>
+                  <label htmlFor="email" className="block text-xs font-bold font-mono uppercase tracking-wider text-gray-700 mb-1.5">Email Address</label>
                   <input
                     type="email"
                     id="email"
@@ -315,13 +376,13 @@ export default function ContactSection() {
                     required
                     value={formData.email}
                     onChange={handleChange}
-                    placeholder="irfan@example.com"
+                    placeholder="alex@company.com"
                     className="w-full px-4 py-3 bg-gray-50 border border-gray-200/80 rounded-xl focus:bg-white shadow-[inset_1.5px_1.5px_3px_rgba(0,0,0,0.03)] focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500 outline-none transition-all text-sm"
                   />
                 </div>
               </div>
               <div>
-                <label htmlFor="subject" className="block text-sm font-semibold text-gray-700 mb-1.5">Subject</label>
+                <label htmlFor="subject" className="block text-xs font-bold font-mono uppercase tracking-wider text-gray-700 mb-1.5">Subject</label>
                 <input
                   type="text"
                   id="subject"
@@ -329,12 +390,12 @@ export default function ContactSection() {
                   required
                   value={formData.subject}
                   onChange={handleChange}
-                  placeholder="Project Collaboration"
+                  placeholder="Project Consultation / Full-Stack Role"
                   className="w-full px-4 py-3 bg-gray-50 border border-gray-200/80 rounded-xl focus:bg-white shadow-[inset_1.5px_1.5px_3px_rgba(0,0,0,0.03)] focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500 outline-none transition-all text-sm"
                 />
               </div>
               <div>
-                <label htmlFor="message" className="block text-sm font-semibold text-gray-700 mb-1.5">Message</label>
+                <label htmlFor="message" className="block text-xs font-bold font-mono uppercase tracking-wider text-gray-700 mb-1.5">Message</label>
                 <textarea
                   id="message"
                   name="message"
@@ -342,24 +403,24 @@ export default function ContactSection() {
                   rows={4}
                   value={formData.message}
                   onChange={handleChange}
-                  placeholder="Tell me about your project..."
+                  placeholder="Tell me about your project, timeline, and goals..."
                   className="w-full px-4 py-3 bg-gray-50 border border-gray-200/80 rounded-xl focus:bg-white shadow-[inset_1.5px_1.5px_3px_rgba(0,0,0,0.03)] focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500 outline-none transition-all resize-none text-sm"
                 />
               </div>
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full py-3.5 px-6 bg-gradient-to-r from-amber-500 to-yellow-500 text-white font-bold rounded-xl shadow-lg shadow-amber-500/25 hover:shadow-xl hover:shadow-amber-500/40 hover:-translate-y-0.5 transform transition-all active:translate-y-0 disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2 cursor-pointer"
+                className="shimmer-hover-trigger w-full py-3.5 px-6 bg-gradient-to-r from-amber-500 via-amber-600 to-yellow-500 text-white font-bold font-display tracking-tight text-sm rounded-xl shadow-lg shadow-amber-500/25 hover:shadow-xl hover:shadow-amber-500/40 hover:-translate-y-0.5 transform transition-all active:translate-y-0 disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2 cursor-pointer"
               >
                 {isSubmitting ? (
                   <>
                     <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                    Sending...
+                    <span>Transmitting...</span>
                   </>
                 ) : (
                   <>
-                    <Send size={18} />
-                    Send Message
+                    <Send size={16} />
+                    <span>Send Message</span>
                   </>
                 )}
               </button>

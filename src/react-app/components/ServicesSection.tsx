@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
-import { Code, Palette, Smartphone, Globe, Zap, Users, LucideIcon } from 'lucide-react'
+import { Code, Palette, Smartphone, Globe, Zap, Users, LucideIcon, ArrowRight } from 'lucide-react'
+import TiltCard from '@/react-app/components/TiltCard'
 
 // Helper function to get CSS class name for service colors
 const getServiceColorClass = (color: string): string => {
@@ -82,6 +83,21 @@ const services: Service[] = [
 ]
 
 export default function ServicesSection() {
+  const handleInquire = (serviceTitle: string) => {
+    // Dispatch custom event to auto-populate contact form
+    window.dispatchEvent(new CustomEvent('select-service', { detail: serviceTitle }))
+    const contactSection = document.getElementById('contact')
+    if (contactSection) {
+      const navOffset = 80
+      const elementPosition = contactSection.getBoundingClientRect().top
+      const offsetPosition = elementPosition + window.scrollY - navOffset
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      })
+    }
+  }
+
   return (
     <div className="w-full max-w-7xl mx-auto">
       <motion.div
@@ -91,11 +107,15 @@ export default function ServicesSection() {
         transition={{ duration: 0.8 }}
         className="text-center mb-10 md:mb-16"
       >
-        <h2 className="heading-lg mb-6 bg-gradient-to-r from-amber-600 to-yellow-600 bg-clip-text text-transparent">
-          Services & Expertise
+        <div className="inline-flex items-center gap-2 bg-amber-50/90 border border-amber-200/70 rounded-full px-5 py-2 mb-4 shadow-sm">
+          <Code className="w-4 h-4 text-amber-600 shrink-0" />
+          <span className="text-xs sm:text-sm text-amber-800 font-semibold font-mono tracking-tight">Capabilities</span>
+        </div>
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold font-display mb-4 bg-gradient-to-r from-amber-600 via-amber-500 to-yellow-600 bg-clip-text text-transparent tracking-tight">
+          Services & Solutions
         </h2>
-        <p className="body-lg text-gray-700 max-w-3xl mx-auto font-light">
-          Comprehensive digital solutions tailored to bring your ideas to life with <span className="bg-gradient-to-r from-amber-600 to-yellow-600 bg-clip-text text-transparent font-medium">cutting-edge technology</span> and creative excellence
+        <p className="font-sans text-sm sm:text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
+          Comprehensive digital solutions tailored to bring your ideas to life with modern architecture, rock-solid engineering, and creative excellence.
         </p>
       </motion.div>
 
@@ -110,67 +130,68 @@ export default function ServicesSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="group relative bg-white rounded-3xl p-5 md:p-8 border border-gray-100 shadow-[-4px_-4px_12px_rgba(255,255,255,1),4px_6px_18px_rgba(0,0,0,0.05)] hover:shadow-[-6px_-6px_16px_rgba(255,255,255,1),6px_10px_22px_rgba(0,0,0,0.09)] transition-all duration-500 flex flex-col justify-between"
-              whileHover={{ y: -6 }}
+              className="h-full"
             >
-              <div>
-                {/* Icon Dock */}
-                <div className="p-2 rounded-2xl bg-amber-50/80 border border-amber-100 inline-block mb-4 md:mb-6 shadow-sm">
-                  <div className={`w-12 h-12 md:w-14 md:h-14 rounded-xl flex items-center justify-center bg-gradient-to-br ${service.gradient} text-white shadow-md`}>
-                    <Icon className="w-6 h-6 md:w-7 md:h-7" />
-                  </div>
-                </div>
-
-                {/* Content */}
-                <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 mb-2 md:mb-3 group-hover:text-amber-600 transition-all duration-300 leading-snug">
-                  {service.title}
-                </h3>
-
-                <p className="text-xs sm:text-sm text-gray-600 leading-relaxed mb-5">
-                  {service.description}
-                </p>
-
-                {/* Features */}
-                <div className="space-y-3 pt-3 border-t border-gray-100">
-                  <h4 className="text-xs font-bold text-gray-500 uppercase tracking-wider">
-                    Key Features
-                  </h4>
-                  <div className="space-y-2">
-                    {service.features.map((feature, fIndex) => (
-                      <div
-                        key={fIndex}
-                        className="flex items-center text-xs md:text-sm text-gray-700"
-                      >
-                        <div className="w-3.5 h-3.5 rounded-full bg-gray-50 border border-gray-200/50 flex items-center justify-center mr-2.5 flex-shrink-0">
-                          <div className={`w-1.5 h-1.5 rounded-full bg-dynamic ${getServiceColorClass(service.color)}`} />
-                        </div>
-                        {feature}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              {/* CTA Button */}
-              <motion.button
-                onClick={() => {
-                  const contactSection = document.getElementById('contact')
-                  if (contactSection) {
-                    contactSection.scrollIntoView({ behavior: 'smooth' })
-                  }
-                }}
-                className="mt-6 w-full py-3 px-6 bg-gradient-to-r from-amber-500 to-yellow-500 text-white rounded-xl font-bold text-xs sm:text-sm hover:from-amber-600 hover:to-yellow-600 shadow-md shadow-amber-500/20 hover:shadow-lg transition-all duration-300 cursor-pointer"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.96 }}
+              <TiltCard
+                maxTilt={5}
+                glareOpacity={0.12}
+                className="group relative bg-white rounded-3xl p-5 md:p-7 border border-gray-100/90 shadow-[-4px_-4px_12px_rgba(255,255,255,1),4px_6px_18px_rgba(0,0,0,0.05)] hover:shadow-[-6px_-6px_16px_rgba(255,255,255,1),6px_12px_24px_rgba(245,158,11,0.12)] transition-all duration-300 flex flex-col justify-between h-full"
               >
-                Inquire About Service
-              </motion.button>
+                <div>
+                  {/* Icon Dock with Tactile Inset Rim */}
+                  <div className="p-2 rounded-2xl bg-amber-50/80 border border-amber-100 inline-block mb-4 md:mb-6 shadow-sm group-hover:scale-105 transition-transform duration-300">
+                    <div className={`w-12 h-12 md:w-14 md:h-14 rounded-xl flex items-center justify-center bg-gradient-to-br ${service.gradient} text-white shadow-md group-hover:rotate-6 transition-transform duration-300`}>
+                      <Icon className="w-6 h-6 md:w-7 md:h-7" />
+                    </div>
+                  </div>
+
+                  {/* Title & Description */}
+                  <h3 className="font-display text-base sm:text-lg md:text-xl font-bold text-gray-900 mb-2 md:mb-3 group-hover:text-amber-600 transition-colors leading-snug tracking-tight">
+                    {service.title}
+                  </h3>
+
+                  <p className="font-sans text-xs sm:text-sm text-gray-600 leading-relaxed mb-5">
+                    {service.description}
+                  </p>
+
+                  {/* Features */}
+                  <div className="space-y-3 pt-3 border-t border-gray-100">
+                    <h4 className="font-mono text-xs font-bold text-gray-500 uppercase tracking-wider">
+                      Key Highlights
+                    </h4>
+                    <div className="space-y-2">
+                      {service.features.map((feature, fIndex) => (
+                        <div
+                          key={fIndex}
+                          className="flex items-center font-sans text-xs md:text-sm text-gray-700 group-hover:text-gray-900 transition-colors"
+                        >
+                          <div className="w-3.5 h-3.5 rounded-full bg-gray-50 border border-gray-200/50 flex items-center justify-center mr-2.5 flex-shrink-0 group-hover:scale-110 transition-transform">
+                            <div className={`w-1.5 h-1.5 rounded-full bg-dynamic ${getServiceColorClass(service.color)}`} />
+                          </div>
+                          <span>{feature}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                {/* CTA Button */}
+                <motion.button
+                  onClick={() => handleInquire(service.title)}
+                  className="shimmer-hover-trigger mt-6 w-full py-3 px-6 bg-gradient-to-r from-amber-500 to-yellow-500 text-white rounded-xl font-bold font-display text-xs sm:text-sm hover:from-amber-600 hover:to-yellow-600 shadow-md shadow-amber-500/20 hover:shadow-lg hover:shadow-amber-500/35 transition-all duration-300 cursor-pointer flex items-center justify-center gap-2"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.96 }}
+                >
+                  <span>Inquire About Service</span>
+                  <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+                </motion.button>
+              </TiltCard>
             </motion.div>
           )
         })}
       </div>
 
-      {/* Call to Action */}
+      {/* Call to Action Banner */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -179,19 +200,8 @@ export default function ServicesSection() {
         className="text-center mt-12 md:mt-16"
       >
         <motion.button
-          onClick={() => {
-            const contactSection = document.getElementById('contact')
-            if (contactSection) {
-              const navOffset = 80
-              const elementPosition = contactSection.getBoundingClientRect().top
-              const offsetPosition = elementPosition + window.scrollY - navOffset
-              window.scrollTo({
-                top: offsetPosition,
-                behavior: 'smooth'
-              })
-            }
-          }}
-          className="px-8 py-4 bg-gradient-to-r from-amber-500 to-yellow-500 text-white rounded-2xl font-bold text-sm sm:text-base hover:from-amber-600 hover:to-yellow-600 shadow-lg shadow-amber-500/25 hover:shadow-xl hover:shadow-amber-500/40 transition-all duration-300 cursor-pointer inline-flex items-center gap-3 mx-auto"
+          onClick={() => handleInquire('New Project Consultation')}
+          className="shimmer-hover-trigger px-8 py-4 bg-gradient-to-r from-amber-500 via-amber-600 to-yellow-500 text-white rounded-2xl font-bold font-display text-sm sm:text-base hover:from-amber-600 hover:to-yellow-600 shadow-lg shadow-amber-500/25 hover:shadow-xl hover:shadow-amber-500/40 transition-all duration-300 cursor-pointer inline-flex items-center gap-3 mx-auto"
           whileHover={{ scale: 1.04, y: -2 }}
           whileTap={{ scale: 0.96 }}
         >
@@ -203,10 +213,11 @@ export default function ServicesSection() {
             →
           </motion.div>
         </motion.button>
-        <p className="text-gray-600 text-sm mt-4 font-medium">
-          Let's discuss how I can help bring your vision to life
+        <p className="font-sans text-gray-600 text-sm mt-4 font-medium">
+          Let's discuss how I can help bring your vision to life.
         </p>
       </motion.div>
     </div>
   )
 }
+

@@ -35,17 +35,17 @@ export default function DownloadResume() {
     <motion.button
       onClick={handleDownload}
       disabled={isDownloading}
-      className="group flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-amber-500 to-yellow-500 text-white rounded-xl font-medium hover:from-amber-600 hover:to-yellow-600 transition-all duration-300 shadow-lg hover:shadow-amber-500/25 disabled:opacity-50 disabled:cursor-not-allowed"
-      whileHover={!isDownloading ? { scale: 1.05, y: -2 } : {}}
+      className="shimmer-hover-trigger group relative overflow-hidden flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-amber-500 to-yellow-500 text-white rounded-xl font-semibold hover:from-amber-600 hover:to-yellow-600 transition-all duration-300 shadow-lg shadow-amber-500/20 hover:shadow-amber-500/30 disabled:opacity-50 disabled:cursor-not-allowed"
+      whileHover={!isDownloading ? { scale: 1.04, y: -2 } : {}}
       whileTap={!isDownloading ? { scale: 0.98 } : {}}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
       aria-label="Download resume PDF"
     >
-      <FileText size={20} className="group-hover:rotate-12 transition-transform duration-300" />
-      <span>{isDownloading ? 'Downloading...' : 'Download Resume'}</span>
-      <Download size={18} className="group-hover:translate-y-1 transition-transform duration-300" />
+      <FileText size={20} className="group-hover:rotate-6 transition-transform duration-300" />
+      <span>{isDownloading ? 'Preparing PDF...' : 'Download Resume'}</span>
+      <Download size={18} className="group-hover:translate-y-0.5 transition-transform duration-300" />
     </motion.button>
   )
 }

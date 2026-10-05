@@ -10,9 +10,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <!-- Optimized font loading - essential Outfit weights only -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;900&display=swap"></noscript>
+    <!-- Optimized font loading - Outfit (body), Space Grotesk (headings), JetBrains Mono (code/metrics) -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap"></noscript>
 
     <!-- Preload full-quality original LCP hero image -->
     <link rel="preload" href="/profile.webp" as="image" type="image/webp" fetchpriority="high">
@@ -67,20 +67,19 @@
     <meta name="google-site-verification" content="googled30489a4b749557c" />
 
     <!-- Open Graph / Facebook -->
-    <meta property="og:title" content="Irfan Shekh - Digital Full Stack Developer Portfolio" />
-    <meta property="og:description" content="BCA graduate specializing in full-stack development and AI/ML integration. Proven expertise building scalable web applications with React, Node.js, and Flask, backed by 3 internships and 9+ deployed projects." />
-    <meta property="og:image" content="https://irfanshaikhportfolio.netlify.app/og.webp" type="image/webp" />
+    <meta property="og:title" content="Irfan Shaikh Portfolio | Full Stack Developer | React, Node.js" />
+    <meta property="og:description" content="Digital Full Stack Developer & AI/ML integration specialist. BCA graduate with 3 internships and 9+ deployed projects building scalable web applications." />
+    <meta property="og:image" content="https://irfanshaikhportfolio.netlify.app/profile.png" />
     <meta property="og:url" content="https://irfanshaikhportfolio.netlify.app/" />
-    <meta property="og:type" content="website" />
-    <meta property="og:author" content="Irfan Shekh" />
-    <meta property="og:site_name" content="irfan'sFolio" />
+    <meta property="og:type" content="profile" />
+    <meta property="og:site_name" content="Irfan Shaikh Portfolio" />
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:site" content="@irfan_shekh" />
-    <meta property="twitter:title" content="Irfan Shekh - Digital Full Stack Developer Portfolio" />
-    <meta property="twitter:description" content="BCA graduate specializing in full-stack development and AI/ML integration. Proven expertise building scalable web applications with React, Node.js, and Flask." />
-    <meta property="twitter:image" content="https://irfanshaikhportfolio.netlify.app/og.webp" type="image/webp" />
+    <meta property="twitter:title" content="Irfan Shaikh Portfolio | Full Stack Developer" />
+    <meta property="twitter:description" content="Digital Full Stack Developer & AI/ML integration specialist. BCA graduate with 3 internships and 9+ deployed projects." />
+    <meta property="twitter:image" content="https://irfanshaikhportfolio.netlify.app/profile.png" />
 
     <!-- Structured Data (JSON-LD) -->
     <script type="application/ld+json">
@@ -88,33 +87,55 @@
       "@context": "https://schema.org",
       "@graph": [
         {
+          "@type": "WebSite",
+          "@id": "https://irfanshaikhportfolio.netlify.app/#website",
+          "url": "https://irfanshaikhportfolio.netlify.app/",
+          "name": "Irfan Shaikh Portfolio",
+          "alternateName": [
+            "Irfan Shekh Portfolio",
+            "Irfan Shaikh",
+            "Irfan Shekh"
+          ],
+          "publisher": {
+            "@id": "https://irfanshaikhportfolio.netlify.app/#person"
+          }
+        },
+        {
           "@type": "ProfilePage",
           "@id": "https://irfanshaikhportfolio.netlify.app/#profilepage",
           "url": "https://irfanshaikhportfolio.netlify.app/",
-          "name": "Irfan Shekh - Digital Full Stack Developer Portfolio",
-          "description": "Digital Full Stack Developer portfolio showcasing full-stack development and AI/ML integration projects by Irfan Shekh. BCA graduate with 3 internships and 9+ deployed projects.",
+          "name": "Irfan Shaikh Portfolio",
+          "primaryImageOfPage": {
+            "@type": "ImageObject",
+            "@id": "https://irfanshaikhportfolio.netlify.app/#primaryimage",
+            "url": "https://irfanshaikhportfolio.netlify.app/profile.png",
+            "contentUrl": "https://irfanshaikhportfolio.netlify.app/profile.png",
+            "caption": "Irfan Shaikh - Digital Full Stack Developer"
+          },
           "mainEntity": {
             "@type": "Person",
             "@id": "https://irfanshaikhportfolio.netlify.app/#person",
-            "name": "Irfan Shekh",
-            "alternateName": "Irfan Shaikh",
+            "name": "Irfan Shaikh",
+            "alternateName": ["Irfan Shekh", "Irfan Sk"],
             "jobTitle": "Digital Full Stack Developer",
             "url": "https://irfanshaikhportfolio.netlify.app/",
-            "image": "https://irfanshaikhportfolio.netlify.app/profile.webp",
-            "description": "Digital Full Stack Developer and AI/ML integration specialist. BCA graduate (2023-2026) with proven expertise building scalable web applications using React, Node.js, and Flask. 3 internships and 9+ deployed projects including legal intelligence software and custom AI tools.",
+            "image": {
+              "@type": "ImageObject",
+              "url": "https://irfanshaikhportfolio.netlify.app/profile.png",
+              "caption": "Irfan Shaikh"
+            },
+            "description": "Digital Full Stack Developer and AI/ML integration specialist. BCA graduate (2023-2026) with proven expertise building scalable web applications using React, Node.js, and Flask. 3 internships and 9+ deployed projects.",
             "knowsAbout": [
               "Web Development",
-              "AI & Machine Learning",
               "Full-Stack Engineering",
-              "Next.js",
               "React",
+              "Next.js",
+              "Node.js",
+              "TypeScript",
               "Python",
               "FastAPI",
-              "TensorFlow",
-              "Supabase",
-              "Portfolio Development",
-              "Frontend Development",
-              "Backend Development"
+              "AI & Machine Learning",
+              "Supabase"
             ],
             "alumniOf": {
               "@type": "EducationalOrganization",
@@ -124,21 +145,6 @@
               "https://github.com/irfanshaikh110805-glitch",
               "https://www.linkedin.com/in/irfan-sk"
             ]
-          }
-        },
-        {
-          "@type": "WebSite",
-          "@id": "https://irfanshaikhportfolio.netlify.app/#website",
-          "url": "https://irfanshaikhportfolio.netlify.app/",
-          "name": "Irfan Shekh - Digital Full Stack Developer Portfolio",
-          "description": "Digital Full Stack Developer portfolio showcasing full-stack development and AI/ML integration projects. BCA graduate with expertise in React, Node.js, Flask, and 9+ deployed projects.",
-          "publisher": {
-            "@id": "https://irfanshaikhportfolio.netlify.app/#person"
-          },
-          "potentialAction": {
-            "@type": "SearchAction",
-            "target": "https://irfanshaikhportfolio.netlify.app/#search?q={search_term_string}",
-            "query-input": "required name=search_term_string"
           }
         },
         {
@@ -175,13 +181,17 @@
     }
     </script>
 
-    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.webp" type="image/webp" />
+    <!-- Standard Favicons & App Icons for Search Engines -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     
     <!-- Additional SEO Assets -->
     <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
     
-    <title>Irfan Shekh Portfolio | Full Stack Developer | React, Node.js, AI/ML Expert</title>
+    <title>Irfan Shaikh Portfolio | Full Stack Developer | React, Node.js</title>
   </head>
   <body>
     <div id="root"></div>

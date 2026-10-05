@@ -89,25 +89,30 @@ export default function Navigation({ activeSection, setActiveSection }: Navigati
         </motion.div>
 
         {/* Desktop Navigation Links */}
-        <div className="hidden md:flex items-center space-x-1.5 p-1.5 bg-gray-100/80 rounded-full border border-gray-200/50 shadow-inner">
+        <div className="hidden md:flex items-center space-x-1 p-1 bg-gray-100/90 rounded-full border border-gray-200/60 shadow-inner backdrop-blur-sm">
           {navigationItems.map((item) => {
             const isActive = activeSection === item.id
             return (
-              <motion.button
+              <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className={`relative px-4 py-2 rounded-full font-semibold text-sm transition-all duration-300 ${
+                className={`relative px-4 py-1.5 rounded-full font-semibold text-sm transition-colors duration-200 ${
                   isActive 
-                    ? 'text-amber-600 bg-white shadow-sm' 
-                    : 'text-gray-600 hover:text-gray-900 hover:bg-white/60'
+                    ? 'text-amber-700 font-bold' 
+                    : 'text-gray-600 hover:text-gray-900'
                 }`}
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.97 }}
                 aria-label={`Navigate to ${item.label} section`}
                 aria-current={isActive ? 'page' : undefined}
               >
-                {item.label}
-              </motion.button>
+                {isActive && (
+                  <motion.div
+                    layoutId="activeNavPill"
+                    className="absolute inset-0 bg-white rounded-full shadow-[0_2px_8px_rgba(0,0,0,0.06)] border border-amber-500/25"
+                    transition={{ type: 'spring', stiffness: 450, damping: 35 }}
+                  />
+                )}
+                <span className="relative z-10">{item.label}</span>
+              </button>
             )
           })}
         </div>

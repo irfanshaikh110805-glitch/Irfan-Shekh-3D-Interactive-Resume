@@ -217,13 +217,17 @@ export default function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="text-center mb-12"
+            className="text-center mb-14"
           >
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 md:mb-6 bg-gradient-to-r from-amber-600 to-yellow-600 bg-clip-text text-transparent">
-              Featured Work
+            <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-amber-500/10 text-amber-700 border border-amber-200/50 mb-3 uppercase tracking-wider font-mono">
+              <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" />
+              Production Portfolio
+            </span>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold mb-4 md:mb-6 text-gray-900">
+              Featured <span className="bg-gradient-to-r from-amber-500 to-yellow-500 bg-clip-text text-transparent">Work</span>
             </h2>
-            <p className="text-base sm:text-xl text-gray-600 max-w-3xl mx-auto">
-              A curated selection of projects showcasing my expertise in web development, 3D experiences, and creative problem-solving
+            <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
+              A curated selection of production-grade systems showcasing my expertise in web engineering, AI architectures, and interactive 3D experiences.
             </p>
           </motion.div>
           <ProjectShowcase />
@@ -278,12 +282,12 @@ export default function Home() {
                   ? 'bg-gradient-to-r from-amber-500 to-amber-600 text-white shadow-md shadow-amber-500/35 ring-2 ring-amber-400/50'
                   : 'bg-white border border-gray-100 text-gray-500 hover:text-amber-600 hover:bg-amber-50/60 shadow-sm'
               }`}
-              whileHover={{ scale: 1.1 }}
+              whileHover={{ scale: 1.12 }}
               whileTap={{ scale: 0.95 }}
               aria-label={`Jump to ${item.label}`}
             >
               <item.icon size={18} />
-              <span className="absolute right-full mr-3 top-1/2 -translate-y-1/2 px-2.5 py-1 bg-gray-900 text-white text-xs font-medium rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap shadow-lg pointer-events-none z-50">
+              <span className="absolute right-full mr-3 top-1/2 -translate-y-1/2 px-2.5 py-1 bg-gray-900 text-white text-xs font-semibold rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-200 whitespace-nowrap shadow-xl pointer-events-none z-50 before:absolute before:left-full before:top-1/2 before:-translate-y-1/2 before:border-4 before:border-transparent before:border-l-gray-900">
                 {item.label}
               </span>
             </motion.button>
