@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion'
 import TypingAnimation from './TypingAnimation'
 import ClickSpark from './ClickSpark'
 import { ChevronDown, Download, Sparkles, Code2 } from 'lucide-react'
@@ -54,11 +53,8 @@ export default function HeroPortfolio() {
         <div className="flex justify-center items-center lg:items-end relative order-1 lg:order-2 py-2 sm:py-4 lg:py-0">
           
           {/* Profile Container */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.1, ease: 'easeOut' }}
-            className="relative flex items-center justify-center"
+          <div
+            className="relative flex items-center justify-center transition-all duration-500"
           >
             {/* Studio Ambient Glow */}
             <div 
@@ -67,36 +63,30 @@ export default function HeroPortfolio() {
             />
 
             {/* Micro Floating Badge 1 - Top Left */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8, x: -20 }}
-              animate={{ opacity: 1, scale: 1, x: 0 }}
-              transition={{ delay: 0.6, duration: 0.6 }}
+            <div
               className="absolute -top-1 sm:top-4 -left-3 sm:-left-8 z-20 hidden min-[440px]:flex items-center gap-2 bg-white/95 backdrop-blur-md px-3 sm:px-4 py-1.5 sm:py-2 rounded-2xl border border-amber-200/70 shadow-[-2px_-2px_6px_rgba(255,255,255,1),2px_4px_12px_rgba(0,0,0,0.06)] animate-hero-float-1"
             >
               <div className="w-6 h-6 rounded-lg bg-gradient-to-br from-amber-500 to-yellow-500 flex items-center justify-center text-white shadow-sm">
                 <Code2 size={13} />
               </div>
               <div className="flex flex-col text-left">
-                <span className="text-[10px] text-gray-500 font-medium leading-none">Engineering</span>
+                <span className="text-[10px] text-gray-600 font-medium leading-none">Engineering</span>
                 <span className="text-xs font-bold text-gray-800 font-display">Full-Stack & AI</span>
               </div>
-            </motion.div>
+            </div>
 
             {/* Micro Floating Badge 2 - Bottom Right */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8, x: 20 }}
-              animate={{ opacity: 1, scale: 1, x: 0 }}
-              transition={{ delay: 0.8, duration: 0.6 }}
+            <div
               className="absolute bottom-6 sm:bottom-12 -right-3 sm:-right-8 z-20 hidden min-[440px]:flex items-center gap-2 bg-white/95 backdrop-blur-md px-3 sm:px-4 py-1.5 sm:py-2 rounded-2xl border border-amber-200/70 shadow-[-2px_-2px_6px_rgba(255,255,255,1),2px_4px_12px_rgba(0,0,0,0.06)] animate-hero-float-2"
             >
               <div className="w-6 h-6 rounded-lg bg-gradient-to-br from-yellow-500 to-amber-600 flex items-center justify-center text-white shadow-sm">
                 <Sparkles size={13} />
               </div>
               <div className="flex flex-col text-left">
-                <span className="text-[10px] text-gray-500 font-medium leading-none">Track Record</span>
+                <span className="text-[10px] text-gray-600 font-medium leading-none">Track Record</span>
                 <span className="text-xs font-bold text-gray-800 font-display">9+ Live Projects</span>
               </div>
-            </motion.div>
+            </div>
 
             {/* Profile Image with Balanced Scaling & Smooth Bottom Gradient Blend */}
             <picture>
@@ -123,21 +113,15 @@ export default function HeroPortfolio() {
                 }}
               />
             </picture>
-          </motion.div>
+          </div>
         </div>
 
         {/* ── LEFT: Text content & Quick Actions ── */}
-        <motion.div
-          initial={{ opacity: 0, x: -30 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
+        <div
           className="text-center lg:text-left order-2 lg:order-1 space-y-3 sm:space-y-4 md:space-y-5 py-1 sm:py-2 lg:py-4 relative"
         >
           {/* Status Pill Badge with Live Radar Beacon */}
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
+          <div
             className="inline-flex items-center gap-2 bg-white/95 backdrop-blur-md border border-amber-200/70 rounded-full px-4 sm:px-5 py-1.5 sm:py-2 shadow-[-2px_-2px_6px_rgba(255,255,255,1),2px_3px_8px_rgba(0,0,0,0.05)] hover:shadow-md transition-all group cursor-default"
           >
             <span className="relative flex h-2.5 w-2.5 shrink-0">
@@ -145,7 +129,7 @@ export default function HeroPortfolio() {
               <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
             </span>
             <span className="text-xs sm:text-sm text-gray-700 font-semibold tracking-tight">Available for freelance & full-time</span>
-          </motion.div>
+          </div>
 
           {/* Name Title */}
           <div className="relative z-10">
@@ -177,7 +161,7 @@ export default function HeroPortfolio() {
 
           {/* Action Buttons */}
           <div className="flex flex-col min-[400px]:flex-row gap-3 sm:gap-4 justify-center lg:justify-start pt-2">
-            <motion.button
+            <button
               onClick={() => {
                 const workSection = document.getElementById('work')
                 if (workSection) {
@@ -190,41 +174,28 @@ export default function HeroPortfolio() {
                   })
                 }
               }}
-              className="shimmer-hover-trigger group relative px-5 min-[380px]:px-6 sm:px-8 py-3 sm:py-3.5 md:py-4 bg-gradient-to-r from-amber-500 via-amber-600 to-yellow-500 text-white rounded-xl sm:rounded-2xl font-bold font-display tracking-tight text-xs min-[380px]:text-sm sm:text-base flex items-center justify-center gap-2 sm:gap-3 hover:from-amber-600 hover:to-yellow-600 transition-all duration-300 shadow-lg shadow-amber-500/25 hover:shadow-xl hover:shadow-amber-500/40 cursor-pointer w-full min-[400px]:w-auto overflow-hidden"
-              whileHover={{ scale: 1.03, y: -2 }}
-              whileTap={{ scale: 0.96 }}
+              className="shimmer-hover-trigger group relative px-5 min-[380px]:px-6 sm:px-8 py-3 sm:py-3.5 md:py-4 bg-gradient-to-r from-amber-500 via-amber-600 to-yellow-500 text-white rounded-xl sm:rounded-2xl font-bold font-display tracking-tight text-xs min-[380px]:text-sm sm:text-base flex items-center justify-center gap-2 sm:gap-3 hover:from-amber-600 hover:to-yellow-600 hover:scale-[1.03] active:scale-[0.96] transition-all duration-300 shadow-lg shadow-amber-500/25 hover:shadow-xl hover:shadow-amber-500/40 cursor-pointer w-full min-[400px]:w-auto overflow-hidden"
             >
               <span>View My Work</span>
-              <motion.div
-                animate={{ x: [0, 4, 0] }}
-                transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
-              >
-                <ChevronDown className="w-4 h-4 sm:w-5 sm:h-5 rotate-[-90deg] group-hover:translate-x-1 transition-transform" />
-              </motion.div>
-            </motion.button>
+              <ChevronDown className="w-4 h-4 sm:w-5 sm:h-5 rotate-[-90deg] group-hover:translate-x-1 transition-transform" />
+            </button>
 
-            <motion.a
+            <a
               href="/resume.pdf"
               download="Irfan_Shekh_Resume.pdf"
-              className="group px-5 min-[380px]:px-6 sm:px-8 py-3 sm:py-3.5 md:py-4 border-2 border-gray-200/80 bg-white/95 backdrop-blur-sm text-gray-900 rounded-xl sm:rounded-2xl font-bold font-display tracking-tight text-xs min-[380px]:text-sm sm:text-base flex items-center justify-center gap-2 sm:gap-3 hover:border-amber-400 hover:bg-white hover:text-amber-600 shadow-[-2px_-2px_6px_rgba(255,255,255,1),2px_3px_8px_rgba(0,0,0,0.05)] hover:shadow-md transition-all duration-300 cursor-pointer w-full min-[400px]:w-auto"
-              whileHover={{ scale: 1.03, y: -2 }}
-              whileTap={{ scale: 0.96 }}
+              className="group px-5 min-[380px]:px-6 sm:px-8 py-3 sm:py-3.5 md:py-4 border-2 border-gray-200/80 bg-white/95 backdrop-blur-sm text-gray-900 rounded-xl sm:rounded-2xl font-bold font-display tracking-tight text-xs min-[380px]:text-sm sm:text-base flex items-center justify-center gap-2 sm:gap-3 hover:border-amber-400 hover:bg-white hover:text-amber-600 hover:scale-[1.03] active:scale-[0.96] shadow-[-2px_-2px_6px_rgba(255,255,255,1),2px_3px_8px_rgba(0,0,0,0.05)] hover:shadow-md transition-all duration-300 cursor-pointer w-full min-[400px]:w-auto"
             >
               <Download className="w-4 h-4 sm:w-5 sm:h-5 text-amber-500 group-hover:translate-y-0.5 group-hover:text-amber-600 transition-all" />
               <span>Resume</span>
-            </motion.a>
+            </a>
           </div>
 
           {/* Elevated Stats Tiles with Micro-Interactions */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3 lg:gap-4 pt-3 sm:pt-4">
-            {stats.map((stat, index) => (
-              <motion.div
+            {stats.map((stat) => (
+              <div
                 key={stat.label}
-                initial={{ opacity: 0, y: 15 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.5 + index * 0.08 }}
-                whileHover={{ y: -4, scale: 1.02 }}
-                className="group relative p-2.5 min-[380px]:p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-white/95 border border-gray-100 shadow-[-3px_-3px_8px_rgba(255,255,255,1),3px_4px_12px_rgba(0,0,0,0.04)] hover:shadow-[-4px_-4px_12px_rgba(255,255,255,1),4px_8px_20px_rgba(245,158,11,0.12)] transition-all duration-300 text-center lg:text-left overflow-hidden cursor-default"
+                className="group relative p-2.5 min-[380px]:p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-white/95 border border-gray-100 shadow-[-3px_-3px_8px_rgba(255,255,255,1),3px_4px_12px_rgba(0,0,0,0.04)] hover:shadow-[-4px_-4px_12px_rgba(255,255,255,1),4px_8px_20px_rgba(245,158,11,0.12)] hover:-translate-y-1 hover:scale-[1.02] transition-all duration-300 text-center lg:text-left overflow-hidden cursor-default"
               >
                 {/* Micro accent top bar on hover */}
                 <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-amber-500 to-yellow-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -234,10 +205,10 @@ export default function HeroPortfolio() {
                 <div className="text-[10px] min-[380px]:text-[11px] sm:text-xs text-gray-600 font-semibold leading-tight font-sans">
                   {stat.label}
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
-        </motion.div>
+        </div>
       </div>
 
     </section>

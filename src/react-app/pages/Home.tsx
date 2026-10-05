@@ -1,5 +1,4 @@
 import { useState, useEffect, Suspense, lazy } from 'react'
-import { motion } from 'framer-motion'
 import { BackToTop } from '@/react-app/components/MobileOptimizations'
 import HeroPortfolio from '@/react-app/components/HeroPortfolio'
 
@@ -103,61 +102,30 @@ export default function Home() {
     }
   }
 
-  // Accurate, high-performance scroll spy for active section tracking
+  // Zero-reflow, high-performance IntersectionObserver for active section tracking
   useEffect(() => {
     const sections = ['about', 'work', 'skills', 'certifications', 'services', 'contact']
-    let ticking = false
-
-    const handleScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          const scrollPosition = window.scrollY
-          const viewportHeight = window.innerHeight
-          const docHeight = document.documentElement.scrollHeight
-
-          // If scrolled to bottom of page (or within 80px), activate last section (contact)
-          if (scrollPosition + viewportHeight >= docHeight - 80) {
-            setActiveSection('contact')
-            ticking = false
-            return
+    
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id)
           }
-
-          // If scrolled to top (within Hero area), keep 'about' active
-          if (scrollPosition < 300) {
-            setActiveSection('about')
-            ticking = false
-            return
-          }
-
-          // Probe point at 35% of viewport height (natural reading line)
-          const probeY = scrollPosition + viewportHeight * 0.35
-
-          let matched = 'about'
-          for (const id of sections) {
-            const el = document.getElementById(id)
-            if (el) {
-              const top = el.offsetTop
-              const height = el.offsetHeight
-              if (probeY >= top && probeY < top + height) {
-                matched = id
-                break
-              } else if (probeY >= top) {
-                matched = id
-              }
-            }
-          }
-
-          setActiveSection(matched)
-          ticking = false
-        })
-        ticking = true
+        }
+      },
+      {
+        rootMargin: '-20% 0px -60% 0px',
+        threshold: 0
       }
-    }
+    )
 
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    handleScroll()
+    sections.forEach((id) => {
+      const el = document.getElementById(id)
+      if (el) observer.observe(el)
+    })
 
-    return () => window.removeEventListener('scroll', handleScroll)
+    return () => observer.disconnect()
   }, [])
 
   return (
@@ -212,11 +180,7 @@ export default function Home() {
       {/* Featured Work Section */}
       <LazySection className="py-12 md:py-24 px-4 sm:px-6 bg-white relative" id="work">
         <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+          <div
             className="text-center mb-14"
           >
             <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-amber-500/10 text-amber-700 border border-amber-200/50 mb-3 uppercase tracking-wider font-mono">
@@ -229,7 +193,7 @@ export default function Home() {
             <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
               A curated selection of production-grade systems showcasing my expertise in web engineering, AI architectures, and interactive 3D experiences.
             </p>
-          </motion.div>
+          </div>
           <ProjectShowcase />
         </div>
       </LazySection>
@@ -274,23 +238,21 @@ export default function Home() {
         ].map((item) => {
           const isActive = activeSection === item.id
           return (
-            <motion.button
+            <button
               key={item.id}
               onClick={() => scrollToSection(item.id)}
-              className={`p-3 rounded-full transition-all duration-300 group relative flex items-center justify-center ${
+              className={`p-3 rounded-full transition-all duration-300 group relative flex items-center justify-center hover:scale-110 active:scale-95 cursor-pointer ${
                 isActive
                   ? 'bg-gradient-to-r from-amber-500 to-amber-600 text-white shadow-md shadow-amber-500/35 ring-2 ring-amber-400/50'
                   : 'bg-white border border-gray-100 text-gray-500 hover:text-amber-600 hover:bg-amber-50/60 shadow-sm'
               }`}
-              whileHover={{ scale: 1.12 }}
-              whileTap={{ scale: 0.95 }}
               aria-label={`Jump to ${item.label}`}
             >
               <item.icon size={18} />
               <span className="absolute right-full mr-3 top-1/2 -translate-y-1/2 px-2.5 py-1 bg-gray-900 text-white text-xs font-semibold rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-200 whitespace-nowrap shadow-xl pointer-events-none z-50 before:absolute before:left-full before:top-1/2 before:-translate-y-1/2 before:border-4 before:border-transparent before:border-l-gray-900">
                 {item.label}
               </span>
-            </motion.button>
+            </button>
           )
         })}
       </div>

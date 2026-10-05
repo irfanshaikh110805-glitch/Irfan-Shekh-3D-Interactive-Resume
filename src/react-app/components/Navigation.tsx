@@ -1,4 +1,3 @@
-import { motion, AnimatePresence } from 'framer-motion'
 import { Mail, Menu, X } from 'lucide-react'
 import { useState } from 'react'
 
@@ -66,17 +65,13 @@ export default function Navigation({ activeSection, setActiveSection }: Navigati
   }
 
   return (
-    <motion.nav 
-      initial={{ y: -100, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.8 }}
-      className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100/80 shadow-sm"
+    <nav 
+      className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100/80 shadow-sm transition-all duration-300"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-1.5 sm:py-2 flex items-center justify-between">
         {/* Logo */}
-        <motion.div 
-          className="flex items-center"
-          whileHover={{ scale: 1.03 }}
+        <div 
+          className="flex items-center hover:scale-105 active:scale-95 transition-transform duration-200"
         >
           <img 
             src="/logo-small.webp" 
@@ -86,7 +81,7 @@ export default function Navigation({ activeSection, setActiveSection }: Navigati
             loading="eager"
             className="h-10 sm:h-14 md:h-16 w-auto"
           />
-        </motion.div>
+        </div>
 
         {/* Desktop Navigation Links */}
         <div className="hidden md:flex items-center space-x-1 p-1 bg-gray-100/90 rounded-full border border-gray-200/60 shadow-inner backdrop-blur-sm">
@@ -96,21 +91,14 @@ export default function Navigation({ activeSection, setActiveSection }: Navigati
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className={`relative px-4 py-1.5 rounded-full font-semibold text-sm transition-colors duration-200 ${
+                className={`relative px-4 py-1.5 rounded-full font-semibold text-sm transition-all duration-200 cursor-pointer ${
                   isActive 
-                    ? 'text-amber-700 font-bold' 
+                    ? 'text-amber-700 font-bold bg-white shadow-[0_2px_8px_rgba(0,0,0,0.06)] border border-amber-500/25' 
                     : 'text-gray-600 hover:text-gray-900'
                 }`}
                 aria-label={`Navigate to ${item.label} section`}
                 aria-current={isActive ? 'page' : undefined}
               >
-                {isActive && (
-                  <motion.div
-                    layoutId="activeNavPill"
-                    className="absolute inset-0 bg-white rounded-full shadow-[0_2px_8px_rgba(0,0,0,0.06)] border border-amber-500/25"
-                    transition={{ type: 'spring', stiffness: 450, damping: 35 }}
-                  />
-                )}
                 <span className="relative z-10">{item.label}</span>
               </button>
             )
@@ -119,220 +107,183 @@ export default function Navigation({ activeSection, setActiveSection }: Navigati
 
         {/* Mobile Menu Button */}
         <div className="md:hidden">
-          <motion.button
+          <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="p-2.5 rounded-xl bg-gray-100/90 text-gray-700 hover:bg-gray-200 hover:text-gray-900 transition-all duration-300"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            className="p-2.5 rounded-xl bg-gray-100/90 text-gray-700 hover:bg-gray-200 hover:text-gray-900 active:scale-95 transition-all duration-200 cursor-pointer"
             aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
             aria-expanded={isMobileMenuOpen}
           >
             {isMobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
-          </motion.button>
+          </button>
         </div>
 
         {/* Desktop Action Buttons */}
         <div className="hidden md:flex items-center space-x-1.5">
-          <motion.a
+          <a
             href="mailto:irfanshaikh110805@gmail.com"
             aria-label="Email Irfan Shekh"
-            className="p-2.5 rounded-full text-gray-500 hover:text-amber-600 hover:bg-amber-50 hover:shadow-sm transition-all duration-300"
-            whileHover={{ scale: 1.08 }}
-            whileTap={{ scale: 0.95 }}
+            className="p-2.5 rounded-full text-gray-500 hover:text-amber-600 hover:bg-amber-50 hover:shadow-sm hover:scale-110 active:scale-95 transition-all duration-200"
           >
             <Mail size={18} />
-          </motion.a>
+          </a>
           
-          <motion.a
+          <a
             href="https://www.linkedin.com/in/irfan-shekh-380461392?utm_source=share_via&utm_content=profile&utm_medium=member_android"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Visit LinkedIn Profile"
-            className="p-2.5 rounded-full text-gray-500 hover:text-amber-600 hover:bg-amber-50 hover:shadow-sm transition-all duration-300"
-            whileHover={{ scale: 1.08 }}
-            whileTap={{ scale: 0.95 }}
+            className="p-2.5 rounded-full text-gray-500 hover:text-amber-600 hover:bg-amber-50 hover:shadow-sm hover:scale-110 active:scale-95 transition-all duration-200"
           >
             <LinkedinIcon size={18} />
-          </motion.a>
+          </a>
           
-          <motion.a
+          <a
             href="https://github.com/irfanshaikh110805-glitch"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Visit GitHub Profile"
-            className="p-2.5 rounded-full text-gray-500 hover:text-gray-900 hover:bg-gray-100 hover:shadow-sm transition-all duration-300"
-            whileHover={{ scale: 1.08 }}
-            whileTap={{ scale: 0.95 }}
+            className="p-2.5 rounded-full text-gray-500 hover:text-gray-900 hover:bg-gray-100 hover:shadow-sm hover:scale-110 active:scale-95 transition-all duration-200"
           >
             <GithubIcon size={18} />
-          </motion.a>
+          </a>
 
-          <motion.a
+          <a
             href="https://www.facebook.com/irfan.shaikh.870227"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Visit Facebook Profile"
-            className="p-2.5 rounded-full text-gray-500 hover:text-amber-600 hover:bg-amber-50 hover:shadow-sm transition-all duration-300"
-            whileHover={{ scale: 1.08 }}
-            whileTap={{ scale: 0.95 }}
+            className="p-2.5 rounded-full text-gray-500 hover:text-amber-600 hover:bg-amber-50 hover:shadow-sm hover:scale-110 active:scale-95 transition-all duration-200"
           >
             <FacebookIcon size={18} />
-          </motion.a>
+          </a>
 
-          <motion.a
+          <a
             href="https://www.instagram.com/dark_rider170?igsh=dWhha2FqeHlqNHky"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Visit Instagram Profile"
-            className="p-2.5 rounded-full text-gray-500 hover:text-amber-600 hover:bg-amber-50 hover:shadow-sm transition-all duration-300"
-            whileHover={{ scale: 1.08 }}
-            whileTap={{ scale: 0.95 }}
+            className="p-2.5 rounded-full text-gray-500 hover:text-amber-600 hover:bg-amber-50 hover:shadow-sm hover:scale-110 active:scale-95 transition-all duration-200"
           >
             <InstagramIcon size={18} />
-          </motion.a>
+          </a>
 
-          <motion.a
+          <a
             href="https://wa.me/919964264412?text=Hi%20Irfan!%20%F0%9F%91%8B%20I%20came%20across%20your%20portfolio%20and%20would%20like%20to%20connect%20regarding%20a%20project%20%2F%20opportunity."
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Connect on WhatsApp"
-            className="p-2.5 rounded-full text-gray-500 hover:text-amber-600 hover:bg-amber-50 hover:shadow-sm transition-all duration-300"
-            whileHover={{ scale: 1.08 }}
-            whileTap={{ scale: 0.95 }}
+            className="p-2.5 rounded-full text-gray-500 hover:text-amber-600 hover:bg-amber-50 hover:shadow-sm hover:scale-110 active:scale-95 transition-all duration-200"
           >
             <WhatsappIcon size={18} />
-          </motion.a>
+          </a>
         </div>
       </div>
 
       {/* Mobile Menu */}
-      <AnimatePresence>
-        {isMobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
-            className="md:hidden bg-white/95 backdrop-blur-md border-t border-gray-200 shadow-lg relative z-50"
-          >
-            <div className="px-6 py-4 space-y-3 relative z-50" style={{ pointerEvents: 'auto' }}>
-              {/* Mobile Navigation Links */}
-              {navigationItems.map((item, index) => {
-                const isActive = activeSection === item.id
-                return (
-                  <motion.div
-                    key={item.id}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.3, delay: index * 0.05 }}
+      {isMobileMenuOpen && (
+        <div
+          className="md:hidden bg-white/95 backdrop-blur-md border-t border-gray-200 shadow-lg relative z-50 transition-all duration-300"
+        >
+          <div className="px-6 py-4 space-y-3 relative z-50" style={{ pointerEvents: 'auto' }}>
+            {/* Mobile Navigation Links */}
+            {navigationItems.map((item) => {
+              const isActive = activeSection === item.id
+              return (
+                <div key={item.id}>
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      setActiveSection(item.id);
+                      setIsMobileMenuOpen(false);
+                      
+                      setTimeout(() => {
+                        const element = document.getElementById(item.id);
+                        if (element) {
+                          const yOffset = -80;
+                          const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+                          window.scrollTo({ top: y, behavior: 'smooth' });
+                        }
+                      }, 100);
+                    }}
+                    className={`block w-full text-left px-4 py-3 rounded-xl font-semibold transition-all duration-200 cursor-pointer ${
+                      isActive
+                        ? 'bg-amber-500 text-white shadow-md shadow-amber-500/20'
+                        : 'text-gray-700 hover:text-gray-900 hover:bg-gray-100'
+                    }`}
+                    style={{ touchAction: 'manipulation', pointerEvents: 'auto' }}
                   >
-                    <button
-                      type="button"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        setActiveSection(item.id);
-                        setIsMobileMenuOpen(false);
-                        
-                        setTimeout(() => {
-                          const element = document.getElementById(item.id);
-                          if (element) {
-                            const yOffset = -80;
-                            const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
-                            window.scrollTo({ top: y, behavior: 'smooth' });
-                          }
-                        }, 300);
-                      }}
-                      className={`block w-full text-left px-4 py-3 rounded-xl font-semibold transition-all duration-300 cursor-pointer ${
-                        isActive
-                          ? 'bg-amber-500 text-white shadow-md shadow-amber-500/20'
-                          : 'text-gray-700 hover:text-gray-900 hover:bg-gray-100'
-                      }`}
-                      style={{ touchAction: 'manipulation', pointerEvents: 'auto' }}
-                    >
-                      {item.label}
-                    </button>
-                  </motion.div>
-                )
-              })}
+                    {item.label}
+                  </button>
+                </div>
+              )
+            })}
 
-              {/* Mobile Social Links */}
-              <div className="flex flex-wrap justify-center gap-3 pt-4 border-t border-gray-200">
-                <motion.a
-                  href="mailto:irfanshaikh110805@gmail.com"
-                  aria-label="Email Irfan Shekh"
-                  className="p-3 rounded-full bg-gray-100 text-gray-600 hover:text-amber-600 hover:bg-amber-50 transition-all"
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <Mail size={20} />
-                </motion.a>
-                
-                <motion.a
-                  href="https://www.linkedin.com/in/irfan-shekh-380461392?utm_source=share_via&utm_content=profile&utm_medium=member_android"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Visit LinkedIn Profile"
-                  className="p-3 rounded-full bg-gray-100 text-gray-600 hover:text-amber-600 hover:bg-amber-50 transition-all"
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <LinkedinIcon size={20} />
-                </motion.a>
-                
-                <motion.a
-                  href="https://github.com/irfanshaikh110805-glitch"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Visit GitHub Profile"
-                  className="p-3 rounded-full bg-gray-100 text-gray-700 hover:text-gray-900 hover:bg-gray-200 transition-all"
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <GithubIcon size={20} />
-                </motion.a>
+            {/* Mobile Social Links */}
+            <div className="flex flex-wrap justify-center gap-3 pt-4 border-t border-gray-200">
+              <a
+                href="mailto:irfanshaikh110805@gmail.com"
+                aria-label="Email Irfan Shekh"
+                className="p-3 rounded-full bg-gray-100 text-gray-600 hover:text-amber-600 hover:bg-amber-50 active:scale-95 transition-all"
+              >
+                <Mail size={20} />
+              </a>
+              
+              <a
+                href="https://www.linkedin.com/in/irfan-shekh-380461392?utm_source=share_via&utm_content=profile&utm_medium=member_android"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Visit LinkedIn Profile"
+                className="p-3 rounded-full bg-gray-100 text-gray-600 hover:text-amber-600 hover:bg-amber-50 active:scale-95 transition-all"
+              >
+                <LinkedinIcon size={20} />
+              </a>
+              
+              <a
+                href="https://github.com/irfanshaikh110805-glitch"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Visit GitHub Profile"
+                className="p-3 rounded-full bg-gray-100 text-gray-700 hover:text-gray-900 hover:bg-gray-200 active:scale-95 transition-all"
+              >
+                <GithubIcon size={20} />
+              </a>
 
-                <motion.a
-                  href="https://www.facebook.com/irfan.shaikh.870227"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Visit Facebook Profile"
-                  className="p-3 rounded-full bg-gray-100 text-gray-700 hover:text-amber-600 hover:bg-amber-50 transition-all"
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <FacebookIcon size={20} />
-                </motion.a>
+              <a
+                href="https://www.facebook.com/irfan.shaikh.870227"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Visit Facebook Profile"
+                className="p-3 rounded-full bg-gray-100 text-gray-700 hover:text-amber-600 hover:bg-amber-50 active:scale-95 transition-all"
+              >
+                <FacebookIcon size={20} />
+              </a>
 
-                <motion.a
-                  href="https://www.instagram.com/dark_rider170?igsh=dWhha2FqeHlqNHky"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Visit Instagram Profile"
-                  className="p-3 rounded-full bg-gray-100 text-gray-700 hover:text-amber-600 hover:bg-amber-50 transition-all"
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <InstagramIcon size={20} />
-                </motion.a>
+              <a
+                href="https://www.instagram.com/dark_rider170?igsh=dWhha2FqeHlqNHky"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Visit Instagram Profile"
+                className="p-3 rounded-full bg-gray-100 text-gray-700 hover:text-amber-600 hover:bg-amber-50 active:scale-95 transition-all"
+              >
+                <InstagramIcon size={20} />
+              </a>
 
-                <motion.a
-                  href="https://wa.me/919964264412?text=Hi%20Irfan!%20%F0%9F%91%8B%20I%20came%20across%20your%20portfolio%20and%20would%20like%20to%20connect%20regarding%20a%20project%20%2F%20opportunity."
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Connect on WhatsApp"
-                  className="p-3 rounded-full bg-gray-100 text-gray-700 hover:text-amber-600 hover:bg-amber-50 transition-all"
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <WhatsappIcon size={20} />
-                </motion.a>
-              </div>
-
+              <a
+                href="https://wa.me/919964264412?text=Hi%20Irfan!%20%F0%9F%91%8B%20I%20came%20across%20your%20portfolio%20and%20would%20like%20to%20connect%20regarding%20a%20project%20%2F%20opportunity."
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Connect on WhatsApp"
+                className="p-3 rounded-full bg-gray-100 text-gray-700 hover:text-amber-600 hover:bg-amber-50 active:scale-95 transition-all"
+              >
+                <WhatsappIcon size={20} />
+              </a>
             </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.nav>
+
+          </div>
+        </div>
+      )}
+    </nav>
   )
 }

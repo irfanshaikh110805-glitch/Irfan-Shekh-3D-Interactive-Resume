@@ -47,6 +47,12 @@
     Cache-Control = "public, max-age=31536000, immutable"
     Access-Control-Allow-Origin = "*"
 
+# Cache built Vite assets (JavaScript & CSS)
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
 # Cache JavaScript files
 [[headers]]
   for = "/*.js"
