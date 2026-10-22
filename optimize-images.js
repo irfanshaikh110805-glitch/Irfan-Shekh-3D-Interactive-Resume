@@ -112,6 +112,13 @@ async function optimizeImages() {
   }
 
   console.log('--- Optimizing Project WebP images & Thumbnails ---');
+  const casesightSrc = path.join(__dirname, 'casesight image.png');
+  if (fs.existsSync(casesightSrc)) {
+    await sharp(casesightSrc)
+      .webp({ quality: 85, effort: 6 })
+      .toFile(path.join(publicDir, 'casesight-new.webp'));
+    console.log('✓ Synced casesight image.png to public/casesight-new.webp');
+  }
   const files = fs.readdirSync(publicDir);
   const projectImages = [
     'casesight-new.webp',

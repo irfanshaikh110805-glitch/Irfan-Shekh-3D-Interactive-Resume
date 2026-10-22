@@ -103,6 +103,7 @@ app.post('/api/chat', async (c) => {
       5. Fruit & Vegetable Disease Detection: AI image classification with TensorFlow.
       6. HeavyDuty Parts: Industrial E-Commerce with WhatsApp checkout.
     - Education: Currently pursuing BCA at Smt Kumudben Debar College, Vijayapura, Karnataka.
+    - Certifications: 12 professional credentials including IBM SkillsBuild (Statistics, Data Classification, Data Usability), Oracle Certified Foundations Associate (Agentic AI), PG-DCA, and Tata Job Simulations.
     - Contact: irfanshaikh110805@gmail.com, +91 9964264412.
     - Availability: Open for freelance and full-time roles.
     

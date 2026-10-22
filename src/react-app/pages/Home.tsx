@@ -262,9 +262,20 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 py-8 md:py-12">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div>
-              <h3 className="text-2xl font-bold bg-gradient-to-r from-amber-600 to-yellow-500 bg-clip-text text-transparent mb-4">
-                Irfan Shekh
-              </h3>
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 p-1 flex items-center justify-center shadow-sm">
+                  <img 
+                    src="/logo-small.webp" 
+                    alt="Irfan Shekh Logo" 
+                    width="36" 
+                    height="36" 
+                    className="w-full h-full object-contain" 
+                  />
+                </div>
+                <h3 className="text-2xl font-bold bg-gradient-to-r from-amber-600 to-yellow-500 bg-clip-text text-transparent">
+                  Irfan Shekh
+                </h3>
+              </div>
               <p className="text-gray-600 mb-4 text-sm leading-relaxed">
                 Full-Stack Developer & AI/ML Engineer. Building digital experiences
                 that solve real-world problems with cutting-edge technology.

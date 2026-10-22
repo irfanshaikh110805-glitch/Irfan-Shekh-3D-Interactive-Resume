@@ -17,7 +17,7 @@ export default function HeroPortfolio() {
     { number: '9+', label: 'Deployed Projects' },
     { number: '3', label: 'Internships' },
     { number: 'BCA', label: 'Graduate 2023–2026' },
-    { number: '9', label: 'Certifications' }
+    { number: '12', label: 'Certifications' }
   ]
 
   const heroContent = (

@@ -1,0 +1,26 @@
+{
+  "$schema": "https://raw.githubusercontent.com/ards-project/ard-spec/main/spec/schemas/ai-catalog.schema.json",
+  "specVersion": "1.0",
+  "host": {
+    "identifier": "urn:ai:irfanshaikhportfolio.netlify.app",
+    "displayName": "Irfan Shaikh Portfolio",
+    "description": "Digital Full Stack Developer & AI/ML integration portfolio by Irfan Shaikh",
+    "url": "https://irfanshaikhportfolio.netlify.app/"
+  },
+  "entries": [
+    {
+      "identifier": "urn:ai:irfanshaikhportfolio.netlify.app:doc:llms-txt",
+      "displayName": "Portfolio LLM Context",
+      "type": "text/markdown",
+      "url": "https://irfanshaikhportfolio.netlify.app/llms.txt",
+      "description": "Machine-readable context and summary of Irfan Shaikh's projects, technical skills, and experience for AI agents and LLMs."
+    },
+    {
+      "identifier": "urn:ai:irfanshaikhportfolio.netlify.app:agent:chatbot",
+      "displayName": "Irfan Shaikh Resume Chatbot",
+      "type": "application/json",
+      "url": "https://irfanshaikhportfolio.netlify.app/api/chat",
+      "description": "Conversational assistant API answering queries about Irfan Shaikh's background, projects, and certifications."
+    }
+  ]
+}

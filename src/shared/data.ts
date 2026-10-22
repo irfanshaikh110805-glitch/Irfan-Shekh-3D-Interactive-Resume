@@ -249,7 +249,7 @@ export const milestones: Milestone[] = [
   {
     year: '2023 – 2026',
     title: 'BCA Graduate — Industry-Ready Professional',
-    description: 'Completed Bachelor of Computer Applications with 9+ deployed production projects, 3 internships, 9 certifications, and expertise in AI/ML, full-stack development, and scalable cloud deployments.',
+    description: 'Completed Bachelor of Computer Applications with 9+ deployed production projects, 3 internships, 12 certifications, and expertise in AI/ML, full-stack development, and scalable cloud deployments.',
     color: 'milestone-orange',
     align: 'left'
   }

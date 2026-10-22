@@ -65,10 +65,15 @@ export default function ResumeChatbot() {
     if (lowerMessage.includes('experience') || lowerMessage.includes('background') || lowerMessage.includes('internship')) {
       return "Irfan completed 3 internships:\n\n• Machine Learning Intern — SkillCraft Technology (Jun–Jul 2026):\nDeveloped ML models for classification tasks with data preprocessing and feature engineering\n\n• Java Full Stack Intern — MTD, Mysuru (Jan–Feb 2026):\nBuilt applications with ReactJS, Spring Boot, and MongoDB\n\n• Full-Stack Development Intern — Smt Kumudben Darbar College (Jan–May 2024):\nBuilt responsive web modules with HTML5, CSS3, JS, Flask & MySQL, reduced load time by 30%\n\nHis diverse experience demonstrates real-world problem-solving skills!"
     }
+
+    // Certifications related
+    if (lowerMessage.includes('certif') || lowerMessage.includes('credential') || lowerMessage.includes('badge') || lowerMessage.includes('ibm') || lowerMessage.includes('oracle')) {
+      return "Irfan holds 12 verified certifications and credentials, including:\n\n• IBM SkillsBuild — Introduction to Inferential and Descriptive Statistics (Oct 2026)\n• IBM SkillsBuild — Data Classification (Oct 2026)\n• IBM SkillsBuild — Data Usability for Organizations (Oct 2026)\n• Oracle Certified Foundations Associate — Agentic AI (Oracle University, Jul 2026)\n• PG-DCA (Post Graduate Diploma in Computer Applications, IACT)\n• Cybersecurity Analyst & GenAI Data Analytics Job Simulations (Tata via Forage)\n• FreeCodeCamp & DevTown Certifications\n\nAll credentials can be inspected and verified with official badges in the Certifications section!"
+    }
     
     // About/Who
     if (lowerMessage.includes('who') || lowerMessage.includes('about') || lowerMessage.includes('introduce')) {
-      return "Hi! I'm Irfan's AI assistant.\n\nIrfan Shekh is a results-driven BCA graduate and Full-Stack Developer from Vijayapura, Karnataka. He specializes in building scalable web applications with React, Node.js, Flask, and Spring Boot, with proven expertise in AI/ML integration.\n\nHighlights:\n• 3 internships completed\n• 9+ production projects deployed\n• Expertise in AI/ML, full-stack development\n• Creates innovative solutions for real-world problems"
+      return "Hi! I'm Irfan's AI assistant.\n\nIrfan Shekh is a results-driven BCA graduate and Full-Stack Developer from Vijayapura, Karnataka. He specializes in building scalable web applications with React, Node.js, Flask, and Spring Boot, with proven expertise in AI/ML integration.\n\nHighlights:\n• 3 internships completed\n• 9+ production projects deployed\n• 12 industry certifications (IBM, Oracle, Tata, freeCodeCamp)\n• Expertise in AI/ML, full-stack development\n• Creates innovative solutions for real-world problems"
     }
     
     // Greetings

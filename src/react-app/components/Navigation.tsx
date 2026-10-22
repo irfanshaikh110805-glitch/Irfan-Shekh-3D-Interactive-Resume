@@ -69,19 +69,31 @@ export default function Navigation({ activeSection, setActiveSection }: Navigati
       className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100/80 shadow-sm transition-all duration-300"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-1.5 sm:py-2 flex items-center justify-between">
-        {/* Logo */}
-        <div 
-          className="flex items-center hover:scale-105 active:scale-95 transition-transform duration-200"
+        {/* Logo Brandmark */}
+        <button 
+          onClick={() => scrollToSection('hero')}
+          className="flex items-center gap-2.5 sm:gap-3 group focus:outline-none cursor-pointer"
+          aria-label="Scroll to top"
         >
-          <img 
-            src="/logo-small.webp" 
-            alt="Irfan Shekh Logo" 
-            width="80" 
-            height="80" 
-            loading="eager"
-            className="h-10 sm:h-14 md:h-16 w-auto"
-          />
-        </div>
+          <div className="relative flex items-center justify-center w-10 h-10 sm:w-11 sm:h-11 rounded-2xl bg-amber-500/10 border border-amber-500/25 shadow-sm p-1 group-hover:border-amber-500/50 group-hover:bg-amber-500/15 group-hover:shadow-[0_0_18px_rgba(245,158,11,0.25)] transition-all duration-300">
+            <img 
+              src="/logo-small.webp" 
+              alt="Irfan Shekh Logo" 
+              width="44" 
+              height="44" 
+              loading="eager"
+              className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
+            />
+          </div>
+          <div className="flex flex-col text-left">
+            <span className="font-display font-extrabold text-base sm:text-lg tracking-tight text-gray-900 group-hover:text-amber-600 transition-colors leading-tight">
+              Irfan<span className="text-amber-500">.</span>dev
+            </span>
+            <span className="font-mono text-[9px] sm:text-[10px] uppercase tracking-wider text-gray-500 font-semibold leading-tight">
+              Full-Stack & AI
+            </span>
+          </div>
+        </button>
 
         {/* Desktop Navigation Links */}
         <div className="hidden md:flex items-center space-x-1 p-1 bg-gray-100/90 rounded-full border border-gray-200/60 shadow-inner backdrop-blur-sm">

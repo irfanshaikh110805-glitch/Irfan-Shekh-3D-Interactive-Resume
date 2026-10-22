@@ -34,6 +34,33 @@ const certifications: Certification[] = [
   },
   {
     id: '3',
+    title: 'Introduction to Inferential and Descriptive Statistics',
+    issuer: 'IBM SkillsBuild',
+    year: 'Oct 2026',
+    badge: '📊',
+    image: '/cirtificats/IBM - Introduction to Inferential and Descriptive Statistics.webp',
+    link: 'https://www.credly.com/badges/3afb79e0-9d5d-4fcd-ab62-da3c271ed0cf'
+  },
+  {
+    id: '4',
+    title: 'Data Classification',
+    issuer: 'IBM SkillsBuild',
+    year: 'Oct 2026',
+    badge: '🏷️',
+    image: '/cirtificats/IBM - Data Classification.webp',
+    link: 'https://www.credly.com/badges/edf6c94d-dd47-4c93-b263-b246256a906e'
+  },
+  {
+    id: '5',
+    title: 'Data Usability for Organizations',
+    issuer: 'IBM SkillsBuild',
+    year: 'Oct 2026',
+    badge: '📈',
+    image: '/cirtificats/IBM - Data Usability for Organizations.webp',
+    link: 'https://www.credly.com/badges/f1552b89-5836-4247-9598-26c7934655a9'
+  },
+  {
+    id: '6',
     title: 'Java Full Stack Internship',
     issuer: 'MTD, Mysuru',
     year: 'Jan-Feb 2026',
@@ -42,7 +69,7 @@ const certifications: Certification[] = [
     link: '#'
   },
   {
-    id: '4',
+    id: '7',
     title: 'Cybersecurity Analyst Job Simulation',
     issuer: 'Tata, via Forage',
     year: 'Jun 2026',
@@ -51,7 +78,7 @@ const certifications: Certification[] = [
     link: '#'
   },
   {
-    id: '5',
+    id: '8',
     title: 'GenAI Powered Data Analytics Job Simulation',
     issuer: 'Tata, via Forage',
     year: 'Jun 2026',
@@ -60,7 +87,7 @@ const certifications: Certification[] = [
     link: '#'
   },
   {
-    id: '6',
+    id: '9',
     title: 'Generative AI – A Way of Life',
     issuer: 'Completion Certificate',
     year: 'Sep 2025',
@@ -69,7 +96,7 @@ const certifications: Certification[] = [
     link: '#'
   },
   {
-    id: '7',
+    id: '10',
     title: 'JavaScript & React.JS from A to Z (7-Day Bootcamp)',
     issuer: 'DevTown',
     year: 'Mar 2024',
@@ -78,7 +105,7 @@ const certifications: Certification[] = [
     link: '#'
   },
   {
-    id: '8',
+    id: '11',
     title: 'JavaScript Algorithms & Data Structures',
     issuer: 'freeCodeCamp',
     year: '2024',
@@ -87,7 +114,7 @@ const certifications: Certification[] = [
     link: '#'
   },
   {
-    id: '9',
+    id: '12',
     title: 'DevTown Certificate of Appreciation',
     issuer: 'DevTown',
     year: 'Mar 2024',
@@ -270,17 +297,31 @@ export default function CertificationsSection() {
               </div>
 
               {/* Modal Footer */}
-              <div className="p-4 sm:p-5 bg-white border-t border-gray-100 flex items-center justify-between">
+              <div className="p-4 sm:p-5 bg-white border-t border-gray-100 flex flex-wrap gap-3 items-center justify-between">
                 <div className="flex items-center gap-2 text-emerald-600 text-xs sm:text-sm font-semibold">
                   <CheckCircle2 size={16} />
                   <span>Credential verified & authentic</span>
                 </div>
-                <button
-                  onClick={() => setSelectedCert(null)}
-                  className="px-5 py-2 rounded-xl bg-gray-100 hover:bg-gray-200 text-gray-800 text-xs sm:text-sm font-bold font-sans transition-all cursor-pointer"
-                >
-                  Close
-                </button>
+                <div className="flex items-center gap-2">
+                  {selectedCert.link && selectedCert.link !== '#' && (
+                    <a
+                      href={selectedCert.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white text-xs sm:text-sm font-bold font-sans transition-all shadow-sm"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      <span>Verify on Credly</span>
+                      <ExternalLink size={14} />
+                    </a>
+                  )}
+                  <button
+                    onClick={() => setSelectedCert(null)}
+                    className="px-5 py-2 rounded-xl bg-gray-100 hover:bg-gray-200 text-gray-800 text-xs sm:text-sm font-bold font-sans transition-all cursor-pointer"
+                  >
+                    Close
+                  </button>
+                </div>
               </div>
             </motion.div>
           </motion.div>
