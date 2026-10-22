@@ -47,6 +47,28 @@ async function optimizeImages() {
     console.log('✓ Kept original full-resolution profile image');
   }
 
+  const profileIconSrc = path.join(__dirname, 'profile icon.png');
+  if (fs.existsSync(profileIconSrc)) {
+    const iconSizes = [
+      { name: 'favicon-16x16.png', size: 16 },
+      { name: 'favicon-32x32.png', size: 32 },
+      { name: 'favicon-48x48.png', size: 48 },
+      { name: 'favicon-96x96.png', size: 96 },
+      { name: 'apple-touch-icon.png', size: 180 },
+      { name: 'icon-192.png', size: 192 },
+      { name: 'icon-512.png', size: 512 },
+      { name: 'profile-icon.png', size: 512 }
+    ];
+    for (const icon of iconSizes) {
+      await sharp(profileIconSrc)
+        .resize(icon.size, icon.size, { fit: 'cover' })
+        .png({ compressionLevel: 9 })
+        .toFile(path.join(publicDir, icon.name));
+    }
+    fs.copyFileSync(path.join(publicDir, 'favicon-32x32.png'), path.join(publicDir, 'favicon.ico'));
+    console.log('✓ Generated profile face favicons (16, 32, 48, 96, 180, 192, 512, ico)');
+  }
+
   console.log('--- Optimizing Chatbot Image ---');
   const chatbotSrc = path.join(publicDir, 'chatbot.webp');
   if (fs.existsSync(chatbotSrc)) {
